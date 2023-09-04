@@ -1,11 +1,21 @@
 <template>
-  <div class="master-container">
-    <nuxt />
+  <div class="layout default">
+
+    <SiteHeader />
+
+    <slot />
+
+    <SiteFooter />
+
   </div>
 </template>
 
-<script>
-export default {
-  name: 'LayoutDefault'
+<style lang="scss" scoped>
+// ///////////////////////////////////////////////////////////////////// General
+.layout {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
 }
-</script>
+</style>
