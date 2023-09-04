@@ -1,25 +1,19 @@
 module.exports = {
-  root: true,
-  env: {
-    browser: true,
-    node: true
-  },
   parserOptions: {
-    parser: '@babel/eslint-parser',
-    sourceType: 'module',
-    requireConfigFile: false
+    ecmaVersion: 'latest'
   },
   extends: [
-    '@nuxtjs',
-    'plugin:nuxt/recommended',
-    'plugin:vue/essential',
-    'plugin:cypress/recommended'
+    '@nuxt/eslint-config',
+    './.nuxt/.eslint.nuxt3-globals.json',
+    'plugin:vue/essential'
   ],
-  // Add your custom rules here
+  ignorePatterns: [
+    '.nuxt/',
+    '.output/',
+    'dist/'
+  ],
   rules: {
-    indent: ['error', 2, { SwitchCase: 1 }],
     'no-console': process.env.NODE_ENV !== 'development' ? 'error' : 'off',
-    'eol-last': [2, 'always'],
     'vue/html-closing-bracket-newline': ['error', {
       singleline: 'never',
       multiline: 'never'
@@ -37,7 +31,14 @@ module.exports = {
     'no-lonely-if': 'off',
     'no-new': 'off',
     'no-prototype-builtins': 'off',
+    'promise/param-names': 'off',
     'multiline-ternary': 'off',
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off',
+    "vue/max-attributes-per-line": ["error", {
+      "singleline": {
+        "max": 3
+      }
+    }],
+    'vue/script-setup-uses-vars': 'error'
   }
 }
