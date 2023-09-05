@@ -209,11 +209,11 @@ $fontAssetPath: 'assets/fonts';
 
 @mixin inlineCode {
   font-family: $fontSuisseIntlMono;
-  color: var(--code-text-color);
-  background-color: var(--code-background-color);
-  padding: 0.12rem 0.45rem;
-  border-radius: toRem(4);
-  font-size: toRem(18);
+  // color: var(--code-text-color);
+  // background-color: var(--code-background-color);
+  // padding: 0.12rem 0.45rem;
+  // border-radius: toRem(4);
+  font-size: toRem(14);
   line-height: leading(27, 18);
   font-weight: 400;
   letter-spacing: 0.01em;

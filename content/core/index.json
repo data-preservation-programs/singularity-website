@@ -12,7 +12,7 @@
   "page_content": [
     {
       "id": "hero-header",
-      "grid": [],
+      "grid": ["noGutter"],
       "col_1": {
         "type": "text_block",
         "cols": {
@@ -27,6 +27,152 @@
             "to": "/signup",
             "tag": "nuxt-link",
             "theme": "primary"
+          }
+        ]
+      },
+      "col_2": {
+        "type": "custom",
+        "cols": {
+          "num": "col-6",
+          "push_left": "off-1"
+        },
+        "customizations": [
+          {
+            "name": "CodeBlock",
+            "props": {
+              "block": {
+                "lines": [
+                  {
+                    "type": "Type",
+                    "path": "Path",
+                    "scanState": "ScanningState",
+                    "dagState": "DagGenState"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "foldingathome-covid19",
+                    "scanState": "complete",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "multi-token-completion",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "fast-ai-nlp",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "nasanex",
+                    "scanState": "complete",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "gcs",
+                    "path": "terrafusion",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "conversational-search",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "noaa-nexrad",
+                    "scanState": "complete",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "usgs-landsat",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "brazil-data-cubes",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "gcs",
+                    "path": "ndui",
+                    "scanState": "complete",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "koofr",
+                    "path": "janelia-flylight",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "commoncrawl",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "name": "CardListBlock",
+            "props": {
+              "block": {
+                "card_grid": ["noGutter", "noBottom", "middle"],
+                "card_columns": "col-2",
+                "cards": [
+                  {
+                    "type": "logo",
+                    "img": "/images/aws-logo.svg"
+                  },
+                  {
+                    "type": "logo",
+                    "img": "/images/backblaze-logo.svg"
+                  },
+                  {
+                    "type": "logo",
+                    "img": "/images/dropbox-logo.svg"
+                  },
+                  {
+                    "type": "logo",
+                    "img": "/images/google-cloud-logo.svg"
+                  },
+                  {
+                    "type": "logo",
+                    "img": "/images/one-drive-logo.svg"
+                  },
+                  {
+                    "type": "logo",
+                    "img": "/images/oracle-logo.svg"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "name": "TextBlock",
+            "props": {
+              "block": {
+                "ctas": [
+                  {
+                    "text": "View all 30+ compatible storage services",
+                    "tag": "a",
+                    "to": "https://example.com",
+                    "theme": "secondary" 
+                  }
+                ]
+              }
+            }
           }
         ]
       }

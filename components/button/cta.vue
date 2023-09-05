@@ -191,8 +191,23 @@ const props = defineProps({
 }
 
 .theme__secondary {
+  display: block;
+  width: fit-content;
+  padding-right: toRem(25);
   .button-content {
     @include b2;
+    color: $chardonnay;
+    &:after {
+      content: '↗';
+      position: absolute;
+      margin-left: 0.5rem;
+      @include transitionDefault;
+    }
+    &:hover {
+      &:after {
+        transform: translateX(0.5rem);
+      }
+    }
   }
 }
 

@@ -1,5 +1,7 @@
 <template>
-  <div :class="['card', `type__${type}`, `theme__${theme}`, flipped]">
+  <div :class="['card', `type__${type}`, `theme__${theme}`]">
+
+    <img :src="image" />
 
   </div>
 </template>
@@ -14,17 +16,6 @@ export default {
       type: Object,
       required: true,
       default: () => ({})
-    },
-    ctaTabIndex: {
-      type: Number,
-      required: false,
-      default: 0
-    }
-  },
-
-  data () {
-    return {
-      flipped: ''
     }
   },
 
@@ -62,23 +53,11 @@ export default {
     description () {
       return this.card.description
     },
-    sidebarImage () {
-      return this.type === 'project' && this.image ? { 'background-image': `url(${this.image})` } : false
-    },
-    sidebarText () {
-      if (this.card.sidebar_text) { return this.card.sidebar_text }
-      const titleLength = this.title.length
-      const titleRepeats = Math.ceil(150 / (titleLength + 1))
-      return Array(titleRepeats).fill(this.title).join(' ')
-    },
     ctas () {
       return this.card.ctas ? this.card.ctas : []
     },
     theme () {
       return this.card.theme
-    },
-    reverseImg () {
-      return this.card.reverse_img
     }
   }
 }
@@ -86,5 +65,10 @@ export default {
 
 <style lang="scss" scoped>
 // ///////////////////////////////////////////////////////////////////// General
-
+.card.type__logo {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
 </style>

@@ -19,7 +19,7 @@ const sections = computed(() => {
   const index = data._rawValue.find((item) => item._file === 'core/index.json')
   return index.page_content
 })
-// console.log(sections)
+
 </script>
 
 <style lang="scss" scoped>
@@ -72,6 +72,26 @@ const sections = computed(() => {
     background-size: 2200px;
     background-position: center bottom;
     background-repeat: no-repeat;
+  }
+  .text-block {
+    .description {
+      padding-right: toRem(50);
+    }
+  }
+  .code-block,
+  .card-list-block {
+    margin-left: toRem(-50);
+  }
+  .code-block {
+    margin-bottom: toRem(48);
+  }
+  div[data-block-id="col_2"] {
+    .text-block {
+      .button-row {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
   }
 }
 

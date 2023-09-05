@@ -30,7 +30,8 @@
           v-for="(cta, index) in ctaData"
           :key="index"
           :tag="cta.tag"
-          :to="cta.to">
+          :to="cta.to"
+          :theme="cta.theme">
           {{ cta.text }}
         </ButtonCta>
       </div>
