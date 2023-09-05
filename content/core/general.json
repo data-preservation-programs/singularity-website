@@ -1,0 +1,59 @@
+{
+  "seo": {
+    "title": "Singularity",
+    "description": ""
+  },
+  "og": {
+    "site_name": "Singularity",
+    "url": "",
+    "type": "website",
+    "image": "/images/open-graph.png"
+  },
+  "header": {
+    "navigation": [
+      {
+        "text": "Docs",
+        "tag": "a",
+        "to": "https://example.com"
+      },
+      {
+        "text": "Features",
+        "tag": "button",
+        "to": "#features"
+      },
+      {
+        "text": "How it works",
+        "tag": "button",
+        "to": "#how-it-works"
+      },
+      {
+        "text": "Roadmap",
+        "tag": "button",
+        "to": "#roadmap"
+      }
+    ],
+    "ctas": [
+      {
+        "to": "https://github.com/data-preservation-programs/singularity",
+        "component": "IconGithub",
+        "target": "_blank",
+        "tag": "a",
+        "theme": "icon"
+      },
+      {
+        "to": "https://filecoinproject.slack.com/archives/C05JABREATH",
+        "component": "IconSlack",
+        "target": "_blank",
+        "tag": "a",
+        "theme": "icon"
+      },
+      {
+        "to": "https://data-programs.gitbook.io/singularity/installation/install-from-source",
+        "text": "Get started",
+        "tag": "a",
+        "theme": "primary",
+        "target": "_blank"
+      }
+    ]
+  }
+}

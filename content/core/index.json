@@ -1,0 +1,35 @@
+{
+  "seo": {
+    "title": "Singularity",
+    "description": ""
+  },
+  "og": {
+    "site_name": "Singularity",
+    "url": "",
+    "type": "website",
+    "image": "/images/open-graph.png"
+  },
+  "page_content": [
+    {
+      "id": "hero_header",
+      "grid": [],
+      "col_1": {
+        "type": "text_block",
+        "cols": {
+          "num": "col-5"
+        },
+        "h": 1,
+        "heading": "Seamlessly onboard <span class='highlight'>PiB scale</span> data to the Filecoin storage network",
+        "description": "Singularity is an open source, all-in-one tool for data onboarding, including data preparation, robust deal execution, built-in data indexing and retrieval.",
+        "ctas": [
+          {
+            "text": "Sign up",
+            "to": "/signup",
+            "tag": "nuxt-link",
+            "theme": "primary"
+          }
+        ]
+      }
+    }
+  ]
+}

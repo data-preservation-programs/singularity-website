@@ -46,10 +46,10 @@ const props = defineProps({
     required: false,
     default: false
   },
-  theme: { // 'clear', 'pink' or 'green'
+  theme: { // primary or secondary
     type: String,
     required: false,
-    default: 'clear'
+    default: 'primary'
   }
 })
 </script>
@@ -104,20 +104,15 @@ const props = defineProps({
 }
 
 // ////////////////////////////////////////////////////////////////////// Themes
-.theme__clear {
+.theme__primary {
   .button-content {
-    display: flex;
-    align-items: center;
+    @include b1;
   }
-  :deep(.text) {
-    @include navigation;
-    color: var(--primary-text-color);
-  }
-  &:hover {
-    :deep(.text) {
-      color: var(--link-color);
-      transition: color .25s ease;
-    }
+}
+
+.theme__secondary {
+  .button-content {
+    @include b2;
   }
 }
 </style>

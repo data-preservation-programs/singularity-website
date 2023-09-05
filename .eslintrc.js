@@ -10,7 +10,8 @@ module.exports = {
   ignorePatterns: [
     '.nuxt/',
     '.output/',
-    'dist/'
+    'dist/',
+    '.stories.js'
   ],
   rules: {
     'no-console': process.env.NODE_ENV !== 'development' ? 'error' : 'off',
