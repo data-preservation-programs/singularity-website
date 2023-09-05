@@ -211,6 +211,45 @@
             "caption": "PiB Data Stored"
           }
         ]
+      },
+      "col_2": {
+        "type": "card_list_block",
+        "cols": {
+          "num": "col-6",
+          "push_left": "off-1"
+        },
+        "card_grid": ["equalHeight"],
+        "card_columns": "col-6",
+        "cards": [
+          {
+            "type": "vertical",
+            "icon": "pie-chart",
+            "title": "Flexible Deal Making",
+            "description": "Deal with your preferred storage providers with a schedule that works for you.",
+            "borderGradientAngle": "315deg"
+          },
+          {
+            "type": "vertical",
+            "icon": "network",
+            "title": "Simple Data Processing",
+            "description": "Singularity seamlessly processes data from your local sources or public S3 buckets and automates data preparation",
+            "borderGradientAngle": "45deg"
+          },
+          {
+            "type": "vertical",
+            "icon": "graph",
+            "title": "Data Integrity",
+            "description": "Singularity fosters decentralization by allowing users minimal reliance on storage providers, facilitated by easy verification and support from Filecoin protocol",
+            "borderGradientAngle": "225deg"
+          },
+          {
+            "type": "vertical",
+            "icon": "inbox",
+            "title": "Robust File Management",
+            "description": "Supports file versioning, deletion, and dataset folder structure exploration",
+            "borderGradientAngle": "135deg"
+          }
+        ]
       }
     },
     {

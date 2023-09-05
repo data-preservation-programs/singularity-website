@@ -105,7 +105,7 @@ $fontAssetPath: 'assets/fonts';
   font-size: toRem(24);
   line-height: leading(30, 24);
   font-weight: 500;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.03em;
   @include small {
     font-size: toRem(16);
     line-height: leading(27, 16);

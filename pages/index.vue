@@ -68,9 +68,9 @@ const sections = computed(() => {
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% + toRem(936));
+    height: calc(100% + toRem(880));
     background-image: url('/images/ring-of-circular-cross-sections.png');
-    background-size: 2140px;
+    background-size: 2040px;
     background-position: center bottom;
     background-repeat: no-repeat;
   }
@@ -107,17 +107,18 @@ const sections = computed(() => {
 
 :deep(#section-intro) {
   position: relative;
-  padding-bottom: toRem(100);
+  padding-bottom: 0;
   &:before {
     content: '';
     position: absolute;
-    top: 0;
+    top: calc(100% - 370px);
     left: 0;
-    width: 100%;
-    height: calc(100% + toRem(3000));
+    width: calc(100% + 270px);
+    height: 130rem;
+    transform: translateX(-270px);
     background-image: url('/images/warped-torus-made-of-segments.png');
-    background-size: 2200px;
-    background-position: center bottom;
+    background-size: 2000px;
+    background-position: center top;
     background-repeat: no-repeat;
   }
   .text-block {
