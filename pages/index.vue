@@ -60,6 +60,7 @@ const sections = computed(() => {
 // //////////////////////////////////////////////////////////////////// Sections
 :deep(#hero-header) {
   position: relative;
+  padding-top: 4.0625rem;
   padding-bottom: toRem(100);
   &:before {
     content: '';
@@ -67,15 +68,24 @@ const sections = computed(() => {
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% + toRem(840));
+    height: calc(100% + toRem(936));
     background-image: url('/images/ring-of-circular-cross-sections.png');
-    background-size: 2200px;
+    background-size: 2140px;
     background-position: center bottom;
     background-repeat: no-repeat;
   }
-  .text-block {
-    .description {
-      padding-right: toRem(50);
+  div[data-block-id="col_1"] {
+    .text-block {
+      .description {
+        padding-right: toRem(50);
+        margin-bottom: toRem(43);
+      }
+      .theme__caption {
+        margin-top: 1rem;
+        .button-content {
+          @include disclaimerText;
+        }
+      }
     }
   }
   .code-block,
@@ -109,6 +119,11 @@ const sections = computed(() => {
     background-size: 2200px;
     background-position: center bottom;
     background-repeat: no-repeat;
+  }
+  .text-block {
+    .button-row {
+      display: flex;
+    }
   }
 }
 </style>

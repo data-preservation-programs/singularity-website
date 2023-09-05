@@ -81,10 +81,10 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 // ///////////////////////////////////////////////////////////////////// General
-.button {
+:deep(.button) {
   white-space: nowrap;
   cursor: pointer;
-  &:not([disabled="true"]) {
+  &:not(.disabled) {
     &:hover {
       .button-content {
         @include transitionDefault;
@@ -95,10 +95,10 @@ const props = defineProps({
       @include focusBoxShadow;
     }
   }
-  &[disabled="true"] {
+  .disabled {
     box-shadow: none;
-    opacity: 0.5;
-    cursor: no-drop;
+    // opacity: 0.5;
+    cursor: default;
   }
 }
 
@@ -144,6 +144,7 @@ const props = defineProps({
   width: fit-content;
   filter: drop-shadow(0px 2px 14px rgba(255, 197, 130, 0.32));
   padding-left: toRem(25);
+  cursor: pointer;
   &:before {
     content: '';
     position: absolute;
@@ -217,6 +218,22 @@ const props = defineProps({
   border: 2px solid $sageGreen;
   .button-content {
     display: flex;
+  }
+}
+
+.theme__big-number {
+  display: block;
+  width: fit-content;
+  :deep(.button-content) {
+    @include h1;
+    @include gradientText;
+    .caption {
+      display: block;
+      @include h4;
+      -webkit-text-fill-color: $alto;
+      -moz-text-fill-color: $alto;
+      text-fill-color: $alto;
+    }
   }
 }
 </style>

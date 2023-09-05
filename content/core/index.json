@@ -27,6 +27,12 @@
             "to": "/signup",
             "tag": "nuxt-link",
             "theme": "primary"
+          },
+          {
+            "text": "Sign up now and be first in line when our demo goes live!",
+            "tag": "div",
+            "theme": "caption",
+            "disabled": true
           }
         ]
       },
@@ -178,7 +184,34 @@
       }
     },
     {
-      "id": "section-intro"
+      "id": "section-intro",
+      "grid": ["noGutter"],
+      "col_1": {
+        "type": "text_block",
+        "cols": {
+          "num": "col-5"
+        },
+        "h": 1,
+        "label": "WHY SINGULARITY?",
+        "heading": "Efficient, secure, and flexible data onboarding.",
+        "description": "Basic data management isn’t enough. With your needs in mind Singularity is committed to improving the experience of data on-boarding.",
+        "ctas": [
+          {
+            "theme": "big-number",
+            "tag": "div",
+            "disabled": true,
+            "text": "184+",
+            "caption": "Clients served"
+          },
+          {
+            "theme": "big-number",
+            "tag": "div",
+            "disabled": true,
+            "text": "278.7 PB",
+            "caption": "PiB Data Stored"
+          }
+        ]
+      }
     },
     {
       "id": "section-features"

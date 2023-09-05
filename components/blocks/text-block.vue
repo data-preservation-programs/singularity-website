@@ -2,8 +2,7 @@
   <div
     :class="['block text-block', `align__${block.align ? block.align : 'left'}`]">
 
-    <h5 v-if="block.label" class="label">
-      <TriangleArrow v-if="block.showLabelIcon" class="icon" />
+    <h5 v-if="block.label" class="label h5">
       <span>{{ block.label }}</span>
     </h5>
 
@@ -25,16 +24,22 @@
     </div>
 
     <div v-if="block.ctas" class="button-row">
-      <div v-if="block.ctas && Array.isArray(block.ctas)">
+      <template v-if="block.ctas && Array.isArray(block.ctas)">
         <ButtonCta
           v-for="(cta, index) in ctaData"
           :key="index"
           :tag="cta.tag"
           :to="cta.to"
-          :theme="cta.theme">
+          :theme="cta.theme"
+          :disabled="cta.disabled">
           {{ cta.text }}
+          <span
+            v-if="cta.caption"
+            class="caption">
+            {{ cta.caption }}
+          </span>
         </ButtonCta>
-      </div>
+      </template>
     </div>
   </div>
 </template>
@@ -68,7 +73,7 @@ export default {
   computed: {
     ctaData () {
       return this.block.ctas.map((object) => {
-        return { ...object, disabled: object.url === undefined || object.url === '' }
+        return { ...object, disabled: object.to === undefined || object.to === '' }
       })
     }
   }

@@ -35,7 +35,8 @@
             :key="cta.component || cta.text"
             :tag="cta.tag"
             :target="cta.target"
-            :theme="cta.theme">
+            :theme="cta.theme"
+            :to="cta.to">
             <component
               :is="getCtaComponent(cta.icon)"
               v-if="cta.icon"
