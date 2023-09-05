@@ -328,6 +328,9 @@
         "img": "/images/summit-graphic.svg",
         "heading": "Roadmap"
       }
+    },
+    {
+      "id": "section-subfooter"
     }
   ]
 }

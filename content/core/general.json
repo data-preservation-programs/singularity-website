@@ -55,5 +55,29 @@
         "target": "_blank"
       }
     ]
+  },
+  "footer": {
+    "authors": {
+      "text": "Singularity is a project developed by the <a href='https://dataprograms.org/' target='_blank'>Data Programs Working Group</a> with Protocol Labs"
+    },
+    "legal": {
+      "links": [
+        {
+          "text": "Terms of Use",
+          "tag": "a",
+          "to": "https://protocol.ai/legal/#terms-of-service"
+        },
+        {
+          "text": "Privacy Policy",
+          "tag": "a",
+          "to": "https://protocol.ai/legal/#privacy-policy"
+        },
+        {
+          "text": "DMCA Policy",
+          "tag": "a",
+          "to": "https://ipfs.tech/legal"
+        }
+      ]
+    }
   }
 }

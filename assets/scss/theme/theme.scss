@@ -17,6 +17,15 @@ code {
   font-family: $fontSuisseIntlMono;
 }
 
+ a {
+  @include b2;
+  color: $chardonnay;
+  @include transitionDefault;
+  &:hover {
+    color: $alto;
+  }
+}
+
 ///////////////////////////////////////////////////////////////////// Components
 // -----------------------------------------------------------------------------
 /*

@@ -128,6 +128,7 @@ export default {
   width: 100%;
 }
 .sectional {
+  position: relative;
   padding: 5rem 0;
 }
 </style>
