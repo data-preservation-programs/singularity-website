@@ -253,13 +253,81 @@
       }
     },
     {
-      "id": "section-features"
+      "id": "section-features",
+      "grid": ["noGutter"],
+      "col_1": {
+        "type": "text_block",
+        "cols": {
+          "num": "col-12"
+        },
+        "h": 1,
+        "img": "/images/lock-graphic.svg",
+        "heading": "Features"
+      }
     },
     {
-      "id": "section-how-it-works"
+      "id": "section-how-it-works",
+      "grid": ["noGutter"],
+      "col_1": {
+        "type": "text_block",
+        "cols": {
+          "num": "col-12"
+        },
+        "h": 1,
+        "img": "/images/increase-graphic.svg",
+        "heading": "How it works"
+      },
+      "col_2": {
+        "type": "card_list_block",
+        "cols": {
+          "num": "col-12"
+        },
+        "card_grid": ["equalHeight"],
+        "card_columns": "col-6",
+        "cards": [
+          {
+            "type": "horizontal",
+            "image": "/images/pie-chart-graphic.svg",
+            "title": "01 Prepare the Data",
+            "description": "The data preparation module will scan and convert a local folder recursively into CAR files ready to be onboarded to Filecoin Network. Singularity also indexes your files on IPFS for easy retrieval.",
+            "borderGradientAngle": "135deg"
+          },
+          {
+            "type": "horizontal",
+            "image": "/images/cube-graphic.svg",
+            "title": "02 Distribute CAR Files",
+            "description": "Easily host an HTTP server with the CAR files to be downloaded by the storage provider. You can also send the CAR files offline if the files are too large.",
+            "borderGradientAngle": "225deg"
+          },
+          {
+            "type": "horizontal",
+            "image": "/images/comment-graphic.svg",
+            "title": "03 Pick your Storage Providers",
+            "description": "Bring your own preferred storage providers, or join Filecoin slack channel to find reputable providers. Most storage providers today are interested in taking verified deals.",
+            "borderGradientAngle": "45deg"
+          },
+          {
+            "type": "horizontal",
+            "image": "/images/exchange-graphic.svg",
+            "title": "04 Make Storage Deals",
+            "description": "The client sets a schedule to send deals to storage providers through Singularity, either once or on a recurring basis.",
+            "borderGradientAngle": "315deg"
+          }
+        ]
+      }
     },
     {
-      "id": "section-roadmap"
+      "id": "section-roadmap",
+      "grid": ["noGutter"],
+      "col_1": {
+        "type": "text_block",
+        "cols": {
+          "num": "col-12"
+        },
+        "h": 1,
+        "img": "/images/summit-graphic.svg",
+        "heading": "Roadmap"
+      }
     }
   ]
 }

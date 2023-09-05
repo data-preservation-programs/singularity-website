@@ -9,7 +9,8 @@
     <template v-if="block.heading">
       <component
         :is="block.h ? `h${block.h}` : 'h2'"
-        class="heading">
+        :class="['heading', { 'heading-image': block.img }]">
+        <img v-if="block.img" :src="block.img" />
         <span
           :class="block.h ? `h${block.h}` : 'h2'"
           v-html="block.heading">
@@ -114,6 +115,15 @@ export default {
 }
 
 .heading {
+  &.heading-image {
+    display: flex;
+    align-items: center;
+    img {
+      width: toRem(90);
+      height: toRem(90);
+      margin-right: toRem(35);
+    }
+  }
   span {
     @include gradientText;
   }

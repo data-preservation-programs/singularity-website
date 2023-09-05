@@ -107,4 +107,33 @@ const iconComponent = computed(() => {
     margin-bottom: toRem(22);
   }
 }
+
+.card.type__horizontal {
+  padding: toRem(32) toRem(24);
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+  .image {
+    padding: 0 toRem(28);
+    max-height: toRem(120);
+  }
+  .text {
+    flex-grow: 1;
+    max-width: 70%;
+  }
+  .title {
+    @include h3;
+    color: $sageGreen;
+    margin-bottom: toRem(27);
+  }
+  .description {
+    @include p2;
+    margin-bottom: 0;
+  }
+}
 </style>
