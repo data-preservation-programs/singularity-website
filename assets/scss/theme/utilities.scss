@@ -93,6 +93,10 @@ $tundora: #414141;
   border-radius: 0.125rem;
 }
 
+@mixin transitionDefault {
+  transition: 200ms cubic-bezier(0.33, 0.2, 0.41, 0.99);
+}
+
 @mixin tooltipMobilePosition {
   &:hover {
     &:before,

@@ -18,6 +18,7 @@
 
 <script setup>
 // ======================================================================= Props
+// eslint-disable-next-line
 const props = defineProps({
   links: {
     type: Array,
@@ -47,5 +48,38 @@ const props = defineProps({
 
 .nav-link {
   @include navButton;
+  @include transitionDefault;
+  position: relative;
+  padding: 0.25rem 0.5rem;
+  transform: translateY(0);
+  &:before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: toRem(17);
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: calc(100% + 5px);
+    left: calc(50% - 0.25rem);
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: $chardonnay;
+    opacity: 0;
+    transition: inherit;
+  }
+  &:hover {
+    transform: translateY(-1.125rem);
+    &:before {
+      height: toRem(30);
+    }
+    &:after {
+      opacity: 1;
+    }
+  }
 }
 </style>

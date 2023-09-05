@@ -23,9 +23,11 @@
         </NuxtLink>
       </div>
 
-      <div class="col-7 nav-items" data-push-left="off-2">
-
+      <div class="col-4" data-push-left="off-2">
         <Navbar :links="navigation" class="desktop" />
+      </div>
+
+      <div class="col-3">
 
         <div class="nav-ctas">
           <ButtonCta
@@ -34,9 +36,13 @@
             :tag="cta.tag"
             :target="cta.target"
             :theme="cta.theme">
-            <component :is="getCtaComponent(cta)">
-              {{ cta.text || null }}
-            </component>
+            <component
+              :is="getCtaComponent(cta.icon)"
+              v-if="cta.icon"
+              class="icon" />
+            <span v-if="cta.text">
+              {{ cta.text }}
+            </span>
           </ButtonCta>
         </div>
 
@@ -61,7 +67,8 @@
 // ===================================================================== Imports
 import { storeToRefs } from 'pinia'
 import GeneralSiteData from '@/content/core/general.json'
-import IconGithub from '@/components/icon/github'
+const GithubIcon = resolveComponent('icon/github-icon')
+const SlackIcon = resolveComponent('icon/slack-icon')
 
 // ======================================================================== Data
 const generalStore = useGeneralStore()
@@ -88,7 +95,8 @@ watch(navigationOpen, (val) => {
 
 // ======================================================================= Hooks
 onMounted(() => {
-  console.log(navigation.value)
+  const instance = getCurrentInstance()
+  console.log(instance.appContext.components)
 })
 
 // ===================================================================== Methods
@@ -101,11 +109,13 @@ const toggleNav = () => {
 /**
  * @method getCtaComponent
  */
-const getCtaComponent = (cta) => {
-  if (cta.component) {
-    return cta.component
+const getCtaComponent = (icon) => {
+  switch (icon) {
+    case 'github' : return GithubIcon;
+    case 'slack' : return SlackIcon;
+    default : return 'span'
   }
-  return 'div'
+  
 }
 
 </script>
@@ -159,8 +169,9 @@ const getCtaComponent = (cta) => {
   justify-content: space-between;
 }
 
-:deep(.navigation) {
+:deep(.navbar) {
   &.desktop {
+    margin-right: 0.5rem;
     @include small {
       display: none;
     }
@@ -172,11 +183,17 @@ const getCtaComponent = (cta) => {
   justify-content: space-between;
   height: 100%;
   align-items: center;
+  padding: 0 toRem(28);
 }
 
 .desktop,
 .nav-ctas {
   flex-grow: 1;
+}
+
+.icon {
+  width: toRem(20);
+  height: toRem(20);
 }
 
 // /////////////////////////////////////////////////////////////////// Hamburger

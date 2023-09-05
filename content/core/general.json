@@ -35,14 +35,14 @@
     "ctas": [
       {
         "to": "https://github.com/data-preservation-programs/singularity",
-        "component": "IconGithub",
+        "icon": "github",
         "target": "_blank",
         "tag": "a",
         "theme": "icon"
       },
       {
         "to": "https://filecoinproject.slack.com/archives/C05JABREATH",
-        "component": "IconSlack",
+        "icon": "slack",
         "target": "_blank",
         "tag": "a",
         "theme": "icon"
