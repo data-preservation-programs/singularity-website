@@ -26,6 +26,12 @@
 
     <h3>Get a Nuxt 3 site up and running fast 🚀</h3>
 
+    <div class="border-test">
+      <div class="content">
+        test content
+      </div>
+    </div>
+
   </main>
 </template>
 
@@ -49,5 +55,18 @@
 .logo {
   width: 3rem;
   margin-right: 1rem;
+}
+
+.border-test {
+  position: relative;
+  margin-top: 3rem;
+  padding: 3rem;
+  transform: translateY(-100px);
+  @include cardPanel(315deg);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
 }
 </style>

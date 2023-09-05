@@ -10,10 +10,7 @@
 /*
  * General layout spacing settings
  */
-$siteHeaderHeight: toRem(78);
-$sidebarWidth: $gridWidth * 0.16667;
-$bodyOffsetTop: calc($siteHeaderHeight + 3rem);
-$sidebarPadding: 2rem;
+// $siteHeaderHeight: toRem(78);
 
 // ===================================================================== Colours
 
@@ -24,62 +21,50 @@ $sidebarPadding: 2rem;
  * declarations below.
  */
 
- $gray50: #FAFAFA;
- $gray100: #F5F5F5;
- $gray200: #EEEEEE;
- $gray300: #E0E0E0;
- $gray400: #BDBDBD;
- $gray500: #9E9E9E;
- $gray600: #757575;
- $gray700: #616161;
- $gray800: #424242;
- $gray900: #212121;
+$gray50: #FAFAFA;
+$gray100: #F5F5F5;
+$gray200: #EEEEEE;
+$gray300: #E0E0E0;
+$gray400: #BDBDBD;
+$gray500: #9E9E9E;
+$gray600: #757575;
+$gray700: #616161;
+$gray800: #424242;
+$gray900: #212121;
 
- $blueRibbon: #0046F9; // rgb(0, 70, 249)
- $dodgerBlue: #5196FF; // rgb(81, 150, 255)
- $blueViolet: #615FB1; // rgb(97, 95, 177)
- $portage: #908EF6; // rgb(144, 142, 246)
- $wildSand: #F5F5F5; // rgb(245, 245, 245)
- $white: #FFFFFF; // rgb(255, 255, 255)
- $alto: #D3D3D3; // rgb(211, 211, 211)
- $codGray: #181818; // rgb(24, 24, 24)
- $mineShaft: #303030; // rgb(48, 48, 48)
- $melrose: #B2CDFF; // rgb(178, 205, 255)
- $bayOfMany: #1E3F82; // rgb(30, 63, 130)
-
- $replace1: #D9D9D9;
- $replace2: #C6C6C6;
- $replace3: #E8E8E8;
- $replace4: #000000;
+$codGray: #060606;
+$sageGreen: #CBDDBB;
+$alto: #D3D3D3;
+$burntSienna: #E8655D;
+$chardonnay: #FFC582;
+$codeBlack: #191919;
+$tundora: #414141;
 
 // ====================================================================== Themes
 :root {
-  --brand-color: #{$blueRibbon};
-  --shadow-1: 0 1px 2px rgba(0, 0, 0, .04), 0 1px 2px rgba(0, 0, 0, .06);
-  --background-color: #{$wildSand};
-  --secondary-background-color: #{$white};
-  --primary-text-color: #{$codGray};
-  --secondary-text-color: #{$codGray};
-  --sidebar-text-color: #{$codGray};
-  --link-color: #{$blueRibbon};
-  --link-hover-color: #{$melrose};
-  --code-text-color: #{$portage};
-  --code-background-color: #{$mineShaft};
-  --divider: #{$alto};
+  --brand-color: #{$sageGreen};
+  --background-color: #{$codGray};
+  --secondary-background-color: #{$codeBlack};
+  --primary-text-color: #{$alto};
+  --secondary-text-color: #{$chardonnay};
+  --link-color: #{$chardonnay};
+  --link-hover-color: #{$chardonnay};
+  --code-text-color: #{$alto};
+  --code-background-color: #{$codeBlack};
 }
 
-.dark {
-  --background-color: #{$codGray};
-  --secondary-background-color: #{$mineShaft};
-  --primary-text-color: #{$wildSand};
-  --secondary-text-color: #{$wildSand};
-  --sidebar-text-color: #{$wildSand};
-  --link-color: #{$dodgerBlue};
-  --link-hover-color: #{$bayOfMany};
-  --code-text-color: #{$portage};
-  --code-background-color: #{$mineShaft};
-  --divider: #{$mineShaft};
-}
+// .dark {
+//   --background-color: #{$codGray};
+//   --secondary-background-color: #{$mineShaft};
+//   --primary-text-color: #{$wildSand};
+//   --secondary-text-color: #{$wildSand};
+//   --sidebar-text-color: #{$wildSand};
+//   --link-color: #{$dodgerBlue};
+//   --link-hover-color: #{$bayOfMany};
+//   --code-text-color: #{$portage};
+//   --code-background-color: #{$mineShaft};
+//   --divider: #{$mineShaft};
+// }
 
 // ===================================================================== Styling
 
@@ -88,11 +73,11 @@ $sidebarPadding: 2rem;
  */
 
 @mixin shadow1 {
-  box-shadow: 0.125rem 0px 1rem 0.3125rem rgb(black, 0.7);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 @mixin shadow2 {
-  box-shadow: 0.125rem 0px 0.3125rem 0.25rem rgb(black, 0.4);
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.85);
 }
 
 @mixin focusBoxShadow {
@@ -143,11 +128,99 @@ $sidebarPadding: 2rem;
  * Update color variables below with newly added variables declared above
  */
 @mixin selection-dark {
-  ::-moz-selection { background: $replace2; color: $replace4; }
-  ::selection { background: $replace2; color: $replace4; }
+  ::-moz-selection { background: $alto; color: $codGray; }
+  ::selection { background: $alto; color: $codGray; }
 }
 
 @mixin selection-light {
-  ::-moz-selection { background: $replace3; color: $replace4; }
-  ::selection { background: $replace3; color: $replace4; }
+  ::-moz-selection { background: $alto; color: $codGray; }
+  ::selection { background: $alto; color: $codGray; }
+}
+
+@mixin gradientText {
+  @include sageWhiteGradient;
+  background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  text-fill-color: transparent;
+  // IE11 fix
+  @include IE10and11 {
+    background: none;
+  }
+  &::-moz-selection {
+    -webkit-text-fill-color: $codGray;
+    -moz-text-fill-color: $codGray;
+    text-fill-color: $codGray;
+  }
+  &::selection {
+    -webkit-text-fill-color: $codGray;
+    -moz-text-fill-color: $codGray;
+    text-fill-color: $codGray;
+  }
+}
+
+// ------------------------------------------------------------------- Gradients
+@mixin sageWhiteGradient_Basic {
+  background: linear-gradient(278deg, $alto 10.02%, $sageGreen 86.99%);
+}
+
+@mixin sageWhiteGradient_LeftRight {
+  background: linear-gradient(90deg, rgba($sageGreen, 1) 0%, rgba($sageGreen, 0.5) 33%, rgba($gray900, 0.3) 66%, rgba($gray900, 0.8) 100%);
+}
+
+@mixin sageWhiteGradient_RightLeft {
+  background: linear-gradient(270deg, rgba($sageGreen, 1) 0%, rgba($sageGreen, 0.5) 33%, rgba($gray900, 0.3) 66%, rgba($gray900, 0.8) 100%);
+}
+
+@mixin sageWhiteGradient_BottomRight {
+  background: linear-gradient(315deg, rgba($sageGreen, 1) 0%, rgba($sageGreen, 0.5) 33%, rgba($gray900, 0.3) 66%, rgba($gray900, 0.8) 100%);
+}
+
+@mixin sageWhiteGradient_BottomLeft {
+  background: linear-gradient(45deg, rgba($sageGreen, 1) 0%, rgba($sageGreen, 0.5) 33%, rgba($gray900, 0.3) 66%, rgba($gray900, 0.8) 100%);
+}
+
+@mixin sageWhiteGradient_TopRight {
+  background: linear-gradient(225deg, rgba($sageGreen, 1) 0%, rgba($sageGreen, 0.5) 33%, rgba($gray900, 0.3) 66%, rgba($gray900, 0.8) 100%);
+}
+
+@mixin sageWhiteGradient_TopLeft {
+  background: linear-gradient(135deg, rgba($sageGreen, 1) 0%, rgba($sageGreen, 0.5) 33%, rgba($gray900, 0.3) 66%, rgba($gray900, 0.8) 100%);
+}
+
+@mixin gradientBorder ($angle) {
+  &:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: toRem(5); 
+    padding: toRem(1);
+    z-index: 1;
+    background: linear-gradient($angle, rgba($sageGreen, 1) 0%, rgba($sageGreen, 0.5) 33%, rgba($gray900, 0.3) 66%, rgba($gray900, 0.8) 100%);
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) content-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude; 
+  }
+}
+
+@mixin blurredBackdrop {
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: toRem(5); 
+    background-color: rgba($tundora, 0.2);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+  }
+}
+
+@mixin cardPanel ($gradientAngle) {
+  position: relative;
+  @include shadow2;
+  @include blurredBackdrop;
+  @include gradientBorder($gradientAngle);
 }
