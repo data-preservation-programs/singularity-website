@@ -32,7 +32,7 @@
   }
 
   h6 {
-    @include h6;
+    @include h5;
   }
 
   p {
@@ -43,7 +43,7 @@
   }
 
   a {
-    @include p1Link;
+    @include b2;
   }
 
   h1.heading-anchor > a,
@@ -79,7 +79,7 @@
   }
 
   h6.heading-anchor > a {
-    @include h6;
+    @include h5;
   }
 
   // =================================================================== General

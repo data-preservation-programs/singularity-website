@@ -7,14 +7,14 @@
 body {
   @include selection-light;
   color: var(--primary-text-color);
-  font-family: $fontDIN;
+  font-family: $fontSuisseIntl;
   background-color: var(--background-color);
   transition: background-color 250ms;
 }
 
 pre,
 code {
-  font-family: $fontDIN;
+  font-family: $fontSuisseIntlMono;
 }
 
 ///////////////////////////////////////////////////////////////////// Components

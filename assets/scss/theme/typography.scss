@@ -5,73 +5,66 @@
  * location of the source font files ($fontAssetPath)
  */
 
-$fontDIN: 'DIN', sans-serif, monospace;
-$fontPrimary: '';
+$fontSuisseIntl: 'SuisseIntl', sans-serif, monospace;
+$fontSuisseIntlMono: 'SuisseIntlMono', sans-serif, monospace;
 $fontAssetPath: 'assets/fonts';
 
-// ==================================================================== Families
-/*
- * Include @font-face declarations and font file imports using
- * $fontAssetPath here below:
- */
+// -------------------------------------------------------- Suisse International
 @font-face {
-  font-family: 'DIN';
+  font-family: 'SuisseIntl';
+  src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Light.otf') format('opentype');
+  font-weight: 300;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'SuisseIntl';
+  src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Regular.otf') format('opentype');
   font-weight: 400;
-  font-display: swap;
-  src: url('#{$fontAssetPath}/DIN/DIN-Regular.otf') format('opentype'),
-       url('#{$fontAssetPath}/DIN/DIN-Regular.ttf') format('truetype');
+  font-style: normal;
 }
 
 @font-face {
-  font-family: 'DIN';
-  font-style: italic;
+  font-family: 'SuisseIntl';
+  src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-RegularItalic.otf') format('opentype');
   font-weight: 400;
-  font-display: swap;
-  src: url('#{$fontAssetPath}/DIN/DIN-RegularItalic.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'DIN';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('#{$fontAssetPath}/DIN/DIN-Medium.otf') format('opentype'),
-       url('#{$fontAssetPath}/DIN/DIN-Medium.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'DIN';
   font-style: italic;
+}
+
+@font-face {
+  font-family: 'SuisseIntl';
+  src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Medium.otf') format('opentype');
   font-weight: 500;
-  font-display: swap;
-  src: url('#{$fontAssetPath}/DIN/DIN-MediumItalic.otf') format('opentype');
+  font-style: bold;
 }
 
 @font-face {
-  font-family: 'DIN Alternate';
-  font-style: normal;
+  font-family: 'SuisseIntl';
+  src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-MediumItalic.otf') format('opentype');
   font-weight: 500;
-  font-display: swap;
-  src: url('#{$fontAssetPath}/DIN/DIN-MediumAlternate.otf') format('opentype'),
-       url('#{$fontAssetPath}/DIN/DIN-MediumAlternate.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'DIN';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('#{$fontAssetPath}/DIN/DIN-Bold.otf') format('opentype'),
-       url('#{$fontAssetPath}/DIN/DIN-Bold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'DIN';
   font-style: italic;
+}
+
+@font-face {
+  font-family: 'SuisseIntl';
+  src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: 'SuisseIntl';
+  src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Bold.otf') format('opentype');
   font-weight: 700;
-  font-display: swap;
-  src: url('#{$fontAssetPath}/DIN/DIN-BoldItalic.otf') format('opentype');
+  font-style: bold;
+}
+
+// --------------------------------------------------- Suisse International Mono
+@font-face {
+  font-family: 'SuisseIntlMono';
+  src: url('#{$fontAssetPath}/suisse-intl-mono/SuisseIntlMono-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
 }
 
 // ///////////////////////////////////////////////////////// Basic Styles Mixins
@@ -81,97 +74,200 @@ $fontAssetPath: 'assets/fonts';
  * Mixins corresponding to most commonly used html text elements:
  */
 
- @mixin h1 {
-   font-size: toRem(36);
-   line-height: leading(50, 36);
-   font-weight: 700;
-   letter-spacing: 0em;
- }
-
- @mixin h2 {
-   font-size: toRem(30);
-   line-height: leading(42, 30);
-   font-weight: 700;
-   letter-spacing: 0em;
- }
-
- @mixin h3 {
-   font-size: toRem(24);
-   line-height: leading(34, 24);
-   font-weight: 500;
-   letter-spacing: 0em;
-   margin-bottom: 1.25rem;
- }
-
- @mixin h4 {
-   font-size: toRem(18);
-   line-height: leading(25, 18);
-   font-weight: 500;
- }
-
- @mixin h5 {
-   font-size: toRem(16);
-   line-height: leading(24, 16);
-   font-weight: 500;
- }
-
- @mixin h6 {
-   font-size: toRem(16);
-   line-height: leading(24, 16);
-   font-weight: 500;
- }
-
- @mixin p1 {
-   font-size: toRem(16);
-   line-height: leading(27, 16);
-   font-weight: 400;
- }
-
- @mixin p2 {
-   font-size: toRem(14);
-   line-height: leading(21, 14);
-   font-weight: 400;
-   letter-spacing: 0.2px;
-   // margin-bottom: 1.2rem;
- }
-
- @mixin inlineCode {
-   // font-family: $fontMenlo;
-   color: var(--code-text-color);
-   background-color: var(--code-background-color);
-   padding: 0.12rem 0.45rem;
-   border-radius: toRem(4);
- }
-
- @mixin p1Link {
-   @include p1;
-   font-weight: 500;
-   color: var(--link-color);
-   &:hover {
-     color: var(--link-hover-color);
-     transition: color .25s ease;
-   }
- }
-
-/*
- * Mixin for text in <code> elements, see utitlies.scss to edit these vars
- */
-
-@mixin inlineCode {
-  color: var(--code-text-color);
-  background-color: var(--code-background-color);
-  // add your styles here
+// Titles
+@mixin h1 { // Hero section + section headings
+  font-size: toRem(48);
+  line-height: leading(65, 48);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  @include small {
+    font-size: toRem(30);
+    line-height: leading(43, 30);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
 }
 
-/*
- * Mixin for inline link elements, see utitlies.scss to edit these vars
- */
-@mixin p1Link {
+@mixin h2 { // Roadmap headings
+  font-size: toRem(26);
+  line-height: leading(34, 26);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  @include small {
+    font-size: toRem(20);
+    line-height: leading(30, 20);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+}
+
+@mixin h3 { // Card headings
+  font-size: toRem(24);
+  line-height: leading(30, 24);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  @include small {
+    font-size: toRem(16);
+    line-height: leading(27, 16);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+}
+
+@mixin h4 { // Roadmap milestone headings, captions for stats in hero section
+  font-size: toRem(16);
+  line-height: leading(30, 16);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  @include small {
+    font-size: toRem(14);
+    line-height: leading(16, 14);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+}
+
+@mixin h5 { // "Why Singularity? heading"
+  font-size: toRem(16);
+  line-height: leading(19, 16);
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  @include small {
+    font-size: toRem(14);
+    line-height: leading(16, 14);
+    font-weight: 500;
+    letter-spacing: 0.11em;
+  }
+}
+
+// Paragraph Text
+@mixin p1 { // Section body text
+  font-size: toRem(18);
+  line-height: leading(27, 18);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  @include small {
+    font-size: toRem(14);
+    line-height: leading(21, 14);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+}
+
+@mixin p2 { // Card text
+  font-size: toRem(16);
+  line-height: leading(27, 16);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  @include small {
+    font-size: toRem(12);
+    line-height: leading(21, 12);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+}
+
+ // UI Elements
+@mixin b1 { // Primary CTAs
+  font-size: toRem(18);
+  line-height: leading(21, 18);
+  font-weight: 500;
+  letter-spacing: 0.03em;
   color: var(--link-color);
+  @include small {
+    font-size: toRem(14);
+    line-height: leading(26, 14);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
   &:hover {
     color: var(--link-hover-color);
+    transition: color .25s ease;
   }
-  // add your styles here
+}
+
+@mixin b2 { // Secondary button styles
+  font-size: toRem(16);
+  line-height: leading(24, 16);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--link-color);
+  @include small {
+    font-size: toRem(14);
+    line-height: leading(21, 14);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  &:hover {
+    color: var(--link-hover-color);
+    transition: color .25s ease;
+  }
+}
+
+@mixin navButton {
+  font-size: toRem(16);
+  line-height: leading(27, 16);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  @include small {
+    font-size: toRem(14);
+    line-height: leading(21, 14);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+}
+
+@mixin inlineCode {
+  font-family: $fontSuisseIntlMono;
+  color: var(--code-text-color);
+  background-color: var(--code-background-color);
+  padding: 0.12rem 0.45rem;
+  border-radius: toRem(4);
+  font-size: toRem(18);
+  line-height: leading(27, 18);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  @include small {
+    font-size: toRem(14);
+    line-height: leading(27, 14);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+}
+
+@mixin disclaimerText {
+  font-size: toRem(14);
+  line-height: leading(21, 14);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+@mixin footerButton {
+  font-size: toRem(14);
+  line-height: leading(27, 14);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+@mixin formFieldPlaceholder {
+  font-size: toRem(16);
+  line-height: leading(27, 16);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+@mixin formFieldText {
+  font-size: toRem(16);
+  line-height: leading(27, 16);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+@mixin hamburgerCTA {
+  font-size: toRem(24);
+  line-height: leading(36, 24);
+  font-weight: 500;
+  letter-spacing: 0.03em;
 }
 
 // ////////////////////////////////////////////////////////////////////// Sizing
@@ -193,9 +289,6 @@ h4, .h4,
 h5, .h5,
 h6, .h6 {
   display: block;
-  line-height: 1.4;
-  font-weight: 500;
-  letter-spacing: 1px;
   text-transform: none;
 }
 
@@ -220,7 +313,7 @@ h5, .h5 {
 }
 
 h6, .h6 {
-  @include h6;
+  @include h5;
 }
 
 p,
@@ -233,15 +326,4 @@ button {
 
 :not(pre) > code {
   @include inlineCode;
-}
-
-// /////////////////////////////////////////////////////////// Navigation Mixins
-// -----------------------------------------------------------------------------
-/*
- * Styles applied to navigation items/links
- */
-@mixin navigation {
-  font-size: toRem(16);
-  line-height: leading(25, 16);
-  font-weight: 700;
 }
