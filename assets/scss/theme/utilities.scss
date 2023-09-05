@@ -10,7 +10,7 @@
 /*
  * General layout spacing settings
  */
-// $siteHeaderHeight: toRem(78);
+$siteHeaderHeight: toRem(78);
 
 // ===================================================================== Colours
 
@@ -93,6 +93,10 @@ $tundora: #414141;
   border-radius: 0.125rem;
 }
 
+@mixin transitionDefault {
+  transition: 200ms cubic-bezier(0.33, 0.2, 0.41, 0.99);
+}
+
 @mixin tooltipMobilePosition {
   &:hover {
     &:before,
@@ -121,42 +125,6 @@ $tundora: #414141;
     &:after {
       right: 0.5rem;
     }
-  }
-}
-
-/*
- * Update color variables below with newly added variables declared above
- */
-@mixin selection-dark {
-  ::-moz-selection { background: $alto; color: $codGray; }
-  ::selection { background: $alto; color: $codGray; }
-}
-
-@mixin selection-light {
-  ::-moz-selection { background: $alto; color: $codGray; }
-  ::selection { background: $alto; color: $codGray; }
-}
-
-@mixin gradientText {
-  @include sageWhiteGradient;
-  background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-  text-fill-color: transparent;
-  // IE11 fix
-  @include IE10and11 {
-    background: none;
-  }
-  &::-moz-selection {
-    -webkit-text-fill-color: $codGray;
-    -moz-text-fill-color: $codGray;
-    text-fill-color: $codGray;
-  }
-  &::selection {
-    -webkit-text-fill-color: $codGray;
-    -moz-text-fill-color: $codGray;
-    text-fill-color: $codGray;
   }
 }
 
@@ -223,4 +191,37 @@ $tundora: #414141;
   @include shadow2;
   @include blurredBackdrop;
   @include gradientBorder($gradientAngle);
+}
+
+@mixin selection-dark {
+  ::-moz-selection { background: $alto; color: $codGray; }
+  ::selection { background: $alto; color: $codGray; }
+}
+
+@mixin selection-light {
+  ::-moz-selection { background: $alto; color: $codGray; }
+  ::selection { background: $alto; color: $codGray; }
+}
+
+@mixin gradientText {
+  background: linear-gradient(278deg, #D4D4D4 10.02%, #A6C888 86.99%);
+  background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  text-fill-color: transparent;
+  // IE11 fix
+  @include IE10and11 {
+    background: none;
+  }
+  &::-moz-selection {
+    -webkit-text-fill-color: $codGray;
+    -moz-text-fill-color: $codGray;
+    text-fill-color: $codGray;
+  }
+  &::selection {
+    -webkit-text-fill-color: $codGray;
+    -moz-text-fill-color: $codGray;
+    text-fill-color: $codGray;
+  }
 }
