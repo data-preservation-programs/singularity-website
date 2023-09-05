@@ -68,7 +68,7 @@ const sections = computed(() => {
     left: 0;
     width: 100%;
     height: calc(100% + toRem(840));
-    // background-image: url('/images/ring-of-circular-cross-sections.png');
+    background-image: url('/images/ring-of-circular-cross-sections.png');
     background-size: 2200px;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -85,7 +85,7 @@ const sections = computed(() => {
     left: 0;
     width: 100%;
     height: calc(100% + toRem(3000));
-    // background-image: url('/images/warped-torus-made-of-segments.png');
+    background-image: url('/images/warped-torus-made-of-segments.png');
     background-size: 2200px;
     background-position: center bottom;
     background-repeat: no-repeat;
