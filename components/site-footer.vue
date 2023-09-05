@@ -14,6 +14,5 @@
   justify-content: center;
   align-items: center;
   height: 5rem;
-  background-color: $gray300;
 }
 </style>

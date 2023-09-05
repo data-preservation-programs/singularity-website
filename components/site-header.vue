@@ -96,7 +96,6 @@ watch(navigationOpen, (val) => {
 // ======================================================================= Hooks
 onMounted(() => {
   const instance = getCurrentInstance()
-  console.log(instance.appContext.components)
 })
 
 // ===================================================================== Methods

@@ -1,11 +1,12 @@
 <template>
   <div class="sectionals">
 
-    <div
-      v-for="section in sections"
-      :key="section.id">
-
-      <section v-if="!section.hide" :id="section.slug" :class="['sectional', section.id]">
+    <template v-for="section in sections">
+      <section
+        v-if="!section.hide"
+        :id="section.id"
+        :key="section.id"
+        :class="['sectional', section.id]">
         <!-- ============================================ [Section] Off Grid -->
         <div
           v-if="section.off_grid"
@@ -57,7 +58,7 @@
           </template>
         </div>
       </section>
-    </div>
+    </template>
 
   </div>
 </template>
@@ -116,3 +117,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.sectionals {
+  width: 100%;
+}
+.sectional {
+  padding: 5rem 0;
+}
+</style>

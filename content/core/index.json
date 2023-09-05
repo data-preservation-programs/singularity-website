@@ -11,7 +11,7 @@
   },
   "page_content": [
     {
-      "id": "hero_header",
+      "id": "hero-header",
       "grid": [],
       "col_1": {
         "type": "text_block",
@@ -30,6 +30,18 @@
           }
         ]
       }
+    },
+    {
+      "id": "section-intro"
+    },
+    {
+      "id": "section-features"
+    },
+    {
+      "id": "section-how-it-works"
+    },
+    {
+      "id": "section-roadmap"
     }
   ]
 }
