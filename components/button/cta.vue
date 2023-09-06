@@ -216,8 +216,23 @@ const props = defineProps({
   padding: toRem(9);
   border-radius: 50%;
   border: 2px solid $sageGreen;
+  background-color: rgba($sageGreen, 0);
+  @include transitionDefault;
   .button-content {
     display: flex;
+  }
+  :deep(.icon) {
+    path {
+      @include transitionDefault;
+    }
+  }
+  &:hover {
+    background-color: rgba($sageGreen, 1);
+    :deep(.icon) {
+      path {
+        fill: $codGray;
+      }
+    }
   }
 }
 

@@ -283,13 +283,13 @@ const getCtaComponent = (icon) => {
     visibility: visible;
     transform: scale(1);
   }
-  :deep(.navigation) {
-    .nav-item {
+  // :deep(.navigation) {
+  //   .nav-item {
 
-    }
-    .nav-link {
+  //   }
+  //   .nav-link {
 
-    }
-  }
+  //   }
+  // }
 }
 </style>
