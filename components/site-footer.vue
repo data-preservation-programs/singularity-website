@@ -97,10 +97,11 @@ const legal = computed(() => {
     background-repeat: no-repeat;
     background-image: url('/images/ring-of-cross-sections-on-angle.png');
     @include gridMaxMQ {
-      left: 0;
-      width: 100%;
       height: calc(100% + 10rem);
+      width: 100%;
       top: -10rem;
+      left: calc(100% - 52rem);
+      background-position: -227px -33px;
     }
   }
 }

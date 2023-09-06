@@ -251,7 +251,7 @@ const sections = computed(() => {
       height: calc(toRem(960) + toRem(68) + toRem(234));
     }
     @include medium {
-      height: calc(toRem(900) + toRem(68) + toRem(234));
+      height: calc(toRem(856) + toRem(68) + toRem(234));
     }
   }
   div[data-block-id="col_1"],
