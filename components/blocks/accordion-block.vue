@@ -14,7 +14,9 @@
 
           <component :is="getIconComponent(section.icon)" class="icon" />
 
-          <h3 class="h3">{{ section.heading }}</h3>
+          <h3 class="h3">
+            {{ section.heading }}
+          </h3>
 
           <PlusMinusIcon :active="active[index]" />
 
@@ -150,11 +152,11 @@ const getIconComponent = (icon) => {
     padding: toRem(1);
     @include transitionDefault;
     background: linear-gradient(80deg, rgba($siam, 1) 0%, rgba($chardonnay, 1) 100%);
-    -webkit-mask: 
-       linear-gradient(#fff 0 0) content-box, 
+    -webkit-mask:
+       linear-gradient(#fff 0 0) content-box,
        linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
-            mask-composite: exclude; 
+            mask-composite: exclude;
   }
   &.open {
     .accordion-content {
