@@ -70,6 +70,7 @@ import MarkdownBlock from '@/components/blocks/markdown-block'
 import CodeBlock from '@/components/blocks/code-block'
 import CardListBlock from '@/components/blocks/card-list-block'
 import SubfooterCard from '@/components/subfooter-card'
+import AccordionBlock from '@/components/blocks/accordion-block'
 // import BlockBuilder from '@/components/blocks/block-builder'
 
 export default {
@@ -81,6 +82,7 @@ export default {
     CodeBlock,
     CardListBlock,
     SubfooterCard,
+    AccordionBlock,
     // BlockBuilder,
     MarkdownBlock
   },
@@ -118,6 +120,7 @@ export default {
         case 'markdown_block': name = 'MarkdownBlock'; break
         case 'card_list_block': name = 'CardListBlock'; break
         case 'subfooter_card': name = 'SubfooterCard'; break
+        case 'accordion_block': name = 'AccordionBlock'; break
         case 'custom' : name = block.component; break
       }
       return name

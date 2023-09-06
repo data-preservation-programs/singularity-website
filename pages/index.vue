@@ -128,6 +128,28 @@ const sections = computed(() => {
   }
 }
 
+:deep(#section-features) {
+  div[data-block-id="col_2"] {
+    .accordion-block {
+      margin-right: toRem(9);
+    }
+  }
+  div[data-block-id="col_3"] {
+    .accordion-block {
+      margin-left: toRem(9);
+    }
+    .text-block {
+      .button-row {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .button {
+        transform: translateY(-1rem);
+      }
+    }
+  }
+}
+
 :deep(#section-subfooter) {
   position: relative;
   padding-bottom: toRem(52);
@@ -135,8 +157,8 @@ const sections = computed(() => {
     content: '';
     position: absolute;
     top: toRem(-68);
-    left: 0;
-    width: 100%;
+    left: calc(50% - $halfGridWidth - 3rem);
+    width: toRem(1400);
     height: calc(100% + toRem(68) + toRem(234));
     background-image: url('/images/ring-of-cross-sections-from-above.png');
     background-size: 1300px;

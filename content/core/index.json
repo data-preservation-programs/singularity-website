@@ -263,6 +263,76 @@
         "h": 1,
         "img": "/images/lock-graphic.svg",
         "heading": "Features"
+      },
+      "col_2": {
+        "type": "accordion_block",
+        "cols": {
+          "num": "col-6"
+        },
+        "sections": [
+          {
+            "icon": "list",
+            "heading": "Inline Data Preparation",
+            "content": "We value your storage space. Our unique inline preparation feature eliminates the need for extra storage for CAR files, instead maintaining a metadata database that maps CAR files to the original data source."
+          },
+          {
+            "icon": "globe",
+            "heading": "Versatile Data Source Integration",
+            "content": "With Singularity, you're not bound by storage types. We offer seamless integration with over 40 different storage services, ranging from popular consumer products like Dropbox and Google Drive to enterprise solutions such as AWS S3, Azure Blob Storage, FTP, and HDFS."
+          },
+          {
+            "icon": "pie-chart",
+            "heading": "Flexible Deal Making",
+            "content": "Singularity puts you in control. Bring your own list of storage providers and define your deal-making process, whether it’s a one-off batch or a scheduled cron. Storage providers can also propose deals, giving you ultimate flexibility."
+          }
+        ]
+      },
+      "col_3": {
+        "type": "custom",
+        "cols": {
+          "num": "col-6"
+        },
+        "customizations": [
+          {
+            "name": "AccordionBlock",
+            "props": {
+              "block": {
+                "sections": [
+                  {
+                    "icon": "branch",
+                    "heading": "Effortless Deal Tracking",
+                    "content": "Deal tracking is to track the status of each deal proposal. Singularity helps"
+                  },
+                  {
+                    "icon": "message",
+                    "heading": "Indexing and Retrieval",
+                    "content": "Singularity as a retrieval provider with a simple command. Each file is retrievable using File CID or or File Path."
+                  },
+                  {
+                    "icon": "inbox",
+                    "heading": "Smart Wallet Management",
+                    "content": "Deal with your preferred storage providers with a schedule that works for you."
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "name": "TextBlock",
+            "props": {
+              "block": {
+                "ctas": [
+                  {
+                    "theme": "secondary",
+                    "tag": "a",
+                    "text": "View documentation",
+                    "to": "https://data-programs.gitbook.io/singularity/cli-reference/cli-reference"
+                  }
+                ]
+              }
+            }
+          }
+        ]
       }
     },
     {
@@ -342,7 +412,7 @@
         "title": "Documentation",
         "cta": {
           "tag": "a",
-          "to": "https://example.com",
+          "to": "https://data-programs.gitbook.io/singularity/cli-reference/cli-reference",
           "text": "Read the Documentation"
         }
       },

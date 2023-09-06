@@ -85,11 +85,11 @@ const legal = computed(() => {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
+    left: calc(50% - $halfGridWidth - 3rem);
     width: 100%;
     height: 100%;
     background-size: 1439px 1200px;
-    background-position: -400% 4%;
+    background-position: 315px -29px;
     background-repeat: no-repeat;
     background-image: url('/images/ring-of-cross-sections-on-angle.png');
   }
