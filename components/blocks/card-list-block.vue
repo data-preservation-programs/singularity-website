@@ -6,14 +6,7 @@
         :key="`card-col-${i}`"
         :class="columns">
 
-        <template v-if="Array.isArray(card)">
-          <Card
-            v-for="(minicard, j) in card"
-            :key="`minicard-${j}`"
-            :card="minicard" />
-        </template>
-
-        <Card v-else :card="card" />
+        <Card :card="card" />
 
       </div>
     </div>
@@ -42,14 +35,14 @@ export default {
 
   computed: {
     cards () {
-      const sortKey = this.block.sort_key
-      if (this.block.alphabetize && sortKey) {
-        return [...this.block.cards].sort((a, b) => {
-          if (a[sortKey].toLowerCase() < b[sortKey].toLowerCase()) { return -1 }
-          if (a[sortKey].toLowerCase() > b[sortKey].toLowerCase()) { return 1 }
-          return 0
-        })
-      }
+      // const sortKey = this.block.sort_key
+      // if (this.block.alphabetize && sortKey) {
+      //   return [...this.block.cards].sort((a, b) => {
+      //     if (a[sortKey].toLowerCase() < b[sortKey].toLowerCase()) { return -1 }
+      //     if (a[sortKey].toLowerCase() > b[sortKey].toLowerCase()) { return 1 }
+      //     return 0
+      //   })
+      // }
       return this.block.cards
     },
     grid () {
@@ -64,4 +57,11 @@ export default {
 
 <style lang="scss" scoped>
 // ///////////////////////////////////////////////////////////////////// General
+.card-list-block {
+  position: relative;
+  [class~="grid"], [class*="grid-"], [class*="grid_"] {
+    width: 100% !important;
+  }
+}
+
 </style>

@@ -2,15 +2,15 @@
   <div
     :class="['block text-block', `align__${block.align ? block.align : 'left'}`]">
 
-    <h5 v-if="block.label" class="label">
-      <TriangleArrow v-if="block.showLabelIcon" class="icon" />
+    <h5 v-if="block.label" class="label h5">
       <span>{{ block.label }}</span>
     </h5>
 
     <template v-if="block.heading">
       <component
         :is="block.h ? `h${block.h}` : 'h2'"
-        class="heading">
+        :class="['heading', { 'heading-image': block.img }]">
+        <img v-if="block.img" :src="block.img" />
         <span
           :class="block.h ? `h${block.h}` : 'h2'"
           v-html="block.heading">
@@ -25,15 +25,22 @@
     </div>
 
     <div v-if="block.ctas" class="button-row">
-      <div v-if="block.ctas && Array.isArray(block.ctas)">
+      <template v-if="block.ctas && Array.isArray(block.ctas)">
         <ButtonCta
           v-for="(cta, index) in ctaData"
           :key="index"
           :tag="cta.tag"
-          :to="cta.to">
+          :to="cta.to"
+          :theme="cta.theme"
+          :disabled="cta.disabled">
           {{ cta.text }}
+          <span
+            v-if="cta.caption"
+            class="caption">
+            {{ cta.caption }}
+          </span>
         </ButtonCta>
-      </div>
+      </template>
     </div>
   </div>
 </template>
@@ -67,7 +74,7 @@ export default {
   computed: {
     ctaData () {
       return this.block.ctas.map((object) => {
-        return { ...object, disabled: object.url === undefined || object.url === '' }
+        return { ...object, disabled: object.to === undefined || object.to === '' }
       })
     }
   }
@@ -108,6 +115,15 @@ export default {
 }
 
 .heading {
+  &.heading-image {
+    display: flex;
+    align-items: center;
+    img {
+      width: toRem(90);
+      height: toRem(90);
+      margin-right: toRem(35);
+    }
+  }
   span {
     @include gradientText;
   }

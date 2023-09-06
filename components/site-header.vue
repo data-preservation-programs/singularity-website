@@ -35,7 +35,8 @@
             :key="cta.component || cta.text"
             :tag="cta.tag"
             :target="cta.target"
-            :theme="cta.theme">
+            :theme="cta.theme"
+            :to="cta.to">
             <component
               :is="getCtaComponent(cta.icon)"
               v-if="cta.icon"
@@ -94,10 +95,8 @@ watch(navigationOpen, (val) => {
 })
 
 // ======================================================================= Hooks
-onMounted(() => {
-  const instance = getCurrentInstance()
-  console.log(instance.appContext.components)
-})
+// onMounted(() => {
+// })
 
 // ===================================================================== Methods
 /**
@@ -284,13 +283,13 @@ const getCtaComponent = (icon) => {
     visibility: visible;
     transform: scale(1);
   }
-  :deep(.navigation) {
-    .nav-item {
+  // :deep(.navigation) {
+  //   .nav-item {
 
-    }
-    .nav-link {
+  //   }
+  //   .nav-link {
 
-    }
-  }
+  //   }
+  // }
 }
 </style>

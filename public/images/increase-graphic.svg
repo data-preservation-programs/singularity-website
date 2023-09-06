@@ -1,0 +1,45 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M131.838 195.616C149.426 195.616 163.683 152.843 163.683 100.081C163.683 47.318 149.426 4.54541 131.838 4.54541C114.251 4.54541 99.9932 47.318 99.9932 100.081C99.9932 152.843 114.251 195.616 131.838 195.616Z" fill="url(#paint0_radial_1088_15920)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M99.9842 179.693C117.572 179.693 131.829 144.049 131.829 100.08C131.829 56.1116 117.572 20.4678 99.9842 20.4678C82.3967 20.4678 68.1392 56.1116 68.1392 100.08C68.1392 144.049 82.3967 179.693 99.9842 179.693Z" fill="url(#paint1_radial_1088_15920)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M68.1376 163.771C85.7251 163.771 99.9826 135.256 99.9826 100.081C99.9826 64.9057 85.7251 36.3906 68.1376 36.3906C50.55 36.3906 36.2925 64.9057 36.2925 100.081C36.2925 135.256 50.55 163.771 68.1376 163.771Z" fill="url(#paint2_radial_1088_15920)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.45459 100.081H194.535H5.45459Z" stroke="#D3D3D3" stroke-width="2.42222"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M194.548 100.081L182.606 88.1392L194.548 100.081Z" stroke="#D3D3D3" stroke-width="2.42222" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M182.606 112.023L194.548 100.081L182.606 112.023Z" stroke="#D3D3D3" stroke-width="2.42222" stroke-linecap="round" stroke-linejoin="round"/>
+<defs>
+<radialGradient id="paint0_radial_1088_15920" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(138.359 100.081) scale(37.0614 105.528)">
+<stop stop-color="#A7C889" stop-opacity="0"/>
+<stop offset="0.155646" stop-color="#A7C889" stop-opacity="0.0117647"/>
+<stop offset="0.285224" stop-color="#A7C889" stop-opacity="0.054902"/>
+<stop offset="0.405532" stop-color="#A7C889" stop-opacity="0.121569"/>
+<stop offset="0.520163" stop-color="#A7C889" stop-opacity="0.215686"/>
+<stop offset="0.63091" stop-color="#A7C889" stop-opacity="0.341176"/>
+<stop offset="0.738664" stop-color="#A7C889" stop-opacity="0.494118"/>
+<stop offset="0.843951" stop-color="#A7C889" stop-opacity="0.67451"/>
+<stop offset="0.944764" stop-color="#A7C889" stop-opacity="0.87451"/>
+<stop offset="1" stop-color="#A7C889"/>
+</radialGradient>
+<radialGradient id="paint1_radial_1088_15920" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(99.9842 100.08) rotate(-0.577187) scale(43.6085 92.8369)">
+<stop offset="0.37525" stop-color="#D3D3D3" stop-opacity="0"/>
+<stop offset="0.436934" stop-color="#D3D3D3" stop-opacity="0.0196078"/>
+<stop offset="0.514329" stop-color="#D3D3D3" stop-opacity="0.0823529"/>
+<stop offset="0.600147" stop-color="#D3D3D3" stop-opacity="0.184314"/>
+<stop offset="0.692048" stop-color="#D3D3D3" stop-opacity="0.321569"/>
+<stop offset="0.788835" stop-color="#D3D3D3" stop-opacity="0.501961"/>
+<stop offset="0.889721" stop-color="#D3D3D3" stop-opacity="0.72549"/>
+<stop offset="0.99217" stop-color="#D3D3D3" stop-opacity="0.980392"/>
+<stop offset="1" stop-color="#D3D3D3"/>
+</radialGradient>
+<radialGradient id="paint2_radial_1088_15920" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(76.2069 99.9049) rotate(0.196001) scale(42.3224 80.4565)">
+<stop offset="0.356959" stop-color="#D3D3D3" stop-opacity="0"/>
+<stop offset="0.442741" stop-color="#D3D3D3" stop-opacity="0.0156863"/>
+<stop offset="0.524126" stop-color="#D3D3D3" stop-opacity="0.0588235"/>
+<stop offset="0.603798" stop-color="#D3D3D3" stop-opacity="0.133333"/>
+<stop offset="0.682396" stop-color="#D3D3D3" stop-opacity="0.239216"/>
+<stop offset="0.760294" stop-color="#D3D3D3" stop-opacity="0.376471"/>
+<stop offset="0.837629" stop-color="#D3D3D3" stop-opacity="0.545098"/>
+<stop offset="0.914511" stop-color="#D3D3D3" stop-opacity="0.741176"/>
+<stop offset="0.989206" stop-color="#D3D3D3" stop-opacity="0.964706"/>
+<stop offset="1" stop-color="#D3D3D3"/>
+</radialGradient>
+</defs>
+</svg>

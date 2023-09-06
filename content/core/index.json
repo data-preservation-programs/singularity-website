@@ -11,8 +11,8 @@
   },
   "page_content": [
     {
-      "id": "hero_header",
-      "grid": [],
+      "id": "hero-header",
+      "grid": ["noGutter"],
       "col_1": {
         "type": "text_block",
         "cols": {
@@ -27,8 +27,487 @@
             "to": "/signup",
             "tag": "nuxt-link",
             "theme": "primary"
+          },
+          {
+            "text": "Sign up now and be first in line when our demo goes live!",
+            "tag": "div",
+            "theme": "caption",
+            "disabled": true
           }
         ]
+      },
+      "col_2": {
+        "type": "custom",
+        "cols": {
+          "num": "col-6",
+          "push_left": "off-1"
+        },
+        "customizations": [
+          {
+            "name": "CodeBlock",
+            "props": {
+              "block": {
+                "lines": [
+                  {
+                    "type": "Type",
+                    "path": "Path",
+                    "scanState": "ScanningState",
+                    "dagState": "DagGenState"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "foldingathome-covid19",
+                    "scanState": "complete",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "multi-token-completion",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "fast-ai-nlp",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "nasanex",
+                    "scanState": "complete",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "gcs",
+                    "path": "terrafusion",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "conversational-search",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "noaa-nexrad",
+                    "scanState": "complete",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "usgs-landsat",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "brazil-data-cubes",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "gcs",
+                    "path": "ndui",
+                    "scanState": "complete",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "koofr",
+                    "path": "janelia-flylight",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  },
+                  {
+                    "type": "s3",
+                    "path": "commoncrawl",
+                    "scanState": "ready",
+                    "dagState": "created"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "name": "CardListBlock",
+            "props": {
+              "block": {
+                "card_grid": ["noGutter", "noBottom", "middle"],
+                "card_columns": "col-2",
+                "cards": [
+                  {
+                    "type": "logo",
+                    "image": "/images/aws-logo.svg"
+                  },
+                  {
+                    "type": "logo",
+                    "image": "/images/backblaze-logo.svg"
+                  },
+                  {
+                    "type": "logo",
+                    "image": "/images/dropbox-logo.svg"
+                  },
+                  {
+                    "type": "logo",
+                    "image": "/images/google-cloud-logo.svg"
+                  },
+                  {
+                    "type": "logo",
+                    "image": "/images/one-drive-logo.svg"
+                  },
+                  {
+                    "type": "logo",
+                    "image": "/images/oracle-logo.svg"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "name": "TextBlock",
+            "props": {
+              "block": {
+                "ctas": [
+                  {
+                    "text": "View all 30+ compatible storage services",
+                    "tag": "a",
+                    "to": "https://example.com",
+                    "theme": "secondary" 
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "section-intro",
+      "grid": ["noGutter"],
+      "col_1": {
+        "type": "text_block",
+        "cols": {
+          "num": "col-5"
+        },
+        "h": 1,
+        "label": "WHY SINGULARITY?",
+        "heading": "Efficient, secure, and flexible data onboarding.",
+        "description": "Basic data management isn’t enough. With your needs in mind Singularity is committed to improving the experience of data on-boarding.",
+        "ctas": [
+          {
+            "theme": "big-number",
+            "tag": "div",
+            "disabled": true,
+            "text": "184+",
+            "caption": "Clients served"
+          },
+          {
+            "theme": "big-number",
+            "tag": "div",
+            "disabled": true,
+            "text": "278.7 PB",
+            "caption": "PiB Data Stored"
+          }
+        ]
+      },
+      "col_2": {
+        "type": "card_list_block",
+        "cols": {
+          "num": "col-6",
+          "push_left": "off-1"
+        },
+        "card_grid": ["equalHeight"],
+        "card_columns": "col-6",
+        "cards": [
+          {
+            "type": "vertical",
+            "icon": "pie-chart",
+            "title": "Flexible Deal Making",
+            "description": "Deal with your preferred storage providers with a schedule that works for you.",
+            "borderGradientAngle": "315deg"
+          },
+          {
+            "type": "vertical",
+            "icon": "network",
+            "title": "Simple Data Processing",
+            "description": "Singularity seamlessly processes data from your local sources or public S3 buckets and automates data preparation",
+            "borderGradientAngle": "45deg"
+          },
+          {
+            "type": "vertical",
+            "icon": "graph",
+            "title": "Data Integrity",
+            "description": "Singularity fosters decentralization by allowing users minimal reliance on storage providers, facilitated by easy verification and support from Filecoin protocol",
+            "borderGradientAngle": "225deg"
+          },
+          {
+            "type": "vertical",
+            "icon": "inbox",
+            "title": "Robust File Management",
+            "description": "Supports file versioning, deletion, and dataset folder structure exploration",
+            "borderGradientAngle": "135deg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "section-features",
+      "grid": ["noGutter"],
+      "col_1": {
+        "type": "text_block",
+        "cols": {
+          "num": "col-12"
+        },
+        "h": 1,
+        "img": "/images/lock-graphic.svg",
+        "heading": "Features"
+      },
+      "col_2": {
+        "type": "accordion_block",
+        "cols": {
+          "num": "col-6"
+        },
+        "sections": [
+          {
+            "icon": "list",
+            "heading": "Inline Data Preparation",
+            "content": "We value your storage space. Our unique inline preparation feature eliminates the need for extra storage for CAR files, instead maintaining a metadata database that maps CAR files to the original data source."
+          },
+          {
+            "icon": "globe",
+            "heading": "Versatile Data Source Integration",
+            "content": "With Singularity, you're not bound by storage types. We offer seamless integration with over 40 different storage services, ranging from popular consumer products like Dropbox and Google Drive to enterprise solutions such as AWS S3, Azure Blob Storage, FTP, and HDFS."
+          },
+          {
+            "icon": "pie-chart",
+            "heading": "Flexible Deal Making",
+            "content": "Singularity puts you in control. Bring your own list of storage providers and define your deal-making process, whether it’s a one-off batch or a scheduled cron. Storage providers can also propose deals, giving you ultimate flexibility."
+          }
+        ]
+      },
+      "col_3": {
+        "type": "custom",
+        "cols": {
+          "num": "col-6"
+        },
+        "customizations": [
+          {
+            "name": "AccordionBlock",
+            "props": {
+              "block": {
+                "sections": [
+                  {
+                    "icon": "branch",
+                    "heading": "Effortless Deal Tracking",
+                    "content": "Deal tracking is to track the status of each deal proposal. Singularity helps"
+                  },
+                  {
+                    "icon": "message",
+                    "heading": "Indexing and Retrieval",
+                    "content": "Singularity as a retrieval provider with a simple command. Each file is retrievable using File CID or or File Path."
+                  },
+                  {
+                    "icon": "inbox",
+                    "heading": "Smart Wallet Management",
+                    "content": "Deal with your preferred storage providers with a schedule that works for you."
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "name": "TextBlock",
+            "props": {
+              "block": {
+                "ctas": [
+                  {
+                    "theme": "secondary",
+                    "tag": "a",
+                    "text": "View documentation",
+                    "to": "https://data-programs.gitbook.io/singularity/cli-reference/cli-reference"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "section-how-it-works",
+      "grid": ["noGutter"],
+      "col_1": {
+        "type": "text_block",
+        "cols": {
+          "num": "col-12"
+        },
+        "h": 1,
+        "img": "/images/increase-graphic.svg",
+        "heading": "How it works"
+      },
+      "col_2": {
+        "type": "card_list_block",
+        "cols": {
+          "num": "col-12"
+        },
+        "card_grid": ["equalHeight"],
+        "card_columns": "col-6",
+        "cards": [
+          {
+            "type": "horizontal",
+            "image": "/images/pie-chart-graphic.svg",
+            "title": "01 Prepare the Data",
+            "description": "The data preparation module will scan and convert a local folder recursively into CAR files ready to be onboarded to Filecoin Network. Singularity also indexes your files on IPFS for easy retrieval.",
+            "borderGradientAngle": "135deg"
+          },
+          {
+            "type": "horizontal",
+            "image": "/images/cube-graphic.svg",
+            "title": "02 Distribute CAR Files",
+            "description": "Easily host an HTTP server with the CAR files to be downloaded by the storage provider. You can also send the CAR files offline if the files are too large.",
+            "borderGradientAngle": "225deg"
+          },
+          {
+            "type": "horizontal",
+            "image": "/images/comment-graphic.svg",
+            "title": "03 Pick your Storage Providers",
+            "description": "Bring your own preferred storage providers, or join Filecoin slack channel to find reputable providers. Most storage providers today are interested in taking verified deals.",
+            "borderGradientAngle": "45deg"
+          },
+          {
+            "type": "horizontal",
+            "image": "/images/exchange-graphic.svg",
+            "title": "04 Make Storage Deals",
+            "description": "The client sets a schedule to send deals to storage providers through Singularity, either once or on a recurring basis.",
+            "borderGradientAngle": "315deg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "section-roadmap",
+      "grid": ["noGutter"],
+      "col_1": {
+        "type": "text_block",
+        "cols": {
+          "num": "col-12"
+        },
+        "h": 1,
+        "img": "/images/summit-graphic.svg",
+        "heading": "Roadmap"
+      },
+      "col_2": {
+        "type": "custom",
+        "cols": {
+          "num": "col-12"
+        },
+        "customizations": [
+          {
+            "name": "Roadmap",
+            "props": {
+              "block": {
+                "cta": {
+                  "text": "View roadmap in Github",
+                  "tag": "a",
+                  "theme": "secondary",
+                  "to": "https://github.com/data-preservation-programs/singularity/milestones"
+                },
+                "items": [
+                  {
+                    "heading": "September",
+                    "milestones": [
+                      {
+                        "title": "Milestone 1",
+                        "content": "Release S3 compatible API (Alpha)"
+                      },
+                      {
+                        "title": "Milestone 2",
+                        "content": "<span>Interface with one simple API that handles:</span><ul><li>Data Preparation</li><li>Deal-making</li><li>Tracking deal status</li></ul>"
+                      }
+                    ]
+                  },
+                  {
+                    "heading": "October",
+                    "milestones": [
+                      {
+                        "title": "Milestone 3",
+                        "content": "Web UI for Singularity (Alpha): Does not require knowing Filecoin specifics but rather an easy drap and drop file upload experience"
+                      }
+                    ]
+                  },
+                  {
+                    "heading": "November",
+                    "milestones": [
+                      {
+                        "title": "Milestone 4",
+                        "content": "S3 compatible API (Beta): A simple set of API’s (POST/GET/GET-STATUS) to be used by an independent software vendor (ISV) to store and retrieve data from Filecoin and track status of data stored"
+                      }
+                    ]
+                  },
+                  {
+                    "heading": "December",
+                    "milestones": [
+                      {
+                        "title": "Milestone 5",
+                        "content": "Automate the process to find storage providers by integrating Singularity with Spade"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "section-subfooter",
+      "grid": ["equalHeight"],
+      "col_1": {
+        "type": "subfooter_card",
+        "cols": {
+          "num": "col-6"
+        },
+        "borderGradientAngle": "135deg",
+        "code": "singularity run content-provider<br><span class='blue'>wget</span> <span class='purple'>127.0.0.1:8088/piece/bagaxxxx</span>",
+        "title": "Documentation",
+        "cta": {
+          "tag": "a",
+          "to": "https://data-programs.gitbook.io/singularity/cli-reference/cli-reference",
+          "text": "Read the Documentation"
+        }
+      },
+      "col_2": {
+        "type": "subfooter_card",
+        "cols": {
+          "num": "col-6"
+        },
+        "borderGradientAngle": "225deg",
+        "image": "/images/topography-graphic.svg",
+        "title": "Dashboard",
+        "cta": {
+          "tag": "a",
+          "to": "https://singularity-metrics-dashboard.vercel.app/",
+          "text": "View the dashboard"
+        }
+      },
+      "col_3": {
+        "type": "subfooter_card",
+        "cols": {
+          "num": "col-12"
+        },
+        "fullwidth": true,
+        "borderGradientAngle": "45deg",
+        "title": "<img src='/images/topography-graphic-with-border.svg' />Keep up<br>with Singularity",
+        "subheading": "Your feedback can shape our next big release.<br>Join us on <a href='https://github.com/data-preservation-programs/singularity' target='_blank'>Github</a> and <a href='https://filecoinproject.slack.com/archives/C05JABREATH' target='_blank'>Slack</a>",
+        "description": "Sign up to keep up. We're passionate about keeping you in the loop with our latest features and updates, but we're even more committed to respecting your inbox.",
+        "cta": {
+          "tag": "a",
+          "to": "https://example.com",
+          "text": "Keep Up"
+        }
       }
     }
   ]

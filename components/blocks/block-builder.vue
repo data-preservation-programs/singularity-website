@@ -1,11 +1,12 @@
 <template>
   <div class="sectionals">
 
-    <div
-      v-for="section in sections"
-      :key="section.id">
-
-      <section v-if="!section.hide" :id="section.slug" :class="['sectional', section.id]">
+    <template v-for="section in sections">
+      <section
+        v-if="!section.hide"
+        :id="section.id"
+        :key="section.id"
+        :class="['sectional', section.id]">
         <!-- ============================================ [Section] Off Grid -->
         <div
           v-if="section.off_grid"
@@ -57,7 +58,7 @@
           </template>
         </div>
       </section>
-    </div>
+    </template>
 
   </div>
 </template>
@@ -66,6 +67,11 @@
 import TextBlock from '@/components/blocks/text-block'
 import ImageBlock from '@/components/blocks/image-block'
 import MarkdownBlock from '@/components/blocks/markdown-block'
+import CodeBlock from '@/components/blocks/code-block'
+import CardListBlock from '@/components/blocks/card-list-block'
+import SubfooterCard from '@/components/subfooter-card'
+import AccordionBlock from '@/components/blocks/accordion-block'
+import Roadmap from '@/components/roadmap'
 // import BlockBuilder from '@/components/blocks/block-builder'
 
 export default {
@@ -74,6 +80,11 @@ export default {
   components: {
     TextBlock,
     ImageBlock,
+    CodeBlock,
+    CardListBlock,
+    SubfooterCard,
+    AccordionBlock,
+    Roadmap,
     // BlockBuilder,
     MarkdownBlock
   },
@@ -109,6 +120,9 @@ export default {
         case 'text_block' : name = 'TextBlock'; break
         case 'image_block' : name = 'ImageBlock'; break
         case 'markdown_block': name = 'MarkdownBlock'; break
+        case 'card_list_block': name = 'CardListBlock'; break
+        case 'subfooter_card': name = 'SubfooterCard'; break
+        case 'accordion_block': name = 'AccordionBlock'; break
         case 'custom' : name = block.component; break
       }
       return name
@@ -116,3 +130,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.sectionals {
+  width: 100%;
+}
+.sectional {
+  position: relative;
+  padding: 5rem 0;
+}
+</style>
