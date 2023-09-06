@@ -1,0 +1,21 @@
+{
+  "seo": {
+    "title": "Singularity",
+    "description": ""
+  },
+  "og": {
+    "site_name": "Singularity",
+    "url": "",
+    "type": "website",
+    "image": "/images/open-graph.png"
+  },
+  "page_content": [
+    {
+      "signup_card": {
+        "title": "Register for Singularity app preview",
+        "description": "With Singularity, we aim to revolutionize your data management experience with our comprehensive tool, adept at handling PiB scale data effortlessly. We're crafting an intuitive drag-and-drop interface. Stay updated and be among the first to know when the Singularity app launches in the upcoming months. Meanwhile, explore more on our website.",
+        "borderGradientAngle": "315deg"
+      }
+    }
+  ]
+}
