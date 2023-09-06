@@ -17,17 +17,17 @@
     <!-- =========================================================== Desktop -->
     <div class="grid-noGutter-noBottom main-content">
 
-      <div class="col-3">
+      <div class="col-3_md-2">
         <NuxtLink to="/" class="logo">
           <SiteLogo />
         </NuxtLink>
       </div>
 
-      <div class="col-4" data-push-left="off-2">
+      <div class="col-4_md-5" data-push-left="off-2_md-1">
         <Navbar :links="navigation" class="desktop" />
       </div>
 
-      <div class="col-3">
+      <div class="col-3_md-4">
 
         <div class="nav-ctas">
           <ButtonCta
@@ -142,6 +142,12 @@ const getCtaComponent = (icon) => {
 
 .main-content {
   position: relative;
+  @include medium {
+    margin: 0 -1rem;
+  }
+  @include small {
+    margin: 0;
+  }
 }
 
 .logo {
@@ -151,6 +157,20 @@ const getCtaComponent = (icon) => {
   &:hover,
   &:focus-visible {
     transform: scale(1.08);
+  }
+  @include medium {
+    transform: translateX(-1rem);
+    &:hover,
+    &:focus-visible {
+      transform: translateX(-1rem) scale(1.08);
+    }
+  }
+  @include small {
+    transform: none;
+    &:hover,
+    &:focus-visible {
+      transform: scale(1.08);
+    }
   }
   :deep(svg) {
     path {
@@ -171,6 +191,17 @@ const getCtaComponent = (icon) => {
 :deep(.navbar) {
   &.desktop {
     margin-right: 0.5rem;
+    @include gridMaxMQ {
+      margin-right: 1rem;
+      margin-left: -2rem;
+    }
+    @include large {
+      margin-right: 1.5rem;
+      margin-left: -4.5rem;
+    }
+    @include medium {
+      margin: 0;
+    }
     @include small {
       display: none;
     }
@@ -183,6 +214,19 @@ const getCtaComponent = (icon) => {
   height: 100%;
   align-items: center;
   padding: 0 toRem(28);
+  @include gridMaxMQ {
+    padding: 0;
+    justify-content: flex-end;
+    :deep(.button) {
+      margin-left: 0.75rem;
+    }
+  }
+  @include medium {
+    transform: translateX(1rem);
+  }
+  @include small {
+    transform: unset;
+  }
 }
 
 .desktop,

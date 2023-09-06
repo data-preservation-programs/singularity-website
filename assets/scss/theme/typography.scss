@@ -80,11 +80,15 @@ $fontAssetPath: 'assets/fonts';
   line-height: leading(65, 48);
   font-weight: 500;
   letter-spacing: 0.03em;
-  @include small {
-    font-size: toRem(30);
-    line-height: leading(43, 30);
+  @include medium {
+    font-size: toRem(36);
+    line-height: leading(48, 36);
     font-weight: 500;
     letter-spacing: 0.03em;
+  }
+  @include mini {
+    font-size: toRem(30);
+    line-height: leading(43, 30);
   }
 }
 
@@ -93,7 +97,7 @@ $fontAssetPath: 'assets/fonts';
   line-height: leading(34, 26);
   font-weight: 500;
   letter-spacing: 0.03em;
-  @include small {
+  @include medium {
     font-size: toRem(20);
     line-height: leading(30, 20);
     font-weight: 500;
@@ -106,11 +110,15 @@ $fontAssetPath: 'assets/fonts';
   line-height: leading(30, 24);
   font-weight: 500;
   letter-spacing: 0.03em;
-  @include small {
-    font-size: toRem(16);
-    line-height: leading(27, 16);
+  @include medium {
+    font-size: toRem(18);
+    line-height: leading(27, 18);
     font-weight: 500;
     letter-spacing: 0.03em;
+  }
+  @include mini {
+    font-size: toRem(16);
+    line-height: leading(27, 16);
   }
 }
 
@@ -119,7 +127,7 @@ $fontAssetPath: 'assets/fonts';
   line-height: leading(30, 16);
   font-weight: 500;
   letter-spacing: 0.03em;
-  @include small {
+  @include medium {
     font-size: toRem(14);
     line-height: leading(16, 14);
     font-weight: 500;
@@ -132,7 +140,7 @@ $fontAssetPath: 'assets/fonts';
   line-height: leading(19, 16);
   font-weight: 500;
   letter-spacing: 0.11em;
-  @include small {
+  @include medium {
     font-size: toRem(14);
     line-height: leading(16, 14);
     font-weight: 500;
@@ -199,7 +207,7 @@ $fontAssetPath: 'assets/fonts';
   line-height: leading(27, 16);
   font-weight: 500;
   letter-spacing: 0.03em;
-  @include small {
+  @include medium {
     font-size: toRem(14);
     line-height: leading(21, 14);
     font-weight: 600;

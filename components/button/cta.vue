@@ -122,6 +122,7 @@ const props = defineProps({
 }
 
 .button-content {
+  white-space: nowrap;
   @include transitionDefault;
   &.hide {
     opacity: 0;

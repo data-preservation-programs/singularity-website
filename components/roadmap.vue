@@ -5,9 +5,9 @@
       v-for="item in items"
       :key="item.heading"
       class="roadmap-item">
-      <div class="grid-noGutter-noBottom">
+      <div class="grid-noGutter-noBottom no-padding">
 
-        <div class="col-4">
+        <div class="col-4_sm-3">
           <div class="heading">
 
             <ZeroButton
@@ -24,7 +24,7 @@
           </div>
         </div>
 
-        <div class="col-8">
+        <div class="col-8_sm-9">
           <div class="roadmap-card">
             <div class="inner-card">
 
@@ -126,6 +126,9 @@ const cta = computed(() => {
   position: relative;
   margin-left: -2rem;
   @include cardPanel(90deg);
+  @include small {
+    margin-left: 1rem;
+  }
 }
 
 .inner-card {
@@ -143,8 +146,13 @@ const cta = computed(() => {
   .title {
     width: 19%;
     min-width: 19%;
+    margin-top: 0.25em;
     @include h4;
     color: $sageGreen;
+    @include medium {
+      width: 29%;
+      min-width: 29%;
+    }
   }
   .content {
     flex-grow: 1;

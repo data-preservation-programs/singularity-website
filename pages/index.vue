@@ -76,14 +76,29 @@ const sections = computed(() => {
   }
   div[data-block-id="col_1"] {
     .text-block {
+      @include medium {
+        margin-right: 2rem;
+      }
+      .heading {
+        @include medium {
+          margin-bottom: toRem(17);
+        }
+      }
       .description {
         padding-right: toRem(50);
         margin-bottom: toRem(43);
+        @include medium {
+          margin-bottom: toRem(27);
+        }
       }
       .theme__caption {
         margin-top: 1rem;
         .button-content {
           @include disclaimerText;
+          white-space: normal;
+          @include medium {
+            padding-right: 4rem;
+          }
         }
       }
     }
@@ -91,15 +106,27 @@ const sections = computed(() => {
   .code-block,
   .card-list-block {
     margin-left: toRem(-50);
+    @include medium {
+      margin: 0;
+    }
+    @include small {
+      margin-left: -1rem;
+    }
   }
   .code-block {
     margin-bottom: toRem(48);
+    @include medium {
+      margin-bottom: toRem(27);
+    }
   }
   div[data-block-id="col_2"] {
     .text-block {
       .button-row {
         display: flex;
         justify-content: flex-end;
+        @include large {
+          transform: translateY(-1rem);
+        }
       }
     }
   }
@@ -120,15 +147,39 @@ const sections = computed(() => {
     background-size: 2000px;
     background-position: center top;
     background-repeat: no-repeat;
+    @include medium {
+      background-size: 1750px;
+    }
   }
   .text-block {
     .button-row {
       display: flex;
     }
   }
+  .card-list-block {
+    @include medium {
+      margin: 0 -0.5rem;
+    }
+    .card-wrapper {
+      @include medium {
+        &:nth-child(1),
+        &:nth-child(4) {
+          .card {
+            height: calc(100% - 2.5rem);
+          }
+        }
+        &:nth-child(3) {
+          transform: translateY(-2.5rem);
+        }
+      }
+    }
+  }
 }
 
 :deep(#section-features) {
+  @include medium {
+    padding-top: toRem(35);
+  }
   div[data-block-id="col_2"] {
     .accordion-block {
       margin-right: toRem(9);
@@ -148,11 +199,35 @@ const sections = computed(() => {
       }
     }
   }
+  .accordion-block {
+    .accordion-heading {
+      .icon {
+        @include medium {
+          margin-right: 1rem;
+        }
+      }
+      .h3 {
+        @include large {
+          font-size: toRem(16);
+          line-height: leading(27, 16);
+        }
+      }
+    }
+  }
+}
+
+:deep(#section-how-it-works) {
+  @include medium {
+    padding-top: 0.875rem;
+  }
 }
 
 :deep(#section-roadmap) {
   div[data-block-id="col_1"] {
     margin-bottom: toRem(45);
+    @include medium {
+      margin-bottom: toRem(15);
+    }
   }
 }
 
@@ -165,12 +240,35 @@ const sections = computed(() => {
     top: toRem(-68);
     left: calc(50% - $halfGridWidth - 3rem);
     width: toRem(1400);
-    height: calc(100% + toRem(68) + toRem(234));
+    height: calc(toRem(866) + toRem(68) + toRem(234)); // section height + top displacement + footer height
     background-image: url('/images/ring-of-cross-sections-from-above.png');
     background-size: 1300px;
     background-position: center top;
     background-repeat: no-repeat;
     transform: translateX(calc(-50% - 3rem));
+    @include gridMaxMQ {
+      top: toRem(-200);
+      height: calc(toRem(960) + toRem(68) + toRem(234));
+    }
+    @include medium {
+      height: calc(toRem(900) + toRem(68) + toRem(234));
+    }
+  }
+  div[data-block-id="col_1"],
+  div[data-block-id="col_2"] {
+    padding-bottom: toRem(12);
+  }
+  div[data-block-id="col_1"] {
+    .column-content{
+      margin-right: 0.5rem;
+      width: calc(100% - 0.5rem);
+    }
+  }
+  div[data-block-id="col_2"] {
+    .column-content{
+      margin-left: 0.5rem;
+      width: calc(100% - 0.5rem);
+    }
   }
 }
 </style>

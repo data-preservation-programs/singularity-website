@@ -16,7 +16,7 @@
       "col_1": {
         "type": "text_block",
         "cols": {
-          "num": "col-5"
+          "num": "col-5_md-6"
         },
         "h": 1,
         "heading": "Seamlessly onboard <span class='highlight'>PiB scale</span> data to the Filecoin storage network",
@@ -40,7 +40,7 @@
         "type": "custom",
         "cols": {
           "num": "col-6",
-          "push_left": "off-1"
+          "push_left": "off-1_md-0"
         },
         "customizations": [
           {
@@ -135,7 +135,7 @@
             "props": {
               "block": {
                 "card_grid": ["noGutter", "noBottom", "middle"],
-                "card_columns": "col-2",
+                "card_columns": "col-2_lg-4",
                 "cards": [
                   {
                     "type": "logo",
@@ -464,7 +464,7 @@
     },
     {
       "id": "section-subfooter",
-      "grid": ["equalHeight"],
+      "grid": ["equalHeight", "noGutter"],
       "col_1": {
         "type": "subfooter_card",
         "cols": {

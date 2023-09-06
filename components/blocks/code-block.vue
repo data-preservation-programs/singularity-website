@@ -52,6 +52,9 @@ const lines = computed(() => {
   @include inlineCode;
   margin-bottom: 0.125rem;
   color: $sageGreen;
+  @include medium {
+    margin-bottom: 0;
+  }
   &.heading {
     color: $eastSide;
   }
@@ -59,19 +62,32 @@ const lines = computed(() => {
 
 .code {
   display: inline-block;
+  white-space: nowrap;
   @include inlineCode;
   &.id,
   &.type {
     width: 12%;
+    @include medium {
+      width: 20%;
+    }
   }
   &.path {
     width: 40%;
+    @include medium {
+      width: 60%;
+    }
   }
   &.scan-state {
     width: 21%;
+    @include medium {
+      display: none;
+    }
   }
   &.dag-state {
     width: 16%;
+    @include gridMaxMQ {
+      display: none;
+    }
   }
 }
 </style>

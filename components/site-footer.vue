@@ -33,11 +33,11 @@
     <div class="panel-bottom">
       <div class="grid-bottom-noBottom-noGutter">
 
-        <div class="col-3">
+        <div class="col-3_md-2">
           <!-- dummy div -->
         </div>
 
-        <div class="col-4">
+        <div class="col-4_md-5">
           <div class="legal">
             <ZeroButton
               v-for="link in legal.links"
@@ -81,26 +81,46 @@ const legal = computed(() => {
   align-items: center;
   padding: toRem(34) 0;
   height: toRem(234);
+  @include gridMaxMQ {
+    padding-top: toRem(72);
+    height: unset;
+  }
   &:before {
     content: '';
     position: absolute;
     top: 0;
     left: calc(50% - $halfGridWidth - 3rem);
-    width: 100%;
+    width: calc(100% + 10rem);
     height: 100%;
     background-size: 1439px 1200px;
     background-position: 315px -29px;
     background-repeat: no-repeat;
     background-image: url('/images/ring-of-cross-sections-on-angle.png');
+    @include gridMaxMQ {
+      left: 0;
+      width: 100%;
+      height: calc(100% + 10rem);
+      top: -10rem;
+    }
   }
 }
 
+.panel-top,
+.panel-bottom {
+  position: relative;
+  width: 100%;
+}
+
 .site-footer-logo {
+  display: block;
   :deep(svg) {
     @include transitionDefault;
     &:hover {
       transform: scale(1.08);
     }
+  }
+  @include medium {
+    width: toRem(95);
   }
 }
 
@@ -108,6 +128,18 @@ const legal = computed(() => {
   .text {
     @include formFieldText;
     margin-bottom: toRem(28);
+    @include medium {
+      font-size: toRem(14);
+      :deep(a) {
+        font-size: toRem(14);
+      }
+    }
+    :deep(span) {
+      &.green {
+        color: $sageGreen;
+        font-weight: 600;
+      }
+    }
   }
   .logos {
     display: flex;
@@ -125,6 +157,11 @@ const legal = computed(() => {
 
 .legal {
   transform: translateY(-100%);
+  @include medium {
+    display: flex;
+    justify-content: space-between;
+    transform: translate(1rem, calc(-100% + 0.375rem));
+  }
 }
 
 .footer-button {
@@ -134,11 +171,23 @@ const legal = computed(() => {
   color: $sageGreen;
   @include transitionDefault;
   border-bottom: solid 1px rgba($sageGreen, 0);
+  white-space: nowrap;
   &:not(:last-child) {
     margin-right: toRem(47);
+    @include large {
+      margin-right: toRem(27);
+    }
+    @include medium {
+      margin-right: 0;
+      margin-left: auto;
+    }
   }
   &:hover {
     border-bottom: solid 1px rgba($sageGreen, 1);
+  }
+  @include medium {
+    margin-right: 0;
+    margin-left: auto;
   }
 }
 </style>

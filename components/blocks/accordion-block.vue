@@ -161,6 +161,12 @@ const getIconComponent = (icon) => {
   &.open {
     .accordion-content {
       max-height: toRem(200);
+      @include large {
+        max-height: toRem(228);
+      }
+      @include medium {
+        max-height: toRem(300);
+      }
     }
   }
   &.open,

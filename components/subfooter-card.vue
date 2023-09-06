@@ -4,11 +4,11 @@
     :style="cardStyles">
 
     <div class="card-content">
-      <div class="grid-noGutter-noBottom-middle">
+      <div class="grid-noGutter-noBottom-middle no-padding">
 
         <div
-          :class="fullwidth ? 'col-6' : 'col-12'"
-          :data-push-left="fullwidth ? 'off-1' : 'off-0'">
+          :class="[fullwidth ? 'col-6_md-7' : 'col-12', 'inner-column']"
+          :data-push-left="fullwidth ? 'off-1_md-0' : 'off-0'">
           <div class="before">
 
             <div class="feature">
@@ -18,10 +18,23 @@
               </pre>
             </div>
 
-            <div
-              v-if="title"
-              class="title"
-              v-html="title">
+            <div class="title-wrapper">
+
+              <div
+                v-if="title"
+                class="title"
+                v-html="title">
+              </div>
+
+              <div v-if="!fullwidth && cta" class="cta">
+                <ButtonCta
+                  :to="cta.to"
+                  :tag="cta.tag"
+                  theme="secondary">
+                  {{ cta.text }}
+                </ButtonCta>
+              </div>
+
             </div>
 
             <div
@@ -30,19 +43,10 @@
               v-html="subheading">
             </div>
 
-            <div v-if="!fullwidth && cta" class="cta">
-              <ButtonCta
-                :to="cta.to"
-                :tag="cta.tag"
-                theme="secondary">
-                {{ cta.text }}
-              </ButtonCta>
-            </div>
-
           </div>
         </div>
 
-        <div v-if="fullwidth" class="col-5">
+        <div v-if="fullwidth" class="col-5 inner-column">
           <div class="after">
 
             <div class="description">
@@ -124,12 +128,28 @@ const cardStyles = computed(() => {
   height: 100%;
   [class~="grid"], [class*="grid-"], [class*="grid_"] {
     width: 100% !important;
+    height: 100%;
+  }
+  @include medium {
+    padding: toRem(23);
   }
 }
 
 .card-content {
   position: relative;
   z-index: 2;
+  height: 100%;
+}
+
+.inner-column {
+  height: 100%;
+}
+
+.before {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
 }
 
 .feature {
@@ -144,6 +164,9 @@ const cardStyles = computed(() => {
     background-color: $codeBlack;
     border-radius: toRem(5);
     margin: 0;
+    @include medium {
+      padding: 0 toRem(20);
+    }
   }
   code {
     display: block;
@@ -151,6 +174,9 @@ const cardStyles = computed(() => {
     line-height: leading(27, 18);
     letter-spacing: 0.01em;
     color: $sageGreen;
+    @include large {
+      font-size: toRem(13);
+    }
     :deep(span) {
       &.blue {
         color: #5D9AD1;
@@ -178,13 +204,31 @@ const cardStyles = computed(() => {
   letter-spacing: 0.01em;
 }
 
+.subheading {
+  @include medium {
+    font-size: toRem(16);
+  }
+}
+
 .subfooter-card.fullwidth {
+  @include medium {
+    padding: toRem(50) toRem(28) toRem(33) toRem(28);
+  }
+  @include small {
+    padding: toRem(50) toRem(23) toRem(33) toRem(23);
+  }
   .before {
     position: relative;
     margin-left: -2rem;
+    @include medium {
+      margin: 0;
+    }
   }
   .after {
     padding: 0 toRem(40);
+    @include medium {
+      padding: 0;
+    }
   }
   .feature {
     display: none;
@@ -194,16 +238,25 @@ const cardStyles = computed(() => {
     line-height: leading(110, 80);
     white-space: nowrap;
     margin-bottom: toRem(10);
+    @include gridMaxMQ {
+      font-size: 5.8vw;
+    }
     :deep(img) {
       display: inline;
-      max-width: toRem(214);
+      width: toRem(214);
       margin-right: toRem(42);
       transform: translateY(0.75rem);
+      @include gridMaxMQ {
+        width: 16.2vw;
+      }
     }
   }
   .description {
     line-height: leading(27, 18);
     margin-bottom: toRem(30);
+    @include medium {
+      @include p2;
+    }
   }
 }
 </style>
