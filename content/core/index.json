@@ -139,27 +139,27 @@
                 "cards": [
                   {
                     "type": "logo",
-                    "img": "/images/aws-logo.svg"
+                    "image": "/images/aws-logo.svg"
                   },
                   {
                     "type": "logo",
-                    "img": "/images/backblaze-logo.svg"
+                    "image": "/images/backblaze-logo.svg"
                   },
                   {
                     "type": "logo",
-                    "img": "/images/dropbox-logo.svg"
+                    "image": "/images/dropbox-logo.svg"
                   },
                   {
                     "type": "logo",
-                    "img": "/images/google-cloud-logo.svg"
+                    "image": "/images/google-cloud-logo.svg"
                   },
                   {
                     "type": "logo",
-                    "img": "/images/one-drive-logo.svg"
+                    "image": "/images/one-drive-logo.svg"
                   },
                   {
                     "type": "logo",
-                    "img": "/images/oracle-logo.svg"
+                    "image": "/images/oracle-logo.svg"
                   }
                 ]
               }
@@ -397,6 +397,69 @@
         "h": 1,
         "img": "/images/summit-graphic.svg",
         "heading": "Roadmap"
+      },
+      "col_2": {
+        "type": "custom",
+        "cols": {
+          "num": "col-12"
+        },
+        "customizations": [
+          {
+            "name": "Roadmap",
+            "props": {
+              "block": {
+                "cta": {
+                  "text": "View roadmap in Github",
+                  "tag": "a",
+                  "theme": "secondary",
+                  "to": "https://github.com/data-preservation-programs/singularity/milestones"
+                },
+                "items": [
+                  {
+                    "heading": "September",
+                    "milestones": [
+                      {
+                        "title": "Milestone 1",
+                        "content": "Release S3 compatible API (Alpha)"
+                      },
+                      {
+                        "title": "Milestone 2",
+                        "content": "<span>Interface with one simple API that handles:</span><ul><li>Data Preparation</li><li>Deal-making</li><li>Tracking deal status</li></ul>"
+                      }
+                    ]
+                  },
+                  {
+                    "heading": "October",
+                    "milestones": [
+                      {
+                        "title": "Milestone 3",
+                        "content": "Web UI for Singularity (Alpha): Does not require knowing Filecoin specifics but rather an easy drap and drop file upload experience"
+                      }
+                    ]
+                  },
+                  {
+                    "heading": "November",
+                    "milestones": [
+                      {
+                        "title": "Milestone 4",
+                        "content": "S3 compatible API (Beta): A simple set of API’s (POST/GET/GET-STATUS) to be used by an independent software vendor (ISV) to store and retrieve data from Filecoin and track status of data stored"
+                      }
+                    ]
+                  },
+                  {
+                    "heading": "December",
+                    "milestones": [
+                      {
+                        "title": "Milestone 5",
+                        "content": "Automate the process to find storage providers by integrating Singularity with Spade"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
       }
     },
     {

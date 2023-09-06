@@ -150,6 +150,12 @@ const sections = computed(() => {
   }
 }
 
+:deep(#section-roadmap) {
+  div[data-block-id="col_1"] {
+    margin-bottom: toRem(45);
+  }
+}
+
 :deep(#section-subfooter) {
   position: relative;
   padding-bottom: toRem(52);

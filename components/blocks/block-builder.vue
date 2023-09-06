@@ -71,6 +71,7 @@ import CodeBlock from '@/components/blocks/code-block'
 import CardListBlock from '@/components/blocks/card-list-block'
 import SubfooterCard from '@/components/subfooter-card'
 import AccordionBlock from '@/components/blocks/accordion-block'
+import Roadmap from '@/components/roadmap'
 // import BlockBuilder from '@/components/blocks/block-builder'
 
 export default {
@@ -83,6 +84,7 @@ export default {
     CardListBlock,
     SubfooterCard,
     AccordionBlock,
+    Roadmap,
     // BlockBuilder,
     MarkdownBlock
   },
