@@ -80,6 +80,19 @@ const legal = computed(() => {
   justify-content: center;
   align-items: center;
   padding: toRem(34) 0;
+  height: toRem(234);
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 1439px 1200px;
+    background-position: -400% 4%;
+    background-repeat: no-repeat;
+    background-image: url('/images/ring-of-cross-sections-on-angle.png');
+  }
 }
 
 .site-footer-logo {

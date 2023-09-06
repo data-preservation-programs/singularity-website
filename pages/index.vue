@@ -127,4 +127,22 @@ const sections = computed(() => {
     }
   }
 }
+
+:deep(#section-subfooter) {
+  position: relative;
+  padding-bottom: toRem(52);
+  &:before {
+    content: '';
+    position: absolute;
+    top: toRem(-68);
+    left: 0;
+    width: 100%;
+    height: calc(100% + toRem(68) + toRem(234));
+    background-image: url('/images/ring-of-cross-sections-from-above.png');
+    background-size: 1300px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    transform: translateX(calc(-50% - 3rem));
+  }
+}
 </style>
