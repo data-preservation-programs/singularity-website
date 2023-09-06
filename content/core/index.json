@@ -24,7 +24,7 @@
         "ctas": [
           {
             "text": "Sign up",
-            "to": "/signup",
+            "to": "",
             "tag": "nuxt-link",
             "theme": "primary"
           },
