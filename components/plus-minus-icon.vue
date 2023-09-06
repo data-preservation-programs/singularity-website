@@ -5,7 +5,7 @@
     viewBox="0 0 26 26"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    :class="['plus-minus-icon', { active }]" >
+    :class="['plus-minus-icon', { active }]">
     <circle
       cx="13"
       cy="13"
@@ -24,6 +24,7 @@
 
 <script setup>
 // ======================================================================= Props
+// eslint-disable-next-line
 const props = defineProps({
   active: {
     type: Boolean,
