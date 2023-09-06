@@ -1,7 +1,7 @@
 {
   "name": "@data-preservation-programs/singularity-website",
   "version": "1.0.0",
-  "description": "Get a Nuxt 3 site up and running fast 🚀",
+  "description": "Static marketing site for Singularity",
   "author": {
     "name": "Agency Undone",
     "email": "hello@agencyundone.com"
@@ -12,11 +12,11 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev --no-clear",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "build": "nuxi build",
+    "dev": "nuxi dev --no-clear",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "postinstall": "nuxi prepare"
   },
   "overrides": {
     "vue": "latest"
