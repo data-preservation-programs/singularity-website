@@ -253,7 +253,7 @@
       }
     },
     {
-      "id": "section-features",
+      "id": "features",
       "grid": ["noGutter"],
       "col_1": {
         "type": "text_block",
@@ -338,7 +338,7 @@
       }
     },
     {
-      "id": "section-how-it-works",
+      "id": "how-it-works",
       "grid": ["noGutter"],
       "col_1": {
         "type": "text_block",
@@ -389,7 +389,7 @@
       }
     },
     {
-      "id": "section-roadmap",
+      "id": "roadmap",
       "grid": ["noGutter"],
       "col_1": {
         "type": "text_block",

@@ -10,6 +10,7 @@
 import BlockBuilder from '@/components/blocks/block-builder'
 
 // ======================================================================== Data
+const route = useRoute()
 const { data } = await useAsyncData('core', async () => {
   return queryContent('core').find()
 })
@@ -18,6 +19,19 @@ const { data } = await useAsyncData('core', async () => {
 const sections = computed(() => {
   const index = data._rawValue.find((item) => item._file === 'core/index.json')
   return index.page_content
+})
+
+// ==================================================================== On Mount
+onMounted(() => {
+  setTimeout(async () => {
+    if (route.query.section) {
+      const section = document.getElementById(route.query.section)
+      if (section) {
+        await nextTick()
+        section.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }, 1)
 })
 
 </script>
@@ -249,7 +263,7 @@ const sections = computed(() => {
   }
 }
 
-:deep(#section-features) {
+:deep(#features) {
   @include medium {
     padding-top: toRem(35);
   }
@@ -301,7 +315,7 @@ const sections = computed(() => {
   }
 }
 
-:deep(#section-how-it-works) {
+:deep(#how-it-works) {
   @include medium {
     padding-top: 0.875rem;
   }
@@ -341,7 +355,7 @@ const sections = computed(() => {
   }
 }
 
-:deep(#section-roadmap) {
+:deep(#roadmap) {
   div[data-block-id="col_1"] {
     margin-bottom: toRem(45);
     @include medium {
