@@ -169,6 +169,9 @@ const iconComponent = computed(() => {
     @include h3;
     color: $sageGreen;
     margin-bottom: toRem(27);
+    @include mini {
+      margin-bottom: toRem(10);
+    }
   }
   .description {
     @include p2;

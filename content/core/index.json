@@ -355,7 +355,7 @@
           "num": "col-12"
         },
         "card_grid": ["equalHeight"],
-        "card_columns": "col-6",
+        "card_columns": "col-6_mi-12",
         "cards": [
           {
             "type": "horizontal",
@@ -470,7 +470,7 @@
       "col_1": {
         "type": "subfooter_card",
         "cols": {
-          "num": "col-6"
+          "num": "col-6_mi-12"
         },
         "borderGradientAngle": "135deg",
         "code": "singularity run content-provider<br><span class='blue'>wget</span> <span class='purple'>127.0.0.1:8088/piece/bagaxxxx</span>",
@@ -484,7 +484,7 @@
       "col_2": {
         "type": "subfooter_card",
         "cols": {
-          "num": "col-6"
+          "num": "col-6_mi-12"
         },
         "borderGradientAngle": "225deg",
         "image": "/images/topography-graphic.svg",
@@ -503,7 +503,7 @@
         "fullwidth": true,
         "borderGradientAngle": "45deg",
         "title": "<img src='/images/topography-graphic-with-border.svg' />Keep up<br>with Singularity",
-        "subheading": "Your feedback can shape our next big release.<br>Join us on <a href='https://github.com/data-preservation-programs/singularity' target='_blank'>Github</a> and <a href='https://filecoinproject.slack.com/archives/C05JABREATH' target='_blank'>Slack</a>",
+        "subheading": "Your feedback can shape our next big release. <br>Join us on <a href='https://github.com/data-preservation-programs/singularity' target='_blank'>Github</a> and <a href='https://filecoinproject.slack.com/archives/C05JABREATH' target='_blank'>Slack</a>",
         "description": "Sign up to keep up. We're passionate about keeping you in the loop with our latest features and updates, but we're even more committed to respecting your inbox.",
         "cta": {
           "tag": "a",

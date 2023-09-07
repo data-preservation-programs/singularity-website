@@ -300,6 +300,40 @@ const sections = computed(() => {
   @include medium {
     padding-top: 0.875rem;
   }
+  &:before {
+    display: none;
+    content: '';
+    position: absolute;
+    top: toRem(-256);
+    left: toRem(-50);
+    width: calc(100% + toRem(50));
+    height: toRem(1480);
+    background-image: url('/images/warped-torus-made-of-segments.png');
+    background-size: 1520px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    @include mini {
+      display: block;
+    }
+  }
+  .text-block {
+    .heading {
+      white-space: nowrap;
+      @include mini {
+        margin-bottom: toRem(38);
+      }
+    }
+  }
+  .card-list-block {
+    .card.type__horizontal {
+      @include mini {
+        @include cardPanel(135deg);
+      }
+    }
+    @include tiny {
+      margin: 0 -0.5rem;
+    }
+  }
 }
 
 :deep(#section-roadmap) {
@@ -307,6 +341,9 @@ const sections = computed(() => {
     margin-bottom: toRem(45);
     @include medium {
       margin-bottom: toRem(15);
+    }
+    @include tiny {
+      margin-bottom: toRem(6);
     }
   }
 }
@@ -333,21 +370,43 @@ const sections = computed(() => {
     @include medium {
       height: calc(toRem(856) + toRem(68) + toRem(234));
     }
+    @include mini {
+      height: toRem(866);
+      width: 100%;
+      background-size: toRem(866);
+      background-position: right top;
+      transform: none;
+      left: calc(-50% + 6rem);
+      top: -5rem;
+    }
   }
   div[data-block-id="col_1"],
   div[data-block-id="col_2"] {
     padding-bottom: toRem(12);
+    .subfooter-card {
+      @include mini {
+        @include cardPanel(135deg);
+      }
+    }
   }
   div[data-block-id="col_1"] {
     .column-content{
       margin-right: 0.5rem;
       width: calc(100% - 0.5rem);
+      @include mini {
+        margin-right: 0;
+        width: 100%;
+      }
     }
   }
   div[data-block-id="col_2"] {
     .column-content{
       margin-left: 0.5rem;
       width: calc(100% - 0.5rem);
+      @include mini {
+        margin-left: 0;
+        width: 100%;
+      }
     }
   }
 }

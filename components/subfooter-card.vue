@@ -7,7 +7,7 @@
       <div class="grid-noGutter-noBottom-middle no-padding">
 
         <div
-          :class="[fullwidth ? 'col-6_md-7' : 'col-12', 'inner-column']"
+          :class="[fullwidth ? 'col-6_md-7_mi-12' : 'col-12', 'inner-column']"
           :data-push-left="fullwidth ? 'off-1_md-0' : 'off-0'">
           <div class="before">
 
@@ -46,7 +46,7 @@
           </div>
         </div>
 
-        <div v-if="fullwidth" class="col-5 inner-column">
+        <div v-if="fullwidth" class="col-5_mi-12 inner-column">
           <div class="after">
 
             <div class="description">
@@ -60,6 +60,12 @@
                 theme="secondary">
                 {{ cta.text }}
               </ButtonCta>
+            </div>
+
+            <div
+              v-if="fullwidth"
+              class="subheading"
+              v-html="subheading">
             </div>
 
           </div>
@@ -133,6 +139,9 @@ const cardStyles = computed(() => {
   @include medium {
     padding: toRem(23);
   }
+  @include tiny {
+    padding: toRem(25) toRem(16);
+  }
 }
 
 .card-content {
@@ -154,6 +163,9 @@ const cardStyles = computed(() => {
 
 .feature {
   margin-bottom: toRem(37);
+  @include tiny {
+    margin-bottom: toRem(17);
+  }
   .image {
     margin-top: 0.5rem;
     padding: 0 0.5rem;
@@ -177,6 +189,9 @@ const cardStyles = computed(() => {
     @include large {
       font-size: toRem(13);
     }
+    @include small {
+      font-size: toRem(12);
+    }
     :deep(span) {
       &.blue {
         color: #5D9AD1;
@@ -194,6 +209,13 @@ const cardStyles = computed(() => {
   @include h1;
   @include gradientText;
   margin-bottom: toRem(14);
+  @include small {
+    font-size: toRem(30);
+    line-height: leading(43, 30);
+  }
+  @include tiny {
+    margin-bottom: toRem(3);
+  }
 }
 
 .subheading,
@@ -208,6 +230,17 @@ const cardStyles = computed(() => {
   @include medium {
     font-size: toRem(16);
   }
+  @include mini {
+    font-size: toRem(14);
+  }
+  :deep(br) {
+    @include small {
+      display: none;
+    }
+    @include mini {
+      display: inline;
+    }
+  }
 }
 
 .subfooter-card.fullwidth {
@@ -217,17 +250,45 @@ const cardStyles = computed(() => {
   @include small {
     padding: toRem(50) toRem(23) toRem(33) toRem(23);
   }
+  @include mini {
+    padding: toRem(33) toRem(23);
+  }
+  @include tiny {
+    padding: toRem(25) toRem(16);
+  }
+  .inner-column {
+    @include mini {
+      height: unset;
+    }
+  }
   .before {
     position: relative;
     margin-left: -2rem;
     @include medium {
       margin: 0;
     }
+    @include small {
+      padding-right: 2rem;
+    }
+    @include mini {
+      padding-right: 0;
+    }
+    .subheading {
+      @include mini {
+        display: none;
+      }
+    }
   }
   .after {
     padding: 0 toRem(40);
     @include medium {
       padding: 0;
+    }
+    .subheading {
+      display: none;
+      @include mini {
+        display: block;
+      }
     }
   }
   .feature {
@@ -241,6 +302,9 @@ const cardStyles = computed(() => {
     @include gridMaxMQ {
       font-size: 5.8vw;
     }
+    @include mini {
+      font-size: toRem(40);
+    }
     :deep(img) {
       display: inline;
       width: toRem(214);
@@ -249,6 +313,13 @@ const cardStyles = computed(() => {
       @include gridMaxMQ {
         width: 16.2vw;
       }
+      @include small {
+        margin-right: 7%;
+      }
+      @include mini {
+        width: toRem(120);
+        margin-right: 1rem;
+      }
     }
   }
   .description {
@@ -256,6 +327,17 @@ const cardStyles = computed(() => {
     margin-bottom: toRem(30);
     @include medium {
       @include p2;
+    }
+    @include mini {
+      padding-right: 3rem;
+    }
+    @include tiny {
+      padding-right: 0;
+    }
+  }
+  .cta {
+    @include mini {
+      margin-bottom: toRem(20);
     }
   }
 }
