@@ -86,30 +86,55 @@ const iconComponent = computed(() => {
   margin: auto;
   display: flex;
   align-items: center;
+  @include large {
+    margin-bottom: 1rem;
+  }
 }
 
 .card.type__vertical {
   padding: toRem(30) toRem(24);
+  @include medium {
+    padding: toRem(24);
+  }
+  @include small {
+    padding: toRem(15);
+  }
+  @include tiny {
+    padding: toRem(13) toRem(10);
+    padding-bottom: 0;
+  }
   .content {
     position: relative;
     z-index: 2;
   }
   .icon {
     margin-bottom: toRem(45);
+    @include medium {
+      margin-bottom: toRem(15);
+    }
   }
   .title {
     @include h3;
     color: $sageGreen;
     margin-bottom: toRem(25);
+    @include medium {
+      margin-bottom: toRem(10);
+    }
   }
   .description {
     @include p2;
     margin-bottom: toRem(22);
+    @include medium {
+      margin-bottom: 0;
+    }
   }
 }
 
 .card.type__horizontal {
   padding: toRem(32) toRem(24);
+  @include medium {
+    padding: toRem(26) toRem(19);
+  }
   .content {
     position: relative;
     z-index: 2;
@@ -117,10 +142,24 @@ const iconComponent = computed(() => {
     justify-content: space-between;
     align-items: center;
     height: 100%;
+    @include medium {
+      align-items: flex-start;
+    }
   }
   .image {
     padding: 0 toRem(28);
     max-height: toRem(120);
+    @include large {
+      padding: 0;
+      margin-right: 1rem;
+    }
+    @include medium {
+      max-height: toRem(75);
+      margin-left: 1rem;
+    }
+    @include small {
+      margin-left: 0;
+    }
   }
   .text {
     flex-grow: 1;
@@ -130,6 +169,9 @@ const iconComponent = computed(() => {
     @include h3;
     color: $sageGreen;
     margin-bottom: toRem(27);
+    @include mini {
+      margin-bottom: toRem(10);
+    }
   }
   .description {
     @include p2;

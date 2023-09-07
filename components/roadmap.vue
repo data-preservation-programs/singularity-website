@@ -5,9 +5,11 @@
       v-for="item in items"
       :key="item.heading"
       class="roadmap-item">
-      <div class="grid-noGutter-noBottom">
+      <div class="grid-noGutter-noBottom no-padding">
 
-        <div class="col-4">
+        <div
+          class="col-4_sm-3_mi-10_ti-12"
+          data-push-left="off-0_mi-1_ti-0">
           <div class="heading">
 
             <ZeroButton
@@ -24,7 +26,9 @@
           </div>
         </div>
 
-        <div class="col-8">
+        <div
+          class="col-8_sm-9_mi-10_ti-12"
+          data-push-left="off-0_mi-1_ti-0">
           <div class="roadmap-card">
             <div class="inner-card">
 
@@ -90,6 +94,9 @@ const cta = computed(() => {
 <style lang="scss" scoped>
 .roadmap-item {
   margin-bottom: toRem(12);
+  @include mini {
+    margin-bottom: toRem(15);
+  }
   &:hover {
     .icon {
       transform: scale(1.15);
@@ -104,6 +111,10 @@ const cta = computed(() => {
   display: flex;
   align-items: center;
   margin-top: toRem(25);
+  @include mini {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
   .icon-button {
     display: block;
     width: toRem(41);
@@ -126,25 +137,52 @@ const cta = computed(() => {
   position: relative;
   margin-left: -2rem;
   @include cardPanel(90deg);
+  @include small {
+    margin-left: 2rem;
+  }
+  @include mini {
+    margin: 0;
+  }
 }
 
 .inner-card {
   position: relative;
   z-index: 2;
   padding: toRem(31);
+  @include small {
+    padding: toRem(24) toRem(30);
+  }
+  @include tiny {
+    padding: toRem(12) toRem(17);
+  }
 }
 
 .milestone {
   display: flex;
   justify-content: space-between;
+  @include tiny {
+    flex-direction: column;
+  }
   &:not(:last-child) {
     margin-bottom: toRem(31);
+    @include tiny {
+      margin-bottom: toRem(11);
+    }
   }
   .title {
     width: 19%;
     min-width: 19%;
+    margin-top: 0.25em;
     @include h4;
     color: $sageGreen;
+    @include medium {
+      width: 29%;
+      min-width: 29%;
+    }
+    @include tiny {
+      margin-top: 0;
+      margin-bottom: 0.25rem;
+    }
   }
   .content {
     flex-grow: 1;
@@ -164,5 +202,8 @@ const cta = computed(() => {
   display: flex;
   justify-content: flex-end;
   margin-top: toRem(30);
+  @include mini {
+    margin-top: toRem(14);
+  }
 }
 </style>

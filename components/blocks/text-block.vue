@@ -122,6 +122,13 @@ export default {
       width: toRem(90);
       height: toRem(90);
       margin-right: toRem(35);
+      @include medium {
+        width: toRem(60);
+        height: toRem(60);
+      }
+      @include tiny {
+        margin-right: toRem(17);
+      }
     }
   }
   span {

@@ -44,6 +44,9 @@ const lines = computed(() => {
   padding: toRem(24);
   background-color: $codeBlack;
   border-radius: toRem(6);
+  @include mini {
+    padding: toRem(7) toRem(13);
+  }
 }
 
 .code-line {
@@ -52,6 +55,12 @@ const lines = computed(() => {
   @include inlineCode;
   margin-bottom: 0.125rem;
   color: $sageGreen;
+  @include medium {
+    margin-bottom: 0;
+  }
+  @include mini {
+    overflow: hidden;
+  }
   &.heading {
     color: $eastSide;
   }
@@ -59,19 +68,58 @@ const lines = computed(() => {
 
 .code {
   display: inline-block;
+  white-space: nowrap;
   @include inlineCode;
+  @include tiny {
+    font-size: 0.75rem;
+  }
   &.id,
   &.type {
     width: 12%;
+    @include medium {
+      width: 20%;
+    }
+    @include tiny {
+      width: 13%;
+    }
+  }
+  &.id {
+    @include small {
+      display: none;
+    }
+    @include mini {
+      display: inline-block;
+    }
+    @include tiny {
+      width: 10%;
+    }
   }
   &.path {
     width: 40%;
+    @include medium {
+      width: 60%;
+    }
+    @include small {
+      width: 80%;
+    }
+    @include mini {
+      width: 60%;
+    }
+    @include tiny {
+      width: 62%;
+    }
   }
   &.scan-state {
     width: 21%;
+    @include medium {
+      display: none;
+    }
   }
   &.dag-state {
     width: 16%;
+    @include gridMaxMQ {
+      display: none;
+    }
   }
 }
 </style>
