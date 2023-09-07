@@ -25,25 +25,31 @@
             class="first-name form-field"
             type="text"
             :placeholder="firstNameField.placeholder"
-            required="true" />
+            required="true"
+            @input="updateInputValue($event.target.value, 'firstName')" />
           <input
             class="last-name form-field"
             type="text"
             :placeholder="lastNameField.placeholder"
-            required="true" />
+            required="true"
+            @input="updateInputValue($event.target.value, 'lastName')" />
         </div>
 
         <input
           class="email form-field"
           type="email"
           :placeholder="emailField.placeholder"
-          required="true" />
+          required="true"
+          @input="updateInputValue($event.target.value, 'email')" />
+
 
         <input
           class="org form-field"
           :placeholder="orgField.placeholder"
           type="text"
-          required="true" />
+          required="true"
+          @input="updateInputValue($event.target.value, 'org')" />
+
 
         <ZeroDropdown class="country form-field" :display-selected="true">
           <template #toggle-button="{ togglePanel, selected }">
@@ -148,6 +154,25 @@ const countryField = computed(() => { return props.signupCard.signup_form.countr
 const familiarityField = computed(() => { return props.signupCard.signup_form.filecoin_familiarity })
 
 // ===================================================================== Methdos
+/**
+ * @method updateInputValue
+ */
+const updateInputValue = (val, field) => {
+  switch(field) {
+    case 'firstName':
+      firstName.value = val
+      break
+    case 'lastName':
+      lastName.value = val
+      break
+    case 'email':
+      email.value = val
+      break
+    case 'org':
+      org.value = val
+      break
+  }
+}
 /**
  * @method selectOption
  */
