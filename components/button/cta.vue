@@ -271,7 +271,7 @@ const path = computed(() => {
   width: fit-content;
   :deep(.button-content) {
     @include h1;
-    @include gradientText;
+    color: $sageGreen;
     .caption {
       display: block;
       @include h4;

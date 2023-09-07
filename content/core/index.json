@@ -173,7 +173,7 @@
                   {
                     "text": "View all 30+ compatible storage services",
                     "tag": "a",
-                    "to": "https://example.com",
+                    "to": "https://data-programs.gitbook.io/singularity/installation/install-from-source",
                     "theme": "secondary" 
                   }
                 ]

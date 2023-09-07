@@ -264,6 +264,7 @@ onMounted(() => {
 }
 
 :deep(#features) {
+  padding-top: 0;
   @include medium {
     padding-top: toRem(35);
   }
