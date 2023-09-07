@@ -24,63 +24,75 @@
           <input
             class="first-name form-field"
             type="text"
-            :placeholder="firstName.placeholder"
+            :placeholder="firstNameField.placeholder"
             required="true" />
           <input
             class="last-name form-field"
             type="text"
-            :placeholder="lastName.placeholder"
+            :placeholder="lastNameField.placeholder"
             required="true" />
         </div>
 
         <input
           class="email form-field"
           type="email"
-          :placeholder="email.placeholder"
+          :placeholder="emailField.placeholder"
           required="true" />
 
         <input
           class="org form-field"
-          :placeholder="org.placeholder"
+          :placeholder="orgField.placeholder"
           type="text"
           required="true" />
 
         <ZeroDropdown class="country form-field" :display-selected="true">
-          <template #toggle-button="{ togglePanel }">
+          <template #toggle-button="{ togglePanel, selected }">
             <div class="toggle-button" @click="togglePanel">
-              <p class="toggle-button-label">
-                Country
+              <p v-if="selected" class="toggle-button-label">
+                {{ selected.label }}
+              </p>
+              <p v-else class="toggle-button-label">
+                Select an option
               </p>
             </div>
           </template>
-          <template #dropdown-panel>
+          <template #dropdown-panel="{ setSelected, closePanel }">
             <div class="dropdown-panel">
               <div
-                v-for="option in country.options"
+                v-for="option in countryField.options"
                 :key="option.code"
-                class="country-option">
-                <p class="country-label" v-html="option.label" />
+                class="options">
+                <p
+                  class="option-label"
+                  @click="selectOption(setSelected, closePanel, option, 'country')"
+                  v-html="option.label" />
               </div>
             </div>
           </template>
         </ZeroDropdown>
 
         <ZeroDropdown class="familiarity" :display-selected="true">
-          <template #toggle-button="{ togglePanel }">
-            <h3 class="dropdown-label" v-html="familiarity.label" />
+          <template #toggle-button="{ togglePanel, selected }">
+            <h3 class="dropdown-label" v-html="familiarityField.label" />
             <div class="toggle-button form-field" @click="togglePanel">
-              <p class="toggle-button-label">
+              <p v-if="selected" class="toggle-button-label">
+                {{ selected }}
+              </p>
+              <p v-else class="toggle-button-label">
                 Select an option
               </p>
             </div>
           </template>
-          <template #dropdown-panel>
+          <template #dropdown-panel="{ setSelected, closePanel }">
             <div class="dropdown-panel">
               <div
-                v-for="(option, index) in familiarity.options"
+                v-for="(option, index) in familiarityField.options"
                 :key="index"
-                class="country-option">
-                <p class="country-label" v-html="option" />
+                class="options">
+                <p
+                  class="option-label"
+                  @click="selectOption(setSelected, closePanel, option, 'familiarity')"
+                  v-html="option" />
               </div>
             </div>
           </template>
@@ -102,6 +114,15 @@ const props = defineProps({
   }
 })
 
+// ======================================================================== Data
+const firstName = ref(false)
+const lastName = ref(false)
+const email = ref(false)
+const org = ref(false)
+const country = ref(false)
+const filecoinFamiliarity = ref(false)
+
+
 // ==================================================================== Computed
 const title = computed(() => { return props.signupCard.title })
 
@@ -114,19 +135,36 @@ const cardStyles = computed(() => {
   return null
 })
 
-const firstName = computed(() => { return props.signupCard.signup_form.first_name })
+const firstNameField = computed(() => { return props.signupCard.signup_form.first_name })
 
-const lastName = computed(() => { return props.signupCard.signup_form.last_name })
+const lastNameField = computed(() => { return props.signupCard.signup_form.last_name })
 
-const email = computed(() => { return props.signupCard.signup_form.email })
+const emailField = computed(() => { return props.signupCard.signup_form.email })
 
-const org = computed(() => { return props.signupCard.signup_form.org })
+const orgField = computed(() => { return props.signupCard.signup_form.org })
 
-const country = computed(() => { return props.signupCard.signup_form.country })
+const countryField = computed(() => { return props.signupCard.signup_form.country })
 
-const familiarity = computed(() => { return props.signupCard.signup_form.filecoin_familiarity })
+const familiarityField = computed(() => { return props.signupCard.signup_form.filecoin_familiarity })
 
-
+// ===================================================================== Methdos
+/**
+ * @method selectOption
+ */
+const selectOption = (setSelected, closePanel, option, field) => {
+  if (option) {
+    setSelected(option)
+    closePanel()
+    switch(field) {
+      case 'country':
+        country.value = option
+        break
+      case 'familiarity':
+        filecoinFamiliarity.value = option
+        break
+    }
+   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -163,6 +201,10 @@ const familiarity = computed(() => { return props.signupCard.signup_form.filecoi
   &:is(:not(.first-name, .last-name, :last-child)) {
     margin-bottom: toRem(24);
   }
+}
+
+.option-label {
+  cursor: pointer;
 }
 
 </style>
