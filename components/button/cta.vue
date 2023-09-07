@@ -222,6 +222,7 @@ const path = computed(() => {
   width: fit-content;
   padding-right: toRem(25);
   .button-content {
+    position: relative;
     @include b2;
     color: $chardonnay;
     &:after {
