@@ -25,11 +25,16 @@ const sections = computed(() => {
 <style lang="scss" scoped>
 // ///////////////////////////////////////////////////////////////////// General
 .page {
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1;
+  @include small {
+    padding-top: $siteHeaderHeight;
+  }
 }
 
 .top {

@@ -7,7 +7,19 @@
       <div class="grid">
         <div class="col-12">
           <div class="mobile-nav">
-            <Navbar :links="navigation" class="mobile" />
+            <Navbar
+              :links="navigation"
+              class="mobile">
+              <div class="nav-item">
+                <ButtonCta
+                  tag="nuxt-link"
+                  to="/"
+                  theme="primary"
+                  class="modal-sign-up-cta">
+                  Sign up
+                </ButtonCta>
+              </div>
+            </Navbar>
           </div>
         </div>
       </div>
@@ -137,8 +149,13 @@ const getCtaComponent = (icon) => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // height: $siteHeaderHeight;
   padding: 2rem 0;
+  @include small {
+    position: absolute;
+    width: 100%;
+    height: $siteHeaderHeight;
+    z-index: 2;
+  }
   @include mini {
     padding: 1.25rem 0;
   }
@@ -150,8 +167,11 @@ const getCtaComponent = (icon) => {
     .mobile-background-panel {
       z-index: 1001;
     }
-    .nav-toggle-wrapper {
-      top: 0.5rem;
+    .nav-ctas {
+      :deep(.theme__icon) {
+        opacity: 0;
+        pointer-events: none;
+      }
     }
   }
 }
@@ -224,6 +244,9 @@ const getCtaComponent = (icon) => {
       display: none;
     }
   }
+  // &.mobile {
+  //   .navigation {}
+  // }
 }
 
 .nav-ctas {
@@ -356,10 +379,7 @@ const getCtaComponent = (icon) => {
 
 // ////////////////////////////////////////////////////////////////////// Mobile
 .mobile-nav {
-  padding-top: toRem(200);
-  @include mini {
-    padding-top: toRem(162);
-  }
+  padding-top: toRem(96);
 }
 
 .mobile-background-panel {
@@ -373,19 +393,46 @@ const getCtaComponent = (icon) => {
   visibility: hidden;
   transform: scale(1.1);
   opacity: 0;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/ring-of-circular-cross-sections.png');
+    background-size: toRem(735);
+    background-position: center toRem(300);
+    background-repeat: no-repeat;
+  }
   &.open {
     opacity: 1;
     visibility: visible;
     transform: scale(1);
     z-index: 1000;
   }
-  // :deep(.navigation) {
-  //   .nav-item {
+  .nav-item {
+    display: flex;
+    justify-content: center;
+  }
+}
 
-  //   }
-  //   .nav-link {
-
-  //   }
-  // }
+.modal-sign-up-cta {
+  height: toRem(55);
+  :deep(.inner-content) {
+    height: 100%;
+    padding: toRem(9) toRem(46) toRem(9) toRem(23);
+    .detail {
+      transform: scale(1.36);
+      top: 7px;
+      right: calc(100% + 3px);
+      path {
+        stroke-width: 1.5;
+      }
+    }
+  }
+  :deep(.button-content) {
+    @include hamburgerCTA;
+  }
 }
 </style>
