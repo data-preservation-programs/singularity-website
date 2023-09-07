@@ -4,7 +4,7 @@
     :style="cardStyles">
     <div class="content">
 
-      <div class="text">
+      <div class="title-wrapper">
 
         <IconPieChartIcon />
 
@@ -12,10 +12,11 @@
           {{ title }}
         </div>
 
-        <div v-if="description" class="description">
-          {{ description }}
-        </div>
 
+      </div>
+
+      <div v-if="description" class="description">
+        {{ description }}
       </div>
 
       <div class="signup-form">
@@ -58,7 +59,7 @@
                 {{ selected.label }}
               </p>
               <p v-else class="toggle-button-label">
-                Select an option
+                Country
               </p>
             </div>
           </template>
@@ -104,6 +105,12 @@
           </template>
         </ZeroDropdown>
 
+        <ZeroButton
+          class="submit-button"
+          @clicked="submitForm">
+          <span class="button-label"> Register </span>
+        </ZeroButton>
+
       </div>
 
     </div>
@@ -111,6 +118,7 @@
 </template>
 
 <script setup>
+const SINGULARITY_DEMO_SIGNUPS_TOKEN = import.meta.env.VITE_AIRTABLE_SINGULARITY_DEMO_TOKEN
 // ======================================================================= Props
 const props = defineProps({
   signupCard: {
@@ -124,7 +132,7 @@ const props = defineProps({
 const firstName = ref(false)
 const lastName = ref(false)
 const email = ref(false)
-const org = ref(false)
+const organization = ref(false)
 const country = ref(false)
 const filecoinFamiliarity = ref(false)
 
@@ -169,7 +177,7 @@ const updateInputValue = (val, field) => {
       email.value = val
       break
     case 'org':
-      org.value = val
+      organization.value = val
       break
   }
 }
@@ -189,6 +197,36 @@ const selectOption = (setSelected, closePanel, option, field) => {
         break
     }
    }
+}
+/**
+ * @method submitForm
+ */
+const submitForm = async () => {
+  if (firstName.value && lastName.value && email.value && organization.value && country.value && filecoinFamiliarity.value) {
+    const body = {
+        records: [
+          {
+            fields: {
+              email: email.value,
+              firstName: firstName.value,
+              lastName: lastName.value,
+              organization: organization.value,
+              country: country.value.label,
+              filecoinFamiliarity: filecoinFamiliarity.value
+            }
+          }
+        ]
+      }
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${SINGULARITY_DEMO_SIGNUPS_TOKEN}`
+      }
+    await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblDUSr66nczukX9Y', {
+      method: 'POST',
+      body,
+      headers
+    })
+  }
 }
 </script>
 
