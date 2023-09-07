@@ -15,6 +15,7 @@
                   tag="nuxt-link"
                   to="/"
                   theme="primary"
+                  :variant-large="true"
                   class="modal-sign-up-cta">
                   Sign up
                 </ButtonCta>
@@ -422,14 +423,6 @@ const getCtaComponent = (icon) => {
   :deep(.inner-content) {
     height: 100%;
     padding: toRem(9) toRem(46) toRem(9) toRem(23);
-    .detail {
-      transform: scale(1.36);
-      top: 7px;
-      right: calc(100% + 3px);
-      path {
-        stroke-width: 1.5;
-      }
-    }
   }
   :deep(.button-content) {
     @include hamburgerCTA;

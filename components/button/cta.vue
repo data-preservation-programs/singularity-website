@@ -2,33 +2,30 @@
   <ZeroButton
     v-slot="{ loading }"
     v-bind="props"
-    :class="['button-x', `theme__${props.theme}`]">
+    :class="['button-x', `theme__${props.theme}`, { large: variantLarge }]">
     <div class="inner-content">
 
-      <svg
-        v-if="theme === 'primary'"
-        width="25"
-        height="41"
-        viewBox="0 0 25 41"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        class="detail">
-        <path
-          d="M 24 40 H 2.0441 C 1.3963 40 0.9194 39.3934 1 38.7639 L 7.0927 13.9863 C 9 6 16 1 24 1"
-          fill="#070707"
-          fill-opacity="0.2"
-          shape-rendering="crispEdges" />
-        <path
-          d="M 24 40 H 2.0441 C 1.3963 40 0.9194 39.3934 1 38.7639 L 7.0927 13.9863 C 9 6 16 1 24 1"
-          fill="#FFC582"
-          shape-rendering="crispEdges"
-          class="fill-path" />
-        <path
-          d="M 24 40 H 2.0441 C 1.3963 40 0.9194 39.3934 1 38.7639 L 7.0927 13.9863 C 9 6 16 1 24 1"
-          stroke="#FFC582"
-          stroke-width="2"
-          shape-rendering="crispEdges" />
-      </svg>
+      <div :class="['detail-wrapper', { large: variantLarge }]">
+        <svg
+          v-if="theme === 'primary'"
+          width="400"
+          :height="variantLarge ? 57 : 41"
+          :viewBox="`0 0 400 ${ variantLarge ? 57 : 41 }`"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="detail">
+          <path
+            :d="path"
+            fill="#070707"
+            shape-rendering="crispEdges"
+            class="fill-path" />
+          <path
+            :d="path"
+            stroke="#FFC582"
+            stroke-width="2"
+            shape-rendering="crispEdges" />
+        </svg>
+      </div>
 
       <div :class="['button-content', { hide: loading }]">
         <slot />
@@ -75,8 +72,21 @@ const props = defineProps({
     type: String,
     required: false,
     default: 'primary'
+  },
+  variantLarge: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
+
+// ==================================================================== Computed
+const path = computed(() => {
+  return props.variantLarge ?
+    'M 536 53.6 H 2.7391 C 1.871 53.6 1.232 52.7872 1.34 51.9436 L 9.5042 18.7416 C 12.06 8.04 21.44 1.34 32.16 1.34 H 536' :
+    'M 400 40 H 2.0441 C 1.3963 40 0.9194 39.3934 1 38.7639 L 7.0927 13.9863 C 9 6 16 1 24 1 H 400'
+})
+
 </script>
 
 <style lang="scss" scoped>
@@ -129,12 +139,23 @@ const props = defineProps({
   }
 }
 
-.detail {
+.detail-wrapper {
   position: absolute;
   top: 0;
-  right: calc(100% - 1px);
+  left: toRem(-25);
+  width: calc(100% + toRem(25) - toRem(2));
+  height: 100%;
+  overflow: hidden;
+  &.large {
+    left: toRem(-31);
+    width: calc(100% + toRem(31) - toRem(2));
+  }
+}
+
+.detail {
   .fill-path {
-    opacity: 0;
+    opacity: 0.2;
+    fill: #070707;
     @include transitionDefault;
   }
 }
@@ -159,8 +180,13 @@ const props = defineProps({
     border-right: solid 2px $chardonnay;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
-    background-color: rgba(7, 7, 7, 0.2);
     @include transitionDefault;
+  }
+  &.large {
+    &:before {
+      top: 0.5px;
+      height: calc(100% - 1px);
+    }
   }
   .inner-content {
     position: relative;
@@ -171,6 +197,7 @@ const props = defineProps({
     display: flex;
     align-items: center;
     width: fit-content;
+    position: relative;
     @include b1;
     :deep(div) {
       @include b1;
@@ -181,10 +208,8 @@ const props = defineProps({
     .detail {
       .fill-path {
         opacity: 1;
+        fill: $chardonnay;
       }
-    }
-    &:before {
-      background-color: $chardonnay;
     }
     .button-content {
       color: $codGray;
