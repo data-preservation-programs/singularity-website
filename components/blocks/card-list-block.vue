@@ -1,10 +1,10 @@
 <template>
   <div class="card-list-block">
-    <div :class="grid">
+    <div :class="[grid, 'no-padding']">
       <div
         v-for="(card, i) in cards"
         :key="`card-col-${i}`"
-        :class="columns">
+        :class="[columns, 'card-wrapper']">
 
         <Card :card="card" />
 

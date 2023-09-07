@@ -12,6 +12,9 @@
           {{ link.text }}
         </ZeroButton>
       </div>
+
+      <slot></slot>
+
     </nav>
   </div>
 </template>
@@ -34,6 +37,27 @@ const props = defineProps({
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  &.mobile {
+    .navigation {
+      flex-direction: column;
+    }
+    .nav-item {
+      justify-content: center;
+      &:not(:last-child) {
+        margin-bottom: toRem(40);
+      }
+    }
+    .nav-link {
+      @include hamburgerCTA;
+      &:hover {
+        transform: none;
+        &:before,
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
 }
 
 .navigation {

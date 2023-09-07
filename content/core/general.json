@@ -1,11 +1,11 @@
 {
   "seo": {
     "title": "Singularity",
-    "description": ""
+    "description": "Singularity facilitates onboarding of large quantaties of data (PB-scale) to the Filecoin network in an efficient, secure, and flexible way."
   },
   "og": {
     "site_name": "Singularity",
-    "url": "",
+    "url": "https://singularity.storage",
     "type": "website",
     "image": "/images/open-graph.png"
   },
@@ -58,7 +58,7 @@
   },
   "footer": {
     "authors": {
-      "text": "Singularity is a project developed by the <a href='https://dataprograms.org/' target='_blank'>Data Programs Working Group</a> with Protocol Labs"
+      "text": "<span class='green'>Singularity</span> is a project developed by the <a href='https://dataprograms.org/' target='_blank'>Data Programs Working Group</a> with Protocol Labs"
     },
     "legal": {
       "links": [
