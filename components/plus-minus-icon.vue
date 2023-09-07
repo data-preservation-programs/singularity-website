@@ -36,17 +36,17 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .plus {
-  opacity: 0;
+  opacity: 1;
   @include transitionDefault;
 }
 
 .plus-minus-icon {
   @include transitionDefault;
-  transform: rotate(0deg);
+  transform: rotate(90deg);
   &.active {
-    transform: rotate(90deg);
+    transform: rotate(180deg);
     .plus {
-      opacity: 1;
+      opacity: 0;
     }
   }
 }
