@@ -25,9 +25,6 @@ const content = computed(() => {
   return signup.page_content[0]
 })
 
-// eslint-disable-next-line no-console
-console.log('content ', content)
-
 </script>
 
 <style lang="scss" scoped>

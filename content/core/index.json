@@ -24,7 +24,7 @@
         "ctas": [
           {
             "text": "Sign up",
-            "to": "/",
+            "to": "/signup",
             "tag": "nuxt-link",
             "theme": "primary"
           },
@@ -174,7 +174,7 @@
                     "text": "View all 30+ compatible storage services",
                     "tag": "a",
                     "to": "https://example.com",
-                    "theme": "secondary" 
+                    "theme": "secondary"
                   }
                 ]
               }

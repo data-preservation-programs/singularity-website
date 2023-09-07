@@ -4,11 +4,9 @@
     :style="cardStyles">
     <div class="content">
 
-      <img v-if="type !== 'vertical' && image" :src="image" class="image" />
+      <div class="text">
 
-      <div v-if="type !== 'logo'" class="text">
-
-        <PieChartIcon />
+        <IconPieChartIcon />
 
         <div v-if="title" class="title">
           {{ title }}
@@ -20,14 +18,81 @@
 
       </div>
 
+      <div class="signup-form">
+
+        <div class="name-fields">
+          <input
+            class="first-name form-field"
+            type="text"
+            :placeholder="firstName.placeholder"
+            required="true" />
+          <input
+            class="last-name form-field"
+            type="text"
+            :placeholder="lastName.placeholder"
+            required="true" />
+        </div>
+
+        <input
+          class="email form-field"
+          type="email"
+          :placeholder="email.placeholder"
+          required="true" />
+
+        <input
+          class="org form-field"
+          :placeholder="org.placeholder"
+          type="text"
+          required="true" />
+
+        <ZeroDropdown class="country form-field" :display-selected="true">
+          <template #toggle-button="{ togglePanel }">
+            <div class="toggle-button" @click="togglePanel">
+              <p class="toggle-button-label">
+                Country
+              </p>
+            </div>
+          </template>
+          <template #dropdown-panel>
+            <div class="dropdown-panel">
+              <div
+                v-for="option in country.options"
+                :key="option.code"
+                class="country-option">
+                <p class="country-label" v-html="option.label" />
+              </div>
+            </div>
+          </template>
+        </ZeroDropdown>
+
+        <ZeroDropdown class="familiarity" :display-selected="true">
+          <template #toggle-button="{ togglePanel }">
+            <h3 class="dropdown-label" v-html="familiarity.label" />
+            <div class="toggle-button form-field" @click="togglePanel">
+              <p class="toggle-button-label">
+                Select an option
+              </p>
+            </div>
+          </template>
+          <template #dropdown-panel>
+            <div class="dropdown-panel">
+              <div
+                v-for="(option, index) in familiarity.options"
+                :key="index"
+                class="country-option">
+                <p class="country-label" v-html="option" />
+              </div>
+            </div>
+          </template>
+        </ZeroDropdown>
+
+      </div>
+
     </div>
   </div>
 </template>
 
 <script setup>
-// ===================================================================== Imports
-const PieChartIcon = resolveComponent('icon/pie-chart-icon')
-
 // ======================================================================= Props
 const props = defineProps({
   signupCard: {
@@ -48,6 +113,18 @@ const cardStyles = computed(() => {
   }
   return null
 })
+
+const firstName = computed(() => { return props.signupCard.signup_form.first_name })
+
+const lastName = computed(() => { return props.signupCard.signup_form.last_name })
+
+const email = computed(() => { return props.signupCard.signup_form.email })
+
+const org = computed(() => { return props.signupCard.signup_form.org })
+
+const country = computed(() => { return props.signupCard.signup_form.country })
+
+const familiarity = computed(() => { return props.signupCard.signup_form.filecoin_familiarity })
 
 
 </script>
@@ -78,4 +155,14 @@ const cardStyles = computed(() => {
     margin-bottom: toRem(22);
   }
 }
+
+// //////////////////////////////////////////////////////////////////////// Form
+.form-field {
+  border: var(--brand-color) 1px solid;
+  border-radius: toRem(5);
+  &:is(:not(.first-name, .last-name, :last-child)) {
+    margin-bottom: toRem(24);
+  }
+}
+
 </style>
