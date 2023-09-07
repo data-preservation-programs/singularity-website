@@ -278,6 +278,16 @@ const path = computed(() => {
       -webkit-text-fill-color: $alto;
       -moz-text-fill-color: $alto;
       text-fill-color: $alto;
+      &::-moz-selection {
+        -webkit-text-fill-color: $codGray;
+        -moz-text-fill-color: $codGray;
+        text-fill-color: $codGray;
+      }
+      &::selection {
+        -webkit-text-fill-color: $codGray;
+        -moz-text-fill-color: $codGray;
+        text-fill-color: $codGray;
+      }
     }
   }
 }
