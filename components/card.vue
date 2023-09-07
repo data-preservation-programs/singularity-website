@@ -99,6 +99,10 @@ const iconComponent = computed(() => {
   @include small {
     padding: toRem(15);
   }
+  @include tiny {
+    padding: toRem(13) toRem(10);
+    padding-bottom: 0;
+  }
   .content {
     position: relative;
     z-index: 2;

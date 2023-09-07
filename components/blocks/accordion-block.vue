@@ -97,10 +97,19 @@ const getIconComponent = (icon) => {
   align-items: center;
   padding: toRem(16) 0;
   cursor: pointer;
+  @include tiny {
+    padding: toRem(10) 0;
+    padding-right: toRem(38);
+  }
   .icon {
     width: toRem(30);
     height: toRem(30);
     margin-right: toRem(22);
+    @include tiny {
+      width: toRem(22);
+      height: toRem(22);
+      min-width: toRem(22);
+    }
   }
   :deep(.plus-minus-icon) {
     position: absolute;
@@ -108,6 +117,11 @@ const getIconComponent = (icon) => {
     top: calc(50% - toRem(15));
     width: toRem(30);
     height: toRem(30);
+    @include tiny {
+      width: toRem(22);
+      height: toRem(22);
+      top: calc(50% - toRem(11));
+    }
     circle {
       @include transitionDefault;
       fill: rgba($codGray, 0);
@@ -121,6 +135,12 @@ const getIconComponent = (icon) => {
   max-height: 0;
   overflow: hidden;
   transition: max-height 300ms cubic-bezier(0.33, 0.2, 0.41, 0.99);
+  @include mini {
+    padding: 0 toRem(48);
+  }
+  @include tiny {
+    padding: 0 toRem(41);
+  }
   .text {
     @include p2;
     margin-bottom: toRem(16);

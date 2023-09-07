@@ -62,6 +62,9 @@ const sections = computed(() => {
   position: relative;
   padding-top: 4.0625rem;
   padding-bottom: toRem(100);
+  @include mini {
+    padding-top: toRem(38);
+  }
   &:before {
     content: '';
     position: absolute;
@@ -73,11 +76,19 @@ const sections = computed(() => {
     background-size: 2040px;
     background-position: center bottom;
     background-repeat: no-repeat;
+    @include mini {
+      background-size: 820px;
+      height: calc(100% + toRem(340));
+    }
   }
   div[data-block-id="col_1"] {
     .text-block {
       @include medium {
         margin-right: 2rem;
+      }
+      @include mini {
+        margin-right: 0;
+        margin-bottom: toRem(23);
       }
       .heading {
         @include medium {
@@ -93,6 +104,9 @@ const sections = computed(() => {
       }
       .theme__caption {
         margin-top: 1rem;
+        @include mini {
+          display: none;
+        }
         .button-content {
           @include disclaimerText;
           white-space: normal;
@@ -112,11 +126,21 @@ const sections = computed(() => {
     @include small {
       margin-left: -1rem;
     }
+    @include mini {
+      margin: 0;
+    }
   }
   .code-block {
     margin-bottom: toRem(48);
     @include medium {
       margin-bottom: toRem(27);
+    }
+  }
+  .card-list-block {
+    .card.type__logo {
+      @include tiny {
+        transform: scale(0.9);
+      }
     }
   }
   div[data-block-id="col_2"] {
@@ -127,6 +151,9 @@ const sections = computed(() => {
         @include large {
           transform: translateY(-1rem);
         }
+        @include mini {
+          transform: translateY(-1.5rem);
+        }
       }
     }
   }
@@ -135,6 +162,9 @@ const sections = computed(() => {
 :deep(#section-intro) {
   position: relative;
   padding-bottom: 0;
+  @include mini {
+    padding-bottom: 1.5rem;
+  }
   &:before {
     content: '';
     position: absolute;
@@ -150,8 +180,23 @@ const sections = computed(() => {
     @include medium {
       background-size: 1750px;
     }
+    @include mini {
+      display: none;
+    }
   }
   .text-block {
+    @include mini {
+      margin-bottom: toRem(42);
+      .label {
+        margin-bottom: toRem(25);
+      }
+      .heading {
+        margin-bottom: toRem(22);
+      }
+      .description {
+        margin-bottom: toRem(31);
+      }
+    }
     .button-row {
       display: flex;
     }
@@ -166,10 +211,33 @@ const sections = computed(() => {
         &:nth-child(4) {
           .card {
             height: calc(100% - 2.5rem);
+            @include mini {
+              height: 100%;
+            }
+          }
+        }
+        &:nth-child(2),
+        &:nth-child(3) {
+          .card {
+            @include mini {
+              height: calc(100% + 2.5rem);
+            }
           }
         }
         &:nth-child(3) {
-          transform: translateY(-2.5rem);
+          .card {
+            transform: translateY(-2.5rem);
+            @include mini {
+              transform: translateY(0);
+            }
+          }
+        }
+        &:nth-child(4) {
+          .card {
+            @include mini {
+              transform: translateY(2.5rem);
+            }
+          }
         }
       }
     }
@@ -180,14 +248,23 @@ const sections = computed(() => {
   @include medium {
     padding-top: toRem(35);
   }
+  @include mini {
+    padding-top: toRem(75);
+  }
   div[data-block-id="col_2"] {
     .accordion-block {
       margin-right: toRem(9);
+      @include small {
+        margin: 0;
+      }
     }
   }
   div[data-block-id="col_3"] {
     .accordion-block {
       margin-left: toRem(9);
+      @include small {
+        margin: 0;
+      }
     }
     .text-block {
       .button-row {
@@ -196,6 +273,9 @@ const sections = computed(() => {
       }
       .button {
         transform: translateY(-1rem);
+        @include mini {
+          transform: none;
+        }
       }
     }
   }

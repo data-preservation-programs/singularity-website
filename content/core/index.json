@@ -16,7 +16,7 @@
       "col_1": {
         "type": "text_block",
         "cols": {
-          "num": "col-5_md-6"
+          "num": "col-5_md-6_sm-6_mi-12_ti-12"
         },
         "h": 1,
         "heading": "Seamlessly onboard <span class='highlight'>PiB scale</span> data to the Filecoin storage network",
@@ -39,7 +39,7 @@
       "col_2": {
         "type": "custom",
         "cols": {
-          "num": "col-6",
+          "num": "col-6_mi-12",
           "push_left": "off-1_md-0"
         },
         "customizations": [
@@ -189,7 +189,7 @@
       "col_1": {
         "type": "text_block",
         "cols": {
-          "num": "col-5"
+          "num": "col-5_mi-9_ti-12"
         },
         "h": 1,
         "label": "WHY SINGULARITY?",
@@ -215,8 +215,8 @@
       "col_2": {
         "type": "card_list_block",
         "cols": {
-          "num": "col-6",
-          "push_left": "off-1"
+          "num": "col-6_mi-12",
+          "push_left": "off-1_mi-0"
         },
         "card_grid": ["equalHeight"],
         "card_columns": "col-6",
@@ -267,7 +267,8 @@
       "col_2": {
         "type": "accordion_block",
         "cols": {
-          "num": "col-6"
+          "num": "col-6_sm-10_mi-12",
+          "push_left": "off-0_sm-1_mi-0"
         },
         "sections": [
           {
@@ -290,7 +291,8 @@
       "col_3": {
         "type": "custom",
         "cols": {
-          "num": "col-6"
+          "num": "col-6_sm-10_mi-12",
+          "push_left": "off-0_sm-1_mi-0"
         },
         "customizations": [
           {

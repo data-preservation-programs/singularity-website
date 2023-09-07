@@ -219,6 +219,9 @@ const props = defineProps({
   border: 2px solid $sageGreen;
   background-color: rgba($sageGreen, 0);
   @include transitionDefault;
+  @include mini {
+    padding: toRem(6);
+  }
   .button-content {
     display: flex;
   }

@@ -17,19 +17,30 @@
     <!-- =========================================================== Desktop -->
     <div class="grid-noGutter-noBottom main-content">
 
-      <div class="col-3_md-2">
+      <div class="col-3_md-2_sm-4_mi-6">
         <NuxtLink to="/" class="logo">
           <SiteLogo />
         </NuxtLink>
       </div>
 
-      <div class="col-4_md-5" data-push-left="off-2_md-1">
+      <div class="col-4_md-5_sm-hidden" data-push-left="off-2_md-1">
         <Navbar :links="navigation" class="desktop" />
       </div>
 
-      <div class="col-3_md-4">
-
+      <div class="col-3_md-4_sm-5_mi-6" data-push-left="off-0_sm-3_mi-0">
         <div class="nav-ctas">
+
+          <div class="nav-toggle-wrapper before">
+            <ZeroButton
+              tag="button"
+              @click="toggleNav">
+              <div :class="['hamburger', { open: navigationOpen }]">
+                <div class="bottom">
+                </div>
+              </div>
+            </ZeroButton>
+          </div>
+
           <ButtonCta
             v-for="cta in ctas"
             :key="cta.component || cta.text"
@@ -45,19 +56,19 @@
               {{ cta.text }}
             </span>
           </ButtonCta>
-        </div>
 
-        <div class="nav-toggle-wrapper">
-          <ZeroButton
-            tag="button"
-            @click="toggleNav">
-            <div :class="['hamburger', { open: navigationOpen }]">
-              <div class="bottom">
+          <div class="nav-toggle-wrapper after">
+            <ZeroButton
+              tag="button"
+              @click="toggleNav">
+              <div :class="['hamburger', { open: navigationOpen }]">
+                <div class="bottom">
+                </div>
               </div>
-            </div>
-          </ZeroButton>
-        </div>
+            </ZeroButton>
+          </div>
 
+        </div>
       </div>
 
     </div>
@@ -128,10 +139,15 @@ const getCtaComponent = (icon) => {
   align-items: center;
   // height: $siteHeaderHeight;
   padding: 2rem 0;
+  @include mini {
+    padding: 1.25rem 0;
+  }
   &.nav-panel-open {
+    position: fixed;
+    width: 100%;
     z-index: 1000;
-    .main-content {
-      position: fixed;
+    .main-content,
+    .mobile-background-panel {
       z-index: 1001;
     }
     .nav-toggle-wrapper {
@@ -177,8 +193,10 @@ const getCtaComponent = (icon) => {
       transition: 250ms ease;
     }
     @include mini {
-      width: toRem(75);
-      height: toRem(75);
+      max-width: toRem(205);
+    }
+    @include tiny {
+      max-width: toRem(150);
     }
   }
 }
@@ -209,6 +227,7 @@ const getCtaComponent = (icon) => {
 }
 
 .nav-ctas {
+  position: relative;
   display: flex;
   justify-content: space-between;
   height: 100%;
@@ -227,6 +246,14 @@ const getCtaComponent = (icon) => {
   @include small {
     transform: unset;
   }
+  @include mini {
+    :deep(.theme__primary) {
+      display: none;
+    }
+    :deep(.button) {
+      margin-left: 0.5rem;
+    }
+  }
 }
 
 .desktop,
@@ -237,15 +264,31 @@ const getCtaComponent = (icon) => {
 .icon {
   width: toRem(20);
   height: toRem(20);
+  @include mini {
+    width: toRem(14);
+    height: toRem(14);
+  }
 }
 
 // /////////////////////////////////////////////////////////////////// Hamburger
 .nav-toggle-wrapper {
   display: none;
   position: relative;
-  justify-content: flex-end;
   @include small {
-    display: flex;
+    &.before {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  @include mini {
+    margin-left: toRem(10);
+    &.before {
+      display: none;
+    }
+    &.after {
+      display: flex;
+      justify-content: flex-end;
+    }
   }
   :deep(.button) {
     padding: toRem(5);
@@ -254,8 +297,8 @@ const getCtaComponent = (icon) => {
 
 .hamburger {
   position: relative;
-  width: toRem(26);
-  height: toRem(18);
+  width: toRem(22);
+  height: toRem(12);
   &:before,
   &:after,
   .bottom {
@@ -263,42 +306,50 @@ const getCtaComponent = (icon) => {
     width: 100%;
     left: 0;
     transition: 250ms ease;
+    border-top-right-radius: toRem(1.5);
+    border-bottom-right-radius: toRem(1.5);
+    border-top-left-radius: toRem(0);
+    border-bottom-left-radius: toRem(0);
   }
   &:before,
   &:after {
     content: '';
-    border-bottom: solid toRem(2) $alto;
   }
   &:before {
     top: 0;
+    width: toRem(16.5);
+    left: toRem(5.5);
+    border-bottom: solid toRem(3) $sageGreen;
   }
   &:after {
     top: 50%;
+    border-bottom: solid toRem(3) rgba($sageGreen, 0.5);
   }
   .bottom {
     top: 100%;
-    border-bottom: solid toRem(5) $alto;
+    border-bottom: solid toRem(3) rgba($sageGreen, 0.5);
   }
   &.open {
+    &:before,
+    &:after,
+    .bottom {
+      border-top-left-radius: toRem(1.5);
+      border-bottom-left-radius: toRem(1.5);
+    }
     &:before {
       width: toRem(20);
-      border-bottom: solid toRem(2) $alto;
-      transform: translate(2px, 4.5px) rotate(45deg);
-      @include mini {
-        transform: translate(2px, 4px) rotate(45deg);
-      }
+      border-bottom: solid toRem(3) $sageGreen;
+      transform: translate(-4px, 4.5px) rotate(45deg);
     }
     &:after {
       width: toRem(20);
-      border-bottom: solid toRem(2) $alto;
-      transform: translate(2px, -4.5px) rotate(-45deg);
-      @include mini {
-        transform: translate(2px, -4px) rotate(-45deg);
-      }
+      border-bottom: solid toRem(3) $sageGreen;
+      transform: translate(1px, -1.5px) rotate(-45deg)
     }
     .bottom {
       width: 0;
-      border-bottom: solid toRem(5) $alto;
+      border-bottom: solid toRem(3) $sageGreen;
+      transform: translateX(11px);
     }
   }
 }
@@ -318,7 +369,7 @@ const getCtaComponent = (icon) => {
   width: 100vw;
   height: 100vh;
   background-color: $codGray;
-  transition: opacity 250ms ease, transform 250ms ease, visibility 250ms ease;
+  transition: opacity 250ms ease, transform 250ms ease, visibility 250ms ease, z-index 250ms ease;
   visibility: hidden;
   transform: scale(1.1);
   opacity: 0;
@@ -326,6 +377,7 @@ const getCtaComponent = (icon) => {
     opacity: 1;
     visibility: visible;
     transform: scale(1);
+    z-index: 1000;
   }
   // :deep(.navigation) {
   //   .nav-item {
