@@ -12,7 +12,7 @@ const frontendPort = 10050
 
 const seo = {
   siteName: 'Singularity',
-  description: 'Get a Nuxt 3 site up and running fast 🚀'
+  description: 'Singularity facilitates onboarding of large quantaties of data (PB-scale) to the Filecoin network in an efficient, secure, and flexible way.'
 }
 
 // ////////////////////////////////////////////////////////////////////// Export
