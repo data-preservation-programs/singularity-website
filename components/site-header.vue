@@ -11,7 +11,8 @@
           <div class="mobile-nav">
             <Navbar
               :links="navigation"
-              class="mobile">
+              class="mobile"
+              @nav-link-click="handleNavClick">
               <div class="nav-item">
                 <ButtonCta
                   tag="nuxt-link"
@@ -168,8 +169,6 @@ const getCtaComponent = (icon) => {
 const handleNavClick = () => {
   if (navigationOpen.value) { toggleNav() }
 }
-
-defineExpose({ handleNavClick })
 
 </script>
 

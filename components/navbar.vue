@@ -32,11 +32,11 @@ const props = defineProps({
   }
 })
 
-const instance = getCurrentInstance()
+const emit = defineEmits(['nav-link-click'])
 
 // ===================================================================== Methods
 const scrollToSection = async (el) => {
-  instance.parent.exposed.handleNavClick()
+  emit('nav-link-click')
   const id = el.replaceAll('#', '')
   const section = document.getElementById(id)
   if (section) {
