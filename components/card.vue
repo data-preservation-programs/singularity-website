@@ -140,22 +140,19 @@ const iconComponent = computed(() => {
     z-index: 2;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     height: 100%;
-    @include medium {
-      align-items: flex-start;
-    }
   }
   .image {
     padding: 0 toRem(28);
     max-height: toRem(120);
+    margin: auto 0;
     @include large {
       padding: 0;
       margin-right: 1rem;
     }
     @include medium {
       max-height: toRem(75);
-      margin-left: 1rem;
+      margin: 0 1rem;
     }
     @include small {
       margin-left: 0;

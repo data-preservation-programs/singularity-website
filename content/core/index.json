@@ -7,7 +7,7 @@
     "site_name": "Singularity",
     "url": "https://singularity.storage",
     "type": "website",
-    "image": "/images/open-graph.png"
+    "image": "/images/singularity-open-graph.jpg"
   },
   "page_content": [
     {
@@ -173,7 +173,7 @@
                   {
                     "text": "View all 30+ compatible storage services",
                     "tag": "a",
-                    "to": "https://example.com",
+                    "to": "https://data-programs.gitbook.io/singularity/installation/install-from-source",
                     "theme": "secondary" 
                   }
                 ]
@@ -253,7 +253,7 @@
       }
     },
     {
-      "id": "section-features",
+      "id": "features",
       "grid": ["noGutter"],
       "col_1": {
         "type": "text_block",
@@ -328,7 +328,8 @@
                     "theme": "secondary",
                     "tag": "a",
                     "text": "View documentation",
-                    "to": "https://data-programs.gitbook.io/singularity/cli-reference/cli-reference"
+                    "target": "_blank",
+                    "to": "https://data-programs.gitbook.io/singularity/installation/install-from-source"
                   }
                 ]
               }
@@ -338,7 +339,7 @@
       }
     },
     {
-      "id": "section-how-it-works",
+      "id": "how-it-works",
       "grid": ["noGutter"],
       "col_1": {
         "type": "text_block",
@@ -389,7 +390,7 @@
       }
     },
     {
-      "id": "section-roadmap",
+      "id": "roadmap",
       "grid": ["noGutter"],
       "col_1": {
         "type": "text_block",
@@ -477,7 +478,8 @@
         "title": "Documentation",
         "cta": {
           "tag": "a",
-          "to": "https://data-programs.gitbook.io/singularity/cli-reference/cli-reference",
+          "target": "_blank",
+          "to": "https://data-programs.gitbook.io/singularity/installation/install-from-source",
           "text": "Read the Documentation"
         }
       },
@@ -491,6 +493,7 @@
         "title": "Dashboard",
         "cta": {
           "tag": "a",
+          "target": "_blank",
           "to": "https://singularity-metrics-dashboard.vercel.app/",
           "text": "View the dashboard"
         }
@@ -503,13 +506,8 @@
         "fullwidth": true,
         "borderGradientAngle": "45deg",
         "title": "<img src='/images/topography-graphic-with-border.svg' />Keep up<br>with Singularity",
-        "subheading": "Your feedback can shape our next big release. <br>Join us on <a href='https://github.com/data-preservation-programs/singularity' target='_blank'>Github</a> and <a href='https://filecoinproject.slack.com/archives/C05JABREATH' target='_blank'>Slack</a>",
-        "description": "Sign up to keep up. We're passionate about keeping you in the loop with our latest features and updates, but we're even more committed to respecting your inbox.",
-        "cta": {
-          "tag": "a",
-          "to": "https://example.com",
-          "text": "Keep Up"
-        }
+        "subheading": "Your feedback can shape our next big release. <br>Join us on <span class='github-link'><a href='https://github.com/data-preservation-programs/singularity' target='_blank'>Github</a></span> and <span class='slack-link'><a href='https://filecoinproject.slack.com/archives/C05JABREATH' target='_blank' class='slack-link'>Slack</a></span>",
+        "description": "<span class='weight-500'>Sign up to keep up.</span> We're passionate about keeping you in the loop with our latest features and updates, but we're even more committed to respecting your inbox."
       }
     }
   ]
