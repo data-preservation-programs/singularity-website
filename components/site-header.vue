@@ -1,5 +1,7 @@
 <template>
-  <header :class="['site-header', { 'nav-panel-open': navigationOpen }]">
+  <header
+    id="site-header"
+    :class="['site-header', { 'nav-panel-open': navigationOpen }]">
 
     <!-- ============================================================ Mobile -->
     <div :class="['mobile-background-panel', {'open': navigationOpen }]">
@@ -9,7 +11,8 @@
           <div class="mobile-nav">
             <Navbar
               :links="navigation"
-              class="mobile">
+              class="mobile"
+              @nav-link-click="handleNavClick">
               <div class="nav-item">
                 <ButtonCta
                   tag="nuxt-link"
@@ -166,8 +169,6 @@ const getCtaComponent = (icon) => {
 const handleNavClick = () => {
   if (navigationOpen.value) { toggleNav() }
 }
-
-defineExpose({ handleNavClick })
 
 </script>
 

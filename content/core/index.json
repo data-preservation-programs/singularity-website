@@ -7,7 +7,7 @@
     "site_name": "Singularity",
     "url": "https://singularity.storage",
     "type": "website",
-    "image": "/images/open-graph.png"
+    "image": "/images/singularity-open-graph.jpg"
   },
   "page_content": [
     {
@@ -328,7 +328,8 @@
                     "theme": "secondary",
                     "tag": "a",
                     "text": "View documentation",
-                    "to": "https://data-programs.gitbook.io/singularity/cli-reference/cli-reference"
+                    "target": "_blank",
+                    "to": "https://data-programs.gitbook.io/singularity/installation/install-from-source"
                   }
                 ]
               }
@@ -477,7 +478,8 @@
         "title": "Documentation",
         "cta": {
           "tag": "a",
-          "to": "https://data-programs.gitbook.io/singularity/cli-reference/cli-reference",
+          "target": "_blank",
+          "to": "https://data-programs.gitbook.io/singularity/installation/install-from-source",
           "text": "Read the Documentation"
         }
       },
@@ -491,6 +493,7 @@
         "title": "Dashboard",
         "cta": {
           "tag": "a",
+          "target": "_blank",
           "to": "https://singularity-metrics-dashboard.vercel.app/",
           "text": "View the dashboard"
         }
