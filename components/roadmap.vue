@@ -100,19 +100,6 @@ const cta = computed(() => {
   @include mini {
     margin-bottom: toRem(15);
   }
-  &:hover {
-    .heading {
-      transform: scale(1.15);
-    }
-    .icon {
-      :deep(path) {
-        fill: $chardonnay;
-      }
-    }
-    .h2 {
-      color: $chardonnay;
-    }
-  }
 }
 
 .heading-wrapper {
@@ -129,6 +116,17 @@ const cta = computed(() => {
   @include mini {
     margin-top: 0;
     margin-bottom: 0.5rem;
+  }
+  &:hover {
+    transform: scale(1.15);
+    .icon {
+      :deep(path) {
+        fill: $chardonnay;
+      }
+    }
+    .h2 {
+      color: $chardonnay;
+    }
   }
   .heading-button {
     display: block;
