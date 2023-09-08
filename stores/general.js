@@ -1,7 +1,7 @@
 // ///////////////////////////////////////////////////////////////////// Imports
 // -----------------------------------------------------------------------------
 import { ref } from '#imports'
-import GeneralSiteData from '@/content/core/general.json'
+// import GeneralSiteData from '@/content/core/general.json'
 
 // /////////////////////////////////////////////////////////////////////// State
 // -----------------------------------------------------------------------------
@@ -18,19 +18,18 @@ const clearStore = () => {
 }
 
 // /////////////////////////////////////////////////////////////// getBaseData
-const getBaseData = async (payload) => {
-  console.log('hit')
-  const key = typeof payload === 'string' ? payload : payload.key
-  let data = false
-  switch (key) {
-    case 'general': data = GeneralSiteData; break
-    default : data = payload.data; break
-  }
-  if (data) {
-    siteContent.value[key] = data
-    console.log(siteContent)
-  }
-}
+// const getBaseData = async (payload) => {
+//   const key = typeof payload === 'string' ? payload : payload.key
+//   let data = false
+//   switch (key) {
+//     case 'general': data = GeneralSiteData; break
+//     default : data = payload.data; break
+//   }
+//   if (data) {
+//     siteContent.value[key] = data
+//     console.log(siteContent)
+//   }
+// }
 
 // //////////////////////////////////////////////////////////////////// setTheme
 const setTheme = (newTheme) => {
@@ -54,7 +53,7 @@ export const useGeneralStore = defineStore('general', () => ({
   navigationOpen,
   // ----- actions
   clearStore,
-  getBaseData,
+  // getBaseData,
   setTheme,
   setNavigationOpen
 }))

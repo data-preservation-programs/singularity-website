@@ -96,6 +96,8 @@ const GithubIcon = resolveComponent('icon/github-icon')
 const SlackIcon = resolveComponent('icon/slack-icon')
 
 // ======================================================================== Data
+const breakpointSmall = ref(false)
+const headerResizeEventListener = ref(null)
 const generalStore = useGeneralStore()
 const { navigationOpen } = storeToRefs(generalStore)
 
@@ -118,9 +120,30 @@ watch(navigationOpen, (val) => {
   }
 })
 
+watch(breakpointSmall, () => {
+  if (navigationOpen.value) { toggleNav() }
+})
+
 // ======================================================================= Hooks
-// onMounted(() => {
-// })
+onMounted(() => {
+  headerResizeEventListener.value = useThrottle(() => {
+    if (window.matchMedia('(max-width: 53.125rem)').matches) {
+      if (!breakpointSmall.value) {
+        breakpointSmall.value = true
+      }
+    } else {
+      if (breakpointSmall.value) {
+        breakpointSmall.value = false
+      }
+    }
+  })
+  headerResizeEventListener.value()
+  window.addEventListener('resize', headerResizeEventListener.value)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', headerResizeEventListener.value)
+})
 
 // ===================================================================== Methods
 /**
@@ -138,8 +161,13 @@ const getCtaComponent = (icon) => {
     case 'slack' : return SlackIcon;
     default : return 'span'
   }
-  
 }
+
+const handleNavClick = () => {
+  if (navigationOpen.value) { toggleNav() }
+}
+
+defineExpose({ handleNavClick })
 
 </script>
 

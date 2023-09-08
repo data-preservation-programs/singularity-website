@@ -32,8 +32,11 @@ const props = defineProps({
   }
 })
 
+const instance = getCurrentInstance()
+
 // ===================================================================== Methods
 const scrollToSection = async (el) => {
+  instance.parent.exposed.handleNavClick()
   const id = el.replaceAll('#', '')
   const section = document.getElementById(id)
   if (section) {
