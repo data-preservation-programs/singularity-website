@@ -90,11 +90,12 @@
           <span v-if="fieldError.country" class="error message" v-html="errorMessage" />
         </div>
 
-        <ZeroButton
-          class="submit-button"
+        <ButtonCta
+          :class="['submit-button', { submitted: formSubmitted }]"
+          theme="primary"
           @clicked="submitForm">
-          <span class="button-label"> Register </span>
-        </ZeroButton>
+          <span class="button-label"> {{ submitButtonLabel }} </span>
+        </ButtonCta>
 
       </div>
 
@@ -114,6 +115,7 @@ const props = defineProps({
 })
 
 // ======================================================================== Data
+const formSubmitted = ref(false)
 const errorMessage = '[ Field is required ]'
 const fieldError = ref({
   firstName: false,
@@ -149,6 +151,8 @@ const emailField = computed(() => { return props.signupCard.signup_form.email })
 const orgField = computed(() => { return props.signupCard.signup_form.org })
 
 const countryField = computed(() => { return props.signupCard.signup_form.country })
+
+const submitButtonLabel = computed(() => { return formSubmitted.value ? 'Success' : 'Submit' })
 
 // ===================================================================== Methdos
 /**
@@ -206,19 +210,19 @@ const submitForm = async () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${SINGULARITY_DEMO_SIGNUPS_TOKEN}`
       }
-    await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblDUSr66nczukX9Y', {
+    const res = await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblDUSr66nczukX9Y', {
       method: 'POST',
       body,
       headers
     })
-  } else {
-      if(!firstName.value) { fieldError.value.firstName = true }
-      if(!lastName.value) { fieldError.value.lastName = true }
-      if(!email.value) { fieldError.value.email = true }
-      if(!organization.value) { fieldError.value.organization = true }
-      if(!organization.value) { fieldError.value.organization = true }
-      if(!country.value) { fieldError.value.country = true }
-  }
+  if (res) { formSubmitted.value = true; return }
+}
+  if(!firstName.value) { fieldError.value.firstName = true }
+  if(!lastName.value) { fieldError.value.lastName = true }
+  if(!email.value) { fieldError.value.email = true }
+  if(!organization.value) { fieldError.value.organization = true }
+  if(!organization.value) { fieldError.value.organization = true }
+  if(!country.value) { fieldError.value.country = true }
 }
 </script>
 
@@ -256,6 +260,11 @@ const submitForm = async () => {
 }
 // //////////////////////////////////////////////////////////////////////// Form
 //---------------------------------------------------------------------- General
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
 .form-field {
   border: var(--brand-color) 1px solid;
   border-radius: toRem(5);
@@ -268,14 +277,12 @@ const submitForm = async () => {
     border-color: var(--error);
   }
 }
-
 .message {
   position: absolute;
   right: 0;
   bottom: -1.3rem;
   @include formFieldErrorMessage;
 }
-
 .error {
   color: var(--error);
 }
@@ -287,8 +294,26 @@ const submitForm = async () => {
 }
 
 .submit-button {
-
+  align-self: flex-end;
+  &.submitted {
+    filter: drop-shadow(0px 2px 14px rgba(203, 221, 187, 0.32));
+    :deep(.fill-path) {
+      opacity: 1;
+      fill: var(--brand-color);
+    }
+    :deep(.stroke-path) {
+      stroke: var(--brand-color);
+    }
+    &::before {
+      border-color: var(--brand-color);
+      background-color: var(--brand-color);
+    }
+    :deep(.button-content) {
+      color: var(--background-color);
+    }
+  }
 }
+
 //----------------------------------------------------------------- Input Fields
 .name-fields {
   display: flex;
@@ -302,6 +327,7 @@ const submitForm = async () => {
 
 .input-field {
   @include formFieldText;
+  color: var(--primary-text-color);
   width: 100%;
   &::placeholder {
     @include formFieldPlaceholder;
@@ -310,10 +336,6 @@ const submitForm = async () => {
 }
 
 //-------------------------------------------------------------- Dropdown Fields
-// .dropdown-field {
-//   padding: 0;
-// }
-
 .toggle-button {
   display: flex;
   align-items: center;
@@ -326,9 +348,9 @@ const submitForm = async () => {
     padding-bottom: toRem(4);
   }
 }
-
 .toggle-button-label {
   @include formFieldPlaceholder;
+  color: var(--primary-text-color);
   &.selected {
     @include formFieldText;
   }
@@ -346,7 +368,6 @@ const submitForm = async () => {
   border-bottom-left-radius: toRem(5);
   border-bottom-right-radius: toRem(5);
 }
-
 .option {
   @include formFieldPlaceholder;
   cursor: pointer;
@@ -357,5 +378,4 @@ const submitForm = async () => {
     color: var(--background-color);
   }
 }
-
 </style>

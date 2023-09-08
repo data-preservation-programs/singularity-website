@@ -27,7 +27,8 @@
           d="M 24 40 H 2.0441 C 1.3963 40 0.9194 39.3934 1 38.7639 L 7.0927 13.9863 C 9 6 16 1 24 1"
           stroke="#FFC582"
           stroke-width="2"
-          shape-rendering="crispEdges" />
+          shape-rendering="crispEdges"
+          class="stroke-path" />
       </svg>
 
       <div :class="['button-content', { hide: loading }]">
