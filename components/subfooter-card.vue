@@ -55,12 +55,13 @@
             </div>
 
             <div v-if="fullwidth && cta" class="cta">
-              <ButtonCta
+              <!-- =================== EMAIL SIGN UP FORM ================== -->
+              <!-- <ButtonCta
                 :to="cta.to"
                 :tag="cta.tag"
                 theme="secondary">
                 {{ cta.text }}
-              </ButtonCta>
+              </ButtonCta> -->
             </div>
 
             <div
