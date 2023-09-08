@@ -24,100 +24,103 @@
         <div class="name-fields">
           <div class="field-wrapper">
             <input
-              :class="['first-name form-field', { error: fieldError.firstName }]"
+              :class="['first-name input-field form-field', { error: fieldError.firstName }]"
               type="text"
               :placeholder="firstNameField.placeholder"
               required="true"
               @input="updateInputValue($event.target.value, 'firstName')" />
-            <span v-if="fieldError.firstName" class="error-message" v-html="errorMessage" />
+            <span v-if="fieldError.firstName" class="error message" v-html="errorMessage" />
           </div>
 
           <div class="field-wrapper">
             <input
-              :class="['last-name form-field', { error: fieldError.lastName }]"
+              :class="['last-name input-field form-field', { error: fieldError.lastName }]"
               type="text"
               :placeholder="lastNameField.placeholder"
               required="true"
               @input="updateInputValue($event.target.value, 'lastName')" />
-            <span v-if="fieldError.lastName" class="error-message" v-html="errorMessage" />
+            <span v-if="fieldError.lastName" class="error message" v-html="errorMessage" />
           </div>
         </div>
 
         <div class="field-wrapper">
           <input
-            :class="['email form-field', { error: fieldError.email }]"
+            :class="['email input-field form-field', { error: fieldError.email }]"
             type="email"
             :placeholder="emailField.placeholder"
             required="true"
             @input="updateInputValue($event.target.value, 'email')" />
-          <span v-if="fieldError.email" class="error-message" v-html="errorMessage" />
+          <span v-if="fieldError.email" class="error message" v-html="errorMessage" />
         </div>
 
         <div class="field-wrapper">
           <input
-            :class="['org form-field', { error: fieldError.organization }]"
+            :class="['organization input-field form-field', { error: fieldError.organization }]"
             :placeholder="orgField.placeholder"
             type="text"
             required="true"
-            @input="updateInputValue($event.target.value, 'org')" />
-          <span v-if="fieldError.organization" class="error-message" v-html="errorMessage" />
+            @input="updateInputValue($event.target.value, 'organization')" />
+          <span v-if="fieldError.organization" class="error message" v-html="errorMessage" />
         </div>
 
-        <ZeroDropdown :class="['country form-field', { error: fieldError.country }]" :display-selected="true">
-          <template #toggle-button="{ togglePanel, selected }">
-            <div class="toggle-button" @click="togglePanel">
-              <p v-if="selected" class="toggle-button-label">
-                {{ selected.label }}
-              </p>
-              <p v-else class="toggle-button-label">
-                Country
-              </p>
-            </div>
-          </template>
-          <template #dropdown-panel="{ setSelected, closePanel }">
-            <div class="dropdown-panel">
-              <div
-                v-for="option in countryField.options"
-                :key="option.code"
-                class="options">
-                <p
-                  class="option-label"
-                  @click="selectOption(setSelected, closePanel, option, 'country')"
-                  v-html="option.label" />
+        <div class="field-wrapper">
+          <ZeroDropdown :class="['country dropdown-field form-field', { error: fieldError.country }]" :display-selected="true">
+            <template #toggle-button="{ togglePanel, selected }">
+              <div class="toggle-button" @click="togglePanel">
+                <p v-if="selected" class="toggle-button-label">
+                  {{ selected.label }}
+                </p>
+                <p v-else class="toggle-button-label">
+                  Country
+                </p>
               </div>
-            </div>
-          </template>
-          <span v-if="fieldError.country" class="error-message" v-html="errorMessage" />
-        </ZeroDropdown>
-
-        <ZeroDropdown class="familiarity" :display-selected="true">
-          <template #toggle-button="{ togglePanel, selected }">
-            <h3 class="dropdown-label" v-html="familiarityField.label" />
-            <div :class="['toggle-button form-field', { error: fieldError.filecoinFamiliarity }]" @click="togglePanel">
-              <p v-if="selected" class="toggle-button-label">
-                {{ selected }}
-              </p>
-              <p v-else class="toggle-button-label">
-                Select an option
-              </p>
-            </div>
-          </template>
-          <template #dropdown-panel="{ setSelected, closePanel }">
-            <div class="dropdown-panel">
-              <div
-                v-for="(option, index) in familiarityField.options"
-                :key="index"
-                class="options">
-                <p
-                  class="option-label"
-                  @click="selectOption(setSelected, closePanel, option, 'familiarity')"
-                  v-html="option" />
+            </template>
+            <template #dropdown-panel="{ setSelected, closePanel }">
+              <div class="dropdown-panel">
+                <div
+                  v-for="option in countryField.options"
+                  :key="option.code"
+                  class="options">
+                  <p
+                    class="option-label"
+                    @click="selectOption(setSelected, closePanel, option, 'country')"
+                    v-html="option.label" />
+                </div>
               </div>
-            </div>
-          </template>
-          <span v-if="fieldError.filecoinFamiliarity" class="error-message" v-html="errorMessage" />
-        </ZeroDropdown>
+            </template>
+          </ZeroDropdown>
+          <span v-if="fieldError.country" class="error message" v-html="errorMessage" />
+        </div>
 
+        <div class="field-wrapper">
+          <h3 class="dropdown-label" v-html="familiarityField.label" />
+          <ZeroDropdown :class="['familiarity dropdown-field form-field', { error: fieldError.filecoinFamiliarity }] " :display-selected="true">
+            <template #toggle-button="{ togglePanel, selected }">
+              <div class="toggle-button" @click="togglePanel">
+                <p v-if="selected" class="toggle-button-label">
+                  {{ selected }}
+                </p>
+                <p v-else class="toggle-button-label">
+                  Select an option
+                </p>
+              </div>
+            </template>
+            <template #dropdown-panel="{ setSelected, closePanel }">
+              <div class="dropdown-panel">
+                <div
+                  v-for="(option, index) in familiarityField.options"
+                  :key="index"
+                  class="options">
+                  <p
+                    class="option-label"
+                    @click="selectOption(setSelected, closePanel, option, 'familiarity')"
+                    v-html="option" />
+                </div>
+              </div>
+            </template>
+          </ZeroDropdown>
+          <span v-if="fieldError.filecoinFamiliarity" class="error message" v-html="errorMessage" />
+        </div>
         <ZeroButton
           class="submit-button"
           @clicked="submitForm">
@@ -198,7 +201,7 @@ const updateInputValue = (val, field) => {
     case 'email':
       email.value = val
       break
-    case 'org':
+    case 'organization':
       organization.value = val
       break
   }
@@ -297,6 +300,7 @@ const submitForm = async () => {
 .form-field {
   border: var(--brand-color) 1px solid;
   border-radius: toRem(5);
+  padding: toRem(8) toRem(20);
   &:hover,
   &:focus {
     border-color: var(--secondary-text-color);
@@ -306,15 +310,19 @@ const submitForm = async () => {
   }
 }
 
-.error-message {
+.message {
+  position: absolute;
+  right: 0;
+  bottom: -1.3rem;
   @include formFieldErrorMessage;
+}
+
+.error {
   color: var(--error);
 }
 
 .field-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  position: relative;
   flex: 1;
   margin-bottom: toRem(24);
 }
@@ -329,27 +337,18 @@ const submitForm = async () => {
   }
 }
 
-
-.first-name,
-.last-name {
-  width: 100%;
-}
-
-.first-name,
-.last-name,
-.email,
-.org {
+.input-field {
   @include formFieldText;
-  padding: toRem(8) toRem(20);
+  width: 100%;
   &::placeholder {
     @include formFieldPlaceholder;
+    opacity: 1;
   }
 }
-.email,
-.org {
-  width: 100%;
-}
 
+.toggle-button-label {
+  @include formFieldPlaceholder;
+}
 
 .option-label {
   cursor: pointer;
