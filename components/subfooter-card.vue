@@ -30,6 +30,7 @@
                 <ButtonCta
                   :to="cta.to"
                   :tag="cta.tag"
+                  :target="cta.target"
                   theme="secondary">
                   {{ cta.text }}
                 </ButtonCta>
@@ -59,6 +60,7 @@
               <!-- <ButtonCta
                 :to="cta.to"
                 :tag="cta.tag"
+                :target="cta.target"
                 theme="secondary">
                 {{ cta.text }}
               </ButtonCta> -->

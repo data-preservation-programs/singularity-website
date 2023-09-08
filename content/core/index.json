@@ -478,7 +478,8 @@
         "title": "Documentation",
         "cta": {
           "tag": "a",
-          "to": "https://data-programs.gitbook.io/singularity/cli-reference/cli-reference",
+          "target": "_blank",
+          "to": "https://data-programs.gitbook.io/singularity/installation/install-from-source",
           "text": "Read the Documentation"
         }
       },
@@ -492,6 +493,7 @@
         "title": "Dashboard",
         "cta": {
           "tag": "a",
+          "target": "_blank",
           "to": "https://singularity-metrics-dashboard.vercel.app/",
           "text": "View the dashboard"
         }
