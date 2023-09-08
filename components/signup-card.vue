@@ -22,37 +22,48 @@
       <div class="signup-form">
 
         <div class="name-fields">
-          <input
-            class="first-name form-field"
-            type="text"
-            :placeholder="firstNameField.placeholder"
-            required="true"
-            @input="updateInputValue($event.target.value, 'firstName')" />
-          <input
-            class="last-name form-field"
-            type="text"
-            :placeholder="lastNameField.placeholder"
-            required="true"
-            @input="updateInputValue($event.target.value, 'lastName')" />
+          <div class="field-wrapper">
+            <input
+              :class="['first-name form-field', { error: fieldError.firstName }]"
+              type="text"
+              :placeholder="firstNameField.placeholder"
+              required="true"
+              @input="updateInputValue($event.target.value, 'firstName')" />
+            <span v-if="fieldError.firstName" class="error-message" v-html="errorMessage" />
+          </div>
+
+          <div class="field-wrapper">
+            <input
+              :class="['last-name form-field', { error: fieldError.lastName }]"
+              type="text"
+              :placeholder="lastNameField.placeholder"
+              required="true"
+              @input="updateInputValue($event.target.value, 'lastName')" />
+            <span v-if="fieldError.lastName" class="error-message" v-html="errorMessage" />
+          </div>
         </div>
 
-        <input
-          class="email form-field"
-          type="email"
-          :placeholder="emailField.placeholder"
-          required="true"
-          @input="updateInputValue($event.target.value, 'email')" />
+        <div class="field-wrapper">
+          <input
+            :class="['email form-field', { error: fieldError.email }]"
+            type="email"
+            :placeholder="emailField.placeholder"
+            required="true"
+            @input="updateInputValue($event.target.value, 'email')" />
+          <span v-if="fieldError.email" class="error-message" v-html="errorMessage" />
+        </div>
 
+        <div class="field-wrapper">
+          <input
+            :class="['org form-field', { error: fieldError.organization }]"
+            :placeholder="orgField.placeholder"
+            type="text"
+            required="true"
+            @input="updateInputValue($event.target.value, 'org')" />
+          <span v-if="fieldError.organization" class="error-message" v-html="errorMessage" />
+        </div>
 
-        <input
-          class="org form-field"
-          :placeholder="orgField.placeholder"
-          type="text"
-          required="true"
-          @input="updateInputValue($event.target.value, 'org')" />
-
-
-        <ZeroDropdown class="country form-field" :display-selected="true">
+        <ZeroDropdown :class="['country form-field', { error: fieldError.country }]" :display-selected="true">
           <template #toggle-button="{ togglePanel, selected }">
             <div class="toggle-button" @click="togglePanel">
               <p v-if="selected" class="toggle-button-label">
@@ -76,12 +87,13 @@
               </div>
             </div>
           </template>
+          <span v-if="fieldError.country" class="error-message" v-html="errorMessage" />
         </ZeroDropdown>
 
         <ZeroDropdown class="familiarity" :display-selected="true">
           <template #toggle-button="{ togglePanel, selected }">
             <h3 class="dropdown-label" v-html="familiarityField.label" />
-            <div class="toggle-button form-field" @click="togglePanel">
+            <div :class="['toggle-button form-field', { error: fieldError.filecoinFamiliarity }]" @click="togglePanel">
               <p v-if="selected" class="toggle-button-label">
                 {{ selected }}
               </p>
@@ -103,6 +115,7 @@
               </div>
             </div>
           </template>
+          <span v-if="fieldError.filecoinFamiliarity" class="error-message" v-html="errorMessage" />
         </ZeroDropdown>
 
         <ZeroButton
@@ -129,6 +142,15 @@ const props = defineProps({
 })
 
 // ======================================================================== Data
+const errorMessage = '[ Field is required ]'
+const fieldError = ref({
+  firstName: false,
+  lastName: false,
+  email: false,
+  organization: false,
+  country: false,
+  filecoinFamiliarity: false
+})
 const firstName = ref(false)
 const lastName = ref(false)
 const email = ref(false)
@@ -202,6 +224,7 @@ const selectOption = (setSelected, closePanel, option, field) => {
  * @method submitForm
  */
 const submitForm = async () => {
+  console.log('submitForm')
   if (firstName.value && lastName.value && email.value && organization.value && country.value && filecoinFamiliarity.value) {
     const body = {
         records: [
@@ -226,6 +249,14 @@ const submitForm = async () => {
       body,
       headers
     })
+  } else {
+      if(!firstName.value) { fieldError.value.firstName = true }
+      if(!lastName.value) { fieldError.value.lastName = true }
+      if(!email.value) { fieldError.value.email = true }
+      if(!organization.value) { fieldError.value.organization = true }
+      if(!organization.value) { fieldError.value.organization = true }
+      if(!country.value) { fieldError.value.country = true }
+      if(!filecoinFamiliarity.value) { fieldError.value.filecoinFamiliarity = true }
   }
 }
 </script>
@@ -257,17 +288,75 @@ const submitForm = async () => {
   }
 }
 
+// ///////////////////////////////////////////////////////////////// Signup Card
+.title-wrapper {
+  display: flex;
+  flex-flow: row no-wrap;
+}
 // //////////////////////////////////////////////////////////////////////// Form
 .form-field {
   border: var(--brand-color) 1px solid;
   border-radius: toRem(5);
-  &:is(:not(.first-name, .last-name, :last-child)) {
-    margin-bottom: toRem(24);
+  &:hover,
+  &:focus {
+    border-color: var(--secondary-text-color);
+  }
+  &.error {
+    border-color: var(--error);
   }
 }
 
+.error-message {
+  @include formFieldErrorMessage;
+  color: var(--error);
+}
+
+.field-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 1;
+  margin-bottom: toRem(24);
+}
+
+.name-fields {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  // margin-bottom: toRem(24);
+  .field-wrapper:is(:first-child) {
+    margin-right: toRem(20);
+  }
+}
+
+
+.first-name,
+.last-name {
+  width: 100%;
+}
+
+.first-name,
+.last-name,
+.email,
+.org {
+  @include formFieldText;
+  padding: toRem(8) toRem(20);
+  &::placeholder {
+    @include formFieldPlaceholder;
+  }
+}
+.email,
+.org {
+  width: 100%;
+}
+
+
 .option-label {
   cursor: pointer;
+}
+
+.submit-button {
+
 }
 
 </style>

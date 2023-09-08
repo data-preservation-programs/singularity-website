@@ -53,6 +53,7 @@ $siam: #565D50; // siam
   --link-hover-color: #{$chardonnay};
   --code-text-color: #{$alto};
   --code-background-color: #{$codeBlack};
+  --error: #{$burntSienna};
 }
 
 // .dark {
@@ -164,15 +165,15 @@ $siam: #565D50; // siam
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: toRem(5); 
+    border-radius: toRem(5);
     padding: toRem(1);
     z-index: 1;
     background: linear-gradient($angle, rgba($sageGreen, 1) 0%, rgba($sageGreen, 0.5) 33%, rgba($gray900, 0.3) 66%, rgba($gray900, 0.8) 100%);
-    -webkit-mask: 
-       linear-gradient(#fff 0 0) content-box, 
+    -webkit-mask:
+       linear-gradient(#fff 0 0) content-box,
        linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
-            mask-composite: exclude; 
+            mask-composite: exclude;
   }
 }
 
@@ -181,7 +182,7 @@ $siam: #565D50; // siam
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: toRem(5); 
+    border-radius: toRem(5);
     background-color: rgba($tundora, 0.2);
     backdrop-filter: blur(5px);
     z-index: 1;

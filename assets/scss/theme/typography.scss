@@ -265,6 +265,13 @@ $fontAssetPath: 'assets/fonts';
   letter-spacing: 0.01em;
 }
 
+@mixin formFieldErrorMessage {
+  font-size: toRem(14);
+  line-height: leading(21, 14);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
 @mixin hamburgerCTA {
   font-size: toRem(24);
   line-height: leading(36, 24);
