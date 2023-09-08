@@ -153,7 +153,7 @@ const orgField = computed(() => { return props.signupCard.signup_form.org })
 
 const countryField = computed(() => { return props.signupCard.signup_form.country })
 
-const submitButtonLabel = computed(() => { return formSubmitted.value ? 'Success' : 'Submit' })
+const submitButtonLabel = computed(() => { return formSubmitted.value ? 'Success' : 'Register' })
 
 // ===================================================================== Methdos
 /**
