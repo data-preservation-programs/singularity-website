@@ -178,31 +178,14 @@ const getIconComponent = (icon) => {
             mask-composite: exclude;
   }
   &:hover {
-    &:before {
-      background-color: rgba($tundora, 1);
-    }
     &:after {
       opacity: 1;
     }
     :deep(.plus-minus-icon) {
       filter: drop-shadow(0px 0px 3px rgba(#FFC582, 0.6));
-      circle {
-        fill: rgba($tundora, 0.8);
-      }
     }
   }
   &.open {
-    &:hover {
-      &:before {
-        background-color: rgba($tundora, 0.2);
-      }
-      :deep(.plus-minus-icon) {
-        filter: drop-shadow(0px 0px 3px rgba(#FFC582, 0.6));
-        circle {
-          fill: rgba($codGray, 0.8);
-        }
-      }
-    }
     .accordion-content {
       max-height: toRem(200);
       @include large {
