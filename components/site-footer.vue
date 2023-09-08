@@ -81,6 +81,7 @@ const legal = computed(() => {
   align-items: center;
   padding: toRem(34) 0;
   height: toRem(234);
+  z-index: 10;
   @include gridMaxMQ {
     padding-top: toRem(72);
     height: unset;
@@ -148,6 +149,13 @@ const legal = computed(() => {
     }
     @include mini {
       margin-bottom: toRem(22);
+    }
+    :deep(a) {
+      display: inline-block;
+      @include transitionDefault;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
     :deep(span) {
       &.green {

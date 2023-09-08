@@ -49,8 +49,9 @@
         <div v-if="fullwidth" class="col-5_mi-12 inner-column">
           <div class="after">
 
-            <div class="description">
-              {{ description }}
+            <div
+              class="description"
+              v-html="description">
             </div>
 
             <div v-if="fullwidth && cta" class="cta">
@@ -222,11 +223,19 @@ const cardStyles = computed(() => {
 .description {
   font-size: toRem(18);
   line-height: leading(24, 18);
-  font-weight: 500;
   letter-spacing: 0.01em;
 }
 
+.description {
+  font-weight: 400;
+}
+
+:deep(.weight-500) {
+  font-weight: 500;
+}
+
 .subheading {
+  font-weight: 500;
   @include medium {
     font-size: toRem(16);
   }
@@ -239,6 +248,14 @@ const cardStyles = computed(() => {
     }
     @include mini {
       display: inline;
+    }
+  }
+  :deep(a) {
+    font-size: 1.125rem;
+    display: inline-block;
+    @include transitionDefault;
+    &:hover {
+      transform: scale(1.15);
     }
   }
 }
@@ -280,8 +297,10 @@ const cardStyles = computed(() => {
     }
   }
   .after {
+    margin-top: toRem(34);
     padding: 0 toRem(40);
     @include medium {
+      margin-top: 0;
       padding: 0;
     }
     .subheading {

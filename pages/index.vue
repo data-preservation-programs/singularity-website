@@ -265,6 +265,7 @@ onMounted(() => {
 
 :deep(#features) {
   padding-top: 0;
+  z-index: 10;
   @include medium {
     padding-top: toRem(35);
   }
@@ -317,6 +318,7 @@ onMounted(() => {
 }
 
 :deep(#how-it-works) {
+  padding-top: toRem(60);
   @include medium {
     padding-top: 0.875rem;
   }
@@ -357,6 +359,8 @@ onMounted(() => {
 }
 
 :deep(#roadmap) {
+  padding-top: toRem(11);
+  padding-bottom: 2rem;
   div[data-block-id="col_1"] {
     margin-bottom: toRem(45);
     @include medium {

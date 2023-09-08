@@ -10,19 +10,22 @@
         <div
           class="col-4_sm-3_mi-10_ti-12"
           data-push-left="off-0_mi-1_ti-0">
-          <div class="heading">
-
+          <div class="heading-wrapper">
             <ZeroButton
               tag="a"
+              target="_blank"
               to="https://github.com/data-preservation-programs/singularity/milestones"
-              class="icon-button">
-              <GithubIcon class="icon" />
+              class="heading-button">
+              <div class="heading">
+
+                <GithubIcon class="icon" />
+                
+                <span class="h2">
+                  {{ item.heading }}
+                </span>
+
+              </div>
             </ZeroButton>
-
-            <span class="h2">
-              {{ item.heading }}
-            </span>
-
           </div>
         </div>
 
@@ -98,38 +101,55 @@ const cta = computed(() => {
     margin-bottom: toRem(15);
   }
   &:hover {
-    .icon {
+    .heading {
       transform: scale(1.15);
+    }
+    .icon {
       :deep(path) {
         fill: $chardonnay;
       }
     }
+    .h2 {
+      color: $chardonnay;
+    }
   }
+}
+
+.heading-wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .heading {
   display: flex;
   align-items: center;
   margin-top: toRem(25);
+  cursor: pointer;
+  @include transitionDefault;
   @include mini {
     margin-top: 0;
     margin-bottom: 0.5rem;
   }
-  .icon-button {
+  .heading-button {
     display: block;
-    width: toRem(41);
-    height: toRem(41);
-    margin-right: toRem(14);
     padding: 0.5rem;
   }
   .icon {
-    width: 100%;
-    height: 100%;
-    transform: scale(1);
+    width: toRem(41);
+    height: toRem(41);
+    margin-right: toRem(14);
     transition: 300ms cubic-bezier(0.33, 0.2, 0.41, 0.99);
+    @include mini {
+      width: toRem(18);
+      height: toRem(18);
+      margin-right: toRem(7);
+    }
     :deep(path) {
       transition: inherit;
     }
+  }
+  .h2 {
+    @include transitionDefault;
   }
 }
 
