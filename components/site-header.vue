@@ -1,5 +1,7 @@
 <template>
-  <header :class="['site-header', { 'nav-panel-open': navigationOpen }]">
+  <header
+    id="site-header"
+    :class="['site-header', { 'nav-panel-open': navigationOpen }]">
 
     <!-- ============================================================ Mobile -->
     <div :class="['mobile-background-panel', {'open': navigationOpen }]">

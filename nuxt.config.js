@@ -110,24 +110,5 @@ export default defineNuxtConfig({
   },
   // ////////////////////////////////////////////////////////// [Module] sitemap
   // ---------------------------------------------------------------------------
-  sitemap: {},
-  // //////////////////////////////////////////////////////////////////// Router
-  // ---------------------------------------------------------------------------
-  // router: {
-  //   scrollBehavior: function () {
-  //     console.log('Scoll behavior')
-  //     return false
-  //   }
-  // },
-  router: {
-    scrollBehavior(to) {
-      if (to.hash) {
-        return window.scrollTo({
-          top: document.querySelector(to.hash).offsetTop + window.innerHeight,
-          behavior: 'smooth'
-        })
-      }
-      return window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-  }
+  sitemap: {}
 })

@@ -5,9 +5,11 @@
       <div class="grid-bottom-noBottom-noGutter">
 
         <div class="col-2_sm-5">
-          <nuxt-link to="/" class="site-footer-logo">
+          <button
+            class="site-footer-logo"
+            @click="scrollToTop">
             <SiteFooterLogo />
-          </nuxt-link>
+          </button>
         </div>
 
         <div class="col-4_sm-5_mi-7" data-push-left="off-6_sm-2_mi-0">
@@ -69,6 +71,14 @@ const legal = computed(() => {
   return GeneralSiteData.footer.legal
 })
 
+const scrollToTop = async () => {
+  const header = document.getElementById('site-header')
+  if (header) {
+    await navigateTo({ path: '/' })
+    header.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -128,9 +138,6 @@ const legal = computed(() => {
   }
   @include medium {
     width: toRem(95);
-  }
-  @include mini {
-    margin-bottom: 0.125rem;
   }
 }
 
