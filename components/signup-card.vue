@@ -264,6 +264,15 @@ const submitForm = async () => {
   flex-direction: column;
 }
 
+.field-wrapper {
+  position: relative;
+  flex: 1;
+  margin-bottom: toRem(24);
+  &:is(:last-of-type) {
+    margin-bottom: toRem(32);
+  }
+}
+
 .form-field {
   border: var(--brand-color) 1px solid;
   border-radius: toRem(5);
@@ -284,12 +293,6 @@ const submitForm = async () => {
 }
 .error {
   color: var(--error);
-}
-
-.field-wrapper {
-  position: relative;
-  flex: 1;
-  margin-bottom: toRem(24);
 }
 
 .submit-button {
