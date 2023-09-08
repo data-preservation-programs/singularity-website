@@ -1,17 +1,20 @@
 <template>
   <main :class="[`page page-${tag}`]">
-    <div class="grid-center-noGutter">
-      <div class="col-8">
+    <div id="section-signup">
+      <div class="grid-center-noGutter">
+        <div class="col-8_sm-12">
 
-        <ButtonCta
-          class="back-home-button"
-          :theme="content.back_home_cta.theme"
-          :tag="content.back_home_cta.tag"
-          :to="content.back_home_cta.to">
-          <span class="button-label"> {{ content.back_home_cta.text }} </span>
-        </ButtonCta>
+          <ButtonCta
+            class="back-home-button"
+            :theme="content.back_home_cta.theme"
+            :tag="content.back_home_cta.tag"
+            :to="content.back_home_cta.to">
+            <span class="button-label"> {{ content.back_home_cta.text }} </span>
+          </ButtonCta>
 
-        <SignupCard :signup-card="content.signup_card" />
+
+          <SignupCard :signup-card="content.signup_card" />
+        </div>
 
       </div>
     </div>
@@ -43,6 +46,9 @@ const content = computed(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @include small{
+    margin-top: 4.875rem;
+  }
 }
 
 .back-home-button {

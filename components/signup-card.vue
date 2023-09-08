@@ -232,7 +232,7 @@ const submitForm = async () => {
 .signup-card {
   --border-gradient-angle: 0deg;
   @include cardPanel(var(--border-gradient-angle));
-  padding: toRem(58) toRem(103) toRem(93);
+  padding: clamp(toRem(32), 3.5vw, toRem(58)) clamp(toRem(14), 7vw, toRem(103)) clamp(toRem(32), 6.3vw, toRem(93));
   .content {
     position: relative;
     z-index: 2;
