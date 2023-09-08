@@ -64,28 +64,26 @@
         </div>
 
         <div class="field-wrapper">
-          <ZeroDropdown :class="['country dropdown-field form-field', { error: fieldError.country }]" :display-selected="true">
-            <template #toggle-button="{ togglePanel, selected }">
-              <div class="toggle-button" @click="togglePanel">
-                <p v-if="selected" class="toggle-button-label">
+          <ZeroDropdown class="country dropdown-field" :display-selected="true">
+            <template #toggle-button="{ togglePanel, panelOpen, selected }">
+              <div :class="['toggle-button form-field', { error: fieldError.country }, { open: panelOpen } ]" @click="togglePanel">
+                <p v-if="selected" class="toggle-button-label selected">
                   {{ selected.label }}
                 </p>
                 <p v-else class="toggle-button-label">
                   Country
                 </p>
+                <IconChevron />
               </div>
             </template>
             <template #dropdown-panel="{ setSelected, closePanel }">
               <div class="dropdown-panel">
-                <div
+                <p
                   v-for="option in countryField.options"
                   :key="option.code"
-                  class="options">
-                  <p
-                    class="option-label"
-                    @click="selectOption(setSelected, closePanel, option, 'country')"
-                    v-html="option.label" />
-                </div>
+                  class="option"
+                  @click="selectOption(setSelected, closePanel, option, 'country')"
+                  v-html="option.label" />
               </div>
             </template>
           </ZeroDropdown>
@@ -257,6 +255,7 @@ const submitForm = async () => {
   flex-flow: row no-wrap;
 }
 // //////////////////////////////////////////////////////////////////////// Form
+//---------------------------------------------------------------------- General
 .form-field {
   border: var(--brand-color) 1px solid;
   border-radius: toRem(5);
@@ -287,6 +286,10 @@ const submitForm = async () => {
   margin-bottom: toRem(24);
 }
 
+.submit-button {
+
+}
+//----------------------------------------------------------------- Input Fields
 .name-fields {
   display: flex;
   flex-flow: row nowrap;
@@ -306,16 +309,53 @@ const submitForm = async () => {
   }
 }
 
+//-------------------------------------------------------------- Dropdown Fields
+// .dropdown-field {
+//   padding: 0;
+// }
+
+.toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &.open {
+    border-color: var(--secondary-text-color);
+    border-bottom-color: transparent;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-bottom: toRem(4);
+  }
+}
+
 .toggle-button-label {
   @include formFieldPlaceholder;
+  &.selected {
+    @include formFieldText;
+  }
 }
 
-.option-label {
+:deep(.panel-container) {
+  width: 100%;
+  z-index: 1;
+  top: calc(100% - 0.1rem);
+  padding-top: 0;
+  border: var(--secondary-text-color) 1px solid;
+  height: toRem(93);
+  overflow-y: scroll;
+  border-top-color: transparent;
+  border-bottom-left-radius: toRem(5);
+  border-bottom-right-radius: toRem(5);
+}
+
+.option {
+  @include formFieldPlaceholder;
   cursor: pointer;
-}
-
-.submit-button {
-
+  padding: 0 toRem(20) toRem(4);
+  background-color: #121212;
+  &:hover {
+    background-color: var(--secondary-text-color);
+    color: var(--background-color);
+  }
 }
 
 </style>
