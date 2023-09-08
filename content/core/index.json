@@ -328,7 +328,8 @@
                     "theme": "secondary",
                     "tag": "a",
                     "text": "View documentation",
-                    "to": "https://data-programs.gitbook.io/singularity/cli-reference/cli-reference"
+                    "target": "_blank",
+                    "to": "https://data-programs.gitbook.io/singularity/installation/install-from-source"
                   }
                 ]
               }

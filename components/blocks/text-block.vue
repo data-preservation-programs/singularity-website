@@ -32,6 +32,7 @@
           :tag="cta.tag"
           :to="cta.to"
           :theme="cta.theme"
+          :target="cta.target"
           :variant="ctaVariant || cta.variant"
           :disabled="cta.disabled">
           {{ cta.text }}
