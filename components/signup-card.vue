@@ -5,12 +5,11 @@
     <div class="content">
 
       <div class="title-wrapper">
+        <img class="title-img" :src="img" />
 
-        <IconPieChartIcon />
-
-        <div v-if="title" class="title">
+        <h1 v-if="title" class="title">
           {{ title }}
-        </div>
+        </h1>
 
 
       </div>
@@ -133,6 +132,8 @@ const country = ref(false)
 // ==================================================================== Computed
 const title = computed(() => { return props.signupCard.title })
 
+const img = computed(() => { return props.signupCard.img })
+
 const description = computed(() => { return props.signupCard.description })
 
 const cardStyles = computed(() => {
@@ -231,19 +232,21 @@ const submitForm = async () => {
 .signup-card {
   --border-gradient-angle: 0deg;
   @include cardPanel(var(--border-gradient-angle));
-}
-
-.signup-card {
-  padding: toRem(30) toRem(24);
+  padding: toRem(58) toRem(103) toRem(93);
   .content {
     position: relative;
     z-index: 2;
   }
-  .icon {
-    margin-bottom: toRem(45);
+  .title-img {
+    width: toRem(60);
+    height: toRem(60);
+    margin-bottom: toRem(12);
   }
   .title {
-    @include h3;
+    font-size: toRem(36);
+    line-height: leading(48, 36);
+    font-weight: 500;
+    letter-spacing: 0.03em;
     color: $sageGreen;
     margin-bottom: toRem(25);
   }
@@ -253,11 +256,7 @@ const submitForm = async () => {
   }
 }
 
-// ///////////////////////////////////////////////////////////////// Signup Card
-.title-wrapper {
-  display: flex;
-  flex-flow: row no-wrap;
-}
+
 // //////////////////////////////////////////////////////////////////////// Form
 //---------------------------------------------------------------------- General
 .signup-form {

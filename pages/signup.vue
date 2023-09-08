@@ -1,6 +1,6 @@
 <template>
   <main :class="[`page page-${tag}`]">
-    <div class="grid-center">
+    <div class="grid-center-noGutter">
       <div class="col-8">
 
         <SignupCard :signup-card="content.signup_card" />
