@@ -1,11 +1,11 @@
 <template>
   <div class="subfooter-form">
-    <div class="inner-content form-field-container">
+    <div :class="['form-field-container', { error: fieldError}]">
 
       <div class="detail-wrapper">
         <svg
           width="400"
-          :viewBox="`0 0 400 ${detailHeight}`"
+          viewBox="0 0 400 41"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           class="detail">
@@ -23,16 +23,15 @@
           class="email"
           :placeholder="placeholder"
           type="email"
-          required="true" />
-
-        <!-- @input="updateInputValue($event.target.value, 'organization')" /> -->
+          required="true"
+          @input="updateValue($event.target.value)" />
       </div>
     </div>
 
     <ButtonCta
       :class="['submit-button', { submitted: formSubmitted }]"
-      theme="secondary">
-      <!-- @clicked="submitForm"> -->
+      theme="secondary"
+      @clicked="submitForm">
       <span class="button-label"> {{ buttonText }} </span>
     </ButtonCta>
 
@@ -40,6 +39,7 @@
 </template>
 
 <script setup>
+const SINGULARITY_DEMO_SIGNUPS_TOKEN = import.meta.env.VITE_AIRTABLE_SINGULARITY_DEMO_TOKEN
 // ======================================================================= Props
 const props = defineProps({
   form: {
@@ -54,6 +54,10 @@ const props = defineProps({
   }
 })
 
+// ======================================================================== Data
+const formSubmitted = ref(false)
+const fieldError = ref(false)
+const field = ref(false)
 // ==================================================================== Computed
 const path = computed(() => {
   if (props.variant === 'large') {
@@ -69,6 +73,42 @@ const placeholder = computed(() => { return props.form.placeholder })
 
 const buttonText = computed(() => { return props.form.submit_button_text })
 
+// ===================================================================== Methods
+/**
+ * @method updateValue
+ */
+const updateValue = (val) => {
+  if (fieldError) { fieldError.value = false }
+  field.value = val
+}
+/**
+ * @method submitForm
+ */
+const submitForm = async () => {
+  if (field.value) {
+    const body = {
+        records: [
+          {
+            fields: {
+              email: field.value
+            }
+          }
+        ]
+      }
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${SINGULARITY_DEMO_SIGNUPS_TOKEN}`
+      }
+    const res = await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblSB1NYasWQIDGlp', {
+      method: 'POST',
+      body,
+      headers
+    })
+  if (res) { formSubmitted.value = true; return }
+  }
+  if(!field.value) { fieldError.value = true }
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -77,22 +117,8 @@ const buttonText = computed(() => { return props.form.submit_button_text })
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
-  &:not(.disabled) {
-    &:hover {
-      .stroke-path {
-        stroke: $chardonnay;
-      }
-      .form-field-container {
-        &::before {
-          border-top-color: $chardonnay;
-          border-right-color: $chardonnay;
-          border-bottom-color: $chardonnay;
-        }
-      }
-    }
-    &:focus-visible {
-      @include focusBoxShadow;
-    }
+  &:focus-visible {
+    @include focusBoxShadow;
   }
 }
 
@@ -144,6 +170,26 @@ const buttonText = computed(() => { return props.form.submit_button_text })
     border-bottom-right-radius: toRem(5);
     @include transitionDefault;
   }
+  &:hover {
+      .stroke-path {
+        stroke: $chardonnay;
+      }
+      &::before {
+        border-top-color: $chardonnay;
+        border-right-color: $chardonnay;
+        border-bottom-color: $chardonnay;
+      }
+    }
+  &.error {
+    .stroke-path {
+      stroke: $burntSienna;
+    }
+    &::before {
+      border-top-color: $burntSienna;
+      border-right-color: $burntSienna;
+      border-bottom-color: $burntSienna;
+    }
+  }
 }
 
 .field-email {
@@ -160,5 +206,17 @@ const buttonText = computed(() => { return props.form.submit_button_text })
 }
 
 // /////////////////////////////////////////////////////////////// Submit Button
-
+.submit-button.submitted {
+  :deep(.button-label) {
+    color: $sageGreen;
+  }
+  :deep(.button-content) {
+    &::after {
+      color: transparent !important;
+      background-image: url('/images/checkmark.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}
 </style>
