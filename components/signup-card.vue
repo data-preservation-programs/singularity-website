@@ -316,11 +316,19 @@ const submitForm = async () => {
 //----------------------------------------------------------------- Input Fields
 .name-fields {
   display: flex;
-  flex-flow: row nowrap;
   justify-content: space-between;
-  // margin-bottom: toRem(24);
+  @include medium {
+    flex-flow: row wrap;
+    .field-wrapper {
+      width: 100%;
+      flex: unset;
+    }
+  }
   .field-wrapper:is(:first-child) {
     margin-right: toRem(20);
+    @include medium {
+      margin-right: 0;
+    }
   }
 }
 
