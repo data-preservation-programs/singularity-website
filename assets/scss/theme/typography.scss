@@ -106,8 +106,8 @@ $fontAssetPath: 'assets/fonts';
 }
 
 @mixin h3 { // Card headings
-  font-size: toRem(24);
-  line-height: leading(30, 24);
+  font-size: toRem(20);
+  line-height: leading(25, 20);
   font-weight: 500;
   letter-spacing: 0.03em;
   @include medium {
