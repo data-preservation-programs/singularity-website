@@ -160,6 +160,7 @@ const submitButtonLabel = computed(() => { return formSubmitted.value ? 'Success
  * @method updateInputValue
  */
 const updateInputValue = (val, field) => {
+  if (fieldError.value[field]) { fieldError.value[field] = false}
   switch(field) {
     case 'firstName':
       firstName.value = val
@@ -180,6 +181,7 @@ const updateInputValue = (val, field) => {
  */
 const selectOption = (setSelected, closePanel, option, field) => {
   if (option) {
+    if (fieldError.value[field]) { fieldError.value[field] = false }
     setSelected(option)
     closePanel()
     switch(field) {
