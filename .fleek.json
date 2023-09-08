@@ -1,8 +1,8 @@
 {
     "build": {
       "image": "node:16.19",
-      "command": "npm ci && npm run generate",
-      "publicDir": ".output/public",
+      "command": "yarn && yarn build && yarn export",
+      "publicDir": "dist",
       "environment": {
         "SERVER_ENV": "production"
       }
