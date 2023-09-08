@@ -7,14 +7,14 @@
     "site_name": "Singularity",
     "url": "https://singularity.storage",
     "type": "website",
-    "image": "/images/open-graph.png"
+    "image": "/images/singularity-open-graph.jpg"
   },
   "header": {
     "navigation": [
       {
         "text": "Docs",
         "tag": "a",
-        "to": "https://data-programs.gitbook.io/singularity/cli-reference/cli-reference"
+        "to": "https://data-programs.gitbook.io/singularity"
       },
       {
         "text": "Features",

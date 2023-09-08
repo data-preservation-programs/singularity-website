@@ -1,6 +1,7 @@
 <template>
   <div class="navbar">
     <nav class="navigation">
+
       <div
         v-for="link in links"
         :key="`${link.text}`"
@@ -8,7 +9,8 @@
         <ZeroButton
           :tag="link.tag"
           :to="link.to"
-          class="nav-link">
+          class="nav-link"
+          @clicked="scrollToSection(link.to)">
           {{ link.text }}
         </ZeroButton>
       </div>
@@ -29,6 +31,24 @@ const props = defineProps({
     default: () => []
   }
 })
+
+const emit = defineEmits(['nav-link-click'])
+
+// ===================================================================== Methods
+const scrollToSection = async (el) => {
+  emit('nav-link-click')
+  const id = el.replaceAll('#', '')
+  const section = document.getElementById(id)
+  if (section) {
+    await navigateTo({
+      path: '/',
+      query: {
+        section: id
+      }
+    })
+    section.scrollIntoView({ behavior: 'smooth' })
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -49,7 +69,13 @@ const props = defineProps({
     }
     .nav-link {
       @include hamburgerCTA;
+      background: linear-gradient(135deg, rgba(166,200,136,1) 0%, rgba(212,212,212,1) 33%, rgba(211,211,211,1) 66%, rgba(211,211,211,1) 100%);
+      @include gradientTextBase;
+      background-size: 300%;
+      background-position: 50% 0;
+      &:active,
       &:hover {
+        background-position: 0% 0;
         transform: none;
         &:before,
         &:after {

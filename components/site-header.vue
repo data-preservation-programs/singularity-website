@@ -1,5 +1,7 @@
 <template>
-  <header :class="['site-header', { 'nav-panel-open': navigationOpen }]">
+  <header
+    id="site-header"
+    :class="['site-header', { 'nav-panel-open': navigationOpen }]">
 
     <!-- ============================================================ Mobile -->
     <div :class="['mobile-background-panel', {'open': navigationOpen }]">
@@ -9,12 +11,14 @@
           <div class="mobile-nav">
             <Navbar
               :links="navigation"
-              class="mobile">
+              class="mobile"
+              @nav-link-click="handleNavClick">
               <div class="nav-item">
                 <ButtonCta
                   tag="nuxt-link"
                   to="/"
                   theme="primary"
+                  variant="large"
                   class="modal-sign-up-cta">
                   Sign up
                 </ButtonCta>
@@ -95,6 +99,8 @@ const GithubIcon = resolveComponent('icon/github-icon')
 const SlackIcon = resolveComponent('icon/slack-icon')
 
 // ======================================================================== Data
+const breakpointSmall = ref(false)
+const headerResizeEventListener = ref(null)
 const generalStore = useGeneralStore()
 const { navigationOpen } = storeToRefs(generalStore)
 
@@ -117,9 +123,30 @@ watch(navigationOpen, (val) => {
   }
 })
 
+watch(breakpointSmall, () => {
+  if (navigationOpen.value) { toggleNav() }
+})
+
 // ======================================================================= Hooks
-// onMounted(() => {
-// })
+onMounted(() => {
+  headerResizeEventListener.value = useThrottle(() => {
+    if (window.matchMedia('(max-width: 53.125rem)').matches) {
+      if (!breakpointSmall.value) {
+        breakpointSmall.value = true
+      }
+    } else {
+      if (breakpointSmall.value) {
+        breakpointSmall.value = false
+      }
+    }
+  })
+  headerResizeEventListener.value()
+  window.addEventListener('resize', headerResizeEventListener.value)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', headerResizeEventListener.value)
+})
 
 // ===================================================================== Methods
 /**
@@ -137,7 +164,10 @@ const getCtaComponent = (icon) => {
     case 'slack' : return SlackIcon;
     default : return 'span'
   }
-  
+}
+
+const handleNavClick = () => {
+  if (navigationOpen.value) { toggleNav() }
 }
 
 </script>
@@ -168,9 +198,11 @@ const getCtaComponent = (icon) => {
       z-index: 1001;
     }
     .nav-ctas {
-      :deep(.theme__icon) {
-        opacity: 0;
-        pointer-events: none;
+      @include mini {
+        :deep(.theme__icon) {
+          opacity: 0;
+          pointer-events: none;
+        }
       }
     }
   }
@@ -422,14 +454,6 @@ const getCtaComponent = (icon) => {
   :deep(.inner-content) {
     height: 100%;
     padding: toRem(9) toRem(46) toRem(9) toRem(23);
-    .detail {
-      transform: scale(1.36);
-      top: 7px;
-      right: calc(100% + 3px);
-      path {
-        stroke-width: 1.5;
-      }
-    }
   }
   :deep(.button-content) {
     @include hamburgerCTA;
