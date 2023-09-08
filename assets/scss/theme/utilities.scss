@@ -227,3 +227,25 @@ $siam: #565D50; // siam
     text-fill-color: $codGray;
   }
 }
+
+@mixin gradientTextBase {
+  background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  text-fill-color: transparent;
+  // IE11 fix
+  @include IE10and11 {
+    background: none;
+  }
+  &::-moz-selection {
+    -webkit-text-fill-color: $codGray;
+    -moz-text-fill-color: $codGray;
+    text-fill-color: $codGray;
+  }
+  &::selection {
+    -webkit-text-fill-color: $codGray;
+    -moz-text-fill-color: $codGray;
+    text-fill-color: $codGray;
+  }
+}

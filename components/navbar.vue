@@ -69,7 +69,13 @@ const scrollToSection = async (el) => {
     }
     .nav-link {
       @include hamburgerCTA;
+      background: linear-gradient(135deg, rgba(166,200,136,1) 0%, rgba(212,212,212,1) 33%, rgba(211,211,211,1) 66%, rgba(211,211,211,1) 100%);
+      @include gradientTextBase;
+      background-size: 300%;
+      background-position: 50% 0;
+      &:active,
       &:hover {
+        background-position: 0% 0;
         transform: none;
         &:before,
         &:after {
