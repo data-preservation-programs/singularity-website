@@ -197,9 +197,11 @@ defineExpose({ handleNavClick })
       z-index: 1001;
     }
     .nav-ctas {
-      :deep(.theme__icon) {
-        opacity: 0;
-        pointer-events: none;
+      @include mini {
+        :deep(.theme__icon) {
+          opacity: 0;
+          pointer-events: none;
+        }
       }
     }
   }
