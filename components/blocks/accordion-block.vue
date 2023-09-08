@@ -4,13 +4,12 @@
       <div
         v-for="(section, index) in sections"
         :key="`accordion-section-${index}`"
-        :class="['accordion-section', { open: active[index] } ]">
+        :class="['accordion-section', { open: active[index] } ]"
+        @click="toggleSection(index)">
 
         <div class="border"></div>
 
-        <div
-          class="accordion-heading"
-          @click="toggleSection(index)">
+        <div class="accordion-heading">
 
           <component :is="getIconComponent(section.icon)" class="icon" />
 
@@ -96,7 +95,6 @@ const getIconComponent = (icon) => {
   display: flex;
   align-items: center;
   padding: toRem(16) 0;
-  cursor: pointer;
   @include tiny {
     padding: toRem(10) 0;
     padding-right: toRem(38);
@@ -159,6 +157,7 @@ const getIconComponent = (icon) => {
   position: relative;
   padding: 0 toRem(17);
   margin-bottom: toRem(13);
+  cursor: pointer;
   @include shadow2;
   @include blurredBackdrop;
   &:after {
@@ -178,6 +177,14 @@ const getIconComponent = (icon) => {
     -webkit-mask-composite: xor;
             mask-composite: exclude;
   }
+  &:hover {
+    &:after {
+      opacity: 1;
+    }
+    :deep(.plus-minus-icon) {
+      filter: drop-shadow(0px 0px 3px rgba(#FFC582, 0.6));
+    }
+  }
   &.open {
     .accordion-content {
       max-height: toRem(200);
@@ -186,18 +193,6 @@ const getIconComponent = (icon) => {
       }
       @include medium {
         max-height: toRem(300);
-      }
-    }
-  }
-  &.open,
-  &:hover {
-    &:after {
-      opacity: 1;
-    }
-    :deep(.plus-minus-icon) {
-      filter: drop-shadow(0px 0px 3px rgba(#FFC582, 0.6));
-      circle {
-        fill: rgba($codGray, 0.8);
       }
     }
   }

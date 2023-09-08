@@ -22,8 +22,6 @@
 </template>
 
 <script setup>
-import SignupCard from '@/components/signup-card'
-
 // ======================================================================== Data
 const tag = 'signup'
 const { data } = await useAsyncData( async () => {

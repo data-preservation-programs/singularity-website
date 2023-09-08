@@ -197,17 +197,39 @@ $siam: #565D50; // siam
 }
 
 @mixin selection-dark {
-  ::-moz-selection { background: $alto; color: $codGray; }
-  ::selection { background: $alto; color: $codGray; }
+  ::-moz-selection { background: $sageGreen; color: $codGray; }
+  ::selection { background: $sageGreen; color: $codGray; }
 }
 
 @mixin selection-light {
-  ::-moz-selection { background: $alto; color: $codGray; }
-  ::selection { background: $alto; color: $codGray; }
+  ::-moz-selection { background: $sageGreen; color: $codGray; }
+  ::selection { background: $sageGreen; color: $codGray; }
 }
 
 @mixin gradientText {
   background: linear-gradient(278deg, #D4D4D4 10.02%, #A6C888 86.99%);
+  background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  text-fill-color: transparent;
+  // IE11 fix
+  @include IE10and11 {
+    background: none;
+  }
+  &::-moz-selection {
+    -webkit-text-fill-color: $codGray;
+    -moz-text-fill-color: $codGray;
+    text-fill-color: $codGray;
+  }
+  &::selection {
+    -webkit-text-fill-color: $codGray;
+    -moz-text-fill-color: $codGray;
+    text-fill-color: $codGray;
+  }
+}
+
+@mixin gradientTextBase {
   background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
