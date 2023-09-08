@@ -192,15 +192,19 @@ const cta = computed(() => {
   .title {
     width: 19%;
     min-width: 19%;
-    margin-top: 0.25em;
     @include h4;
+    line-height: 1.7;
     color: $sageGreen;
     @include medium {
+      line-height: 1.7;
+      font-size: 1rem;
       width: 29%;
       min-width: 29%;
     }
+    @include small {
+      font-size: toRem(14);
+    }
     @include tiny {
-      margin-top: 0;
       margin-bottom: 0.25rem;
     }
   }
