@@ -3,6 +3,14 @@
     <div class="grid-center-noGutter">
       <div class="col-8">
 
+        <ButtonCta
+          class="back-home-button"
+          :theme="content.back_home_cta.theme"
+          :tag="content.back_home_cta.tag"
+          :to="content.back_home_cta.to">
+          <span class="button-label"> {{ content.back_home_cta.text }} </span>
+        </ButtonCta>
+
         <SignupCard :signup-card="content.signup_card" />
 
       </div>
@@ -37,15 +45,25 @@ const content = computed(() => {
   align-items: center;
 }
 
-.top {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.logo {
-  width: 3rem;
-  margin-right: 1rem;
+.back-home-button {
+  padding-right: 0;
+  padding-left: 1.5625rem;
+  margin-bottom: toRem(17);
+  :deep(.button-content) {
+    &::before {
+      content: '↖';
+      position: absolute;
+      left: 0.5rem;
+      @include transitionDefault;
+    }
+    &::after {
+      display: none;
+    }
+    &:hover {
+      &:before {
+        transform: translateX(-0.5rem);
+      }
+    }
+  }
 }
 </style>

@@ -11,6 +11,12 @@
   },
   "page_content": [
     {
+      "back_home_cta": {
+          "text": "Back home",
+          "tag": "nuxt-link",
+          "to": "/",
+          "theme": "secondary"
+      },
       "signup_card": {
         "title": "Register for Singularity app preview",
         "img": "/images/increase-graphic.svg",
