@@ -2,15 +2,15 @@
   <ZeroButton
     v-slot="{ loading }"
     v-bind="props"
-    :class="['button-x', `theme__${props.theme}`, { large: variantLarge }]">
+    :class="['button-x', `theme__${props.theme}`, variant]">
     <div class="inner-content">
 
-      <div :class="['detail-wrapper', { large: variantLarge }]">
+      <div :class="['detail-wrapper', variant]">
         <svg
           v-if="theme === 'primary'"
           width="400"
-          :height="variantLarge ? 57 : 41"
-          :viewBox="`0 0 400 ${ variantLarge ? 57 : 41 }`"
+          :height="detailHeight"
+          :viewBox="`0 0 400 ${detailHeight}`"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           class="detail">
@@ -73,18 +73,32 @@ const props = defineProps({
     required: false,
     default: 'primary'
   },
-  variantLarge: {
-    type: Boolean,
+  variant: { // 'large', 'small' or none
+    type: String,
     required: false,
-    default: false
+    default: ''
   }
 })
 
 // ==================================================================== Computed
 const path = computed(() => {
-  return props.variantLarge ?
-    'M 536 53.6 H 2.7391 C 1.871 53.6 1.232 52.7872 1.34 51.9436 L 9.5042 18.7416 C 12.06 8.04 21.44 1.34 32.16 1.34 H 536' :
-    'M 400 40 H 2.0441 C 1.3963 40 0.9194 39.3934 1 38.7639 L 7.0927 13.9863 C 9 6 16 1 24 1 H 400'
+  if (props.variant === 'large') {
+    return 'M 536 53.6 H 2.7391 C 1.871 53.6 1.232 52.7872 1.34 51.9436 L 9.5042 18.7416 C 12.06 8.04 21.44 1.34 32.16 1.34 H 536'
+  }
+  if (props.variant === 'small') {
+    return 'M 322 32 H 2.25 C 1 32 1 30.75 1 30.75 L 6 11 C 7 5 13 1 19 1 H 322'
+  }
+  return 'M 400 40 H 2.0441 C 1.3963 40 0.9194 39.3934 1 38.7639 L 7.0927 13.9863 C 9 6 16 1 24 1 H 400'
+})
+
+const detailHeight = computed(() => {
+  if (props.variant === 'large') {
+    return 57
+  }
+  if (props.variant === 'small') {
+    return 33
+  }
+  return 41
 })
 
 </script>

@@ -15,7 +15,7 @@
                   tag="nuxt-link"
                   to="/"
                   theme="primary"
-                  :variant-large="true"
+                  variant="large"
                   class="modal-sign-up-cta">
                   Sign up
                 </ButtonCta>

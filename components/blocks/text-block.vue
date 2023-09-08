@@ -25,13 +25,14 @@
     </div>
 
     <div v-if="block.ctas" class="button-row">
-      <template v-if="block.ctas && Array.isArray(block.ctas)">
+      <template v-if="ctaData">
         <ButtonCta
           v-for="(cta, index) in ctaData"
           :key="index"
           :tag="cta.tag"
           :to="cta.to"
           :theme="cta.theme"
+          :variant="ctaVariant || cta.variant"
           :disabled="cta.disabled">
           {{ cta.text }}
           <span
@@ -71,11 +72,43 @@ export default {
     }
   },
 
+  data () {
+    return {
+      resize: false,
+      ctaVariant: false
+    }
+  },
+
   computed: {
     ctaData () {
-      return this.block.ctas.map((object) => {
-        return { ...object, disabled: object.to === undefined || object.to === '' }
-      })
+      if (this.block.ctas && Array.isArray(this.block.ctas)) {
+        return this.block.ctas.map((object) => {
+          return { ...object, disabled: object.to === undefined || object.to === '' }
+        })
+      }
+      return false
+    }
+  },
+
+  mounted () {
+    if (this.ctaData && this.ctaData.some(cta => cta.theme === 'primary' && cta.variant !== 'large')) {
+      this.resizeCta()
+      this.resize = () => { this.resizeCta() }
+      window.addEventListener('resize', this.resize )
+    }
+  },
+
+  beforeUnmount () {
+    if (this.resize) { window.removeEventListener('resize', this.resize) }
+  },
+
+  methods: {
+    resizeCta () {
+      if (window.matchMedia('(max-width: 40rem)').matches) {
+        if (!this.ctaVariant) { this.ctaVariant = 'small' }
+      } else if (this.ctaVariant) {
+        this.ctaVariant = false
+      }
     }
   }
 }
@@ -148,6 +181,28 @@ export default {
       -webkit-text-fill-color: $codGray;
       -moz-text-fill-color: $codGray;
       text-fill-color: $codGray;
+    }
+  }
+}
+
+.button-row {
+  :deep(.button) {
+    &.theme__primary {
+      @include mini {
+        height: toRem(33);
+      }
+      .inner-content {
+        @include mini {
+          height: toRem(33);
+          padding: toRem(8) toRem(28) toRem(8) toRem(10);
+        }
+      }
+      .detail-wrapper {
+        @include mini {
+          left: toRem(-19);
+          width: calc(100% + toRem(19) - toRem(2));
+        }
+      }
     }
   }
 }
