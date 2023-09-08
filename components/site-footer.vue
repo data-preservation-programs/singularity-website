@@ -108,16 +108,15 @@ const scrollToTop = async () => {
     background-repeat: no-repeat;
     background-image: url('/images/ring-of-cross-sections-on-angle.png');
     @include gridMaxMQ {
-      height: calc(100% + 10rem);
+      height: calc(100% + 3rem);
       width: 100%;
-      top: -10rem;
+      top: -3rem;
       left: calc(100% - 52rem);
-      background-position: -227px -33px;
+      background-position: center -106px;
     }
     @include small {
       left: 0;
       width: 100%;
-      background-position: center top;
     }
   }
 }

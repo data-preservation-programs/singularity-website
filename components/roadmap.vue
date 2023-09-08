@@ -178,7 +178,7 @@ const cta = computed(() => {
 .milestone {
   display: flex;
   justify-content: space-between;
-  @include tiny {
+  @include customMaxMQ('30rem') {
     flex-direction: column;
   }
   &:not(:last-child) {
@@ -204,6 +204,7 @@ const cta = computed(() => {
     }
     @include tiny {
       margin-bottom: 0.25rem;
+      width: unset;
     }
   }
   .content {
