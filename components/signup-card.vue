@@ -92,35 +92,6 @@
           <span v-if="fieldError.country" class="error message" v-html="errorMessage" />
         </div>
 
-        <div class="field-wrapper">
-          <h3 class="dropdown-label" v-html="familiarityField.label" />
-          <ZeroDropdown :class="['familiarity dropdown-field form-field', { error: fieldError.filecoinFamiliarity }] " :display-selected="true">
-            <template #toggle-button="{ togglePanel, selected }">
-              <div class="toggle-button" @click="togglePanel">
-                <p v-if="selected" class="toggle-button-label">
-                  {{ selected }}
-                </p>
-                <p v-else class="toggle-button-label">
-                  Select an option
-                </p>
-              </div>
-            </template>
-            <template #dropdown-panel="{ setSelected, closePanel }">
-              <div class="dropdown-panel">
-                <div
-                  v-for="(option, index) in familiarityField.options"
-                  :key="index"
-                  class="options">
-                  <p
-                    class="option-label"
-                    @click="selectOption(setSelected, closePanel, option, 'familiarity')"
-                    v-html="option" />
-                </div>
-              </div>
-            </template>
-          </ZeroDropdown>
-          <span v-if="fieldError.filecoinFamiliarity" class="error message" v-html="errorMessage" />
-        </div>
         <ZeroButton
           class="submit-button"
           @clicked="submitForm">
@@ -151,16 +122,13 @@ const fieldError = ref({
   lastName: false,
   email: false,
   organization: false,
-  country: false,
-  filecoinFamiliarity: false
+  country: false
 })
 const firstName = ref(false)
 const lastName = ref(false)
 const email = ref(false)
 const organization = ref(false)
 const country = ref(false)
-const filecoinFamiliarity = ref(false)
-
 
 // ==================================================================== Computed
 const title = computed(() => { return props.signupCard.title })
@@ -183,8 +151,6 @@ const emailField = computed(() => { return props.signupCard.signup_form.email })
 const orgField = computed(() => { return props.signupCard.signup_form.org })
 
 const countryField = computed(() => { return props.signupCard.signup_form.country })
-
-const familiarityField = computed(() => { return props.signupCard.signup_form.filecoin_familiarity })
 
 // ===================================================================== Methdos
 /**
@@ -217,9 +183,6 @@ const selectOption = (setSelected, closePanel, option, field) => {
       case 'country':
         country.value = option
         break
-      case 'familiarity':
-        filecoinFamiliarity.value = option
-        break
     }
    }
 }
@@ -227,8 +190,7 @@ const selectOption = (setSelected, closePanel, option, field) => {
  * @method submitForm
  */
 const submitForm = async () => {
-  console.log('submitForm')
-  if (firstName.value && lastName.value && email.value && organization.value && country.value && filecoinFamiliarity.value) {
+  if (firstName.value && lastName.value && email.value && organization.value && country.value) {
     const body = {
         records: [
           {
@@ -237,8 +199,7 @@ const submitForm = async () => {
               firstName: firstName.value,
               lastName: lastName.value,
               organization: organization.value,
-              country: country.value.label,
-              filecoinFamiliarity: filecoinFamiliarity.value
+              country: country.value.label
             }
           }
         ]
@@ -259,7 +220,6 @@ const submitForm = async () => {
       if(!organization.value) { fieldError.value.organization = true }
       if(!organization.value) { fieldError.value.organization = true }
       if(!country.value) { fieldError.value.country = true }
-      if(!filecoinFamiliarity.value) { fieldError.value.filecoinFamiliarity = true }
   }
 }
 </script>
