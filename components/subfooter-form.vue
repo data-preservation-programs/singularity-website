@@ -85,6 +85,7 @@ const updateValue = (val) => {
  * @method submitForm
  */
 const submitForm = async () => {
+  if (formSubmitted.value) { return}
   if (field.value) {
     const body = {
         records: [
