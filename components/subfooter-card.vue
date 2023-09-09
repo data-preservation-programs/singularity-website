@@ -55,19 +55,13 @@
               v-html="description">
             </div>
 
-            <div v-if="fullwidth && cta" class="cta">
-              <!-- =================== EMAIL SIGN UP FORM ================== -->
-              <!-- <ButtonCta
-                :to="cta.to"
-                :tag="cta.tag"
-                :target="cta.target"
-                theme="secondary">
-                {{ cta.text }}
-              </ButtonCta> -->
-            </div>
+            <SubfooterForm
+              v-if="fullwidth && form"
+              :form="form" />
 
             <div
-              v-if="fullwidth"
+              v-if="
+                fullwidth"
               class="subheading"
               v-html="subheading">
             </div>
@@ -118,6 +112,10 @@ const description = computed(() => {
 
 const code = computed(() => {
   return props.block.code
+})
+
+const form = computed(() => {
+  return props.block.subfooter_form
 })
 
 const cardStyles = computed(() => {
