@@ -507,7 +507,11 @@
         "borderGradientAngle": "45deg",
         "title": "<img src='/images/topography-graphic-with-border.svg' />Keep up<br>with Singularity",
         "subheading": "Your feedback can shape our next big release. <br>Join us on <span class='github-link'><a href='https://github.com/data-preservation-programs/singularity' target='_blank'>Github</a></span> and <span class='slack-link'><a href='https://filecoinproject.slack.com/archives/C05JABREATH' target='_blank' class='slack-link'>Slack</a></span>",
-        "description": "<span class='weight-500'>Sign up to keep up.</span> We're passionate about keeping you in the loop with our latest features and updates, but we're even more committed to respecting your inbox."
+        "description": "<span class='weight-500'>Sign up to keep up.</span> We're passionate about keeping you in the loop with our latest features and updates, but we're even more committed to respecting your inbox.",
+        "subfooter_form": {
+          "placeholder": "Enter your email",
+          "submit_button_text": "Keep up"
+        }
       }
     }
   ]
