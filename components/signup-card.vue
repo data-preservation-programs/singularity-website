@@ -279,6 +279,7 @@ const submitForm = async () => {
   border: var(--brand-color) 1px solid;
   border-radius: toRem(5);
   padding: toRem(8) toRem(20);
+  @include transitionDefault;
   &:hover,
   &:focus {
     border-color: var(--secondary-text-color);
@@ -352,12 +353,13 @@ const submitForm = async () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @include transitionDefault;
   &.open {
     border-color: var(--secondary-text-color);
     border-bottom-color: transparent;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    padding-bottom: toRem(4);
+    // padding-bottom: toRem(4);
   }
 }
 .toggle-button-label {
@@ -371,20 +373,28 @@ const submitForm = async () => {
 :deep(.panel-container) {
   width: 100%;
   z-index: 1;
-  top: calc(100% - 0.1rem);
+  top: calc(100% - 8px);
   padding-top: 0;
+  height: 0;
+  @include transitionDefault;
   border: var(--secondary-text-color) 1px solid;
-  height: toRem(93);
   overflow-y: scroll;
   border-top-color: transparent;
   border-bottom-left-radius: toRem(5);
   border-bottom-right-radius: toRem(5);
+  &:not(.open) {
+    transform: (translate(-50%, 0));
+  }
+  &.open {
+    height: toRem(93);
+  }
 }
 .option {
   @include formFieldPlaceholder;
   cursor: pointer;
   padding: 0 toRem(20) toRem(4);
   background-color: #121212;
+  @include transitionDefault;
   &:hover {
     background-color: var(--secondary-text-color);
     color: var(--background-color);
