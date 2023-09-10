@@ -99,6 +99,7 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     '@nuxt/content',
     '@/modules/zero-components/index.js',
+    '@nuxtjs/plausible', // https://github.com/nuxt-modules/plausible
     'nuxt-simple-robots', // https://github.com/harlan-zw/nuxt-simple-robots
     'nuxt-simple-sitemap' // https://github.com/harlan-zw/nuxt-simple-sitemap
   ],
@@ -108,6 +109,12 @@ export default defineNuxtConfig({
     autoImports: [
       'defineStore' // import { defineStore } from 'pinia'
     ]
+  },
+  // ////////////////////////////////////////////////// [Module] @nuxt/plausible
+  // ---------------------------------------------------------------------------
+  plausible: {
+    domain: 'singularity.storage',
+    autoOutboundTracking: true
   },
   // //////////////////////////////////////////////////// [Module] @nuxt/content
   // ---------------------------------------------------------------------------
