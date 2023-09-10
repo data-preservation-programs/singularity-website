@@ -85,6 +85,7 @@ const updateValue = (val) => {
  * @method submitForm
  */
 const submitForm = async () => {
+  if (formSubmitted.value) { return}
   if (field.value) {
     const body = {
         records: [
@@ -115,10 +116,13 @@ const submitForm = async () => {
 // ///////////////////////////////////////////////////////////////////// General
 .subfooter-form {
   display: flex;
-  justify-content: space-between;
   white-space: nowrap;
+  margin-left: 1.5625rem;
   &:focus-visible {
     @include focusBoxShadow;
+  }
+  @include mini {
+    margin-bottom: toRem(30);
   }
 }
 
@@ -130,9 +134,8 @@ const submitForm = async () => {
   width: calc(100% + toRem(25) - toRem(2));
   height: 100%;
   overflow: hidden;
-  &.large {
-    left: toRem(-31);
-    width: calc(100% + toRem(31) - toRem(2));
+  @include mini {
+    width: calc(100% - toRem(2));
   }
 }
 
@@ -151,6 +154,7 @@ const submitForm = async () => {
   display: block;
   height: toRem(41);
   width: fit-content;
+  margin-right: clamp(toRem(11), 3vw, toRem(46));
   filter: drop-shadow(0px 2px 14px rgba(255, 197, 130, 0.32));
   .stroke-path {
     stroke: $sageGreen;
@@ -169,6 +173,9 @@ const submitForm = async () => {
     border-top-right-radius: toRem(5);
     border-bottom-right-radius: toRem(5);
     @include transitionDefault;
+    @include mini {
+      width: calc(100% - 45px);
+    }
   }
   &:hover {
       .stroke-path {
@@ -200,9 +207,16 @@ const submitForm = async () => {
   &::placeholder {
     @include formFieldPlaceholder;
   }
+  @include mini {
+    width: calc(100% - 1.5625rem);
+  }
 }
 .email {
+  width: calc(100% - 0.0625rem);
   padding: toRem(10) toRem(17) toRem(10) toRem(3);
+  @include small {
+    padding-right: toRem(3);
+  }
 }
 
 // /////////////////////////////////////////////////////////////// Submit Button
@@ -216,6 +230,13 @@ const submitForm = async () => {
       background-image: url('/images/checkmark.svg');
       background-position: center;
       background-repeat: no-repeat;
+    }
+  }
+  &:hover {
+    :deep(.button-content) {
+      &::after {
+        transform: translateX(0);
+      }
     }
   }
 }
