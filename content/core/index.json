@@ -173,6 +173,7 @@
                   {
                     "text": "View all 30+ compatible storage services",
                     "tag": "a",
+                    "target": "_blank",
                     "to": "https://data-programs.gitbook.io/singularity/installation/install-from-source",
                     "theme": "secondary"
                   }
@@ -414,6 +415,7 @@
                 "cta": {
                   "text": "View roadmap in Github",
                   "tag": "a",
+                  "target": "_blank",
                   "theme": "secondary",
                   "to": "https://github.com/data-preservation-programs/singularity/milestones"
                 },

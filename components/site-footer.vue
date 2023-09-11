@@ -19,10 +19,16 @@
               v-html="authors.text">
             </div>
             <div class="logos">
-              <ZeroButton to="https://dataprograms.org/" tag="a">
+              <ZeroButton
+                to="https://dataprograms.org/"
+                tag="a"
+                target="_blank">
                 <DataProgramsLogo class="logo" />
               </ZeroButton>
-              <ZeroButton to="https://protocol.ai/" tag="a">
+              <ZeroButton
+                to="https://protocol.ai/"
+                tag="a"
+                target="_blank">
                 <ProtocolLabsLogo class="logo" />
               </ZeroButton>
             </div>
@@ -46,6 +52,7 @@
               :key="link.text"
               :to="link.to"
               :tag="link.tag"
+              :target="link.target"
               class="footer-button">
               {{ link.text }}
             </ZeroButton>

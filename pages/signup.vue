@@ -8,7 +8,8 @@
             class="back-home-button"
             :theme="content.back_home_cta.theme"
             :tag="content.back_home_cta.tag"
-            :to="content.back_home_cta.to">
+            :to="content.back_home_cta.to"
+            :target="content.back_home_cta.target">
             <span class="button-label"> {{ content.back_home_cta.text }} </span>
           </ButtonCta>
 

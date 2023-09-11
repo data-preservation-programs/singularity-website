@@ -9,6 +9,7 @@
         <ZeroButton
           :tag="link.tag"
           :to="link.to"
+          :target="link.target"
           class="nav-link"
           @clicked="scrollToSection(link.to)">
           {{ link.text }}

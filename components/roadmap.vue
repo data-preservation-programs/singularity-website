@@ -63,6 +63,7 @@
         :tag="cta.tag"
         :to="cta.to"
         :theme="cta.theme"
+        :target="cta.target"
         class="roadmap-cta">
         {{ cta.text }}
       </ButtonCta>

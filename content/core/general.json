@@ -14,6 +14,7 @@
       {
         "text": "Docs",
         "tag": "a",
+        "target": "_blank",
         "to": "https://data-programs.gitbook.io/singularity"
       },
       {
@@ -65,16 +66,19 @@
         {
           "text": "Terms of Use",
           "tag": "a",
+          "target": "_blank",
           "to": "https://protocol.ai/legal/#terms-of-service"
         },
         {
           "text": "Privacy Policy",
           "tag": "a",
+          "target": "_blank",
           "to": "https://protocol.ai/legal/#privacy-policy"
         },
         {
           "text": "DMCA Policy",
           "tag": "a",
+          "target": "_blank",
           "to": "https://ipfs.tech/legal"
         }
       ]
