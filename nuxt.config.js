@@ -4,8 +4,8 @@ const env = process.env.SERVER_ENV
 
 const baseUrls = {
   development: 'https://localhost',
-  stable: '',
-  production: ''
+  stable: 'https://singularity-website.on.fleek.co/',
+  production: 'https://singularity.storage/'
 }
 
 const frontendPort = 10050

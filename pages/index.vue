@@ -10,15 +10,23 @@
 import BlockBuilder from '@/components/blocks/block-builder'
 
 // ======================================================================== Data
+const generalStore = useGeneralStore()
 const route = useRoute()
+const { $GetSeo, $CompileSeo } = useNuxtApp()
 const { data } = await useAsyncData('core', async () => {
   return queryContent('core').find()
 })
 
+// ==================================================================== Watchers
+watch(data, async (val) => {
+  await generalStore.getBaseData('general')
+  await generalStore.getBaseData({ key: 'index', data: val.find((item) => item._file === 'core/index.json') })
+  useHead($CompileSeo($GetSeo('general', 'index')))
+}, { immediate: true })
+
 // ==================================================================== Computed
 const sections = computed(() => {
-  const index = data._rawValue.find((item) => item._file === 'core/index.json')
-  return index.page_content
+  return generalStore.siteContent?.index?.page_content
 })
 
 // ==================================================================== On Mount
@@ -32,6 +40,10 @@ onMounted(() => {
       }
     }
   }, 1)
+})
+
+onBeforeUnmount(() => {
+  generalStore.clearStore()
 })
 
 </script>

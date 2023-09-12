@@ -13,7 +13,7 @@
         </div>
 
         <div class="col-4_sm-5_mi-7" data-push-left="off-6_sm-2_mi-0">
-          <div class="authors">
+          <div v-if="authors" class="authors">
             <div
               class="text"
               v-html="authors.text">
@@ -40,7 +40,7 @@
         </div>
 
         <div class="col-4_md-5_sm-12">
-          <div class="legal">
+          <div v-if="legal" class="legal">
             <ZeroButton
               v-for="link in legal.links"
               :key="link.text"
@@ -59,16 +59,16 @@
 </template>
 
 <script setup>
-// ===================================================================== Imports
-import GeneralSiteData from '@/content/core/general.json'
+// ======================================================================== Data
+const generalStore = useGeneralStore()
 
 // ==================================================================== Computed
 const authors = computed(() => {
-  return GeneralSiteData.footer.authors
+  return generalStore.siteContent.general?.footer.authors
 })
 
 const legal = computed(() => {
-  return GeneralSiteData.footer.legal
+  return generalStore.siteContent.general?.footer.legal
 })
 
 const scrollToTop = async () => {
