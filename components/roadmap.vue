@@ -19,7 +19,7 @@
               <div class="heading">
 
                 <GithubIcon class="icon" />
-                
+
                 <span class="h2">
                   {{ item.heading }}
                 </span>
@@ -105,19 +105,18 @@ const cta = computed(() => {
 .heading-wrapper {
   display: flex;
   align-items: center;
+  margin-top: toRem(25);
 }
 
-.heading {
-  display: flex;
-  align-items: center;
-  margin-top: toRem(25);
+.heading-button {
   cursor: pointer;
   @include transitionDefault;
   @include mini {
     margin-top: 0;
     margin-bottom: 0.5rem;
   }
-  &:hover {
+  &:hover,
+  &:focus-visible {
     transform: scale(1.15);
     .icon {
       :deep(path) {
@@ -128,9 +127,12 @@ const cta = computed(() => {
       color: $chardonnay;
     }
   }
-  .heading-button {
-    display: block;
-    padding: 0.5rem;
+  &:focus-visible {
+    @include focusOutline;
+  }
+  .heading {
+    display: flex;
+    align-items: center;
   }
   .icon {
     width: toRem(41);
