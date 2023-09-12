@@ -63,6 +63,7 @@
             :tag="cta.tag"
             :target="cta.target"
             :theme="cta.theme"
+            class="nav-cta"
             :to="cta.to">
             <component
               :is="getCtaComponent(cta.icon)"
@@ -179,7 +180,7 @@ const handleNavClick = () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1.5rem 0 2rem;
   @include small {
     position: absolute;
     width: 100%;
@@ -222,9 +223,13 @@ const handleNavClick = () => {
   display: flex;
   width: fit-content;
   transition: 250ms ease;
+  padding-top: .5rem;
   &:hover,
   &:focus-visible {
     transform: scale(1.08);
+  }
+  &:focus-visible {
+    @include focusOutline;
   }
   @include medium {
     transform: translateX(-1rem);
@@ -287,7 +292,7 @@ const handleNavClick = () => {
   justify-content: space-between;
   height: 100%;
   align-items: center;
-  padding: 0 toRem(28);
+  padding: 0.5rem toRem(28) 0;
   @include gridMaxMQ {
     padding: 0;
     justify-content: flex-end;
@@ -412,6 +417,9 @@ const handleNavClick = () => {
 // ////////////////////////////////////////////////////////////////////// Mobile
 .mobile-nav {
   padding-top: toRem(96);
+  *:focus-visible {
+    background-color: salmon;
+  }
 }
 
 .mobile-background-panel {

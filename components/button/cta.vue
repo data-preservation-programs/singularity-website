@@ -23,7 +23,8 @@
             :d="path"
             stroke="#FFC582"
             stroke-width="2"
-            shape-rendering="crispEdges" />
+            shape-rendering="crispEdges"
+            class="stroke-path" />
         </svg>
       </div>
 
@@ -116,7 +117,7 @@ const detailHeight = computed(() => {
       }
     }
     &:focus-visible {
-      @include focusBoxShadow;
+      @include focusOutline;
     }
   }
   .disabled {
@@ -218,7 +219,8 @@ const detailHeight = computed(() => {
       @include transitionDefault;
     }
   }
-  &:hover {
+  &:hover,
+  &:focus-visible {
     .detail {
       .fill-path {
         opacity: 1;
@@ -270,13 +272,17 @@ const detailHeight = computed(() => {
       @include transitionDefault;
     }
   }
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background-color: rgba($sageGreen, 1);
     :deep(.icon) {
       path {
         fill: $codGray;
       }
     }
+  }
+  &:focus-visible {
+    @include focusBoxShadow;
   }
 }
 
