@@ -237,6 +237,7 @@ const detailHeight = computed(() => {
   display: block;
   width: fit-content;
   padding-right: toRem(25);
+  @include transitionDefault;
   .button-content {
     position: relative;
     @include b2;
@@ -247,11 +248,16 @@ const detailHeight = computed(() => {
       margin-left: 0.5rem;
       @include transitionDefault;
     }
-    &:hover {
-      &:after {
-        transform: translateX(0.5rem);
-      }
+  }
+  &:hover,
+  &:focus-visible {
+    .button-content::after {
+      transform: translateX(0.5rem);
     }
+  }
+  &:focus-visible {
+    padding-right: toRem(30);
+    @include focusOutline;
   }
 }
 
