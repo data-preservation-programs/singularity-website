@@ -1,5 +1,5 @@
 <template>
-  <main :class="[`page page-${tag}`]">
+  <main class="page page-signup">
     <div id="section-signup">
       <div class="grid-center-noGutter">
         <div class="col-8_sm-12">
@@ -22,11 +22,20 @@
 </template>
 
 <script setup>
+
 // ======================================================================== Data
-const tag = 'signup'
-const { data } = await useAsyncData( async () => {
+const generalStore = useGeneralStore()
+const { $GetSeo, $CompileSeo } = useNuxtApp()
+const { data } = await useAsyncData('core', async () => {
   return queryContent('core').find()
 })
+
+// ==================================================================== Watchers
+watch(data, async (val) => {
+  await generalStore.getBaseData('general')
+  await generalStore.getBaseData({ key: 'signup', data: val.find((item) => item._file === 'core/signup.json') })
+  useHead($CompileSeo($GetSeo('general', 'signup')))
+}, { immediate: true })
 
 // ==================================================================== Computed
 const content = computed(() => {
