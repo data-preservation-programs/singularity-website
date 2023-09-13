@@ -50,6 +50,7 @@ const registerStores = (submodule, stores) => {
   stores.forEach((store) => {
     addImports({
       name: store.name,
+      as: store.name,
       from: resolve(`${submodule}/stores/${store.file}`)
     })
   })

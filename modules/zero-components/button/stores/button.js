@@ -1,23 +1,26 @@
 // ///////////////////////////////////////////////////////////////////// Imports
 // -----------------------------------------------------------------------------
 import { defineStore } from 'pinia'
-import { ref } from '#imports'
+import { reactive } from '#imports'
 
 // /////////////////////////////////////////////////////////////////////// State
 // -----------------------------------------------------------------------------
-const buttons = ref({})
+const buttons = reactive([])
 
 // ///////////////////////////////////////////////////////////////////// Actions
 // -----------------------------------------------------------------------------
-// /////////////////////////////////////////////////////////////////// setButton
-const setButton = (payload) => {
-  buttons.value[payload.id] = payload
-  return payload
+// ///////////////////////////////////////////////////////////////////////// set
+const set = (payload) => {
+  const index = buttons.findIndex(button => button.id === payload.id)
+  index === -1 ? buttons.push(payload) : buttons.splice(index, 1, payload)
 }
 
-// //////////////////////////////////////////////////////////////// removeButton
-const removeButton = (id) => {
-  delete buttons.value[id]
+// ////////////////////////////////////////////////////////////////////// remove
+const remove = (id) => {
+  const index = buttons.findIndex(button => button.id === id)
+  if (id !== -1) {
+    buttons.splice(index, 1)
+  }
 }
 
 // ////////////////////////////////////////////////////////////////////// Export
@@ -26,6 +29,6 @@ export const useZeroButtonStore = defineStore('zero-button', () => ({
   // ----- state
   buttons,
   // ----- actions
-  setButton,
-  removeButton
+  set,
+  remove
 }))
