@@ -20,7 +20,9 @@
                   theme="primary"
                   variant="large"
                   class="modal-sign-up-cta">
-                  Sign up
+                  <template #button-content>
+                    Sign up
+                  </template>
                 </ButtonCta>
               </div>
             </Navbar>
@@ -64,13 +66,15 @@
             :target="cta.target"
             :theme="cta.theme"
             :to="cta.to">
-            <component
-              :is="getCtaComponent(cta.icon)"
-              v-if="cta.icon"
-              class="icon" />
-            <span v-if="cta.text">
-              {{ cta.text }}
-            </span>
+            <template #button-content>
+              <component
+                :is="getCtaComponent(cta.icon)"
+                v-if="cta.icon"
+                class="icon" />
+              <span v-if="cta.text">
+                {{ cta.text }}
+              </span>
+            </template>
           </ButtonCta>
 
           <div class="nav-toggle-wrapper after">

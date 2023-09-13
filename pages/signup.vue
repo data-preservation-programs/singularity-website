@@ -9,7 +9,9 @@
             :theme="content.back_home_cta.theme"
             :tag="content.back_home_cta.tag"
             :to="content.back_home_cta.to">
-            <span class="button-label"> {{ content.back_home_cta.text }} </span>
+            <template #button-content>
+              <span class="button-label"> {{ content.back_home_cta.text }} </span>
+            </template>
           </ButtonCta>
 
 

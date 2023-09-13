@@ -1,14 +1,12 @@
 <template>
   <svg
-    id="Layer_1"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px"
     y="0px"
     width="24px"
-    height="30px"
-    viewBox="0 0 24 30"
+    height="20px"
+    viewBox="0 0 24 20"
     style="enable-background:new 0 0 50 50;"
     xml:space="preserve">
     <rect
@@ -16,7 +14,8 @@
       y="0"
       width="4"
       height="20"
-      fill="#FFC582">
+      fill="#FFC582"
+      class="line">
       <animate
         attributeName="opacity"
         attributeType="XML"
@@ -30,7 +29,8 @@
       y="0"
       width="4"
       height="20"
-      fill="#FFC582">
+      fill="#FFC582"
+      class="line">
       <animate
         attributeName="opacity"
         attributeType="XML"
@@ -44,7 +44,8 @@
       y="0"
       width="4"
       height="20"
-      fill="#FFC582">
+      fill="#FFC582"
+      class="line">
       <animate
         attributeName="opacity"
         attributeType="XML"

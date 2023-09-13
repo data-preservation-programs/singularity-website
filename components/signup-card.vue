@@ -93,7 +93,9 @@
           :class="['submit-button', { submitted: formSubmitted }]"
           theme="primary"
           @clicked="submitForm">
-          <span class="button-label"> {{ submitButtonLabel }} </span>
+          <template #button-content>
+            <span class="button-label"> {{ submitButtonLabel }} </span>
+          </template>
         </ButtonCta>
 
       </div>

@@ -28,13 +28,15 @@
       </div>
     </div>
 
-    <ButtonCtaLoading
+    <ButtonCtaWithLoader
       :class="['submit-button', { submitted: formSubmitted }]"
       theme="secondary"
       loader="subfooter-card-newsletter-signup"
       @clicked="submitForm">
-      <span class="button-label"> {{ buttonText }} </span>
-    </ButtonCtaLoading>
+      <template #button-content>
+        <span class="button-label"> {{ buttonText }} </span>
+      </template>
+    </ButtonCtaWithLoader>
 
   </div>
 </template>
@@ -109,12 +111,15 @@ const submitForm = async () => {
       headers
     })
     if (res) {
-      // buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
+      buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
       formSubmitted.value = true
       return
     }
   }
-  if(!field.value) { fieldError.value = true }
+  if(!field.value) {
+    fieldError.value = true
+    buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
+  }
 }
 
 </script>
