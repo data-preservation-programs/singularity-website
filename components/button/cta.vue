@@ -22,7 +22,8 @@
             :d="path"
             stroke="#FFC582"
             stroke-width="2"
-            shape-rendering="crispEdges" />
+            shape-rendering="crispEdges"
+            class="stroke-path" />
         </svg>
       </div>
 

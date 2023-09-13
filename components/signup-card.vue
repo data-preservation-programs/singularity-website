@@ -89,14 +89,15 @@
           <span v-if="fieldError.country" class="error message" v-html="errorMessage" />
         </div>
 
-        <ButtonCta
+        <ButtonCtaWithLoader
           :class="['submit-button', { submitted: formSubmitted }]"
           theme="primary"
+          loader="signup-card-form"
           @clicked="submitForm">
           <template #button-content>
             <span class="button-label"> {{ submitButtonLabel }} </span>
           </template>
-        </ButtonCta>
+        </ButtonCtaWithLoader>
 
       </div>
 
@@ -106,6 +107,7 @@
 
 <script setup>
 const SINGULARITY_DEMO_SIGNUPS_TOKEN = import.meta.env.VITE_AIRTABLE_SINGULARITY_DEMO_TOKEN
+const buttonStore = useZeroButtonStore()
 // ======================================================================= Props
 const props = defineProps({
   signupCard: {
@@ -220,14 +222,21 @@ const submitForm = async () => {
       body,
       headers
     })
-  if (res) { formSubmitted.value = true; return }
-}
-  if(!firstName.value) { fieldError.value.firstName = true }
-  if(!lastName.value) { fieldError.value.lastName = true }
-  if(!email.value) { fieldError.value.email = true }
-  if(!organization.value) { fieldError.value.organization = true }
-  if(!organization.value) { fieldError.value.organization = true }
-  if(!country.value) { fieldError.value.country = true }
+  if (res) {
+    buttonStore.set({id: 'signup-card-form', loading: false})
+    formSubmitted.value = true
+    return
+    }
+  }
+  if(!firstName.value) { fieldError.value.firstName = true}
+  if(!lastName.value) { fieldError.value.lastName = true}
+  if(!email.value) { fieldError.value.email = true}
+  if(!organization.value) { fieldError.value.organization = true}
+  if(!country.value) { fieldError.value.country = true}
+
+  if (fieldError.value.firstName || fieldError.value.lastName || fieldError.value.email || fieldError.value.organization || fieldError.value.country) {
+    buttonStore.set({id: 'signup-card-form', loading: false})
+  }
 }
 </script>
 
@@ -302,7 +311,9 @@ const submitForm = async () => {
 
 .submit-button {
   align-self: flex-end;
-  &.submitted {
+  &.submitted,
+  &.submitted:hover {
+    cursor: default;
     filter: drop-shadow(0px 2px 14px rgba(203, 221, 187, 0.32));
     :deep(.fill-path) {
       opacity: 1;
