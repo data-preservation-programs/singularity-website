@@ -7,7 +7,8 @@
         <div class="col-2_sm-5">
           <button
             class="site-footer-logo"
-            @click="scrollToTop">
+            @click="scrollToTop"
+            @keyup.enter="scrollToTop">
             <SiteFooterLogo />
           </button>
         </div>
@@ -129,14 +130,21 @@ const scrollToTop = async () => {
 
 .site-footer-logo {
   display: block;
-  :deep(svg) {
-    @include transitionDefault;
-    &:hover {
+  padding: toRem(6) toRem(6) 0;
+  &:hover,
+  &:focus-visible {
+    :deep(svg) {
+      @include transitionDefault;
       transform: scale(1.08);
     }
   }
+  &:focus-visible {
+    @include focusOutline
+  }
   @include medium {
-    width: toRem(95);
+    :deep(svg) {
+      width: toRem(95);
+    }
   }
 }
 
