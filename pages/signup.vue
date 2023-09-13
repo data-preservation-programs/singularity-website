@@ -54,16 +54,23 @@ const content = computed(() => {
   padding-left: 1.5625rem;
   margin-bottom: toRem(17);
   :deep(.button-content) {
+    display: flex;
+    align-items: center;
     &::before {
       content: '↖';
       position: absolute;
-      left: 0.5rem;
+      top: 0;
+      left: -1rem;
       @include transitionDefault;
     }
     &::after {
       display: none;
     }
-    &:hover {
+  }
+  &:hover,
+  &:focus-visible {
+    padding-right: 0;
+    :deep(.button-content) {
       &:before {
         transform: translateX(-0.5rem);
       }
