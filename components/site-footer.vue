@@ -167,8 +167,12 @@ const scrollToTop = async () => {
     :deep(a) {
       display: inline-block;
       @include transitionDefault;
-      &:hover {
-        transform: scale(1.1);
+      &:hover,
+      &:focus-visible {
+        transform: scale(1.1) translateX(-10px);
+      }
+      &:focus-visible {
+        @include focusOutline;
       }
     }
     :deep(span) {
@@ -181,9 +185,9 @@ const scrollToTop = async () => {
   .logos {
     display: flex;
     :deep(.button) {
+      display: flex;
       @include transitionDefault;
       @include small {
-        display: flex;
         align-items: flex-end;
       }
       &:first-child {
@@ -204,8 +208,12 @@ const scrollToTop = async () => {
           width: 32%;
         }
       }
-      &:hover {
+      &:hover,
+      &:focus-visible {
         transform: scale(1.08);
+      }
+      &:focus-visible {
+        @include focusOutline;
       }
     }
   }
@@ -247,6 +255,9 @@ const scrollToTop = async () => {
   }
   &:hover {
     border-bottom: solid 1px rgba($sageGreen, 1);
+  }
+  &:focus-visible {
+    @include focusOutline;
   }
 }
 </style>
