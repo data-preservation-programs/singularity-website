@@ -177,7 +177,8 @@ const submitForm = async () => {
       width: calc(100% - 45px);
     }
   }
-  &:hover {
+  &:hover,
+  &:focus-within {
       .stroke-path {
         stroke: $chardonnay;
       }

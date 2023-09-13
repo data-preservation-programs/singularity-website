@@ -231,6 +231,9 @@ const detailHeight = computed(() => {
       color: $codGray;
     }
   }
+  &:focus-visible {
+    @include focusOutline;
+  }
 }
 
 .theme__secondary {
