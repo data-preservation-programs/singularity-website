@@ -14,9 +14,6 @@
 </template>
 
 <script setup>
-// ===================================================================== Imports
-
-
 // ======================================================================= Props
 const props = defineProps({
   tag: { // 'button', 'a' or 'nuxt-link'
@@ -51,13 +48,16 @@ const props = defineProps({
   }
 })
 
+// ======================================================================== Data
 const emit = defineEmits(['clicked'])
+const store = useZeroButtonStore()
+const id = props.loader
+const loading = ref(false)
 
 // ======================================================================= Setup
-const { $button } = useNuxtApp()
-const id = props.loader || useUuid().v4()
-const button = await $button(id).register()
-const loading = button && button.loading
+if (id) {
+  store.set({ id, loading: false })
+}
 
 // ==================================================================== Computed
 const component = computed(() => {
@@ -66,14 +66,27 @@ const component = computed(() => {
   return resolveComponent('NuxtLink')
 })
 
+// ======================================================================= Watch
+watch(store.buttons, (buttons) => {
+  const found = buttons.find(button => button.id === id)
+  if (found) {
+    loading.value = found.loading
+  }
+})
+
 // ===================================================================== Methods
 const clickHandler = (e) => {
   e.stopPropagation()
   if (!props.disabled) {
     if (typeof props.loader === 'string') {
-      $button(id).set({ loading: true })
+      store.set({ id, loading: true })
     }
     emit('clicked', e)
   }
 }
+
+// ======================================================================= Hooks
+onBeforeUnmount(() => {
+  store.remove(id)
+})
 </script>

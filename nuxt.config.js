@@ -8,7 +8,7 @@ const baseUrls = {
   production: ''
 }
 
-const frontendPort = 10050
+const frontendPort = 10070
 
 const seo = {
   siteName: 'Singularity',
