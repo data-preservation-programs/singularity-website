@@ -1,68 +1,34 @@
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    x="0px"
-    y="0px"
-    width="24px"
-    height="20px"
-    viewBox="0 0 24 20"
-    style="enable-background:new 0 0 50 50;"
-    xml:space="preserve">
-    <rect
-      x="0"
-      y="0"
-      width="4"
-      height="20"
-      fill="#FFC582"
-      class="line">
+    xml:space="preserve"
+    width="24"
+    height="20"
+    style="enable-background:new 0 0 50 50">
+    <path fill="#FFC582" d="M0 0h4v20H0z" class="line">
       <animate
         attributeName="opacity"
         attributeType="XML"
-        values="1; .2; 1"
         begin="0s"
         dur="0.6s"
-        repeatCount="indefinite" />
-    </rect>
-    <rect
-      x="7"
-      y="0"
-      width="4"
-      height="20"
-      fill="#FFC582"
-      class="line">
+        repeatCount="indefinite"
+        values="1; .2; 1" />
+    </path><path fill="#FFC582" d="M7 0h4v20H7z" class="line">
       <animate
         attributeName="opacity"
         attributeType="XML"
-        values="1; .2; 1"
         begin="0.2s"
         dur="0.6s"
-        repeatCount="indefinite" />
-    </rect>
-    <rect
-      x="14"
-      y="0"
-      width="4"
-      height="20"
-      fill="#FFC582"
-      class="line">
+        repeatCount="indefinite"
+        values="1; .2; 1" />
+    </path><path fill="#FFC582" d="M14 0h4v20h-4z" class="line">
       <animate
         attributeName="opacity"
         attributeType="XML"
-        values="1; .2; 1"
         begin="0.4s"
         dur="0.6s"
-        repeatCount="indefinite" />
-    </rect>
+        repeatCount="indefinite"
+        values="1; .2; 1" />
+    </path>
   </svg>
 </template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style>
