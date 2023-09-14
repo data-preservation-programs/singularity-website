@@ -2,7 +2,7 @@
   <ZeroButton
     v-slot="{ loading }"
     v-bind="props"
-    :class="['button-x', `theme__${props.theme}`, variant]">
+    :class="['button-x', `theme__${props.theme}`, variant, loading]">
     <div class="inner-content">
 
       <div v-if="theme === 'primary'" :class="['detail-wrapper', variant]">

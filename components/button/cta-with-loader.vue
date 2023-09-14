@@ -62,6 +62,18 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 // ///////////////////////////////////////////////////////////////////// General
+.with-loader.theme__primary.loading {
+  &:hover {
+    cursor: default;
+    :deep(.detail) {
+      .fill-path {
+        opacity: 0;
+        fill: none;
+      }
+    }
+  }
+}
+
 :deep(.inner-content)  {
   position: relative;
   display: flex;
