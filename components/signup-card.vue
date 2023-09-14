@@ -89,12 +89,15 @@
           <span v-if="fieldError.country" class="error message" v-html="errorMessage" />
         </div>
 
-        <ButtonCta
-          :class="['submit-button', { submitted: formSubmitted }]"
+        <ButtonCtaWithLoader
+          :class="['submit-button', { submitted: !loading && formSubmitted }]"
           theme="primary"
+          loader="signup-card-form"
           @clicked="submitForm">
-          <span class="button-label"> {{ submitButtonLabel }} </span>
-        </ButtonCta>
+          <template #button-content>
+            <span class="button-label"> {{ submitButtonLabel }} </span>
+          </template>
+        </ButtonCtaWithLoader>
 
       </div>
 
@@ -104,6 +107,7 @@
 
 <script setup>
 const SINGULARITY_DEMO_SIGNUPS_TOKEN = import.meta.env.VITE_AIRTABLE_SINGULARITY_DEMO_TOKEN
+const buttonStore = useZeroButtonStore()
 // ======================================================================= Props
 const props = defineProps({
   signupCard: {
@@ -195,6 +199,7 @@ const selectOption = (setSelected, closePanel, option, field) => {
  * @method submitForm
  */
 const submitForm = async () => {
+  if (formSubmitted.value) { return }
   if (firstName.value && lastName.value && email.value && organization.value && country.value) {
     const body = {
         records: [
@@ -218,14 +223,21 @@ const submitForm = async () => {
       body,
       headers
     })
-  if (res) { formSubmitted.value = true; return }
-}
-  if(!firstName.value) { fieldError.value.firstName = true }
-  if(!lastName.value) { fieldError.value.lastName = true }
-  if(!email.value) { fieldError.value.email = true }
-  if(!organization.value) { fieldError.value.organization = true }
-  if(!organization.value) { fieldError.value.organization = true }
-  if(!country.value) { fieldError.value.country = true }
+  if (res) {
+    buttonStore.set({id: 'signup-card-form', loading: false})
+    formSubmitted.value = true
+    return
+    }
+  }
+  if(!firstName.value) { fieldError.value.firstName = true}
+  if(!lastName.value) { fieldError.value.lastName = true}
+  if(!email.value) { fieldError.value.email = true}
+  if(!organization.value) { fieldError.value.organization = true}
+  if(!country.value) { fieldError.value.country = true}
+
+  if (fieldError.value.firstName || fieldError.value.lastName || fieldError.value.email || fieldError.value.organization || fieldError.value.country) {
+    buttonStore.set({id: 'signup-card-form', loading: false})
+  }
 }
 </script>
 
@@ -300,7 +312,9 @@ const submitForm = async () => {
 
 .submit-button {
   align-self: flex-end;
-  &.submitted {
+  &.submitted,
+  &.submitted:hover {
+    cursor: default;
     filter: drop-shadow(0px 2px 14px rgba(203, 221, 187, 0.32));
     :deep(.fill-path) {
       opacity: 1;

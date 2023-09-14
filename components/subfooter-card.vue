@@ -32,7 +32,9 @@
                   :tag="cta.tag"
                   :target="cta.target"
                   theme="secondary">
-                  {{ cta.text }}
+                  <template #button-content>
+                    {{ cta.text }}
+                  </template>
                 </ButtonCta>
               </div>
 

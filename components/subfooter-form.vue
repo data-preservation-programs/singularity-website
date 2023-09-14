@@ -28,18 +28,22 @@
       </div>
     </div>
 
-    <ButtonCta
+    <ButtonCtaWithLoader
       :class="['submit-button', { submitted: formSubmitted }]"
       theme="secondary"
+      loader="subfooter-card-newsletter-signup"
       @clicked="submitForm">
-      <span class="button-label"> {{ buttonText }} </span>
-    </ButtonCta>
+      <template #button-content>
+        <span class="button-label"> {{ buttonText }} </span>
+      </template>
+    </ButtonCtaWithLoader>
 
   </div>
 </template>
 
 <script setup>
 const SINGULARITY_DEMO_SIGNUPS_TOKEN = import.meta.env.VITE_AIRTABLE_SINGULARITY_DEMO_TOKEN
+const buttonStore = useZeroButtonStore()
 // ======================================================================= Props
 const props = defineProps({
   form: {
@@ -85,7 +89,8 @@ const updateValue = (val) => {
  * @method submitForm
  */
 const submitForm = async () => {
-  if (formSubmitted.value) { return}
+  // if (formSubmitted.value) {  $button('triple-line-loader').set({ loading: false }); return }
+  if (formSubmitted.value) { return }
   if (field.value) {
     const body = {
         records: [
@@ -105,9 +110,16 @@ const submitForm = async () => {
       body,
       headers
     })
-  if (res) { formSubmitted.value = true; return }
+    if (res) {
+      buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
+      formSubmitted.value = true
+      return
+    }
   }
-  if(!field.value) { fieldError.value = true }
+  if(!field.value) {
+    fieldError.value = true
+    buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
+  }
 }
 
 </script>

@@ -35,12 +35,14 @@
           :target="cta.target"
           :variant="ctaVariant || cta.variant"
           :disabled="cta.disabled">
-          {{ cta.text }}
-          <span
-            v-if="cta.caption"
-            class="caption">
-            {{ cta.caption }}
-          </span>
+          <template #button-content>
+            {{ cta.text }}
+            <span
+              v-if="cta.caption"
+              class="caption">
+              {{ cta.caption }}
+            </span>
+          </template>
         </ButtonCta>
       </template>
     </div>

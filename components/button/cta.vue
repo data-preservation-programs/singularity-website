@@ -3,11 +3,9 @@
     v-slot="{ loading }"
     v-bind="props"
     :class="['button-x', `theme__${props.theme}`, variant]">
-    <div class="inner-content">
-
-      <div :class="['detail-wrapper', variant]">
+    <div :class="['inner-content', { loading: loading }]">
+      <div v-if="theme === 'primary'" :class="['detail-wrapper', variant]">
         <svg
-          v-if="theme === 'primary'"
           width="400"
           :height="detailHeight"
           :viewBox="`0 0 400 ${detailHeight}`"
@@ -23,13 +21,16 @@
             :d="path"
             stroke="#FFC582"
             stroke-width="2"
-            shape-rendering="crispEdges" />
+            shape-rendering="crispEdges"
+            class="stroke-path" />
         </svg>
       </div>
 
       <div :class="['button-content', { hide: loading }]">
-        <slot />
+        <slot name="button-content" />
       </div>
+
+      <slot name="loader" :loading="loading" />
 
     </div>
   </ZeroButton>

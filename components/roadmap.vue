@@ -19,7 +19,7 @@
               <div class="heading">
 
                 <GithubIcon class="icon" />
-                
+
                 <span class="h2">
                   {{ item.heading }}
                 </span>
@@ -64,7 +64,9 @@
         :to="cta.to"
         :theme="cta.theme"
         class="roadmap-cta">
-        {{ cta.text }}
+        <template #button-content>
+          {{ cta.text }}
+        </template>
       </ButtonCta>
     </div>
 
