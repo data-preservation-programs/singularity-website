@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.1.0...v1.2.0) (2023-09-14)
+
+
+### Features
+
+* button background hover styles while loading ([7fee6b9](https://github.com/data-preservation-programs/singularity-website/commit/7fee6b9357700bfc46e355bec715dfcedbf7f745))
+* remove layout div from tab order ([d6a6a4d](https://github.com/data-preservation-programs/singularity-website/commit/d6a6a4d26f6e32f0bcd12db55e71493f7a0ad63f))
+* signup form keyboard navigation + styling tweaks ([fbd740e](https://github.com/data-preservation-programs/singularity-website/commit/fbd740e3fcc94ae4838178ac5568d612ccc38c5b))
+
+
+### Bug Fixes
+
+* footer background image file path ([eee3d4f](https://github.com/data-preservation-programs/singularity-website/commit/eee3d4f33d2636faa8b13bdd798a2d02257e1a26))
+* footer background image file path ([c204bb4](https://github.com/data-preservation-programs/singularity-website/commit/c204bb4346e51344a6bf96c321bc01a02f0e7eb4))
+
 ## [1.1.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.0.0...v1.1.0) (2023-09-13)
 
 
