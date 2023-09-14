@@ -205,7 +205,7 @@ onBeforeUnmount(() => {
     width: calc(100% + 270px);
     height: 130rem;
     transform: translateX(-270px);
-    background-image: url('/images/warped-torus-made-of-segments.jpg');
+    background-image: url('/images/warped-torus-made-of-segments.png');
     background-size: 2000px;
     background-position: center top;
     background-repeat: no-repeat;
