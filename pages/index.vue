@@ -100,7 +100,7 @@ onMounted(() => {
     left: 0;
     width: 100%;
     height: calc(100% + toRem(880));
-    background-image: url('/images/ring-of-circular-cross-sections.png');
+    background-image: url('/images/ring-of-circular-cross-sections.jpg');
     background-size: 2040px;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -201,7 +201,7 @@ onMounted(() => {
     width: calc(100% + 270px);
     height: 130rem;
     transform: translateX(-270px);
-    background-image: url('/images/warped-torus-made-of-segments.png');
+    background-image: url('/images/warped-torus-made-of-segments.jpg');
     background-size: 2000px;
     background-position: center top;
     background-repeat: no-repeat;
@@ -391,7 +391,7 @@ onMounted(() => {
     left: calc(50% - $halfGridWidth - 3rem);
     width: toRem(1400);
     height: calc(toRem(866) + toRem(68) + toRem(234)); // section height + top displacement + footer height
-    background-image: url('/images/ring-of-cross-sections-from-above.png');
+    background-image: url('/images/ring-of-cross-sections-from-above.jpg');
     background-size: 1300px;
     background-position: center top;
     background-repeat: no-repeat;
