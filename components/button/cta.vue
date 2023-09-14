@@ -2,9 +2,8 @@
   <ZeroButton
     v-slot="{ loading }"
     v-bind="props"
-    :class="['button-x', `theme__${props.theme}`, variant, loading]">
-    <div class="inner-content">
-
+    :class="['button-x', `theme__${props.theme}`, variant]">
+    <div :class="['inner-content', { loading: loading }]">
       <div v-if="theme === 'primary'" :class="['detail-wrapper', variant]">
         <svg
           width="400"

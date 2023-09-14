@@ -90,7 +90,7 @@
         </div>
 
         <ButtonCtaWithLoader
-          :class="['submit-button', { submitted: formSubmitted }]"
+          :class="['submit-button', { submitted: !loading && formSubmitted }]"
           theme="primary"
           loader="signup-card-form"
           @clicked="submitForm">
@@ -199,6 +199,7 @@ const selectOption = (setSelected, closePanel, option, field) => {
  * @method submitForm
  */
 const submitForm = async () => {
+  if (formSubmitted.value) { return }
   if (firstName.value && lastName.value && email.value && organization.value && country.value) {
     const body = {
         records: [
