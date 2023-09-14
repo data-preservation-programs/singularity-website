@@ -11,7 +11,7 @@
       :selected="selected">
     </slot>
 
-    <div :class="['panel-container', { open: panelOpen }]">
+    <div :class="['panel-container', { open: panelOpen }]" tabindex="-1">
 
       <div class="panel">
         <slot

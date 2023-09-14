@@ -65,7 +65,11 @@
         <div class="field-wrapper">
           <ZeroDropdown class="country dropdown-field" :display-selected="true">
             <template #toggle-button="{ togglePanel, panelOpen, selected }">
-              <div :class="['toggle-button form-field', { error: fieldError.country }, { open: panelOpen } ]" @click="togglePanel">
+              <div
+                :class="['toggle-button form-field', { error: fieldError.country }, { open: panelOpen } ]"
+                :tabindex="0"
+                @click="togglePanel"
+                @keyup.enter="togglePanel">
                 <p v-if="selected" class="toggle-button-label selected">
                   {{ selected.label }}
                 </p>
@@ -353,13 +357,13 @@ const submitForm = async () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
   @include transitionDefault;
   &.open {
     border-color: var(--secondary-text-color);
     border-bottom-color: transparent;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    // padding-bottom: toRem(4);
   }
 }
 .toggle-button-label {
