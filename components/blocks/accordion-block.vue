@@ -5,7 +5,9 @@
         v-for="(section, index) in sections"
         :key="`accordion-section-${index}`"
         :class="['accordion-section', { open: active[index] } ]"
-        @click="toggleSection(index)">
+        :tabindex="0"
+        @click="toggleSection(index)"
+        @keyup.enter="toggleSection(index)">
 
         <div class="border"></div>
 
@@ -177,13 +179,17 @@ const getIconComponent = (icon) => {
     -webkit-mask-composite: xor;
             mask-composite: exclude;
   }
-  &:hover {
+  &:hover,
+  &:focus-visible {
     &:after {
       opacity: 1;
     }
     :deep(.plus-minus-icon) {
       filter: drop-shadow(0px 0px 3px rgba(#FFC582, 0.6));
     }
+  }
+  &:focus-visible {
+    @include focusOutline;
   }
   &.open {
     .accordion-content {

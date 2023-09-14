@@ -92,8 +92,14 @@ const scrollToSection = async (el) => {
 }
 
 .nav-item {
+  position: relative;
   display: flex;
   justify-content: flex-end;
+  padding-top: 0.5rem;
+  @include transitionDefault;
+  &:focus-within {
+    @include focusOutline;
+  }
 }
 
 .nav-link {
@@ -122,7 +128,8 @@ const scrollToSection = async (el) => {
     opacity: 0;
     transition: inherit;
   }
-  &:hover {
+  &:hover,
+  &:focus-visible {
     transform: translateY(-1.125rem);
     &:before {
       height: toRem(30);

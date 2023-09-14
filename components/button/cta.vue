@@ -117,7 +117,7 @@ const detailHeight = computed(() => {
       }
     }
     &:focus-visible {
-      @include focusBoxShadow;
+      @include focusOutline;
     }
   }
   .disabled {
@@ -219,7 +219,8 @@ const detailHeight = computed(() => {
       @include transitionDefault;
     }
   }
-  &:hover {
+  &:hover,
+  &:focus-visible {
     .detail {
       .fill-path {
         opacity: 1;
@@ -230,12 +231,16 @@ const detailHeight = computed(() => {
       color: $codGray;
     }
   }
+  &:focus-visible {
+    @include focusOutline;
+  }
 }
 
 .theme__secondary {
   display: block;
   width: fit-content;
   padding-right: toRem(25);
+  @include transitionDefault;
   .button-content {
     position: relative;
     @include b2;
@@ -246,11 +251,16 @@ const detailHeight = computed(() => {
       margin-left: 0.5rem;
       @include transitionDefault;
     }
-    &:hover {
-      &:after {
-        transform: translateX(0.5rem);
-      }
+  }
+  &:hover,
+  &:focus-visible {
+    .button-content::after {
+      transform: translateX(0.5rem);
     }
+  }
+  &:focus-visible {
+    padding-right: toRem(30);
+    @include focusOutline;
   }
 }
 
@@ -271,13 +281,17 @@ const detailHeight = computed(() => {
       @include transitionDefault;
     }
   }
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background-color: rgba($sageGreen, 1);
     :deep(.icon) {
       path {
         fill: $codGray;
       }
     }
+  }
+  &:focus-visible {
+    @include focusBoxShadow;
   }
 }
 

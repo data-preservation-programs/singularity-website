@@ -1,18 +1,32 @@
 <template>
   <footer id="site-footer">
 
-    <div class="panel-top">
+    <div class="content">
       <div class="grid-bottom-noBottom-noGutter">
 
         <div class="col-2_sm-5">
           <button
             class="site-footer-logo"
-            @click="scrollToTop">
+            @click="scrollToTop"
+            @keyup.enter="scrollToTop">
             <SiteFooterLogo />
           </button>
         </div>
 
-        <div class="col-4_sm-5_mi-7" data-push-left="off-6_sm-2_mi-0">
+        <div class="col-4_sm-12 legal-wrapper" data-push-left="off-1_md-0">
+          <div v-if="legal" class="legal">
+            <ZeroButton
+              v-for="(link) in legal.links"
+              :key="link.text"
+              :to="link.to"
+              :tag="link.tag"
+              class="footer-button">
+              {{ link.text }}
+            </ZeroButton>
+          </div>
+        </div>
+
+        <div class="col-4_sm-5_mi-7" data-push-left="off-1_md-2_mi-0">
           <div v-if="authors" class="authors">
             <div
               class="text"
@@ -26,29 +40,6 @@
                 <ProtocolLabsLogo class="logo" />
               </ZeroButton>
             </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="panel-bottom">
-      <div class="grid-bottom-noBottom-noGutter">
-
-        <div class="col-3_md-2_sm-hidden">
-          <!-- dummy div -->
-        </div>
-
-        <div class="col-4_md-5_sm-12">
-          <div v-if="legal" class="legal">
-            <ZeroButton
-              v-for="link in legal.links"
-              :key="link.text"
-              :to="link.to"
-              :tag="link.tag"
-              class="footer-button">
-              {{ link.text }}
-            </ZeroButton>
           </div>
         </div>
 
@@ -121,22 +112,28 @@ const scrollToTop = async () => {
   }
 }
 
-.panel-top,
-.panel-bottom {
+.content {
   position: relative;
   width: 100%;
 }
 
 .site-footer-logo {
   display: block;
-  :deep(svg) {
-    @include transitionDefault;
-    &:hover {
+  padding: toRem(6) toRem(6) 0;
+  &:hover,
+  &:focus-visible {
+    :deep(svg) {
+      @include transitionDefault;
       transform: scale(1.08);
     }
   }
+  &:focus-visible {
+    @include focusOutline
+  }
   @include medium {
-    width: toRem(95);
+    :deep(svg) {
+      width: toRem(95);
+    }
   }
 }
 
@@ -159,8 +156,12 @@ const scrollToTop = async () => {
     :deep(a) {
       display: inline-block;
       @include transitionDefault;
-      &:hover {
-        transform: scale(1.1);
+      &:hover,
+      &:focus-visible {
+        transform: scale(1.1) translateX(-10px);
+      }
+      &:focus-visible {
+        @include focusOutline;
       }
     }
     :deep(span) {
@@ -173,9 +174,9 @@ const scrollToTop = async () => {
   .logos {
     display: flex;
     :deep(.button) {
+      display: flex;
       @include transitionDefault;
       @include small {
-        display: flex;
         align-items: flex-end;
       }
       &:first-child {
@@ -196,22 +197,28 @@ const scrollToTop = async () => {
           width: 32%;
         }
       }
-      &:hover {
+      &:hover,
+      &:focus-visible {
         transform: scale(1.08);
+      }
+      &:focus-visible {
+        @include focusOutline;
       }
     }
   }
 }
 
+.legal-wrapper {
+  @include small {
+    order: 1;
+  }
+}
 .legal {
-  transform: translateY(-100%);
   @include medium {
     display: flex;
     justify-content: space-between;
-    transform: translate(1rem, calc(-100% + 0.375rem));
   }
   @include small {
-    transform: none;
     margin-top: toRem(39);
   }
 }
@@ -239,6 +246,9 @@ const scrollToTop = async () => {
   }
   &:hover {
     border-bottom: solid 1px rgba($sageGreen, 1);
+  }
+  &:focus-visible {
+    @include focusOutline;
   }
 }
 </style>
