@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.0.0...v1.1.0) (2023-09-13)
+
+
+### Features
+
+* compile seo from content jsons and add to head tag ([ba20813](https://github.com/data-preservation-programs/singularity-website/commit/ba208137d87c6ccea7192448120c1c277147198f))
+* footer content retrieved from store ([15e7b77](https://github.com/data-preservation-programs/singularity-website/commit/15e7b77a76b1a3ab50e7875dba350610622eefbb))
+* update site urls ([c97c068](https://github.com/data-preservation-programs/singularity-website/commit/c97c0683c37e7b502a1d9007f56d0186439a24d5))
+
+
+### Bug Fixes
+
+* public images dir path ([44855c5](https://github.com/data-preservation-programs/singularity-website/commit/44855c5b3e95f2e5108677cef80f8c7f9d9cdc9a))
+* zero button component now handles loading state updates correctly ([66536d7](https://github.com/data-preservation-programs/singularity-website/commit/66536d7f11cafbbc89774f3c294cfbf45342eadf))
+
 ## 1.0.0 (2023-09-10)
 
 
