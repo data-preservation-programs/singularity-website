@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-const SINGULARITY_DEMO_SIGNUPS_TOKEN = import.meta.env.VITE_AIRTABLE_SINGULARITY_DEMO_TOKEN
+const config = useRuntimeConfig()
 const buttonStore = useZeroButtonStore()
 // ======================================================================= Props
 const props = defineProps({
@@ -93,18 +93,18 @@ const submitForm = async () => {
   if (formSubmitted.value) { return }
   if (field.value) {
     const body = {
-        records: [
-          {
-            fields: {
-              email: field.value
-            }
+      records: [
+        {
+          fields: {
+            email: field.value
           }
-        ]
-      }
-      const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${SINGULARITY_DEMO_SIGNUPS_TOKEN}`
-      }
+        }
+      ]
+    }
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${config.public.airtableToken}`
+    }
     const res = await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblSB1NYasWQIDGlp', {
       method: 'POST',
       body,
