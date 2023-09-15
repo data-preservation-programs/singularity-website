@@ -1,5 +1,5 @@
 <template>
-  <footer id="site-footer">
+  <footer id="site-footer" :class="{ 'no-background-image': pageSignup }">
 
     <div class="content">
       <div class="grid-bottom-noBottom-noGutter">
@@ -52,8 +52,11 @@
 <script setup>
 // ======================================================================== Data
 const generalStore = useGeneralStore()
+const route = useRoute()
 
 // ==================================================================== Computed
+const pageSignup = computed(() => { return route.name === 'signup' })
+
 const authors = computed(() => {
   return generalStore.siteContent.general?.footer.authors
 })
@@ -86,6 +89,11 @@ const scrollToTop = async () => {
   @include gridMaxMQ {
     padding-top: toRem(72);
     height: unset;
+  }
+  &.no-background-image {
+    &::before {
+      display: none;
+    }
   }
   &:before {
     content: '';
