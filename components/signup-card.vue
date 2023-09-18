@@ -251,6 +251,7 @@ const submitForm = async () => {
   --border-gradient-angle: 0deg;
   @include cardPanel(var(--border-gradient-angle));
   padding: clamp(toRem(32), 3.5vw, toRem(58)) clamp(toRem(14), 7vw, toRem(103)) clamp(toRem(32), 6.3vw, toRem(93));
+  margin-bottom: toRem(76);
   .content {
     position: relative;
     z-index: 2;
@@ -316,6 +317,9 @@ const submitForm = async () => {
 
 .submit-button {
   align-self: flex-end;
+  :deep(.fill-path) {
+    opacity: .6;
+  }
   &.submitted,
   &.submitted:hover {
     cursor: default;
@@ -404,14 +408,13 @@ const submitForm = async () => {
     transform: (translate(-50%, 0));
   }
   &.open {
-    height: toRem(93);
+    height: toRem(217);
   }
 }
 .option {
   @include formFieldPlaceholder;
   cursor: pointer;
   padding: 0 toRem(20) toRem(4);
-  background-color: #121212;
   @include transitionDefault;
   &:hover {
     background-color: var(--secondary-text-color);
