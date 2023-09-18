@@ -169,7 +169,7 @@ const detailHeight = computed(() => {
 
 .detail {
   .fill-path {
-    opacity: 0.2;
+    opacity: 0.5;
     fill: #070707;
     @include transitionDefault;
   }
@@ -179,7 +179,7 @@ const detailHeight = computed(() => {
 .theme__primary {
   display: block;
   width: fit-content;
-  filter: drop-shadow(0px 2px 14px rgba(255, 197, 130, 0.32));
+  filter: drop-shadow(0px 2px 14px rgba(255, 197, 130, 0.42));
   padding-left: toRem(25);
   cursor: pointer;
   &:before {

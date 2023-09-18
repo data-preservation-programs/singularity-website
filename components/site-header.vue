@@ -297,6 +297,12 @@ const handleNavClick = () => {
   height: 100%;
   align-items: center;
   padding: 0.5rem toRem(28) 0;
+  .theme__primary {
+    filter: drop-shadow(0px 2px 14px rgba(255, 197, 130, 0.32));
+    :deep(.fill-path) {
+      opacity: 1;
+    }
+  }
   @include gridMaxMQ {
     padding: 0;
     justify-content: flex-end;
