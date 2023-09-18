@@ -24,9 +24,7 @@
         </div>
 
         <div class="accordion-content">
-          <div class="text">
-            {{ section.content }}
-          </div>
+          <div class="text" v-html="section.content" />
         </div>
 
       </div>

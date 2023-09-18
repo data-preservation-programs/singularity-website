@@ -303,7 +303,7 @@
                   {
                     "icon": "branch",
                     "heading": "Effortless Deal Tracking",
-                    "content": "Deal tracking is to track the status of each deal proposal. Singularity helps"
+                    "content": "Deal tracking is to track the status of each deal proposal. Singularity helps: <ul><li>Validate how each file or deal is distributed with Filecoin storage providers</li><li>Auto renewal for expired or slashed deals</li></ul>"
                   },
                   {
                     "icon": "message",
