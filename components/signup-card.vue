@@ -203,7 +203,10 @@ const selectOption = (setSelected, closePanel, option, field) => {
  * @method submitForm
  */
 const submitForm = async () => {
-  if (formSubmitted.value) { return }
+  if (formSubmitted.value) {
+    buttonStore.set({id: 'signup-card-form', loading: false})
+    return
+  }
   if (firstName.value && lastName.value && email.value && organization.value && country.value) {
     const body = {
         records: [
