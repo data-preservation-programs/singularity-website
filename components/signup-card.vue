@@ -238,9 +238,7 @@ const submitForm = async () => {
       buttonStore.set({id: 'signup-card-form', loading: false})
       formSubmitted.value = true
       return
-
-    })
-    .catch(() => {
+    }).catch(() => {
       submitError.value = true
       buttonStore.set({id: 'signup-card-form', loading: false})
       })
