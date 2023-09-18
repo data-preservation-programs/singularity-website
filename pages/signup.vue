@@ -63,6 +63,7 @@ const content = computed(() => {
     content: '';
     position: absolute;
     display: block;
+    z-index: -1;
     overflow: visible;
     top: 0;
     left: -8vw;
