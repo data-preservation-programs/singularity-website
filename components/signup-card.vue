@@ -93,15 +93,21 @@
           <span v-if="fieldError.country" class="error message" v-html="errorMessage" />
         </div>
 
-        <ButtonCtaWithLoader
-          :class="['submit-button', { submitted: !loading && formSubmitted }]"
-          theme="primary"
-          loader="signup-card-form"
-          @clicked="submitForm">
-          <template #button-content>
-            <span class="button-label"> {{ submitButtonLabel }} </span>
-          </template>
-        </ButtonCtaWithLoader>
+        <div class="button-row">
+          <div v-if="submitError" class="submit-error">
+            Uh oh, we were not able to send that data due to an error — please try again, or reach out to us via Slack
+          </div>
+
+          <ButtonCtaWithLoader
+            :class="['submit-button', { submitted: formSubmitted }]"
+            theme="primary"
+            loader="signup-card-form"
+            @clicked="submitForm">
+            <template #button-content>
+              <span class="button-label"> {{ submitButtonLabel }} </span>
+            </template>
+          </ButtonCtaWithLoader>
+        </div>
 
       </div>
 
@@ -123,6 +129,7 @@ const props = defineProps({
 
 // ======================================================================== Data
 const formSubmitted = ref(false)
+const submitError = ref(false)
 const errorMessage = '[ Field is required ]'
 const fieldError = ref({
   firstName: false,
@@ -222,16 +229,21 @@ const submitForm = async () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${config.public.airtableToken}`
       }
-    const res = await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblDUSr66nczukX9Y', {
+
+    await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblDUSr66nczukX9Y', {
       method: 'POST',
       body,
       headers
+    }).then(() => {
+      buttonStore.set({id: 'signup-card-form', loading: false})
+      formSubmitted.value = true
+      return
+
     })
-  if (res) {
-    buttonStore.set({id: 'signup-card-form', loading: false})
-    formSubmitted.value = true
-    return
-    }
+    .catch(() => {
+      submitError.value = true
+      buttonStore.set({id: 'signup-card-form', loading: false})
+      })
   }
   if(!firstName.value) { fieldError.value.firstName = true}
   if(!lastName.value) { fieldError.value.lastName = true}
@@ -314,8 +326,28 @@ const submitForm = async () => {
   color: var(--error);
 }
 
+
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  @include mini {
+    flex-direction: column;
+  }
+}
+.submit-error {
+  @include formFieldErrorMessage;
+  color: var(--error);
+  margin: 0 toRem(94) 0 toRem(5);
+  @include mini {
+    margin: 0 toRem(10) 1rem;
+  }
+}
 .submit-button {
-  align-self: flex-end;
+  height: fit-content;
+  @include mini {
+    align-self: flex-end;
+  }
   &.submitted,
   &.submitted:hover {
     cursor: default;
@@ -341,6 +373,9 @@ const submitForm = async () => {
 .name-fields {
   display: flex;
   justify-content: space-between;
+  .field-wrapper:is(:last-of-type) {
+    margin-bottom: toRem(24);
+  }
   @include medium {
     flex-flow: row wrap;
     .field-wrapper {
