@@ -21,7 +21,7 @@
       <div class="signup-form">
 
         <div class="name-fields">
-          <div class="field-wrapper">
+          <div class="field-wrapper row">
             <input
               :class="['first-name input-field form-field', { error: fieldError.firstName }]"
               type="text"
@@ -31,7 +31,7 @@
             <span v-if="fieldError.firstName" class="error message" v-html="errorMessage" />
           </div>
 
-          <div class="field-wrapper">
+          <div class="field-wrapper row">
             <input
               :class="['last-name input-field form-field', { error: fieldError.lastName }]"
               type="text"
@@ -373,7 +373,7 @@ const submitForm = async () => {
 .name-fields {
   display: flex;
   justify-content: space-between;
-  .field-wrapper:is(:last-of-type) {
+  .field-wrapper.row {
     margin-bottom: toRem(24);
   }
   @include medium {
