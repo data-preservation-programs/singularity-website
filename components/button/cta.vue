@@ -28,6 +28,7 @@
 
       <div :class="['button-content', { hide: loading }]">
         <slot name="button-content" />
+        <IconArrow v-if="theme === 'secondary'" :class="['arrow', arrowDirection]" />
       </div>
 
       <slot name="loader" :loading="loading" />
@@ -78,6 +79,11 @@ const props = defineProps({
     type: String,
     required: false,
     default: ''
+  },
+  arrowDirection: { // 'left' or 'right', for theme secondary
+    type: String,
+    required: false,
+    default: 'right'
   }
 })
 
@@ -243,19 +249,30 @@ const detailHeight = computed(() => {
   @include transitionDefault;
   .button-content {
     position: relative;
+    display: flex;
+    align-items: center;
     @include b2;
     color: $chardonnay;
-    &:after {
-      content: '↗';
+    .arrow {
       position: absolute;
-      margin-left: 0.5rem;
+      right: toRem(-18);
+      height: toRem(10);
+      width: toRem(10);
       @include transitionDefault;
+      &.left {
+        right: unset;
+        left: toRem(-18);
+        transform: scaleX(-1);
+      }
     }
   }
   &:hover,
   &:focus-visible {
-    .button-content::after {
-      transform: translateX(0.5rem);
+    .arrow {
+      right: toRem(-26);
+      &.left {
+        left: toRem(-26);
+      }
     }
   }
   &:focus-visible {

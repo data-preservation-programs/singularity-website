@@ -15,7 +15,8 @@
           "text": "Back home",
           "tag": "nuxt-link",
           "to": "/",
-          "theme": "secondary"
+          "theme": "secondary",
+          "arrow_direction": "left"
       },
       "signup_card": {
         "title": "Register for Singularity app preview",
