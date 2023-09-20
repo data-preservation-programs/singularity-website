@@ -43,10 +43,6 @@ onMounted(() => {
   }, 1)
 })
 
-onBeforeUnmount(() => {
-  generalStore.clearStore()
-})
-
 </script>
 
 <style lang="scss" scoped>

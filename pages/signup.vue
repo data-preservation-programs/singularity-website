@@ -29,7 +29,7 @@
 // ======================================================================== Data
 const generalStore = useGeneralStore()
 const { $GetSeo, $CompileSeo } = useNuxtApp()
-const { data } = await useAsyncData('core', async () => {
+const { data } = await useAsyncData('signup', async () => {
   return queryContent('core').find()
 })
 
@@ -38,13 +38,11 @@ watch(data, async (val) => {
   await generalStore.getBaseData('general')
   await generalStore.getBaseData({ key: 'signup', data: val.find((item) => item._file === 'core/signup.json') })
   useHead($CompileSeo($GetSeo('general', 'signup')))
-  console.log('generalStore ', generalStore)
 }, { immediate: true })
 
 // ==================================================================== Computed
 const content = computed(() => {
-  const signup = data._rawValue.find((item) => item._file === 'core/signup.json')
-  return signup.page_content[0]
+  return generalStore.siteContent?.signup?.page_content
 })
 
 </script>
