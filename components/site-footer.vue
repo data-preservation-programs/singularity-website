@@ -59,7 +59,6 @@ const authors = computed(() => {
 })
 
 const legal = computed(() => {
-  console.log('generalStore.siteContent.general?.footer ', generalStore.siteContent.general?.footer)
   return generalStore.siteContent.general?.footer.legal
 })
 

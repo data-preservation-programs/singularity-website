@@ -38,6 +38,7 @@ watch(data, async (val) => {
   await generalStore.getBaseData('general')
   await generalStore.getBaseData({ key: 'signup', data: val.find((item) => item._file === 'core/signup.json') })
   useHead($CompileSeo($GetSeo('general', 'signup')))
+  console.log('generalStore ', generalStore)
 }, { immediate: true })
 
 // ==================================================================== Computed
