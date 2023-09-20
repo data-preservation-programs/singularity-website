@@ -16,10 +16,11 @@
               <div class="nav-item">
                 <ButtonCta
                   tag="nuxt-link"
-                  to="/"
+                  to="/signup"
                   theme="primary"
                   variant="large"
-                  class="modal-sign-up-cta">
+                  class="modal-sign-up-cta"
+                  @clicked="handleNavClick">
                   <template #button-content>
                     Sign up
                   </template>
