@@ -382,9 +382,10 @@ const submitForm = async () => {
   @include transitionDefault;
   &.open {
     border-color: var(--secondary-text-color);
-    border-bottom-color: transparent;
+    border-bottom: none;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    background-color: $codGray;
   }
 }
 .toggle-button-label {
@@ -401,10 +402,11 @@ const submitForm = async () => {
   top: calc(100% - 8px);
   padding-top: 0;
   height: 0;
+  background-color: $codGray;
   @include transitionDefault;
   border: var(--secondary-text-color) 1px solid;
   overflow-y: scroll;
-  border-top-color: transparent;
+  border-top: none;
   border-bottom-left-radius: toRem(5);
   border-bottom-right-radius: toRem(5);
   &:not(.open) {
