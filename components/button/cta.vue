@@ -203,6 +203,22 @@ const detailHeight = computed(() => {
     border-bottom-right-radius: 2px;
     @include transitionDefault;
   }
+  @include iOSonly {
+    border: solid 2px $chardonnay;
+    border-radius: toRem(2);
+    padding-left: 0;
+    &::before {
+      content: none;
+    }
+    .detail-wrapper {
+      display: none;
+    }
+    @include mini {
+      .inner-content {
+        padding: toRem(10) toRem(17);
+      }
+    }
+  }
   &.large {
     &:before {
       top: 0.5px;

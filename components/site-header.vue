@@ -473,6 +473,9 @@ const handleNavClick = () => {
   :deep(.inner-content) {
     height: 100%;
     padding: toRem(9) toRem(46) toRem(9) toRem(23);
+    @include iOSonly {
+      padding: toRem(9) toRem(23);
+    }
   }
   :deep(.button-content) {
     @include hamburgerCTA;
