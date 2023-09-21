@@ -213,11 +213,6 @@ const detailHeight = computed(() => {
     .detail-wrapper {
       display: none;
     }
-    @include mini {
-      .inner-content {
-        padding: toRem(10) toRem(17);
-      }
-    }
   }
   &.large {
     &:before {
@@ -229,6 +224,9 @@ const detailHeight = computed(() => {
     position: relative;
     height: toRem(41);
     padding: toRem(10) toRem(17) toRem(10) toRem(3);
+    @include iOSonly {
+      padding: toRem(10) toRem(17);
+    }
   }
   .button-content {
     display: flex;

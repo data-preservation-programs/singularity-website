@@ -200,7 +200,7 @@ export default {
           padding: toRem(8) toRem(28) toRem(8) toRem(10);
           @include iOSonly {
             height: toRem(29);
-            padding: 0 toRem(18);
+            padding: 0 toRem(17);
           }
         }
       }
