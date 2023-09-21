@@ -278,7 +278,7 @@ const cardStyles = computed(() => {
         content: '';
         position: absolute;
         left: 0;
-        top: 50%;
+        top: 45%;
         width: toRem(15);
         height: toRem(15);
         transform: translateY(-50%);
