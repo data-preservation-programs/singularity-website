@@ -24,8 +24,12 @@
           :placeholder="placeholder"
           type="email"
           required="true"
+          :value="fieldValue"
           @input="updateValue($event.target.value)" />
       </div>
+      <span v-if="fieldError" class="error-message">
+        Invalid email
+      </span>
     </div>
 
     <ButtonCtaWithLoader
@@ -61,7 +65,7 @@ const props = defineProps({
 // ======================================================================== Data
 const formSubmitted = ref(false)
 const fieldError = ref(false)
-const field = ref(false)
+const fieldValue = ref('')
 // ==================================================================== Computed
 const path = computed(() => {
   if (props.variant === 'large') {
@@ -82,21 +86,27 @@ const buttonText = computed(() => { return props.form.submit_button_text })
  * @method updateValue
  */
 const updateValue = (val) => {
-  if (fieldError) { fieldError.value = false }
-  field.value = val
+  if (fieldError.value) { fieldError.value = false; fieldErrorType.value = false }
+  fieldValue.value = val
+}
+/**
+ * @method validateEmail
+ */
+const validateEmail = (email) => {
+  const regex = /^[\w.-]+@[\w.]+[\w]+\.[\w]{2,4}/
+  return regex.test(email)
 }
 /**
  * @method submitForm
  */
 const submitForm = async () => {
-  // if (formSubmitted.value) {  $button('triple-line-loader').set({ loading: false }); return }
-  if (formSubmitted.value) { return }
-  if (field.value) {
+  if (formSubmitted.value) {  $button('triple-line-loader').set({ loading: false }); return }
+  if (validateEmail(fieldValue.value)) {
     const body = {
         records: [
           {
             fields: {
-              email: field.value
+              email: fieldValue.value
             }
           }
         ]
@@ -115,10 +125,10 @@ const submitForm = async () => {
       formSubmitted.value = true
       return
     }
-  }
-  if(!field.value) {
+  } else {
     fieldError.value = true
     buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
+    return
   }
 }
 
@@ -230,6 +240,14 @@ const submitForm = async () => {
   @include small {
     padding-right: toRem(3);
   }
+}
+
+.error-message {
+  position: absolute;
+  right: 0;
+  bottom: -1.4rem;
+  @include formFieldErrorMessage;
+  color: var(--error);
 }
 
 // /////////////////////////////////////////////////////////////// Submit Button
