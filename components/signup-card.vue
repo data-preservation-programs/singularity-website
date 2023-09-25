@@ -49,7 +49,10 @@
             :placeholder="emailField.placeholder"
             required="true"
             @input="updateInputValue($event.target.value, 'email')" />
-          <span v-if="fieldError.email" class="error message" v-html="errorMessage" />
+          <span
+            v-if="fieldError.email"
+            class="error message"
+            v-html="invalidEmail ? invalidEmailMessage : errorMessage" />
         </div>
 
         <div class="field-wrapper">
@@ -123,7 +126,9 @@ const props = defineProps({
 
 // ======================================================================== Data
 const formSubmitted = ref(false)
-const errorMessage = '[ Field is required ]'
+const errorMessage = 'Field is required'
+const invalidEmailMessage = 'Invalid email'
+const invalidEmail = ref(false)
 const fieldError = ref({
   firstName: false,
   lastName: false,
@@ -200,11 +205,43 @@ const selectOption = (setSelected, closePanel, option, field) => {
    }
 }
 /**
+ * @method validateFieldValue
+ */
+const validateInputFieldValue = (val) => {
+  const regex = /^[^\s]$/
+  return val && typeof val === 'string' && val !== "" && regex.test(val)
+}
+/**
+ * @method validateEmail
+ */
+const validateEmail = (email) => {
+  const regex = /^[\w.-]+@[\w.]+[\w]+\.[\w]{2,4}/
+  return regex.test(email)
+}
+/**
+ * @method validateFormValues
+ */
+const validateFormValues = () => {
+  let invalidFieldData = false
+  if(!validateInputFieldValue(firstName.value)) { fieldError.value.firstName = true; invalidFieldData = true }
+  if(!validateInputFieldValue(lastName.value)) { fieldError.value.lastName = true ; invalidFieldData = true }
+  if(!validateInputFieldValue(email.value)) {
+    fieldError.value.email = true
+    invalidFieldData = true
+  } else if(validateInputFieldValue(email.value) && !validateEmail(email.value)) {
+    fieldError.value.email = true
+    invalidEmail.value = true; invalidFieldData = true
+  }
+  if(!validateInputFieldValue(organization.value)) { fieldError.value.organization = true; invalidFieldData = true }
+  if(country.value.label) { fieldError.value.country = true; invalidFieldData = true }
+  return invalidFieldData ? false : true
+}
+/**
  * @method submitForm
  */
 const submitForm = async () => {
   if (formSubmitted.value) { return }
-  if (firstName.value && lastName.value && email.value && organization.value && country.value) {
+  if (validateFormValues()) {
     const body = {
         records: [
           {
@@ -228,20 +265,10 @@ const submitForm = async () => {
       headers
     })
   if (res) {
-    buttonStore.set({id: 'signup-card-form', loading: false})
     formSubmitted.value = true
-    return
     }
   }
-  if(!firstName.value) { fieldError.value.firstName = true}
-  if(!lastName.value) { fieldError.value.lastName = true}
-  if(!email.value) { fieldError.value.email = true}
-  if(!organization.value) { fieldError.value.organization = true}
-  if(!country.value) { fieldError.value.country = true}
-
-  if (fieldError.value.firstName || fieldError.value.lastName || fieldError.value.email || fieldError.value.organization || fieldError.value.country) {
-    buttonStore.set({id: 'signup-card-form', loading: false})
-  }
+  buttonStore.set({id: 'signup-card-form', loading: false})
 }
 </script>
 
