@@ -244,7 +244,7 @@ const submitForm = async () => {
 
 .error-message {
   position: absolute;
-  right: 0;
+  left: toRem(-28);
   bottom: -1.4rem;
   @include formFieldErrorMessage;
   color: var(--error);
