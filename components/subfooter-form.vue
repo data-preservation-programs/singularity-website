@@ -106,7 +106,7 @@ const submitForm = async () => {
         records: [
           {
             fields: {
-              email: fieldValue.value
+              email: fieldValue.value.trim()
             }
           }
         ]

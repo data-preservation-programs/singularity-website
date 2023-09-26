@@ -259,10 +259,10 @@ const submitForm = async () => {
         records: [
           {
             fields: {
-              email: email.value,
-              firstName: firstName.value,
-              lastName: lastName.value,
-              organization: organization.value,
+              email: email.value.trim(),
+              firstName: firstName.value.trim(),
+              lastName: lastName.value.trim(),
+              organization: organization.value.trim(),
               country: country.value.label
             }
           }
