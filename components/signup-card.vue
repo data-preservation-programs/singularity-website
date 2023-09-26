@@ -28,7 +28,9 @@
               :placeholder="firstNameField.placeholder"
               required="true"
               @input="updateInputValue($event.target.value, 'firstName')" />
-            <span v-if="fieldError.firstName" class="error message" v-html="errorMessage" />
+            <span v-if="fieldError.firstName" class="error message">
+              That name does not appear to be valid
+            </span>
           </div>
 
           <div class="field-wrapper">
@@ -38,7 +40,9 @@
               :placeholder="lastNameField.placeholder"
               required="true"
               @input="updateInputValue($event.target.value, 'lastName')" />
-            <span v-if="fieldError.lastName" class="error message" v-html="errorMessage" />
+            <span v-if="fieldError.lastName" class="error message">
+              That name does not appear to be valid
+            </span>
           </div>
         </div>
 
@@ -51,8 +55,9 @@
             @input="updateInputValue($event.target.value, 'email')" />
           <span
             v-if="fieldError.email"
-            class="error message"
-            v-html="invalidEmail ? invalidEmailMessage : errorMessage" />
+            class="error message">
+            {{ fieldError.email === 'invalid' ? 'That email does not appear to be valid' : 'Field is required' }}
+          </span>
         </div>
 
         <div class="field-wrapper">
@@ -62,7 +67,9 @@
             type="text"
             required="true"
             @input="updateInputValue($event.target.value, 'organization')" />
-          <span v-if="fieldError.organization" class="error message" v-html="errorMessage" />
+          <span v-if="fieldError.organization" class="error message">
+            That organization name does not appear to be valid
+          </span>
         </div>
 
         <div class="field-wrapper">
@@ -93,7 +100,9 @@
               </div>
             </template>
           </ZeroDropdown>
-          <span v-if="fieldError.country" class="error message" v-html="errorMessage" />
+          <span v-if="fieldError.country" class="error message">
+            Field is required
+          </span>
         </div>
 
         <ButtonCtaWithLoader
@@ -126,9 +135,6 @@ const props = defineProps({
 
 // ======================================================================== Data
 const formSubmitted = ref(false)
-const errorMessage = 'Field is required'
-const invalidEmailMessage = 'Invalid email'
-const invalidEmail = ref(false)
 const fieldError = ref({
   firstName: false,
   lastName: false,
@@ -207,34 +213,41 @@ const selectOption = (setSelected, closePanel, option, field) => {
 /**
  * @method validateFieldValue
  */
-const validateInputFieldValue = (val) => {
-  const regex = /^[^\s]$/
-  return val && typeof val === 'string' && val !== "" && regex.test(val)
+const validateFieldValue = (field, val) => {
+  const regex = /^[^\s\t\r\n]{2,50}$/
+  if(!val || !regex.test(val)) {
+    fieldError.value[field] = true
+    return false
+  }
+  return true
 }
 /**
  * @method validateEmail
  */
 const validateEmail = (email) => {
-  const regex = /^[\w.-]+@[\w.]+[\w]+\.[\w]{2,4}/
-  return regex.test(email)
+  const regex = /^[^\s\t\r\n]+@[^\s\t\r\n]+\.[^\s\t\r\n]{2,20}$/i
+  if(typeof email === 'string' && email.length > 0) {
+    if (regex.test(email)) {
+      return true
+    } else {
+      fieldError.value.email = 'invalid'
+      return false
+    }
+  } else {
+    fieldError.value.email = 'empty'
+    return false
+  }
 }
 /**
  * @method validateFormValues
  */
 const validateFormValues = () => {
-  let invalidFieldData = false
-  if(!validateInputFieldValue(firstName.value)) { fieldError.value.firstName = true; invalidFieldData = true }
-  if(!validateInputFieldValue(lastName.value)) { fieldError.value.lastName = true ; invalidFieldData = true }
-  if(!validateInputFieldValue(email.value)) {
-    fieldError.value.email = true
-    invalidFieldData = true
-  } else if(validateInputFieldValue(email.value) && !validateEmail(email.value)) {
-    fieldError.value.email = true
-    invalidEmail.value = true; invalidFieldData = true
-  }
-  if(!validateInputFieldValue(organization.value)) { fieldError.value.organization = true; invalidFieldData = true }
-  if(country.value.label) { fieldError.value.country = true; invalidFieldData = true }
-  return invalidFieldData ? false : true
+  const validFirstName = validateFieldValue('firstName', firstName.value)
+  const validLastName = validateFieldValue('lastName', lastName.value)
+  const validEmail = validateEmail(email.value)
+  const validOrganization = validateFieldValue('organization', organization.value)
+  const validCountry = validateFieldValue('country', country.value.label)
+  return validFirstName && validLastName && validEmail && validOrganization && validCountry
 }
 /**
  * @method submitForm
