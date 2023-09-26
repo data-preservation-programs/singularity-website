@@ -28,7 +28,7 @@
           @input="updateValue($event.target.value)" />
       </div>
       <span v-if="fieldError" class="error-message">
-        Invalid email
+        That email does not appear to be valid
       </span>
     </div>
 
@@ -93,7 +93,7 @@ const updateValue = (val) => {
  * @method validateEmail
  */
 const validateEmail = (email) => {
-  const regex = /^[\w.-]+@[\w.]+[\w]+\.[\w]{2,4}/
+  const regex = /^[^\s\t\r\n]+@[^\s\t\r\n]+\.[^\s\t\r\n]{2,20}$/i
   return regex.test(email)
 }
 /**
