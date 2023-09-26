@@ -36,7 +36,7 @@
           :variant="ctaVariant || cta.variant"
           :disabled="cta.disabled">
           <template #button-content>
-            {{ cta.text }}
+            <span class="text" v-html="cta.text" />
             <span
               v-if="cta.caption"
               class="caption">
