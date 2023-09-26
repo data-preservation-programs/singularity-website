@@ -332,6 +332,13 @@ const detailHeight = computed(() => {
   :deep(.button-content) {
     @include h1;
     color: $sageGreen;
+    .text {
+      position: relative;
+      sup {
+        top: -0.5rem;
+        line-height: leading(63, 48);
+      }
+    }
     .caption {
       display: block;
       @include h4;

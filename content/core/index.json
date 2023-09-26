@@ -207,7 +207,7 @@
             "theme": "big-number",
             "tag": "div",
             "disabled": true,
-            "text": "278.7 PB",
+            "text": "278.7 <sup>PB</sup>",
             "caption": "PiB Data Stored"
           }
         ]
