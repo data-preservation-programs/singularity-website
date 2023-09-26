@@ -29,7 +29,7 @@
               required="true"
               @input="updateInputValue($event.target.value, 'firstName')" />
             <span v-if="fieldError.firstName" class="error message">
-              That name does not appear to be valid
+              That name doesn't appear to be valid
             </span>
           </div>
 
@@ -41,7 +41,7 @@
               required="true"
               @input="updateInputValue($event.target.value, 'lastName')" />
             <span v-if="fieldError.lastName" class="error message">
-              That name does not appear to be valid
+              That name doesn't appear to be valid
             </span>
           </div>
         </div>
@@ -56,7 +56,7 @@
           <span
             v-if="fieldError.email"
             class="error message">
-            {{ fieldError.email === 'invalid' ? 'That email does not appear to be valid' : 'Field is required' }}
+            {{ fieldError.email === 'invalid' ? "That email doesn't appear to be valid" : 'Field is required' }}
           </span>
         </div>
 
@@ -68,7 +68,7 @@
             required="true"
             @input="updateInputValue($event.target.value, 'organization')" />
           <span v-if="fieldError.organization" class="error message">
-            That organization name does not appear to be valid
+            That organization name doesn't appear to be valid
           </span>
         </div>
 
@@ -347,7 +347,7 @@ const submitForm = async () => {
 .message {
   position: absolute;
   right: 0;
-  bottom: -1.3rem;
+  bottom: -1.4rem;
   @include formFieldErrorMessage;
 }
 .error {
