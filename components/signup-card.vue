@@ -28,7 +28,7 @@
               :placeholder="firstNameField.placeholder"
               required="true"
               @input="updateInputValue($event.target.value, 'firstName')" />
-            <span v-if="fieldError.firstName" class="error message">
+            <span :class="[{error: fieldError.firstName}, 'message']">
               That name doesn't appear to be valid
             </span>
           </div>
@@ -40,7 +40,7 @@
               :placeholder="lastNameField.placeholder"
               required="true"
               @input="updateInputValue($event.target.value, 'lastName')" />
-            <span v-if="fieldError.lastName" class="error message">
+            <span :class="[{error: fieldError.lastName}, 'message']">
               That name doesn't appear to be valid
             </span>
           </div>
@@ -53,9 +53,7 @@
             :placeholder="emailField.placeholder"
             required="true"
             @input="updateInputValue($event.target.value, 'email')" />
-          <span
-            v-if="fieldError.email"
-            class="error message">
+          <span :class="[{error: fieldError.email}, 'message']">
             {{ fieldError.email === 'invalid' ? "That email doesn't appear to be valid" : 'Field is required' }}
           </span>
         </div>
@@ -67,13 +65,13 @@
             type="text"
             required="true"
             @input="updateInputValue($event.target.value, 'organization')" />
-          <span v-if="fieldError.organization" class="error message">
+          <span :class="[{error: fieldError.organization}, 'message']">
             That organization name doesn't appear to be valid
           </span>
         </div>
 
         <div class="field-wrapper">
-          <ZeroDropdown class="country dropdown-field" :display-selected="true">
+          <ZeroDropdown class="country" :display-selected="true">
             <template #toggle-button="{ togglePanel, panelOpen, selected }">
               <div
                 :class="['toggle-button form-field', { error: fieldError.country }, { open: panelOpen } ]"
@@ -90,17 +88,15 @@
               </div>
             </template>
             <template #dropdown-panel="{ setSelected, closePanel }">
-              <div class="dropdown-panel">
-                <p
-                  v-for="option in countryField.options"
-                  :key="option.code"
-                  class="option"
-                  @click="selectOption(setSelected, closePanel, option, 'country')"
-                  v-html="option.label" />
-              </div>
+              <p
+                v-for="option in countryField.options"
+                :key="option.code"
+                class="option"
+                @click="selectOption(setSelected, closePanel, option, 'country')"
+                v-html="option.label" />
             </template>
           </ZeroDropdown>
-          <span v-if="fieldError.country" class="error message">
+          <span :class="[{error: fieldError.country}, 'message']">
             Field is required
           </span>
         </div>
@@ -324,10 +320,14 @@ const submitForm = async () => {
 
 .field-wrapper {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   flex: 1;
-  margin-bottom: toRem(24);
   &:is(:last-of-type) {
-    margin-bottom: toRem(32);
+    .message.error {
+      min-height: toRem(32);
+    }
   }
 }
 
@@ -345,10 +345,16 @@ const submitForm = async () => {
   }
 }
 .message {
-  position: absolute;
-  right: 0;
-  bottom: -1.4rem;
+  @include transitionDefault;
+  opacity: 0;
+  height: toRem(24);
+  min-height: toRem(24);
   @include formFieldErrorMessage;
+  &.error {
+    height: auto;
+    opacity: 1;
+    text-align: right;
+  }
 }
 .error {
   color: var(--error);
@@ -407,6 +413,10 @@ const submitForm = async () => {
 }
 
 //-------------------------------------------------------------- Dropdown Fields
+:deep(.dropdown) {
+  width: 100%;
+}
+
 .toggle-button {
   display: flex;
   align-items: center;
