@@ -172,13 +172,18 @@ onBeforeUnmount(() => {
   .code-block {
     margin-bottom: toRem(48);
     @include medium {
-      margin-bottom: toRem(27);
+      margin-bottom: toRem(34);
     }
   }
   .card-list-block {
-    .card.type__logo {
-      @include tiny {
-        transform: scale(0.9);
+    .card-wrapper {
+      @include mini {
+        margin-bottom: 1rem;
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+            margin-bottom: 1.5rem;
+        }
       }
     }
   }
