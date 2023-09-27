@@ -121,6 +121,13 @@ onBeforeUnmount(() => {
       @include mini {
         margin-right: 0;
         margin-bottom: toRem(23);
+        .button-row {
+          display: flex;
+          justify-content: flex-end;
+        }
+        .theme__primary:first-child {
+          margin-right: 3.125rem;
+        }
       }
       .heading {
         @include medium {
