@@ -2,6 +2,7 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 
 
+
 <img src="/public/images/singularity-open-graph.jpg" alt="package graph image" width="500">
 
 ## Overview
