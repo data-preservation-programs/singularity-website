@@ -130,6 +130,11 @@ onMounted(() => {
           margin-bottom: toRem(27);
         }
       }
+      .theme__primary {
+          @include iOSonly {
+            background-color: #070707;
+          }
+      }
       .theme__caption {
         margin-top: 1rem;
         @include mini {
