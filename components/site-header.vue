@@ -253,11 +253,8 @@ const handleNavClick = () => {
     path {
       transition: 250ms ease;
     }
-    @include mini {
-      max-width: toRem(205);
-    }
     @include tiny {
-      max-width: toRem(150);
+      max-width: clamp(toRem(150), vw(180px, 415px), toRem(180));
     }
   }
 }
