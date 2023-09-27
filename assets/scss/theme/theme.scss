@@ -26,6 +26,30 @@ code {
   }
 }
 
+ul {
+  li {
+    list-style: none;
+    padding-left: toRem(24);
+    &:before {
+      content: '';
+      display: inline-block;
+      position: relative;
+      left: calc(toRem(-24) + 2px + 9px);
+      width: toRem(6);
+      height: toRem(6);
+      margin-left: -9px;
+      border-radius: 50%;
+      background-color: var(--primary-text-color);
+    }
+    li {
+      &:before {
+        background-color: transparent;
+        border: 1px solid white;
+      }
+    }
+  }
+}
+
 ///////////////////////////////////////////////////////////////////// Components
 // -----------------------------------------------------------------------------
 /*

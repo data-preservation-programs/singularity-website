@@ -375,6 +375,7 @@ const submitForm = async () => {
 
 //-------------------------------------------------------------- Dropdown Fields
 .toggle-button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -382,9 +383,7 @@ const submitForm = async () => {
   @include transitionDefault;
   &.open {
     border-color: var(--secondary-text-color);
-    border-bottom: none;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-bottom-color: transparent;
     background-color: $codGray;
   }
 }
