@@ -331,14 +331,14 @@ const handleNavClick = () => {
   flex-grow: 1;
 }
 
-.icon {
-  width: toRem(20);
-  height: toRem(20);
-  @include mini {
-    width: toRem(14);
-    height: toRem(14);
-  }
-}
+// .icon {
+//   // width: toRem(20);
+//   // height: toRem(20);
+//   // @include mini {
+//   //   width: toRem(14);
+//   //   height: toRem(14);
+//   // }
+// }
 
 // /////////////////////////////////////////////////////////////////// Hamburger
 .nav-toggle-wrapper {

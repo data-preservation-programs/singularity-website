@@ -277,17 +277,22 @@ const detailHeight = computed(() => {
     display: flex;
   }
   :deep(.icon) {
+    width: toRem(20);
+    height: toRem(20);
+    @include transitionDefault;
+    @include mini {
+      width: toRem(14);
+      height: toRem(14);
+    }
     path {
       @include transitionDefault;
     }
   }
   &:hover,
   &:focus-visible {
-    background-color: rgba($sageGreen, 1);
+    border-color: transparent;
     :deep(.icon) {
-      path {
-        fill: $codGray;
-      }
+      transform: scale(1.9);
     }
   }
   &:focus-visible {
