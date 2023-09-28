@@ -291,10 +291,11 @@ const handleNavClick = () => {
     @include small {
       display: none;
     }
+    .nav-link {
+      padding-bottom: 0;
+      margin-bottom: 0.25rem;
+    }
   }
-  // &.mobile {
-  //   .navigation {}
-  // }
 }
 
 .nav-ctas {
