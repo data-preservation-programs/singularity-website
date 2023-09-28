@@ -234,8 +234,9 @@ const handleNavClick = () => {
   &:hover,
   &:focus-visible {
     transform: scale(1.08);
+    padding-right: 0.5rem;
     :deep(.name) {
-      transform: scale(1.13) translate(-4%, -5%);
+      transform: scale(1.2) translate(-8%, -7%);
     }
   }
   &:focus-visible {
