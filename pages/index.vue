@@ -126,7 +126,12 @@ onBeforeUnmount(() => {
           justify-content: flex-end;
         }
         .theme__primary:first-child {
-          margin-right: 3.125rem;
+          margin-right: 0;
+        }
+      }
+      @include tiny {
+        .theme__primary:first-child{
+          margin-right: 1.6rem;
         }
       }
       .heading {
@@ -135,7 +140,6 @@ onBeforeUnmount(() => {
         }
       }
       .description {
-        padding-right: toRem(50);
         margin-bottom: toRem(43);
         @include medium {
           margin-bottom: toRem(27);
