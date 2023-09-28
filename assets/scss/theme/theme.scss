@@ -41,12 +41,6 @@ ul {
       border-radius: 50%;
       background-color: var(--primary-text-color);
     }
-    li {
-      &:before {
-        background-color: transparent;
-        border: 1px solid white;
-      }
-    }
   }
 }
 

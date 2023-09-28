@@ -44,6 +44,13 @@ const lines = computed(() => {
   padding: toRem(24);
   background-color: $codeBlack;
   border-radius: toRem(6);
+  ul {
+    li {
+      &::before {
+        display: none;
+      }
+    }
+  }
   @include mini {
     padding: toRem(7) toRem(13);
   }
