@@ -227,7 +227,7 @@ const handleNavClick = () => {
   display: flex;
   width: fit-content;
   transition: 250ms ease;
-  padding-top: .5rem;
+  margin-top: .5rem;
   &:hover,
   &:focus-visible {
     transform: scale(1.08);
