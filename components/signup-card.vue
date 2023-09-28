@@ -306,6 +306,7 @@ const submitForm = async () => {
   border-radius: toRem(5);
   padding: toRem(8) toRem(20);
   @include transitionDefault;
+  transition-duration: 300ms;
   &:hover,
   &:focus {
     border-color: var(--secondary-text-color);

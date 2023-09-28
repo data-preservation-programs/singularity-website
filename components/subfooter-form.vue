@@ -194,6 +194,8 @@ const submitForm = async () => {
   margin-right: clamp(toRem(11), 3vw, toRem(46));
   filter: drop-shadow(0px 2px 14px rgba(255, 197, 130, 0.32));
   .stroke-path {
+    @include transitionDefault;
+    transition-duration: 300ms;
     stroke: $sageGreen;
   }
   &:before {
@@ -210,6 +212,7 @@ const submitForm = async () => {
     border-top-right-radius: toRem(5);
     border-bottom-right-radius: toRem(5);
     @include transitionDefault;
+    transition-duration: 300ms;
     @include mini {
       width: calc(100% - 45px);
     }
