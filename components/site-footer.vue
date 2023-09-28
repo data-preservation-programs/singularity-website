@@ -233,12 +233,21 @@ const scrollToTop = async () => {
 
 .footer-button {
   position: relative;
-  padding: toRem(6) 0;
   @include footerButton;
   color: $sageGreen;
-  @include transitionDefault;
-  border-bottom: solid 1px rgba($sageGreen, 0);
   white-space: nowrap;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: toRem(-5);
+    right: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $sageGreen;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 200ms cubic-bezier(0.33, 0.2, 0.41, 0.99);
+  }
   &:not(:last-child) {
     margin-right: toRem(47);
     @include large {
@@ -253,7 +262,10 @@ const scrollToTop = async () => {
     margin: 0;
   }
   &:hover {
-    border-bottom: solid 1px rgba($sageGreen, 1);
+    &::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
   }
   &:focus-visible {
     @include focusOutline;
