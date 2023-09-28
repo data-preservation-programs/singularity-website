@@ -228,9 +228,15 @@ const handleNavClick = () => {
   width: fit-content;
   transition: 250ms ease;
   margin-top: .5rem;
+  svg {
+    overflow: visible;
+  }
   &:hover,
   &:focus-visible {
     transform: scale(1.08);
+    :deep(.name) {
+      transform: scale(1.13) translate(-4%, -5%);
+    }
   }
   &:focus-visible {
     @include focusOutline;
