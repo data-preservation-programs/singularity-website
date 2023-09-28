@@ -494,7 +494,7 @@
         "cta": {
           "tag": "a",
           "target": "_blank",
-          "to": "https://singularity-metrics-dashboard.vercel.app/",
+          "to": "https://stats.singularity.storage/",
           "text": "View the dashboard"
         }
       },

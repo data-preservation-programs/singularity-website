@@ -49,14 +49,51 @@ const content = computed(() => {
 
 <style lang="scss" scoped>
 // ///////////////////////////////////////////////////////////////////// General
-.page {
+.page-signup {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   @include small{
+    position: relative;
     margin-top: 4.875rem;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    z-index: -1;
+    overflow: visible;
+    top: 0;
+    left: -8vw;
+    width: 120vw;
+    height: calc(100% + toRem(234) + toRem(100));
+    background-image: url('/images/warped-torus-made-of-segments.png');
+    background-size: toRem(2040);
+    background-origin: border-box;
+    background-position: center 64%;
+    background-repeat: no-repeat;
+    @include gridMaxMQ {
+      height: calc(100% + toRem(355));
+    }
+
+    @include medium {
+      height: calc(100% + toRem(425));
+    }
+    @include customMaxMQ(toRem(983)) {
+      background-position: center bottom;
+
+    }
+    @include small {
+      height: calc(100% + toRem(234));
+    }
+    @include tiny {
+      background-size: 820px;
+      height: calc(100% + toRem(234));
+      top: unset;
+      bottom: -15%;
+    }
   }
 }
 
@@ -84,4 +121,11 @@ const content = computed(() => {
     // }
   }
 }
+
+// //////////////////////////////////////////////////////////////////// Sections
+#section-signup {
+  width: 100%;
+
+}
+
 </style>

@@ -26,7 +26,8 @@ export default defineNuxtConfig({
       serverFlag: env,
       seo: {
         siteName: seo.siteName
-      }
+      },
+      airtableToken: process.env.AIRTABLE_SINGULARITY_ACCESS_TOKEN
     }
   },
   // ////////////////////////////////////////////////////////// Server & Bundler
