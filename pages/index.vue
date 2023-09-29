@@ -104,7 +104,7 @@ onBeforeUnmount(() => {
     left: 0;
     width: 100%;
     height: calc(100% + toRem(880));
-    background-image: url('/images/ring-of-circular-cross-sections.png');
+    background-image: url('/images/ring-of-circular-cross-sections.jpg');
     background-size: 2040px;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -121,6 +121,18 @@ onBeforeUnmount(() => {
       @include mini {
         margin-right: 0;
         margin-bottom: toRem(23);
+        .button-row {
+          display: flex;
+          justify-content: flex-end;
+        }
+        .theme__primary:first-child {
+          margin-right: 0;
+        }
+      }
+      @include tiny {
+        .theme__primary:first-child{
+          margin-right: 1.6rem;
+        }
       }
       .heading {
         @include medium {
@@ -128,7 +140,6 @@ onBeforeUnmount(() => {
         }
       }
       .description {
-        padding-right: toRem(50);
         margin-bottom: toRem(43);
         @include medium {
           margin-bottom: toRem(27);
@@ -165,13 +176,18 @@ onBeforeUnmount(() => {
   .code-block {
     margin-bottom: toRem(48);
     @include medium {
-      margin-bottom: toRem(27);
+      margin-bottom: toRem(34);
     }
   }
   .card-list-block {
-    .card.type__logo {
-      @include tiny {
-        transform: scale(0.9);
+    .card-wrapper {
+      @include mini {
+        margin-bottom: 1rem;
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+            margin-bottom: 1.5rem;
+        }
       }
     }
   }
@@ -395,7 +411,7 @@ onBeforeUnmount(() => {
     left: calc(50% - $halfGridWidth - 3rem);
     width: toRem(1400);
     height: calc(toRem(866) + toRem(68) + toRem(234)); // section height + top displacement + footer height
-    background-image: url('/images/ring-of-cross-sections-from-above.png');
+    background-image: url('/images/ring-of-cross-sections-from-above.jpg');
     background-size: 1300px;
     background-position: center top;
     background-repeat: no-repeat;

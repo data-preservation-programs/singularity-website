@@ -1,52 +1,52 @@
 <template>
   <div class="subfooter-form">
-    <div :class="['form-field-container', { error: fieldError}]">
 
-      <div class="detail-wrapper">
-        <svg
-          width="400"
-          viewBox="0 0 400 41"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          class="detail">
-          <path
-            :d="path"
-            stroke="#FFC582"
-            stroke-width="2"
-            shape-rendering="crispEdges"
-            class="stroke-path" />
-        </svg>
+    <div class="form-wrapper">
+      <div :class="['form-field-container', { error: fieldError}]">
+        <div class="detail-wrapper">
+          <svg
+            width="400"
+            viewBox="0 0 400 41"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="detail">
+            <path
+              :d="path"
+              stroke="#FFC582"
+              stroke-width="2"
+              shape-rendering="crispEdges"
+              class="stroke-path" />
+          </svg>
+        </div>
+
+        <div class="field-email">
+          <input
+            class="email"
+            :placeholder="placeholder"
+            type="email"
+            required="true"
+            @input="updateValue($event.target.value)" />
+        </div>
       </div>
 
-      <div class="field-email">
-        <input
-          class="email"
-          :placeholder="placeholder"
-          type="email"
-          required="true"
-          :value="fieldValue"
-          @input="updateValue($event.target.value)" />
-      </div>
-      <span v-if="fieldError" class="error-message">
-        That email does not appear to be valid
-      </span>
+      <ButtonCtaWithLoader
+        :class="['submit-button', { submitted: formSubmitted }]"
+        theme="secondary"
+        loader="subfooter-card-newsletter-signup"
+        @clicked="submitForm">
+        <template #button-content>
+          <span class="button-label"> {{ buttonText }} </span>
+        </template>
+      </ButtonCtaWithLoader>
     </div>
 
-    <ButtonCtaWithLoader
-      :class="['submit-button', { submitted: formSubmitted }]"
-      theme="secondary"
-      loader="subfooter-card-newsletter-signup"
-      @clicked="submitForm">
-      <template #button-content>
-        <span class="button-label"> {{ buttonText }} </span>
-      </template>
-    </ButtonCtaWithLoader>
+    <span v-if="submitError" class="submit-error" v-html="errorMessage" />
 
   </div>
 </template>
 
 <script setup>
-const SINGULARITY_DEMO_SIGNUPS_TOKEN = import.meta.env.VITE_AIRTABLE_SINGULARITY_DEMO_TOKEN
+const config = useRuntimeConfig()
 const buttonStore = useZeroButtonStore()
 // ======================================================================= Props
 const props = defineProps({
@@ -64,6 +64,8 @@ const props = defineProps({
 
 // ======================================================================== Data
 const formSubmitted = ref(false)
+const submitError = ref(false)
+const errorMessage = "Uh oh, we were not able to send that data due to an error — please try again, or reach out to us via Slack"
 const fieldError = ref(false)
 const fieldValue = ref('')
 // ==================================================================== Computed
@@ -103,33 +105,32 @@ const submitForm = async () => {
   if (formSubmitted.value) {  $button('triple-line-loader').set({ loading: false }); return }
   if (validateEmail(fieldValue.value)) {
     const body = {
-        records: [
-          {
-            fields: {
-              email: fieldValue.value.trim()
-            }
+      records: [
+        {
+          fields: {
+            email: fieldValue.value.trim()
           }
-        ]
-      }
-      const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${SINGULARITY_DEMO_SIGNUPS_TOKEN}`
-      }
-    const res = await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblSB1NYasWQIDGlp', {
+        }
+      ]
+    }
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${config.public.airtableToken}`
+    }
+    await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblSB1NYasWQIDGlp', {
       method: 'POST',
       body,
       headers
-    })
-    if (res) {
-      buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
+    }).then(() => {
       formSubmitted.value = true
       return
-    }
+    }).catch(() => {
+      submitError.value = true
+    })
   } else {
     fieldError.value = true
-    buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
-    return
   }
+  buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
 }
 
 </script>
@@ -137,6 +138,11 @@ const submitForm = async () => {
 <style lang="scss" scoped>
 // ///////////////////////////////////////////////////////////////////// General
 .subfooter-form {
+  position: relative;
+}
+
+.form-wrapper {
+  position: relative;
   display: flex;
   white-space: nowrap;
   margin-left: 1.5625rem;
@@ -145,6 +151,19 @@ const submitForm = async () => {
   }
   @include mini {
     margin-bottom: toRem(30);
+  }
+}
+
+.submit-error {
+  display: block;
+  width: 57%;
+  margin-top: toRem(5);
+  word-break: break-word;
+  text-align: right;
+  @include formFieldErrorMessage;
+  color: var(--error);
+  @include mini {
+    width: calc(100% - toRem(2));
   }
 }
 

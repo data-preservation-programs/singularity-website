@@ -1,5 +1,5 @@
 <template>
-  <footer id="site-footer">
+  <footer id="site-footer" :class="{ 'no-background-image': pageSignup }">
 
     <div class="content">
       <div class="grid-bottom-noBottom-noGutter">
@@ -52,8 +52,11 @@
 <script setup>
 // ======================================================================== Data
 const generalStore = useGeneralStore()
+const route = useRoute()
 
 // ==================================================================== Computed
+const pageSignup = computed(() => { return route.name === 'signup' })
+
 const authors = computed(() => {
   return generalStore.siteContent.general?.footer.authors
 })
@@ -87,6 +90,11 @@ const scrollToTop = async () => {
     padding-top: toRem(72);
     height: unset;
   }
+  &.no-background-image {
+    &::before {
+      display: none;
+    }
+  }
   &:before {
     content: '';
     position: absolute;
@@ -97,7 +105,7 @@ const scrollToTop = async () => {
     background-size: 1439px 1200px;
     background-position: 315px -29px;
     background-repeat: no-repeat;
-    background-image: url('/images/ring-of-cross-sections-on-angle.png');
+    background-image: url('/images/ring-of-cross-sections-on-angle.jpg');
     @include gridMaxMQ {
       height: calc(100% + 3rem);
       width: 100%;

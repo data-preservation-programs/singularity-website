@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.4.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.3.0...v1.4.0) (2023-09-28)
+
+
+### Features
+
+* alignment tweaks to hero section elements on tiny ([8824479](https://github.com/data-preservation-programs/singularity-website/commit/88244799d46e5090ecee4d93fed58aaac98e71d7))
+
+## [1.3.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.2.0...v1.3.0) (2023-09-28)
+
+
+### Features
+
+* background image below other content ([272a5c1](https://github.com/data-preservation-programs/singularity-website/commit/272a5c1bb4b607bc7a2fb73691602661c4cf0c07))
+* form submit error + styling ([2c7ea9e](https://github.com/data-preservation-programs/singularity-website/commit/2c7ea9ee0c8d3f45b6768fff75dc7d53d2561c43))
+* form submit error handling + message ([21b6326](https://github.com/data-preservation-programs/singularity-website/commit/21b6326f899481c4f3e862327e1385872938a67c))
+* http calls use auth tokens from nuxt config ([77a36e5](https://github.com/data-preservation-programs/singularity-website/commit/77a36e5a0c0d6961ea0aa09b431188814bc4d6af))
+* signup page background image ([ead2a4a](https://github.com/data-preservation-programs/singularity-website/commit/ead2a4a0799ac9060fe0082203c5571b81abce8d))
+
 ## [1.2.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.1.0...v1.2.0) (2023-09-14)
 
 

@@ -21,7 +21,7 @@
       <div class="signup-form">
 
         <div class="name-fields">
-          <div class="field-wrapper">
+          <div class="field-wrapper row">
             <input
               :class="['first-name input-field form-field', { error: fieldError.firstName }]"
               type="text"
@@ -33,7 +33,7 @@
             </span>
           </div>
 
-          <div class="field-wrapper">
+          <div class="field-wrapper row">
             <input
               :class="['last-name input-field form-field', { error: fieldError.lastName }]"
               type="text"
@@ -101,15 +101,21 @@
           </span>
         </div>
 
-        <ButtonCtaWithLoader
-          :class="['submit-button', { submitted: !loading && formSubmitted }]"
-          theme="primary"
-          loader="signup-card-form"
-          @clicked="submitForm">
-          <template #button-content>
-            <span class="button-label"> {{ submitButtonLabel }} </span>
-          </template>
-        </ButtonCtaWithLoader>
+        <div class="button-row">
+          <div v-if="submitError" class="submit-error">
+            Uh oh, we were not able to send that data due to an error — please try again, or reach out to us via Slack
+          </div>
+
+          <ButtonCtaWithLoader
+            :class="['submit-button', { submitted: formSubmitted }]"
+            theme="primary"
+            loader="signup-card-form"
+            @clicked="submitForm">
+            <template #button-content>
+              <span class="button-label"> {{ submitButtonLabel }} </span>
+            </template>
+          </ButtonCtaWithLoader>
+        </div>
 
       </div>
 
@@ -118,7 +124,7 @@
 </template>
 
 <script setup>
-const SINGULARITY_DEMO_SIGNUPS_TOKEN = import.meta.env.VITE_AIRTABLE_SINGULARITY_DEMO_TOKEN
+const config = useRuntimeConfig()
 const buttonStore = useZeroButtonStore()
 // ======================================================================= Props
 const props = defineProps({
@@ -131,6 +137,7 @@ const props = defineProps({
 
 // ======================================================================== Data
 const formSubmitted = ref(false)
+const submitError = ref(false)
 const fieldError = ref({
   firstName: false,
   lastName: false,
@@ -250,6 +257,7 @@ const validateFormValues = () => {
  */
 const submitForm = async () => {
   if (formSubmitted.value) { return }
+  if (submitError.value) { submitError.value = false }
   if (validateFormValues()) {
     const body = {
         records: [
@@ -266,16 +274,19 @@ const submitForm = async () => {
       }
       const headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${SINGULARITY_DEMO_SIGNUPS_TOKEN}`
+        'Authorization': `Bearer ${config.public.airtableToken}`
       }
-    const res = await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblDUSr66nczukX9Y', {
+
+    await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblDUSr66nczukX9Y', {
       method: 'POST',
       body,
       headers
+    }).then(() => {
+      formSubmitted.value = true
+      return
+    }).catch(() => {
+      submitError.value = true
     })
-  if (res) {
-    formSubmitted.value = true
-    }
   }
   buttonStore.set({id: 'signup-card-form', loading: false})
 }
@@ -360,8 +371,28 @@ const submitForm = async () => {
   color: var(--error);
 }
 
+
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  @include mini {
+    flex-direction: column;
+  }
+}
+.submit-error {
+  @include formFieldErrorMessage;
+  color: var(--error);
+  margin: 0 toRem(94) 0 toRem(5);
+  @include mini {
+    margin: 0 toRem(10) 1rem;
+  }
+}
 .submit-button {
-  align-self: flex-end;
+  height: fit-content;
+  @include mini {
+    align-self: flex-end;
+  }
   &.submitted,
   &.submitted:hover {
     cursor: default;
@@ -387,6 +418,9 @@ const submitForm = async () => {
 .name-fields {
   display: flex;
   justify-content: space-between;
+  .field-wrapper.row {
+    margin-bottom: toRem(24);
+  }
   @include medium {
     flex-flow: row wrap;
     .field-wrapper {

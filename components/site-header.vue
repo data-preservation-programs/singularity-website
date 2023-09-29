@@ -227,7 +227,7 @@ const handleNavClick = () => {
   display: flex;
   width: fit-content;
   transition: 250ms ease;
-  padding-top: .5rem;
+  margin-top: .5rem;
   &:hover,
   &:focus-visible {
     transform: scale(1.08);
@@ -253,11 +253,8 @@ const handleNavClick = () => {
     path {
       transition: 250ms ease;
     }
-    @include mini {
-      max-width: toRem(205);
-    }
     @include tiny {
-      max-width: toRem(150);
+      max-width: clamp(toRem(150), vw(180px, 415px), toRem(180));
     }
   }
 }
