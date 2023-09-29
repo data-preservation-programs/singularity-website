@@ -21,24 +21,28 @@
       <div class="signup-form">
 
         <div class="name-fields">
-          <div class="field-wrapper row">
+          <div class="field-wrapper">
             <input
               :class="['first-name input-field form-field', { error: fieldError.firstName }]"
               type="text"
               :placeholder="firstNameField.placeholder"
               required="true"
               @input="updateInputValue($event.target.value, 'firstName')" />
-            <span v-if="fieldError.firstName" class="error message" v-html="errorMessage" />
+            <span :class="[{error: fieldError.firstName}, 'message']">
+              That name doesn't appear to be valid
+            </span>
           </div>
 
-          <div class="field-wrapper row">
+          <div class="field-wrapper">
             <input
               :class="['last-name input-field form-field', { error: fieldError.lastName }]"
               type="text"
               :placeholder="lastNameField.placeholder"
               required="true"
               @input="updateInputValue($event.target.value, 'lastName')" />
-            <span v-if="fieldError.lastName" class="error message" v-html="errorMessage" />
+            <span :class="[{error: fieldError.lastName}, 'message']">
+              That name doesn't appear to be valid
+            </span>
           </div>
         </div>
 
@@ -49,7 +53,9 @@
             :placeholder="emailField.placeholder"
             required="true"
             @input="updateInputValue($event.target.value, 'email')" />
-          <span v-if="fieldError.email" class="error message" v-html="errorMessage" />
+          <span :class="[{error: fieldError.email}, 'message']">
+            {{ fieldError.email === 'invalid' ? "That email doesn't appear to be valid" : 'Field is required' }}
+          </span>
         </div>
 
         <div class="field-wrapper">
@@ -59,11 +65,13 @@
             type="text"
             required="true"
             @input="updateInputValue($event.target.value, 'organization')" />
-          <span v-if="fieldError.organization" class="error message" v-html="errorMessage" />
+          <span :class="[{error: fieldError.organization}, 'message']">
+            That organization name doesn't appear to be valid
+          </span>
         </div>
 
         <div class="field-wrapper">
-          <ZeroDropdown class="country dropdown-field" :display-selected="true">
+          <ZeroDropdown class="country" :display-selected="true">
             <template #toggle-button="{ togglePanel, panelOpen, selected }">
               <div
                 :class="['toggle-button form-field', { error: fieldError.country }, { open: panelOpen } ]"
@@ -80,17 +88,17 @@
               </div>
             </template>
             <template #dropdown-panel="{ setSelected, closePanel }">
-              <div class="dropdown-panel">
-                <p
-                  v-for="option in countryField.options"
-                  :key="option.code"
-                  class="option"
-                  @click="selectOption(setSelected, closePanel, option, 'country')"
-                  v-html="option.label" />
-              </div>
+              <p
+                v-for="option in countryField.options"
+                :key="option.code"
+                class="option"
+                @click="selectOption(setSelected, closePanel, option, 'country')"
+                v-html="option.label" />
             </template>
           </ZeroDropdown>
-          <span v-if="fieldError.country" class="error message" v-html="errorMessage" />
+          <span :class="[{error: fieldError.country}, 'message']">
+            Field is required
+          </span>
         </div>
 
         <div class="button-row">
@@ -130,7 +138,6 @@ const props = defineProps({
 // ======================================================================== Data
 const formSubmitted = ref(false)
 const submitError = ref(false)
-const errorMessage = '[ Field is required ]'
 const fieldError = ref({
   firstName: false,
   lastName: false,
@@ -207,22 +214,59 @@ const selectOption = (setSelected, closePanel, option, field) => {
    }
 }
 /**
+ * @method validateFieldValue
+ */
+const validateFieldValue = (field, val) => {
+  const regex = /^[^\s\t\r\n]{2,50}$/
+  if(!val || !regex.test(val)) {
+    fieldError.value[field] = true
+    return false
+  }
+  return true
+}
+/**
+ * @method validateEmail
+ */
+const validateEmail = (email) => {
+  const regex = /^[^\s\t\r\n]+@[^\s\t\r\n]+\.[^\s\t\r\n]{2,20}$/i
+  if(typeof email === 'string' && email.length > 0) {
+    if (regex.test(email)) {
+      return true
+    } else {
+      fieldError.value.email = 'invalid'
+      return false
+    }
+  } else {
+    fieldError.value.email = 'empty'
+    return false
+  }
+}
+/**
+ * @method validateFormValues
+ */
+const validateFormValues = () => {
+  const validFirstName = validateFieldValue('firstName', firstName.value)
+  const validLastName = validateFieldValue('lastName', lastName.value)
+  const validEmail = validateEmail(email.value)
+  const validOrganization = validateFieldValue('organization', organization.value)
+  const validCountry = validateFieldValue('country', country.value.label)
+  return validFirstName && validLastName && validEmail && validOrganization && validCountry
+}
+/**
  * @method submitForm
  */
 const submitForm = async () => {
-  if (formSubmitted.value) {
-    buttonStore.set({id: 'signup-card-form', loading: false})
-    return
-  }
-  if (firstName.value && lastName.value && email.value && organization.value && country.value) {
+  if (formSubmitted.value) { return }
+  if (submitError.value) { submitError.value = false }
+  if (validateFormValues()) {
     const body = {
         records: [
           {
             fields: {
-              email: email.value,
-              firstName: firstName.value,
-              lastName: lastName.value,
-              organization: organization.value,
+              email: email.value.trim(),
+              firstName: firstName.value.trim(),
+              lastName: lastName.value.trim(),
+              organization: organization.value.trim(),
               country: country.value.label
             }
           }
@@ -238,23 +282,13 @@ const submitForm = async () => {
       body,
       headers
     }).then(() => {
-      buttonStore.set({id: 'signup-card-form', loading: false})
       formSubmitted.value = true
       return
     }).catch(() => {
       submitError.value = true
-      buttonStore.set({id: 'signup-card-form', loading: false})
-      })
+    })
   }
-  if(!firstName.value) { fieldError.value.firstName = true}
-  if(!lastName.value) { fieldError.value.lastName = true}
-  if(!email.value) { fieldError.value.email = true}
-  if(!organization.value) { fieldError.value.organization = true}
-  if(!country.value) { fieldError.value.country = true}
-
-  if (fieldError.value.firstName || fieldError.value.lastName || fieldError.value.email || fieldError.value.organization || fieldError.value.country) {
-    buttonStore.set({id: 'signup-card-form', loading: false})
-  }
+  buttonStore.set({id: 'signup-card-form', loading: false})
 }
 </script>
 
@@ -298,10 +332,14 @@ const submitForm = async () => {
 
 .field-wrapper {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   flex: 1;
-  margin-bottom: toRem(24);
   &:is(:last-of-type) {
-    margin-bottom: toRem(32);
+    .message.error {
+      min-height: toRem(32);
+    }
   }
 }
 
@@ -319,10 +357,16 @@ const submitForm = async () => {
   }
 }
 .message {
-  position: absolute;
-  right: 0;
-  bottom: -1.3rem;
+  @include transitionDefault;
+  opacity: 0;
+  height: toRem(24);
+  min-height: toRem(24);
   @include formFieldErrorMessage;
+  &.error {
+    height: auto;
+    opacity: 1;
+    text-align: right;
+  }
 }
 .error {
   color: var(--error);
@@ -375,9 +419,6 @@ const submitForm = async () => {
 .name-fields {
   display: flex;
   justify-content: space-between;
-  .field-wrapper.row {
-    margin-bottom: toRem(24);
-  }
   @include medium {
     flex-flow: row wrap;
     .field-wrapper {
@@ -404,6 +445,10 @@ const submitForm = async () => {
 }
 
 //-------------------------------------------------------------- Dropdown Fields
+:deep(.dropdown) {
+  width: 100%;
+}
+
 .toggle-button {
   position: relative;
   display: flex;

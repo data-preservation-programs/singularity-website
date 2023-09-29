@@ -26,6 +26,13 @@
   @return math.div($value, $baseFontSize) + rem;
 }
 
+/**
+  * Calculate vw based on expected element size at $x-large breakpoint ($base-vw)
+  */
+@function vw($px-vw, $base-vw: 1440px) {
+  @return math.div($px-vw * 100vw, $base-vw);
+}
+
 // ////////////////////////////////////////////////////////////////////// Mixins
 // -----------------------------------------------------------------------------
 // =================================================================== Animation

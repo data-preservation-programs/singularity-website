@@ -87,7 +87,10 @@ const iconComponent = computed(() => {
   display: flex;
   align-items: center;
   @include large {
-    margin-bottom: 1rem;
+   margin-bottom: 1rem;
+  }
+  @include mini {
+    margin-bottom: 0;
   }
 }
 
