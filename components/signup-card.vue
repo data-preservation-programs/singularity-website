@@ -21,7 +21,7 @@
       <div class="signup-form">
 
         <div class="name-fields">
-          <div class="field-wrapper row">
+          <div class="field-wrapper">
             <input
               :class="['first-name input-field form-field', { error: fieldError.firstName }]"
               type="text"
@@ -33,7 +33,7 @@
             </span>
           </div>
 
-          <div class="field-wrapper row">
+          <div class="field-wrapper">
             <input
               :class="['last-name input-field form-field', { error: fieldError.lastName }]"
               type="text"
@@ -298,6 +298,7 @@ const submitForm = async () => {
   --border-gradient-angle: 0deg;
   @include cardPanel(var(--border-gradient-angle));
   padding: clamp(toRem(32), 3.5vw, toRem(58)) clamp(toRem(14), 7vw, toRem(103)) clamp(toRem(32), 6.3vw, toRem(93));
+  margin-bottom: toRem(76);
   .content {
     position: relative;
     z-index: 2;
@@ -418,9 +419,6 @@ const submitForm = async () => {
 .name-fields {
   display: flex;
   justify-content: space-between;
-  .field-wrapper.row {
-    margin-bottom: toRem(24);
-  }
   @include medium {
     flex-flow: row wrap;
     .field-wrapper {
@@ -452,6 +450,7 @@ const submitForm = async () => {
 }
 
 .toggle-button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -460,8 +459,7 @@ const submitForm = async () => {
   &.open {
     border-color: var(--secondary-text-color);
     border-bottom-color: transparent;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    background-color: $codGray;
   }
 }
 .toggle-button-label {
@@ -478,24 +476,24 @@ const submitForm = async () => {
   top: calc(100% - 8px);
   padding-top: 0;
   height: 0;
+  background-color: $codGray;
   @include transitionDefault;
   border: var(--secondary-text-color) 1px solid;
   overflow-y: scroll;
-  border-top-color: transparent;
+  border-top: none;
   border-bottom-left-radius: toRem(5);
   border-bottom-right-radius: toRem(5);
   &:not(.open) {
     transform: (translate(-50%, 0));
   }
   &.open {
-    height: toRem(93);
+    height: toRem(217);
   }
 }
 .option {
   @include formFieldPlaceholder;
   cursor: pointer;
   padding: 0 toRem(20) toRem(4);
-  background-color: #121212;
   @include transitionDefault;
   &:hover {
     background-color: var(--secondary-text-color);

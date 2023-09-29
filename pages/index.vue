@@ -43,10 +43,6 @@ onMounted(() => {
   }, 1)
 })
 
-onBeforeUnmount(() => {
-  generalStore.clearStore()
-})
-
 </script>
 
 <style lang="scss" scoped>
@@ -102,6 +98,7 @@ onBeforeUnmount(() => {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: -1;
     width: 100%;
     height: calc(100% + toRem(880));
     background-image: url('/images/ring-of-circular-cross-sections.jpg');
@@ -144,6 +141,11 @@ onBeforeUnmount(() => {
         @include medium {
           margin-bottom: toRem(27);
         }
+      }
+      .theme__primary {
+          @include iOSonly {
+            background-color: #070707;
+          }
       }
       .theme__caption {
         margin-top: 1rem;
@@ -218,6 +220,7 @@ onBeforeUnmount(() => {
     position: absolute;
     top: calc(100% - 370px);
     left: 0;
+    z-index: -1;
     width: calc(100% + 270px);
     height: 130rem;
     transform: translateX(-270px);
@@ -357,6 +360,7 @@ onBeforeUnmount(() => {
     position: absolute;
     top: toRem(-256);
     left: toRem(-50);
+    z-index: -1;
     width: calc(100% + toRem(50));
     height: toRem(1480);
     background-image: url('/images/warped-torus-made-of-segments.png');
@@ -409,6 +413,7 @@ onBeforeUnmount(() => {
     position: absolute;
     top: toRem(-68);
     left: calc(50% - $halfGridWidth - 3rem);
+    z-index: -1;
     width: toRem(1400);
     height: calc(toRem(866) + toRem(68) + toRem(234)); // section height + top displacement + footer height
     background-image: url('/images/ring-of-cross-sections-from-above.jpg');
