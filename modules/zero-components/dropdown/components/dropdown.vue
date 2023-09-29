@@ -1,7 +1,7 @@
 <template>
   <div
     v-click-outside="closePanel"
-    :class="['dropdown-panel', `toggle-on-${toggleOn}`]">
+    :class="['dropdown', `toggle-on-${toggleOn}`]">
 
     <slot
       name="toggle-button"
@@ -13,7 +13,7 @@
 
     <div :class="['panel-container', { open: panelOpen }]" tabindex="-1">
 
-      <div class="panel">
+      <div class="dropdown-panel">
         <slot
           name="dropdown-panel"
           :close-panel="closePanel"
@@ -95,7 +95,7 @@ const setSelected = (val) => {
 $offset: calc(12px + 2rem);
 $squigglyWidth: 40;
 // ///////////////////////////////////////////////////////////////////// General
-.dropdown-panel {
+.dropdown {
   position: relative;
   &.toggle-on-hover {
     &:hover {
