@@ -7,6 +7,7 @@
           <ButtonCta
             class="back-home-button"
             :theme="content.back_home_cta.theme"
+            :arrow-direction="content.back_home_cta.arrow_direction"
             :tag="content.back_home_cta.tag"
             :to="content.back_home_cta.to">
             <template #button-content>
@@ -28,7 +29,7 @@
 // ======================================================================== Data
 const generalStore = useGeneralStore()
 const { $GetSeo, $CompileSeo } = useNuxtApp()
-const { data } = await useAsyncData('core', async () => {
+const { data } = await useAsyncData('signup', async () => {
   return queryContent('core').find()
 })
 
@@ -41,8 +42,7 @@ watch(data, async (val) => {
 
 // ==================================================================== Computed
 const content = computed(() => {
-  const signup = data._rawValue.find((item) => item._file === 'core/signup.json')
-  return signup.page_content[0]
+  return generalStore.siteContent?.signup?.page_content
 })
 
 </script>
@@ -101,28 +101,24 @@ const content = computed(() => {
   padding-right: 0;
   padding-left: 1.5625rem;
   margin-bottom: toRem(17);
-  :deep(.button-content) {
-    display: flex;
-    align-items: center;
-    &::before {
-      content: '↖';
-      position: absolute;
-      top: 0;
-      left: -1rem;
-      @include transitionDefault;
-    }
-    &::after {
-      display: none;
-    }
-  }
+  // :deep(.button-content) {
+  //   display: flex;
+  //   align-items: center;
+  //   .arrow {
+  //     position: absolute;
+  //     right: unset;
+  //     left: toRem(-18);
+  //     transform: scaleX(-1);
+  //   }
+  // }
   &:hover,
   &:focus-visible {
     padding-right: 0;
-    :deep(.button-content) {
-      &:before {
-        transform: translateX(-0.5rem);
-      }
-    }
+    // :deep(.button-content) {
+    //   .arrow {
+    //     left: toRem(-26);
+    //   }
+    // }
   }
 }
 

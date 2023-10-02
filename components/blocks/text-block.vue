@@ -36,7 +36,7 @@
           :variant="ctaVariant || cta.variant"
           :disabled="cta.disabled">
           <template #button-content>
-            {{ cta.text }}
+            <span class="text" v-html="cta.text" />
             <span
               v-if="cta.caption"
               class="caption">
@@ -198,12 +198,19 @@ export default {
         @include mini {
           height: toRem(33);
           padding: toRem(8) toRem(28) toRem(8) toRem(10);
+          @include iOSonly {
+            height: toRem(29);
+            padding: 0 toRem(17);
+          }
         }
       }
       .detail-wrapper {
         @include mini {
           left: toRem(-19);
           width: calc(100% + toRem(19) - toRem(2));
+          @include iOSonly {
+            display: none;
+          }
         }
       }
     }

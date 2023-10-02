@@ -67,7 +67,7 @@ const formSubmitted = ref(false)
 const submitError = ref(false)
 const errorMessage = "Uh oh, we were not able to send that data due to an error — please try again, or reach out to us via Slack"
 const fieldError = ref(false)
-const field = ref(false)
+const fieldValue = ref('')
 // ==================================================================== Computed
 const path = computed(() => {
   if (props.variant === 'large') {
@@ -88,20 +88,27 @@ const buttonText = computed(() => { return props.form.submit_button_text })
  * @method updateValue
  */
 const updateValue = (val) => {
-  if (fieldError) { fieldError.value = false }
-  field.value = val
+  if (fieldError.value) { fieldError.value = false; fieldErrorType.value = false }
+  fieldValue.value = val
+}
+/**
+ * @method validateEmail
+ */
+const validateEmail = (email) => {
+  const regex = /^[^\s\t\r\n]+@[^\s\t\r\n]+\.[^\s\t\r\n]{2,20}$/i
+  return regex.test(email)
 }
 /**
  * @method submitForm
  */
 const submitForm = async () => {
   if (formSubmitted.value) {  $button('triple-line-loader').set({ loading: false }); return }
-  if (field.value) {
+  if (validateEmail(fieldValue.value)) {
     const body = {
       records: [
         {
           fields: {
-            email: field.value
+            email: fieldValue.value.trim()
           }
         }
       ]
@@ -115,18 +122,15 @@ const submitForm = async () => {
       body,
       headers
     }).then(() => {
-      buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
       formSubmitted.value = true
       return
     }).catch(() => {
       submitError.value = true
-      buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
     })
-  }
-  if(!field.value) {
+  } else {
     fieldError.value = true
-    buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
   }
+  buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
 }
 
 </script>
@@ -152,7 +156,7 @@ const submitForm = async () => {
 
 .submit-error {
   display: block;
-  width: 66%;
+  width: 57%;
   margin-top: toRem(5);
   word-break: break-word;
   text-align: right;
@@ -258,6 +262,14 @@ const submitForm = async () => {
   @include small {
     padding-right: toRem(3);
   }
+}
+
+.error-message {
+  position: absolute;
+  left: toRem(-28);
+  bottom: -1.4rem;
+  @include formFieldErrorMessage;
+  color: var(--error);
 }
 
 // /////////////////////////////////////////////////////////////// Submit Button

@@ -207,7 +207,7 @@
             "theme": "big-number",
             "tag": "div",
             "disabled": true,
-            "text": "278.7 PB",
+            "text": "278.7 <sup>PB</sup>",
             "caption": "PiB Data Stored"
           }
         ]
@@ -303,7 +303,7 @@
                   {
                     "icon": "branch",
                     "heading": "Effortless Deal Tracking",
-                    "content": "Deal tracking is to track the status of each deal proposal. Singularity helps"
+                    "content": "Deal tracking is to track the status of each deal proposal. Singularity helps: <ul><li>Validate how each file or deal is distributed with Filecoin storage providers</li><li>Auto renewal for expired or slashed deals</li></ul>"
                   },
                   {
                     "icon": "message",

@@ -16,10 +16,11 @@
               <div class="nav-item">
                 <ButtonCta
                   tag="nuxt-link"
-                  to="/"
+                  to="/signup"
                   theme="primary"
                   variant="large"
-                  class="modal-sign-up-cta">
+                  class="modal-sign-up-cta"
+                  @clicked="handleNavClick">
                   <template #button-content>
                     Sign up
                   </template>
@@ -260,11 +261,8 @@ const handleNavClick = () => {
     path {
       transition: 250ms ease;
     }
-    @include mini {
-      max-width: toRem(205);
-    }
     @include tiny {
-      max-width: toRem(150);
+      max-width: clamp(toRem(150), vw(180px, 415px), toRem(180));
     }
   }
 }
@@ -305,6 +303,12 @@ const handleNavClick = () => {
   height: 100%;
   align-items: center;
   padding: 0.5rem toRem(28) 0;
+  .theme__primary {
+    filter: drop-shadow(0px 2px 14px rgba(255, 197, 130, 0.32));
+    :deep(.fill-path) {
+      opacity: 1;
+    }
+  }
   @include gridMaxMQ {
     padding: 0;
     justify-content: flex-end;
@@ -474,6 +478,9 @@ const handleNavClick = () => {
   :deep(.inner-content) {
     height: 100%;
     padding: toRem(9) toRem(46) toRem(9) toRem(23);
+    @include iOSonly {
+      padding: toRem(9) toRem(23);
+    }
   }
   :deep(.button-content) {
     @include hamburgerCTA;

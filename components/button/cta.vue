@@ -21,13 +21,14 @@
             :d="path"
             stroke="#FFC582"
             stroke-width="2"
-            shape-rendering="crispEdges"
+            shape-rendering="auto"
             class="stroke-path" />
         </svg>
       </div>
 
       <div :class="['button-content', { hide: loading }]">
         <slot name="button-content" />
+        <IconArrow v-if="theme === 'secondary'" :class="['arrow', arrowDirection]" />
       </div>
 
       <slot name="loader" :loading="loading" />
@@ -78,6 +79,11 @@ const props = defineProps({
     type: String,
     required: false,
     default: ''
+  },
+  arrowDirection: { // 'left' or 'right', for theme secondary
+    type: String,
+    required: false,
+    default: 'right'
   }
 })
 
@@ -169,7 +175,7 @@ const detailHeight = computed(() => {
 
 .detail {
   .fill-path {
-    opacity: 0.2;
+    opacity: 0.5;
     fill: #070707;
     @include transitionDefault;
   }
@@ -179,7 +185,7 @@ const detailHeight = computed(() => {
 .theme__primary {
   display: block;
   width: fit-content;
-  filter: drop-shadow(0px 2px 14px rgba(255, 197, 130, 0.32));
+  filter: drop-shadow(0px 2px 14px rgba(255, 197, 130, 0.42));
   padding-left: toRem(25);
   cursor: pointer;
   &:before {
@@ -197,6 +203,17 @@ const detailHeight = computed(() => {
     border-bottom-right-radius: 2px;
     @include transitionDefault;
   }
+  @include iOSonly {
+    border: solid 2px $chardonnay;
+    border-radius: toRem(2);
+    padding-left: 0;
+    &::before {
+      content: none;
+    }
+    .detail-wrapper {
+      display: none;
+    }
+  }
   &.large {
     &:before {
       top: 0.5px;
@@ -207,6 +224,9 @@ const detailHeight = computed(() => {
     position: relative;
     height: toRem(41);
     padding: toRem(10) toRem(17) toRem(10) toRem(3);
+    @include iOSonly {
+      padding: toRem(10) toRem(17);
+    }
   }
   .button-content {
     display: flex;
@@ -243,19 +263,30 @@ const detailHeight = computed(() => {
   @include transitionDefault;
   .button-content {
     position: relative;
+    display: flex;
+    align-items: center;
     @include b2;
     color: $chardonnay;
-    &:after {
-      content: '↗';
+    .arrow {
       position: absolute;
-      margin-left: 0.5rem;
+      right: toRem(-18);
+      height: toRem(10);
+      width: toRem(10);
       @include transitionDefault;
+      &.left {
+        right: unset;
+        left: toRem(-18);
+        transform: scaleX(-1);
+      }
     }
   }
   &:hover,
   &:focus-visible {
-    .button-content::after {
-      transform: translateX(0.5rem);
+    .arrow {
+      right: toRem(-26);
+      &.left {
+        left: toRem(-26);
+      }
     }
   }
   &:focus-visible {
@@ -306,6 +337,13 @@ const detailHeight = computed(() => {
   :deep(.button-content) {
     @include h1;
     color: $sageGreen;
+    .text {
+      position: relative;
+      sup {
+        top: -0.5rem;
+        line-height: leading(63, 48);
+      }
+    }
     .caption {
       display: block;
       @include h4;

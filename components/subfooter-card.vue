@@ -264,6 +264,9 @@ const cardStyles = computed(() => {
     &:hover,
     &:focus-visible {
       transform: scale(1.08);
+      a {
+          color: var(--primary-text-color);
+        }
     }
     &.github-link,
     &.slack-link {
@@ -275,7 +278,7 @@ const cardStyles = computed(() => {
         content: '';
         position: absolute;
         left: 0;
-        top: 50%;
+        top: 45%;
         width: toRem(15);
         height: toRem(15);
         transform: translateY(-50%);
@@ -289,13 +292,15 @@ const cardStyles = computed(() => {
       }
       &:hover,
       &:focus-within {
-        @include focusOutline;
         &:before {
           opacity: 0;
         }
         &:after {
           opacity: 1;
         }
+      }
+      &:focus-within {
+        @include focusOutline;
       }
     }
     &.github-link {
