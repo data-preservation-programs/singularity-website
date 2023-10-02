@@ -415,7 +415,7 @@ onMounted(() => {
     left: calc(50% - $halfGridWidth - 3rem);
     z-index: -1;
     width: toRem(1400);
-    height: calc(toRem(866) + toRem(68) + toRem(234)); // section height + top displacement + footer height
+    height: calc(toRem(866) + toRem(68) + toRem(234) - 1rem); // section height + top displacement + footer height - 1rem
     background-image: url('/images/ring-of-cross-sections-from-above.jpg');
     background-size: 1300px;
     background-position: center top;

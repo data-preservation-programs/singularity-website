@@ -99,23 +99,17 @@ const scrollToTop = async () => {
     content: '';
     position: absolute;
     top: 0;
-    left: calc(50% - $halfGridWidth - 3rem);
-    width: calc(100% + 10rem);
+    left: 0;
+    width: 100%;
     height: 100%;
-    background-size: 1439px 1200px;
-    background-position: 315px -29px;
+    background-position: right bottom;
     background-repeat: no-repeat;
-    background-image: url('/images/ring-of-cross-sections-on-angle.jpg');
-    @include gridMaxMQ {
-      height: calc(100% + 3rem);
-      width: 100%;
-      top: -3rem;
-      left: calc(100% - 52rem);
-      background-position: center -106px;
+    background-image: url('/images/ring-of-cross-sections-on-angle-footer.png');
+    @include mini {
+      background-position: 4rem -5.5rem;
     }
-    @include small {
-      left: 0;
-      width: 100%;
+    @include tiny {
+      background-position: 4rem -3.5rem;
     }
   }
 }
