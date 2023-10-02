@@ -284,8 +284,10 @@ const detailHeight = computed(() => {
   &:focus-visible {
     .arrow {
       right: toRem(-26);
+      transform: rotate(45deg);
       &.left {
         left: toRem(-26);
+        transform: scaleX(-1) rotate(45deg);
       }
     }
   }
