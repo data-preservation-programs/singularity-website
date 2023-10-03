@@ -224,7 +224,7 @@ onMounted(() => {
     width: calc(100% + 270px);
     height: 130rem;
     transform: translateX(-270px);
-    background-image: url('/images/warped-torus-made-of-segments.png');
+    background-image: url('/images/warped-torus-made-of-segments.jpg');
     background-size: 2000px;
     background-position: center top;
     background-repeat: no-repeat;
@@ -363,7 +363,7 @@ onMounted(() => {
     z-index: -1;
     width: calc(100% + toRem(50));
     height: toRem(1480);
-    background-image: url('/images/warped-torus-made-of-segments.png');
+    background-image: url('/images/warped-torus-made-of-segments.jpg');
     background-size: 1520px;
     background-position: center top;
     background-repeat: no-repeat;

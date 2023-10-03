@@ -68,31 +68,36 @@ const content = computed(() => {
     top: 0;
     left: -8vw;
     width: 120vw;
-    height: calc(100% + toRem(234) + toRem(100));
-    background-image: url('/images/warped-torus-made-of-segments.png');
-    background-size: toRem(2040);
+    height: calc(100% + toRem(365));
+    background-image: url('/images/warped-torus-made-of-segments.jpg');
+    background-size: vw(2200px);
     background-origin: border-box;
     background-position: center 64%;
     background-repeat: no-repeat;
     @include gridMaxMQ {
-      height: calc(100% + toRem(355));
+      height: calc(100% + toRem(430));
+      background-position: center 54%;
+    }
+    @include large {
+      background-size: clamp(toRem(1700), vw(2200px), toRem(1833));
+      background-position: center 44%;
     }
 
     @include medium {
-      height: calc(100% + toRem(425));
+      height: calc(100% + toRem(480));
     }
     @include customMaxMQ(toRem(983)) {
       background-position: center bottom;
-
+      top: 2rem;
     }
     @include small {
-      height: calc(100% + toRem(234));
+      height: 100%;
     }
-    @include tiny {
-      background-size: 820px;
-      height: calc(100% + toRem(234));
+    @include mini {
+      background-size: vw(1030px, 375px);
+      height: calc(100% + toRem(200));
       top: unset;
-      bottom: -15%;
+      bottom: -2rem;
     }
   }
 }
@@ -101,24 +106,9 @@ const content = computed(() => {
   padding-right: 0;
   padding-left: 1.5625rem;
   margin-bottom: toRem(17);
-  // :deep(.button-content) {
-  //   display: flex;
-  //   align-items: center;
-  //   .arrow {
-  //     position: absolute;
-  //     right: unset;
-  //     left: toRem(-18);
-  //     transform: scaleX(-1);
-  //   }
-  // }
   &:hover,
   &:focus-visible {
     padding-right: 0;
-    // :deep(.button-content) {
-    //   .arrow {
-    //     left: toRem(-26);
-    //   }
-    // }
   }
 }
 
