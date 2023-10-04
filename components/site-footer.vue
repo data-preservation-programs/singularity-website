@@ -1,5 +1,5 @@
 <template>
-  <footer id="site-footer" :class="{ 'no-background-image': pageSignup }">
+  <footer id="site-footer" :class="{ 'no-background-image': noBackgroundImage }">
 
     <div class="content">
       <div class="grid-bottom-noBottom-noGutter">
@@ -52,10 +52,18 @@
 <script setup>
 // ======================================================================== Data
 const generalStore = useGeneralStore()
-const route = useRoute()
+
+// ======================================================================= Props
+const props = defineProps({
+  noBackgroundImage: {
+    type: Boolean,
+    required: false,
+    default: false
+  }
+})
 
 // ==================================================================== Computed
-const pageSignup = computed(() => { return route.name === 'signup' })
+const noBackgroundImage = computed(() => { return props.noBackgroundImage })
 
 const authors = computed(() => {
   return generalStore.siteContent.general?.footer.authors

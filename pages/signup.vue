@@ -25,7 +25,9 @@
 </template>
 
 <script setup>
-
+definePageMeta({
+  layout: 'warped-torus-background'
+})
 // ======================================================================== Data
 const generalStore = useGeneralStore()
 const { $GetSeo, $CompileSeo } = useNuxtApp()
@@ -58,47 +60,6 @@ const content = computed(() => {
   @include small{
     position: relative;
     margin-top: 4.875rem;
-  }
-  &:before {
-    content: '';
-    position: absolute;
-    display: block;
-    z-index: -1;
-    overflow: visible;
-    top: 0;
-    left: -8vw;
-    width: 120vw;
-    height: calc(100% + toRem(365));
-    background-image: url('/images/warped-torus-made-of-segments.jpg');
-    background-size: vw(2200px);
-    background-origin: border-box;
-    background-position: center 64%;
-    background-repeat: no-repeat;
-    @include gridMaxMQ {
-      height: calc(100% + toRem(430));
-      background-position: center 54%;
-    }
-    @include large {
-      background-size: clamp(toRem(1700), vw(2200px), toRem(1833));
-      background-position: center 44%;
-    }
-
-    @include medium {
-      height: calc(100% + toRem(480));
-    }
-    @include customMaxMQ(toRem(983)) {
-      background-position: center bottom;
-      top: 2rem;
-    }
-    @include small {
-      height: 100%;
-    }
-    @include mini {
-      background-size: vw(1030px, 375px);
-      height: calc(100% + toRem(200));
-      top: unset;
-      bottom: -2rem;
-    }
   }
 }
 
