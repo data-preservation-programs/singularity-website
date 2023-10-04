@@ -48,7 +48,7 @@
         "theme": "icon"
       },
       {
-        "to": "https://data-programs.gitbook.io/singularity/installation/install-from-source",
+        "to": "https://gist.github.com/xinaxu/aa2fe82b311a2d203c644cdfd13aca63",
         "text": "Get started",
         "tag": "a",
         "theme": "primary",
