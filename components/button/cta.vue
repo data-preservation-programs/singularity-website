@@ -284,8 +284,10 @@ const detailHeight = computed(() => {
   &:focus-visible {
     .arrow {
       right: toRem(-26);
+      transform: rotate(45deg);
       &.left {
         left: toRem(-26);
+        transform: scaleX(-1) rotate(45deg);
       }
     }
   }
@@ -308,17 +310,22 @@ const detailHeight = computed(() => {
     display: flex;
   }
   :deep(.icon) {
+    width: toRem(20);
+    height: toRem(20);
+    @include transitionDefault;
+    @include mini {
+      width: toRem(14);
+      height: toRem(14);
+    }
     path {
       @include transitionDefault;
     }
   }
   &:hover,
   &:focus-visible {
-    background-color: rgba($sageGreen, 1);
+    border-color: transparent;
     :deep(.icon) {
-      path {
-        fill: $codGray;
-      }
+      transform: scale(1.9);
     }
   }
   &:focus-visible {

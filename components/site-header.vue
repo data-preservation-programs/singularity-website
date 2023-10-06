@@ -229,9 +229,16 @@ const handleNavClick = () => {
   width: fit-content;
   transition: 250ms ease;
   margin-top: .5rem;
+  svg {
+    overflow: visible;
+  }
   &:hover,
   &:focus-visible {
     transform: scale(1.08);
+    padding-right: 0.5rem;
+    :deep(.name) {
+      transform: scale(1.2) translate(-8%, -7%);
+    }
   }
   &:focus-visible {
     @include focusOutline;
@@ -282,10 +289,11 @@ const handleNavClick = () => {
     @include small {
       display: none;
     }
+    .nav-link {
+      padding-bottom: 0;
+      margin-bottom: 0.25rem;
+    }
   }
-  // &.mobile {
-  //   .navigation {}
-  // }
 }
 
 .nav-ctas {
@@ -329,14 +337,14 @@ const handleNavClick = () => {
   flex-grow: 1;
 }
 
-.icon {
-  width: toRem(20);
-  height: toRem(20);
-  @include mini {
-    width: toRem(14);
-    height: toRem(14);
-  }
-}
+// .icon {
+//   // width: toRem(20);
+//   // height: toRem(20);
+//   // @include mini {
+//   //   width: toRem(14);
+//   //   height: toRem(14);
+//   // }
+// }
 
 // /////////////////////////////////////////////////////////////////// Hamburger
 .nav-toggle-wrapper {

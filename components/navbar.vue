@@ -119,7 +119,7 @@ const scrollToSection = async (el) => {
   &:after {
     content: '';
     position: absolute;
-    top: calc(100% + 5px);
+    bottom: 0.5rem;
     left: calc(50% - 0.25rem);
     width: 0.5rem;
     height: 0.5rem;
@@ -127,6 +127,7 @@ const scrollToSection = async (el) => {
     background-color: $chardonnay;
     opacity: 0;
     transition: inherit;
+    transition-delay: 50ms;
   }
   &:hover,
   &:focus-visible {
@@ -136,6 +137,7 @@ const scrollToSection = async (el) => {
     }
     &:after {
       opacity: 1;
+      transform: translateY(1.625rem);
     }
   }
 }
