@@ -25,7 +25,9 @@
 </template>
 
 <script setup>
-
+definePageMeta({
+  layout: 'warped-torus-background'
+})
 // ======================================================================== Data
 const generalStore = useGeneralStore()
 const { $GetSeo, $CompileSeo } = useNuxtApp()
@@ -59,66 +61,15 @@ const content = computed(() => {
     position: relative;
     margin-top: 4.875rem;
   }
-  &:before {
-    content: '';
-    position: absolute;
-    display: block;
-    z-index: -1;
-    overflow: visible;
-    top: 0;
-    left: -8vw;
-    width: 120vw;
-    height: calc(100% + toRem(234) + toRem(100));
-    background-image: url('/images/warped-torus-made-of-segments.png');
-    background-size: toRem(2040);
-    background-origin: border-box;
-    background-position: center 64%;
-    background-repeat: no-repeat;
-    @include gridMaxMQ {
-      height: calc(100% + toRem(355));
-    }
-
-    @include medium {
-      height: calc(100% + toRem(425));
-    }
-    @include customMaxMQ(toRem(983)) {
-      background-position: center bottom;
-
-    }
-    @include small {
-      height: calc(100% + toRem(234));
-    }
-    @include tiny {
-      background-size: 820px;
-      height: calc(100% + toRem(234));
-      top: unset;
-      bottom: -15%;
-    }
-  }
 }
 
 .back-home-button {
   padding-right: 0;
   padding-left: 1.5625rem;
   margin-bottom: toRem(17);
-  // :deep(.button-content) {
-  //   display: flex;
-  //   align-items: center;
-  //   .arrow {
-  //     position: absolute;
-  //     right: unset;
-  //     left: toRem(-18);
-  //     transform: scaleX(-1);
-  //   }
-  // }
   &:hover,
   &:focus-visible {
     padding-right: 0;
-    // :deep(.button-content) {
-    //   .arrow {
-    //     left: toRem(-26);
-    //   }
-    // }
   }
 }
 
