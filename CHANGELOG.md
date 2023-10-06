@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.5.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.4.0...v1.5.0) (2023-10-06)
+
+
+### Features
+
+* optimized footer image + styling across breakpoints ([b95fc25](https://github.com/data-preservation-programs/singularity-website/commit/b95fc254bd609ec9150c37abab0a5eed6970ba96))
+* optimized warped torus image + updated styling ([edcf844](https://github.com/data-preservation-programs/singularity-website/commit/edcf844c76298adf061b722c6145624a6b6e2f7a))
+* warped torus background is in own layout ([d313834](https://github.com/data-preservation-programs/singularity-website/commit/d3138344bba57b67fc75df4b553c11ee944515ed))
+
 ## [1.4.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.3.0...v1.4.0) (2023-09-28)
 
 
