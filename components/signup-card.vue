@@ -264,9 +264,9 @@ const submitForm = async () => {
           {
             fields: {
               email: email.value.trim(),
-              firstName: firstName.value.trim(),
-              lastName: lastName.value.trim(),
-              organization: organization.value.trim(),
+              firstname: firstName.value.trim(),
+              lastname: lastName.value.trim(),
+              company: organization.value.trim(),
               country: country.value.label
             }
           }
