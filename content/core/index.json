@@ -420,6 +420,7 @@
                 "items": [
                   {
                     "heading": "September",
+                    "year": "2023",
                     "milestones": [
                       {
                         "title": "Milestone 1",
@@ -433,6 +434,7 @@
                   },
                   {
                     "heading": "October",
+                    "year": "2023",
                     "milestones": [
                       {
                         "title": "Milestone 3",
@@ -442,6 +444,7 @@
                   },
                   {
                     "heading": "November",
+                    "year": "2023",
                     "milestones": [
                       {
                         "title": "Milestone 4",
@@ -451,6 +454,7 @@
                   },
                   {
                     "heading": "December",
+                    "year": "2023",
                     "milestones": [
                       {
                         "title": "Milestone 5",

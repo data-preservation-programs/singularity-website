@@ -26,6 +26,7 @@
 
               </div>
             </ZeroButton>
+            <div class="year" v-html="item.year" />
           </div>
         </div>
 
@@ -106,8 +107,18 @@ const cta = computed(() => {
 
 .heading-wrapper {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  // align-items: center;
   margin-top: toRem(25);
+  .year {
+    @include h5;
+    letter-spacing: 0.48px;
+    margin-top: toRem(6);
+    margin-left: toRem(37);
+    @include mini {
+      margin-left: toRem(25);
+    }
+  }
 }
 
 .heading-button {
@@ -119,14 +130,11 @@ const cta = computed(() => {
   }
   &:hover,
   &:focus-visible {
-    transform: scale(1.15);
+    transform: scale(1.15) translateX(toRem(18));
     .icon {
       :deep(path) {
         fill: $chardonnay;
       }
-    }
-    .h2 {
-      color: $chardonnay;
     }
   }
   &:focus-visible {
@@ -134,11 +142,11 @@ const cta = computed(() => {
   }
   .heading {
     display: flex;
-    align-items: center;
   }
   .icon {
-    width: toRem(41);
-    height: toRem(41);
+    width: toRem(23);
+    height: toRem(23);
+    margin-top: toRem(3);
     margin-right: toRem(14);
     transition: 300ms cubic-bezier(0.33, 0.2, 0.41, 0.99);
     @include mini {
