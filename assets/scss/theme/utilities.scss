@@ -97,6 +97,12 @@ $siam: #565D50; // siam
   border-radius: toRem(2);
 }
 
+@mixin focusOutlineSmall {
+  outline: 3px solid rgba(255, 197, 130, 0.7);
+  outline-offset: 4px;
+  border-radius: toRem(2);
+}
+
 @mixin focusBoxShadowLink {
   box-shadow: 0 0 0 5px rgba(255, 197, 130, 0.5);
   border-radius: 0.125rem;

@@ -108,29 +108,36 @@ const cta = computed(() => {
 .heading-wrapper {
   display: flex;
   flex-direction: column;
-  // align-items: center;
   margin-top: toRem(25);
+  @include mini {
+    position: relative;
+    z-index: 5;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
   .year {
     @include h5;
     letter-spacing: 0.48px;
-    margin-top: toRem(6);
+    margin-top: toRem(15);
     margin-left: toRem(37);
     @include mini {
-      margin-left: toRem(25);
+      margin: 0;
     }
   }
 }
 
 .heading-button {
   cursor: pointer;
+  width: fit-content;
   @include transitionDefault;
   @include mini {
     margin-top: 0;
-    margin-bottom: 0.5rem;
   }
   &:hover,
   &:focus-visible {
-    transform: scale(1.15) translateX(toRem(18));
+    transform: scale(1.15) translate(toRem(5), toRem(-1));
     .icon {
       :deep(path) {
         fill: $chardonnay;
@@ -138,7 +145,8 @@ const cta = computed(() => {
     }
   }
   &:focus-visible {
-    @include focusOutline;
+    @include focusOutlineSmall;
+    transform: scale(1.15) translate(toRem(5), toRem(-7));
   }
   .heading {
     display: flex;
@@ -146,20 +154,27 @@ const cta = computed(() => {
   .icon {
     width: toRem(23);
     height: toRem(23);
-    margin-top: toRem(3);
     margin-right: toRem(14);
     transition: 300ms cubic-bezier(0.33, 0.2, 0.41, 0.99);
     @include mini {
       width: toRem(18);
       height: toRem(18);
       margin-right: toRem(7);
+      transform: translateY(toRem(-1.5));
     }
     :deep(path) {
       transition: inherit;
     }
   }
   .h2 {
+    line-height: 1;
     @include transitionDefault;
+    @include medium {
+      line-height: 1.4;
+    }
+    @include tiny {
+      line-height: 1;
+    }
   }
 }
 
