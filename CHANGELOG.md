@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.6.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.5.0...v1.6.0) (2023-11-19)
+
+
+### Features
+
+* add years to roadmap sections ([e18a780](https://github.com/data-preservation-programs/singularity-website/commit/e18a7803b7c13c278c16659d107682a535b5f760))
+* adds mobile styling to years in roadmap section ([5141364](https://github.com/data-preservation-programs/singularity-website/commit/5141364574d3c036ddc4a8ea4997566f20d49e41))
+* airtable field names changed to support hubspot submission ([cb44dc8](https://github.com/data-preservation-programs/singularity-website/commit/cb44dc8a67780900fc80efc21e5607098172f3da))
+
 ## [1.5.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.4.0...v1.5.0) (2023-10-06)
 
 
