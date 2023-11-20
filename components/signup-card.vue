@@ -18,7 +18,7 @@
         {{ description }}
       </div>
 
-      <div class="signup-form">
+      <!-- <div class="signup-form">
 
         <div class="name-fields">
           <div class="field-wrapper">
@@ -117,6 +117,36 @@
           </ButtonCtaWithLoader>
         </div>
 
+      </div> -->
+
+      <div class="signup-form">
+        <FormFieldContainer
+          :scaffold="firstNameFieldScaffold" />
+        <FormFieldContainer
+          :scaffold="lastNameFieldScaffold" />
+        <FormFieldContainer
+          :scaffold="emailFieldScaffold" />
+        <FormFieldContainer
+          :scaffold="orgFieldScaffold" />
+        <FormFieldContainer
+          :scaffold="orgFieldScaffold" />
+        <FormFieldContainer
+          :scaffold="countryFieldScaffold" />
+        <div class="button-row">
+          <div v-if="submitError" class="submit-error">
+            Uh oh, we were not able to send that data due to an error — please try again, or reach out to us via Slack
+          </div>
+
+          <ButtonCtaWithLoader
+            :class="['submit-button', { submitted: formSubmitted }]"
+            theme="primary"
+            loader="signup-card-form"
+            @clicked="submitForm">
+            <template #button-content>
+              <span class="button-label"> {{ submitButtonLabel }} </span>
+            </template>
+          </ButtonCtaWithLoader>
+        </div>
       </div>
 
     </div>
@@ -165,15 +195,15 @@ const cardStyles = computed(() => {
   return null
 })
 
-const firstNameField = computed(() => { return props.signupCard.signup_form.first_name })
+const firstNameFieldScaffold = computed(() => { return props.signupCard.signup_form.first_name })
 
-const lastNameField = computed(() => { return props.signupCard.signup_form.last_name })
+const lastNameFieldScaffold = computed(() => { return props.signupCard.signup_form.last_name })
 
-const emailField = computed(() => { return props.signupCard.signup_form.email })
+const emailFieldScaffold = computed(() => { return props.signupCard.signup_form.email })
 
-const orgField = computed(() => { return props.signupCard.signup_form.org })
+const orgFieldScaffold = computed(() => { return props.signupCard.signup_form.org })
 
-const countryField = computed(() => { return props.signupCard.signup_form.country })
+const countryFieldScaffold = computed(() => { return props.signupCard.signup_form.country })
 
 const submitButtonLabel = computed(() => { return formSubmitted.value ? 'Success' : 'Register' })
 
