@@ -120,10 +120,13 @@
       </div> -->
 
       <div class="signup-form">
-        <FormFieldContainer
-          :scaffold="firstNameFieldScaffold" />
-        <FormFieldContainer
-          :scaffold="lastNameFieldScaffold" />
+
+        <div class="name-fields">
+          <FormFieldContainer
+            :scaffold="firstNameFieldScaffold" />
+          <FormFieldContainer
+            :scaffold="lastNameFieldScaffold" />
+        </div>
         <FormFieldContainer
           :scaffold="emailFieldScaffold" />
         <FormFieldContainer
@@ -132,6 +135,7 @@
           :scaffold="orgFieldScaffold" />
         <FormFieldContainer
           :scaffold="countryFieldScaffold" />
+
         <div class="button-row">
           <div v-if="submitError" class="submit-error">
             Uh oh, we were not able to send that data due to an error — please try again, or reach out to us via Slack
@@ -147,6 +151,7 @@
             </template>
           </ButtonCtaWithLoader>
         </div>
+
       </div>
 
     </div>
@@ -208,41 +213,41 @@ const countryFieldScaffold = computed(() => { return props.signupCard.signup_for
 const submitButtonLabel = computed(() => { return formSubmitted.value ? 'Success' : 'Register' })
 
 // ===================================================================== Methdos
-/**
- * @method updateInputValue
- */
-const updateInputValue = (val, field) => {
-  if (fieldError.value[field]) { fieldError.value[field] = false}
-  switch(field) {
-    case 'firstName':
-      firstName.value = val
-      break
-    case 'lastName':
-      lastName.value = val
-      break
-    case 'email':
-      email.value = val
-      break
-    case 'organization':
-      organization.value = val
-      break
-  }
-}
-/**
- * @method selectOption
- */
-const selectOption = (setSelected, closePanel, option, field) => {
-  if (option) {
-    if (fieldError.value[field]) { fieldError.value[field] = false }
-    setSelected(option)
-    closePanel()
-    switch(field) {
-      case 'country':
-        country.value = option
-        break
-    }
-   }
-}
+// /**
+//  * @method updateInputValue
+//  */
+// const updateInputValue = (val, field) => {
+//   if (fieldError.value[field]) { fieldError.value[field] = false}
+//   switch(field) {
+//     case 'firstName':
+//       firstName.value = val
+//       break
+//     case 'lastName':
+//       lastName.value = val
+//       break
+//     case 'email':
+//       email.value = val
+//       break
+//     case 'organization':
+//       organization.value = val
+//       break
+//   }
+// }
+// /**
+//  * @method selectOption
+//  */
+// const selectOption = (setSelected, closePanel, option, field) => {
+//   if (option) {
+//     if (fieldError.value[field]) { fieldError.value[field] = false }
+//     setSelected(option)
+//     closePanel()
+//     switch(field) {
+//       case 'country':
+//         country.value = option
+//         break
+//     }
+//    }
+// }
 /**
  * @method validateFieldValue
  */
@@ -359,51 +364,6 @@ const submitForm = async () => {
   display: flex;
   flex-direction: column;
 }
-
-.field-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  flex: 1;
-  &:is(:last-of-type) {
-    .message.error {
-      min-height: toRem(32);
-    }
-  }
-}
-
-.form-field {
-  border: var(--brand-color) 1px solid;
-  border-radius: toRem(5);
-  padding: toRem(8) toRem(20);
-  @include transitionDefault;
-  transition-duration: 300ms;
-  &:hover,
-  &:focus {
-    border-color: var(--secondary-text-color);
-  }
-  &.error {
-    border-color: var(--error);
-  }
-}
-.message {
-  @include transitionDefault;
-  opacity: 0;
-  height: toRem(24);
-  min-height: toRem(24);
-  @include formFieldErrorMessage;
-  &.error {
-    height: auto;
-    opacity: 1;
-    text-align: right;
-  }
-}
-.error {
-  color: var(--error);
-}
-
-
 .button-row {
   display: flex;
   justify-content: flex-end;
@@ -413,7 +373,7 @@ const submitForm = async () => {
   }
 }
 .submit-error {
-  @include formFieldErrorMessage;
+
   color: var(--error);
   margin: 0 toRem(94) 0 toRem(5);
   @include mini {
@@ -446,89 +406,23 @@ const submitForm = async () => {
   }
 }
 
-//----------------------------------------------------------------- Input Fields
+//---------------------------------------------------------- Field Customization
 .name-fields {
   display: flex;
   justify-content: space-between;
+  margin-bottom: toRem(30);
   @include medium {
     flex-flow: row wrap;
-    .field-wrapper {
-      width: 100%;
-      flex: unset;
-    }
   }
-  .field-wrapper:is(:first-child) {
+  :deep(.field-container) {
+    flex: 1;
+    margin-bottom: 0;
+  }
+  :deep(.field-container:is(:first-child)) {
     margin-right: toRem(20);
     @include medium {
       margin-right: 0;
     }
-  }
-}
-
-.input-field {
-  @include formFieldText;
-  color: var(--primary-text-color);
-  width: 100%;
-  &::placeholder {
-    @include formFieldPlaceholder;
-    opacity: 1;
-  }
-}
-
-//-------------------------------------------------------------- Dropdown Fields
-:deep(.dropdown) {
-  width: 100%;
-}
-
-.toggle-button {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  @include transitionDefault;
-  &.open {
-    border-color: var(--secondary-text-color);
-    border-bottom-color: transparent;
-    background-color: $codGray;
-  }
-}
-.toggle-button-label {
-  @include formFieldPlaceholder;
-  color: var(--primary-text-color);
-  &.selected {
-    @include formFieldText;
-  }
-}
-
-:deep(.panel-container) {
-  width: 100%;
-  z-index: 1;
-  top: calc(100% - 8px);
-  padding-top: 0;
-  height: 0;
-  background-color: $codGray;
-  @include transitionDefault;
-  border: var(--secondary-text-color) 1px solid;
-  overflow-y: scroll;
-  border-top: none;
-  border-bottom-left-radius: toRem(5);
-  border-bottom-right-radius: toRem(5);
-  &:not(.open) {
-    transform: (translate(-50%, 0));
-  }
-  &.open {
-    height: toRem(217);
-  }
-}
-.option {
-  @include formFieldPlaceholder;
-  cursor: pointer;
-  padding: 0 toRem(20) toRem(4);
-  @include transitionDefault;
-  &:hover {
-    background-color: var(--secondary-text-color);
-    color: var(--background-color);
   }
 }
 </style>

@@ -35,7 +35,7 @@
         },
         "last_name": {
           "type": "input",
-          "formId": "zero_kitchen_sink_form",
+          "formId": "app_preview_signup_form",
           "inputType": "text",
           "placeholder": "Last name",
           "required": true,
@@ -45,7 +45,7 @@
         },
         "email": {
           "type": "input",
-          "formId": "zero_kitchen_sink_form",
+          "formId": "app_preview_signup_form",
           "inputType": "text",
           "placeholder": "Email",
           "required": true,
@@ -55,7 +55,7 @@
         },
         "org": {
           "type": "input",
-          "formId": "zero_kitchen_sink_form",
+          "formId": "app_preview_signup_form",
           "inputType": "text",
           "placeholder": "Organization",
           "required": true,
@@ -65,7 +65,7 @@
         },
         "country": {
           "type": "select",
-          "formId": "zero_kitchen_sink_form",
+          "formId": "app_preview_signup_form",
           "required": true,
           "output": "option",
           "placeholder": "Country",

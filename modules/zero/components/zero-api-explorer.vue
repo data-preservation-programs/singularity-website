@@ -193,7 +193,7 @@ props.sliders.forEach(slider => {
 }
 
 .code-block {
-  @include blockCode;
+  // @include blockCode;
   margin: 0;
   padding: 0;
   background-color: transparent;

@@ -25,14 +25,13 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-$height: toRem(35);
+$height: toRem(41);
 
 // ///////////////////////////////////////////////////////////////////// General
 .field-input {
-  max-width: toRem(500);
+  // max-width: toRem(500);
   height: $height;
   border: 2px solid $sageGreen;
-  background-color: $sageGreen;
   border-radius: toRem(5);
   transition: 150ms ease-in-out;
   &:not(.disabled) {
@@ -60,7 +59,7 @@ $height: toRem(35);
   &.disabled {
     cursor: no-drop;
     :deep(.input) {
-      // color: rgba($whisper, 0.7);
+      color: rgba(var(--primary-text-color), 0.7);
     }
     :deep(.step-control) {
       cursor: no-drop;
@@ -94,10 +93,10 @@ $height: toRem(35);
   align-items: center;
   padding: 0 toRem(12);
   padding-top: toRem(3);
+  @include formFieldText;
   @include placeholder {
-    // color: $whisper;
-    font-weight: 400;
-    opacity: 0.7;
+    @include formFieldPlaceholder;
+    opacity: 0.9;
   }
 }
 

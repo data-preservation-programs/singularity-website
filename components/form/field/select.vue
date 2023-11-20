@@ -1,5 +1,6 @@
 <template>
   <ZeroFieldSelect
+    class="field-select"
     v-bind="{...props, ...$attrs}"
     :options="options">
 
@@ -92,19 +93,19 @@ const getSelectedOptionLabels = (selection, placeholder) => {
 </script>
 
 <style lang="scss" scoped>
-$height: toRem(35);
+$height: toRem(41);
 
 // ///////////////////////////////////////////////////////////////////// General
 div.field-select {
-  max-width: toRem(380);
+  // max-width: toRem(380);
   height: $height;
   padding: 0 toRem(12);
   border: 2px solid $sageGreen;
-  background-color: $sageGreen;
   border-radius: toRem(5);
   transition: 150ms ease-in-out;
   &:not(.disabled) {
-    &:hover {
+    &:hover,
+    &.error:hover {
       border-color: rgba($chardonnay, 0.5);
       .icon-container {
         transition: 150ms ease-in;
@@ -114,6 +115,11 @@ div.field-select {
     &.in-progress {
       transition: border-color 150ms ease-in;
       border-color: rgba($chardonnay, 0.9);
+      &.dropdown-open {
+        border-bottom-color: transparent;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
     }
     &.error {
       transition: border-color 150ms ease-in;
@@ -152,10 +158,14 @@ div.field-select {
   transition: scale 150ms ease-out;
   max-height: calc(#{$height} * 5.5);
   width: calc(100% + 4px);
+  top: 100%;
   left: -2px;
-  background-color: $sageGreen;
-  // border: 2px solid rgba($whisper, 0.5);
-  border-radius: 0.3125rem;
+  border: 2px solid $chardonnay;
+  border-top: none;
+  background-color: $codGray;
+  border-radius: toRem(5);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .selection-window {
@@ -174,8 +184,9 @@ div.field-select {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    @include formFieldText;
     &.is-placeholder {
-      // color: rgba($whisper, 0.7);
+      @include formFieldPlaceholder;
     }
   }
   .icon-container {
@@ -201,10 +212,12 @@ div.field-select {
   padding: 0.5rem 0.75rem;
   cursor: pointer;
   transition: 150ms ease-out;
+  @include formFieldPlaceholder;
   &:hover,
   &.highlighted,
   &.selected {
-    // background-color: rgba($whisper, 0.1);
+    background-color: var(--secondary-text-color);
+    color: var(--background-color);
   }
 }
 

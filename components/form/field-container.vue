@@ -96,6 +96,7 @@ const handleFocus = (state, toggleState) => {
 
 // ///////////////////////////////////////////////////////////////////// General
 .field-container {
+  position: relative;
   &:hover,
   &:focus-within {
     .tooltip {
@@ -193,11 +194,11 @@ const handleFocus = (state, toggleState) => {
 
 // ////////////////////////////////////////////////////////////////// Validation
 :deep(.validation-message) {
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 500;
+  position: absolute;
+  right: toRem(3);
+  margin-top: toRem(6);
+  @include formFieldErrorMessage;
   color: $burntSienna;
-  font-style: italic;
   sup {
     top: -0.125rem;
     margin-right: 0.0625rem;
