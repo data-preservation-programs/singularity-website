@@ -29,8 +29,18 @@
           "inputType": "text",
           "placeholder": "First name",
           "required": true,
+          "pre": "[^\\u0000-\\u00ff]",
+          "pattern": "^[^\\s\\t\\r\\n]{2,50}$",
+          "autocomplete": "none",
+          "defaultValue": "",
+          "chars": {
+            "min": 2,
+            "max": 1000
+          },
           "validationMessage": {
-            "required": "That name doesn't appear to be valid"
+            "required": "This field is required",
+            "chars": "Field must contain at least 2 characters",
+            "pattern":"That name doesn't appear to be valid"
           }
         },
         "last_name": {
@@ -39,18 +49,38 @@
           "inputType": "text",
           "placeholder": "Last name",
           "required": true,
+          "pre": "[^\\u0000-\\u00ff]",
+          "pattern": "^[^\\s\\t\\r\\n]{2,50}$",
+          "autocomplete": "none",
+          "defaultValue": "",
+          "chars": {
+            "min": 2,
+            "max": 1000
+          },
           "validationMessage": {
-            "required": "That name doesn't appear to be valid"
+            "required": "This field is required",
+            "chars": "Field must contain at least 2 characters",
+            "pattern":"That name doesn't appear to be valid"
           }
         },
         "email": {
           "type": "input",
           "formId": "app_preview_signup_form",
-          "inputType": "text",
+          "inputType": "email",
           "placeholder": "Email",
           "required": true,
+          "pre": "[^\\u0000-\\u00ff]",
+          "pattern": "^[^\\s\\t\\r\\n]+@[^\\s\\t\\r\\n]+\\.[^\\s\\t\\r\\n]{2,20}$",
+          "autocomplete": "none",
+          "defaultValue": "",
+          "chars": {
+            "min": 2,
+            "max": 1000
+          },
           "validationMessage": {
-            "required": "That name doesn't appear to be valid"
+            "required": "This field is required",
+            "chars": "Field must contain at least 2 characters",
+            "pattern": "That email doesn't appear to be valid"
           }
         },
         "org": {
@@ -59,8 +89,18 @@
           "inputType": "text",
           "placeholder": "Organization",
           "required": true,
+          "pre": "[^\\u0000-\\u00ff]",
+          "pattern": "^[^\\s\\t\\r\\n]{2,50}$",
+          "autocomplete": "none",
+          "defaultValue": "",
+          "chars": {
+            "min": 2,
+            "max": 1000
+          },
           "validationMessage": {
-            "required": "That name doesn't appear to be valid"
+            "required": "This field is required",
+            "chars": "Field must contain at least 2 characters",
+            "pattern": "That organization name doesn't appear to be valid"
           }
         },
         "country": {
@@ -76,7 +116,8 @@
           "defaultValue": "",
           "isSingleOption": true
         }
-      }
+      },
+      "signup_form_id": "app_preview_signup_form"
     }
   }
 }

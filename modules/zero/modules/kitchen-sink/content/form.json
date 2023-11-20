@@ -1,12 +1,11 @@
 {
-  "data_owner_name": {
+  "input_type_text": {
     "type": "input",
     "inputType": "text",
-    "modelKey": "data_owner_name",
-    "formId": "filplus_application",
-    "label": "Data Owner Name",
-    "placeholder": "ABC Inc.",
-    "tooltip": "Provide the name of your group or organization.",
+    "modelKey": "input_type_text",
+    "formId": "zero_kitchen_sink_form",
+    "label": "[Input] Text",
+    "placeholder": "This is a regular text input field",
     "required": true,
     "pre": "[^\\u0000-\\u00ff]",
     "autocomplete": "none",
@@ -20,22 +19,216 @@
       "chars": "Input must be between 2 and 35 characters"
     }
   },
-  "your_role": {
-    "type": "select",
-    "modelKey": "your_role",
-    "formId": "filplus_application",
-    "label": "What is your role related to the dataset?",
+  "input_type_number_integer": {
+    "type": "input",
+    "inputType": "number",
+    "modelKey": "input_type_number_integer",
+    "formId": "zero_kitchen_sink_form",
+    "label": "[Input] Number, integer",
+    "description": "Number and float field scaffolds are the same, just change the step value to be a float or integer",
+    "placeholder": "9384627",
+    "step": 1,
+    "showControls": true,
+    "required": true,
+    "pre": "[^\\u0000-\\u00ff]",
+    "autocomplete": "none",
+    "defaultValue": "",
+    "validationMessage": {
+      "required": "This field is required"
+    }
+  },
+  "input_type_number_float": {
+    "type": "input",
+    "inputType": "number",
+    "modelKey": "input_type_number_float",
+    "formId": "zero_kitchen_sink_form",
+    "label": "[Input] Number, float",
+    "description": "Number and float field scaffolds are the same, just change the step value to be a float or integer",
+    "placeholder": "1.00",
+    "step": 0.1,
+    "showControls": true,
+    "required": true,
+    "pre": "[^\\u0000-\\u00ff]",
+    "autocomplete": "none",
+    "defaultValue": "",
+    "validationMessage": {
+      "required": "This field is required"
+    }
+  },
+  "textarea": {
+    "type": "textarea",
+    "modelKey": "textarea",
+    "formId": "zero_kitchen_sink_form",
+    "label": "Textarea",
+    "placeholder": "Just another textarea",
+    "pre": "[^\\u0000-\\u00ff]",
+    "autocomplete": "none",
+    "required": true,
+    "chars": {
+      "min": 2,
+      "max": 1000
+    },
+    "validationMessage": {
+      "required": "This field is required",
+      "chars": "Input must be between 2 and 35 characters"
+    },
+    "defaultValue": ""
+  },
+  "radio": {
+    "type": "radio",
+    "modelKey": "radio",
+    "formId": "zero_kitchen_sink_form",
+    "label": "Radio",
+    "description": "This field acts as a conditional. Toggling 'Yes' will display a textarea field.",
     "required": true,
     "output": "option",
     "validationMessage": {
       "required": "This field is required"
     },
     "options": [
-      { "label": "Dataset Owner" },
-      { "label": "Data Preparer" },
-      { "label": "Storage provider filling out application on behalf of the data owner" },
-      { "label": "Data onramp entity that provides data onboarding services to multiple clients" },
-      { "label": "Other" }
+      { "label": "Yes" },
+      { "label": "No" }
+    ],
+    "defaultValue": ""
+  },
+  "radio_conditional_textarea": {
+    "type": "textarea",
+    "modelKey": "radio_conditional_textarea",
+    "formId": "zero_kitchen_sink_form",
+    "placeholder": "Just another textarea",
+    "pre": "[^\\u0000-\\u00ff]",
+    "autocomplete": "none",
+    "required": true,
+    "conditions": [
+      {
+        "modelKey": "radio",
+        "eq": 0
+      }
+    ],
+    "chars": {
+      "min": 2,
+      "max": 1000
+    },
+    "validationMessage": {
+      "required": "This field is required",
+      "chars": "Input must be between 2 and 35 characters"
+    },
+    "defaultValue": ""
+  },
+  "checkbox": {
+    "type": "checkbox",
+    "modelKey": "checkbox",
+    "formId": "zero_kitchen_sink_form",
+    "label": "Checkbox",
+    "required": true,
+    "output": "option",
+    "validationMessage": {
+      "required": "This field is required"
+    },
+    "options": [
+      { "label": "Yes" }
+    ],
+    "defaultValue": ""
+  },
+  "boolean": {
+    "type": "boolean",
+    "modelKey": "boolean",
+    "formId": "zero_kitchen_sink_form",
+    "label": "Boolean",
+    "required": true,
+    "validationMessage": {
+      "required": "This field is required"
+    },
+    "defaultValue": ""
+  },
+  "datepicker_single": {
+    "type": "datepicker",
+    "modelKey": "datepicker_single",
+    "formId": "zero_kitchen_sink_form",
+    "label": "[Datepicker] Date single",
+    "required": true,
+    "validationMessage": {
+      "required": "This field is required"
+    },
+    "defaultValue": ""
+  },
+  "datepicker_multiple": {
+    "type": "datepicker",
+    "modelKey": "datepicker_multiple",
+    "formId": "zero_kitchen_sink_form",
+    "label": "[Datepicker] Date multiple",
+    "multi": true,
+    "required": true,
+    "validationMessage": {
+      "required": "This field is required"
+    },
+    "defaultValue": ""
+  },
+  "datepicker_single_withTime": {
+    "type": "datepicker",
+    "modelKey": "datepicker_single_withTime",
+    "formId": "zero_kitchen_sink_form",
+    "label": "[Datepicker] Datetime single",
+    "time": true,
+    "required": true,
+    "validationMessage": {
+      "required": "This field is required"
+    },
+    "defaultValue": ""
+  },
+  "datepicker_multiple_withTime": {
+    "type": "datepicker",
+    "modelKey": "datepicker_multiple_withTime",
+    "formId": "zero_kitchen_sink_form",
+    "label": "[Datepicker] Datetime multiple",
+    "multi": true,
+    "time": true,
+    "required": true,
+    "validationMessage": {
+      "required": "This field is required"
+    },
+    "defaultValue": ""
+  },
+  "datepicker_range": {
+    "type": "datepicker",
+    "modelKey": "datepicker_range",
+    "formId": "zero_kitchen_sink_form",
+    "label": "[Datepicker] Date range",
+    "range": true,
+    "required": true,
+    "validationMessage": {
+      "required": "This field is required"
+    },
+    "defaultValue": ""
+  },
+  "datepicker_range_withTime": {
+    "type": "datepicker",
+    "modelKey": "datepicker_range_withTime",
+    "formId": "zero_kitchen_sink_form",
+    "label": "[Datepicker] Datetime range",
+    "range": true,
+    "time": true,
+    "required": true,
+    "validationMessage": {
+      "required": "This field is required"
+    },
+    "defaultValue": ""
+  },
+  "select": {
+    "type": "select",
+    "modelKey": "select",
+    "formId": "zero_kitchen_sink_form",
+    "label": "Select",
+    "required": true,
+    "output": "option",
+    "placeholder": "Just another select field",
+    "validationMessage": {
+      "required": "This field is required"
+    },
+    "options": [
+      { "label": "Lorem ipsum" },
+      { "label": "Dolor sit amet" },
+      { "label": "Consectetur" }
     ],
     "defaultValue": "",
     "isSingleOption": true
@@ -43,7 +236,7 @@
   "total_datacap_size_range": {
     "type": "range",
     "modelKey": "total_datacap_size_range",
-    "formId": "filplus_application",
+    "formId": "zero_kitchen_sink_form",
     "required": true,
     "autocomplete": "off",
     "min": 1099511627776,
@@ -87,7 +280,7 @@
     "type": "input",
     "inputType": "number",
     "modelKey": "total_datacap_size_input",
-    "formId": "filplus_application",
+    "formId": "zero_kitchen_sink_form",
     "label": "Total Datacap being requested",
     "placeholder": "32",
     "min": 1,
@@ -111,7 +304,7 @@
   "total_datacap_size_unit": {
     "type": "select",
     "modelKey": "total_datacap_size_unit",
-    "formId": "filplus_application",
+    "formId": "zero_kitchen_sink_form",
     "label": "Unit",
     "required": true,
     "output": "option",
@@ -133,62 +326,5 @@
         "unitFromField": "total_datacap_size_unit"
       }
     }]
-  },
-  "ecosystem_associates_radio": {
-    "type": "radio",
-    "modelKey": "ecosystem_associates_radio",
-    "formId": "filplus_application",
-    "label": "Ecosystem associates",
-    "description": "Is this project associated with ecosystem stakeholders or other relevant projects?",
-    "required": true,
-    "output": "option",
-    "validationMessage": {
-      "required": "This field is required"
-    },
-    "options": [
-      { "label": "Yes" },
-      { "label": "No" }
-    ],
-    "defaultValue": ""
-  },
-  "ecosystem_associates_textarea": {
-    "type": "textarea",
-    "modelKey": "ecosystem_associates_textarea",
-    "formId": "filplus_application",
-    "placeholder": "Please provide the other projects or ecosystem stakeholders",
-    "pre": "[^\\u0000-\\u00ff]",
-    "autocomplete": "none",
-    "required": true,
-    "conditions": [
-      {
-        "modelKey": "ecosystem_associates_radio",
-        "eq": 0
-      }
-    ],
-    "tooltip": "",
-    "chars": {
-      "min": 2,
-      "max": 1000
-    },
-    "validationMessage": {
-      "required": "This field is required",
-      "chars": "Input must be between 2 and 35 characters"
-    },
-    "defaultValue": ""
-  },
-  "confirm_follow_fil_guideline": {
-    "type": "checkbox",
-    "modelKey": "confirm_follow_fil_guideline",
-    "formId": "filplus_application",
-    "label": "Have you read and do you agree to the Fil+ guidelines?",
-    "required": true,
-    "output": "option",
-    "validationMessage": {
-      "required": "This field is required"
-    },
-    "options": [
-      { "label": "Yes" }
-    ],
-    "defaultValue": ""
   }
 }
