@@ -5,7 +5,7 @@ module.exports = {
   extends: [
     '@nuxt/eslint-config',
     './.nuxt/.eslint.nuxt3-globals.json',
-    'plugin:vue/essential'
+    'plugin:vue/vue3-recommended'
   ],
   ignorePatterns: [
     '.nuxt/',
@@ -40,6 +40,7 @@ module.exports = {
         "max": 3
       }
     }],
-    'vue/script-setup-uses-vars': 'error'
+    'vue/script-setup-uses-vars': 'error',
+    'vue/no-v-for-template-key': 'off'
   }
 }
