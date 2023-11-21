@@ -34,21 +34,7 @@ definePageMeta({
 
 // ======================================================================== Data
 const pageContent = Content.page_content
-// const generalStore = useGeneralStore()
-// const { data } = await useAsyncData('signup', async () => {
-//   return queryContent('core').find()
-// })
 
-// ==================================================================== Watchers
-// watch(data, async (val) => {
-//   await generalStore.getBaseData('general')
-//   await generalStore.getBaseData({ key: 'signup', data: val.find((item) => item._file === 'core/signup.json') })
-// }, { immediate: true })
-
-// ==================================================================== Computed
-// const content = computed(() => {
-//   return generalStore.siteContent?.signup?.page_content
-// })
 </script>
 
 <style lang="scss" scoped>

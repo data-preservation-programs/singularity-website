@@ -55,8 +55,8 @@
 </template>
 
 <script setup>
-// const config = useRuntimeConfig()
-// const buttonStore = useZeroButtonStore()
+const config = useRuntimeConfig()
+const buttonStore = useZeroButtonStore()
 // ======================================================================= Props
 const props = defineProps({
   signupCard: {
@@ -69,18 +69,6 @@ const props = defineProps({
 // ======================================================================== Data
 const formSubmitted = ref(false)
 const submitError = ref(false)
-// const fieldError = ref({
-//   firstName: false,
-//   lastName: false,
-//   email: false,
-//   organization: false,
-//   country: false
-// })
-// const firstName = ref(false)
-// const lastName = ref(false)
-// const email = ref(false)
-// const organization = ref(false)
-// const country = ref(false)
 
 // ==================================================================== Computed
 const title = computed(() => props.signupCard.title )
@@ -97,23 +85,13 @@ const cardStyles = computed(() => {
 })
 
 const formId = computed(() => props.signupCard.signup_form_id)
-
 const firstNameFieldScaffold = computed(() => props.signupCard.signup_form.first_name )
-
 const lastNameFieldScaffold = computed(() => props.signupCard.signup_form.last_name )
-
 const emailFieldScaffold = computed(() => props.signupCard.signup_form.email )
-
 const orgFieldScaffold = computed(() => props.signupCard.signup_form.org )
-
 const countryFieldScaffold = computed(() => props.signupCard.signup_form.country )
 
 const submitButtonLabel = computed(() => formSubmitted.value ? 'Success' : 'Register' )
-
-// ===================================================================== Hooks
-onMounted(() => {
-  console.log('mounted')
-})
 
 // ===================================================================== Methdos
 /**
@@ -121,52 +99,50 @@ onMounted(() => {
  */
 const validateFormValues = async () => {
   const pass = await useValidateForm(formId.value)
-  console.log('pass ', pass)
   if (pass) {
-    const formValues = useGetFormFields(formId.value)
-    console.log('formValues ', formValues)
+    const formFields = useGetFormFields(formId.value)
+    const formValues = {}
+    formFields.forEach((field) => {
+      if (field.scaffold.type === 'input') {
+        formValues[field.scaffold.slug] = field.value.trim()
+      }
+      if (field.scaffold.type === 'select') {
+        formValues[field.scaffold.slug] = field.scaffold.options[field.value[0]].label
+      }
+    })
+    return formValues
+  } else {
+    return false
   }
 }
 /**
  * @method submitForm
  */
 const submitForm = async () => {
-  console.log('submmitting form')
   if (formSubmitted.value) { return }
   if (submitError.value) { submitError.value = false }
-  const values = await validateFormValues()
-  console.log('values ', values)
-  // if (validateFormValues()) {
-    // const body = {
-    //     records: [
-    //       {
-    //         fields: {
-    //           email: email.value.trim(),
-    //           firstname: firstName.value.trim(),
-    //           lastname: lastName.value.trim(),
-    //           company: organization.value.trim(),
-    //           country: country.value.label
-    //         }
-    //       }
-    //     ]
-    //   }
-    //   const headers = {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${config.public.airtableToken}`
-    //   }
+  const fields = await validateFormValues()
+  if (fields) {
+    const body = {
+        records: [{ fields }]
+      }
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${config.public.airtableToken}`
+      }
 
-    // await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblDUSr66nczukX9Y', {
-    //   method: 'POST',
-    //   body,
-    //   headers
-    // }).then(() => {
-    //   formSubmitted.value = true
-    //   return
-    // }).catch(() => {
-    //   submitError.value = true
-    // })
-  // }
-  // buttonStore.set({id: 'signup-card-form', loading: false})
+    await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblDUSr66nczukX9Y', {
+      method: 'POST',
+      body,
+      headers
+    }).then(() => {
+      formSubmitted.value = true
+      return
+    }).catch(() => {
+      submitError.value = true
+    })
+  }
+  buttonStore.setButton({id: 'signup-card-form', loading: false})
 }
 </script>
 
