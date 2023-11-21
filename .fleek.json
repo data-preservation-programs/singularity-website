@@ -4,7 +4,10 @@
       "command": "npm ci && npm run generate",
       "publicDir": ".output/public",
       "environment": {
-        "SERVER_ENV": "production"
+        "SERVER_ENV": "production",
+        "ALGOLIA_APPLICATION_ID": "default",
+        "ALGOLIA_API_KEY": "default",
+        "ALGOLIA_INDEX_ID": "default"
       }
     }
 }
