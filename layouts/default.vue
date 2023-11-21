@@ -1,11 +1,11 @@
 <template>
   <div class="layout default" tabindex="-1">
 
-    <SiteHeader />
+    <!-- <SiteHeader /> -->
 
     <slot />
 
-    <SiteFooter />
+    <!-- <SiteFooter /> -->
 
   </div>
 </template>

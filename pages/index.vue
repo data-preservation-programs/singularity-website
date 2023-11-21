@@ -13,7 +13,6 @@ import BlockBuilder from '@/components/blocks/block-builder'
 // ======================================================================== Data
 const generalStore = useGeneralStore()
 const route = useRoute()
-const { $GetSeo, $CompileSeo } = useNuxtApp()
 const { data } = await useAsyncData('core', async () => {
   return queryContent('core').find()
 })
@@ -22,7 +21,6 @@ const { data } = await useAsyncData('core', async () => {
 watch(data, async (val) => {
   await generalStore.getBaseData('general')
   await generalStore.getBaseData({ key: 'index', data: val.find((item) => item._file === 'core/index.json') })
-  useHead($CompileSeo($GetSeo('general', 'index')))
 }, { immediate: true })
 
 // ==================================================================== Computed

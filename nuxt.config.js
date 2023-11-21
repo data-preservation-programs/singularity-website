@@ -1,3 +1,7 @@
+// ///////////////////////////////////////////////////////////////////// Imports
+// -----------------------------------------------------------------------------
+import Path from 'path'
+
 // /////////////////////////////////////////////////////////// Variables & Setup
 // -----------------------------------------------------------------------------
 const env = process.env.SERVER_ENV
@@ -37,11 +41,14 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           // make SCSS variables, functions and mixins globally accessible
-          additionalData: '@import "@/assets/scss/settings.scss";'
+          additionalData: '@use "sass:math"; @import "@/assets/scss/settings.scss";'
         }
       }
     },
     assetsInclude: ['**/*.md']
+  },
+  build: {
+    transpile: ['@vuepic/vue-datepicker']
   },
   // //////////////////////////////////////////////// Custom Sass Theme Override
   // ---------------------------------------------------------------------------
@@ -85,7 +92,10 @@ export default defineNuxtConfig({
   // ////////////////////////////////////////////////////////////// Auto-imports
   // ---------------------------------------------------------------------------
   imports: {
-    dirs: ['stores']
+    presets: [{
+      from: 'pinia',
+      imports: []
+    }]
   },
   // ///////////////////////////////////////////////////////////// Global Styles
   // ---------------------------------------------------------------------------
@@ -98,17 +108,22 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@/modules/eslint-nuxt3-globals',
     '@nuxtjs/eslint-module',
+    '@nuxtjs/algolia',
+    // '@/modules/zero', // required
     '@nuxt/content',
-    '@/modules/zero-components/index.js',
     '@nuxtjs/plausible', // https://github.com/nuxt-modules/plausible
     'nuxt-simple-robots', // https://github.com/harlan-zw/nuxt-simple-robots
     'nuxt-simple-sitemap' // https://github.com/harlan-zw/nuxt-simple-sitemap
   ],
-  // ////////////////////////////////////////////////////// [Module] @pinia/nuxt
+  // ////////////////////////////////////////////////// [Module] @nuxtjs/algolia
   // ---------------------------------------------------------------------------
-  pinia: {
-    autoImports: [
-      'defineStore' // import { defineStore } from 'pinia'
+  algolia: {
+    disable: true,
+    apiKey: process.env.ALGOLIA_API_KEY,
+    applicationId: process.env.ALGOLIA_APPLICATION_ID,
+    indexName: `${process.env.ALGOLIA_INDEX_ID}__${env}`,
+    sources: [
+      { path: Path.resolve(__dirname, 'content'), contentDirectoryName: 'content' }
     ]
   },
   // ////////////////////////////////////////////////// [Module] @nuxt/plausible

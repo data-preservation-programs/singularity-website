@@ -11,7 +11,6 @@
           {{ title }}
         </h1>
 
-
       </div>
 
       <div v-if="description" class="description">
@@ -21,85 +20,17 @@
       <div class="signup-form">
 
         <div class="name-fields">
-          <div class="field-wrapper">
-            <input
-              :class="['first-name input-field form-field', { error: fieldError.firstName }]"
-              type="text"
-              :placeholder="firstNameField.placeholder"
-              required="true"
-              @input="updateInputValue($event.target.value, 'firstName')" />
-            <span :class="[{error: fieldError.firstName}, 'message']">
-              That name doesn't appear to be valid
-            </span>
-          </div>
-
-          <div class="field-wrapper">
-            <input
-              :class="['last-name input-field form-field', { error: fieldError.lastName }]"
-              type="text"
-              :placeholder="lastNameField.placeholder"
-              required="true"
-              @input="updateInputValue($event.target.value, 'lastName')" />
-            <span :class="[{error: fieldError.lastName}, 'message']">
-              That name doesn't appear to be valid
-            </span>
-          </div>
+          <FormFieldContainer
+            :scaffold="firstNameFieldScaffold" />
+          <FormFieldContainer
+            :scaffold="lastNameFieldScaffold" />
         </div>
-
-        <div class="field-wrapper">
-          <input
-            :class="['email input-field form-field', { error: fieldError.email }]"
-            type="email"
-            :placeholder="emailField.placeholder"
-            required="true"
-            @input="updateInputValue($event.target.value, 'email')" />
-          <span :class="[{error: fieldError.email}, 'message']">
-            {{ fieldError.email === 'invalid' ? "That email doesn't appear to be valid" : 'Field is required' }}
-          </span>
-        </div>
-
-        <div class="field-wrapper">
-          <input
-            :class="['organization input-field form-field', { error: fieldError.organization }]"
-            :placeholder="orgField.placeholder"
-            type="text"
-            required="true"
-            @input="updateInputValue($event.target.value, 'organization')" />
-          <span :class="[{error: fieldError.organization}, 'message']">
-            That organization name doesn't appear to be valid
-          </span>
-        </div>
-
-        <div class="field-wrapper">
-          <ZeroDropdown class="country" :display-selected="true">
-            <template #toggle-button="{ togglePanel, panelOpen, selected }">
-              <div
-                :class="['toggle-button form-field', { error: fieldError.country }, { open: panelOpen } ]"
-                :tabindex="0"
-                @click="togglePanel"
-                @keyup.enter="togglePanel">
-                <p v-if="selected" class="toggle-button-label selected">
-                  {{ selected.label }}
-                </p>
-                <p v-else class="toggle-button-label">
-                  Country
-                </p>
-                <IconChevron />
-              </div>
-            </template>
-            <template #dropdown-panel="{ setSelected, closePanel }">
-              <p
-                v-for="option in countryField.options"
-                :key="option.code"
-                class="option"
-                @click="selectOption(setSelected, closePanel, option, 'country')"
-                v-html="option.label" />
-            </template>
-          </ZeroDropdown>
-          <span :class="[{error: fieldError.country}, 'message']">
-            Field is required
-          </span>
-        </div>
+        <FormFieldContainer
+          :scaffold="emailFieldScaffold" />
+        <FormFieldContainer
+          :scaffold="orgFieldScaffold" />
+        <FormFieldContainer
+          :scaffold="countryFieldScaffold" />
 
         <div class="button-row">
           <div v-if="submitError" class="submit-error">
@@ -138,25 +69,13 @@ const props = defineProps({
 // ======================================================================== Data
 const formSubmitted = ref(false)
 const submitError = ref(false)
-const fieldError = ref({
-  firstName: false,
-  lastName: false,
-  email: false,
-  organization: false,
-  country: false
-})
-const firstName = ref(false)
-const lastName = ref(false)
-const email = ref(false)
-const organization = ref(false)
-const country = ref(false)
 
 // ==================================================================== Computed
-const title = computed(() => { return props.signupCard.title })
+const title = computed(() => props.signupCard.title )
 
-const img = computed(() => { return props.signupCard.img })
+const img = computed(() => props.signupCard.img )
 
-const description = computed(() => { return props.signupCard.description })
+const description = computed(() => props.signupCard.description )
 
 const cardStyles = computed(() => {
   if (props.signupCard.borderGradientAngle) {
@@ -165,92 +84,36 @@ const cardStyles = computed(() => {
   return null
 })
 
-const firstNameField = computed(() => { return props.signupCard.signup_form.first_name })
+const formId = computed(() => props.signupCard.signup_form_id)
+const firstNameFieldScaffold = computed(() => props.signupCard.signup_form.first_name )
+const lastNameFieldScaffold = computed(() => props.signupCard.signup_form.last_name )
+const emailFieldScaffold = computed(() => props.signupCard.signup_form.email )
+const orgFieldScaffold = computed(() => props.signupCard.signup_form.org )
+const countryFieldScaffold = computed(() => props.signupCard.signup_form.country )
 
-const lastNameField = computed(() => { return props.signupCard.signup_form.last_name })
-
-const emailField = computed(() => { return props.signupCard.signup_form.email })
-
-const orgField = computed(() => { return props.signupCard.signup_form.org })
-
-const countryField = computed(() => { return props.signupCard.signup_form.country })
-
-const submitButtonLabel = computed(() => { return formSubmitted.value ? 'Success' : 'Register' })
+const submitButtonLabel = computed(() => formSubmitted.value ? 'Success' : 'Register' )
 
 // ===================================================================== Methdos
 /**
- * @method updateInputValue
- */
-const updateInputValue = (val, field) => {
-  if (fieldError.value[field]) { fieldError.value[field] = false}
-  switch(field) {
-    case 'firstName':
-      firstName.value = val
-      break
-    case 'lastName':
-      lastName.value = val
-      break
-    case 'email':
-      email.value = val
-      break
-    case 'organization':
-      organization.value = val
-      break
-  }
-}
-/**
- * @method selectOption
- */
-const selectOption = (setSelected, closePanel, option, field) => {
-  if (option) {
-    if (fieldError.value[field]) { fieldError.value[field] = false }
-    setSelected(option)
-    closePanel()
-    switch(field) {
-      case 'country':
-        country.value = option
-        break
-    }
-   }
-}
-/**
- * @method validateFieldValue
- */
-const validateFieldValue = (field, val) => {
-  const regex = /^[^\s\t\r\n]{2,50}$/
-  if(!val || !regex.test(val)) {
-    fieldError.value[field] = true
-    return false
-  }
-  return true
-}
-/**
- * @method validateEmail
- */
-const validateEmail = (email) => {
-  const regex = /^[^\s\t\r\n]+@[^\s\t\r\n]+\.[^\s\t\r\n]{2,20}$/i
-  if(typeof email === 'string' && email.length > 0) {
-    if (regex.test(email)) {
-      return true
-    } else {
-      fieldError.value.email = 'invalid'
-      return false
-    }
-  } else {
-    fieldError.value.email = 'empty'
-    return false
-  }
-}
-/**
  * @method validateFormValues
  */
-const validateFormValues = () => {
-  const validFirstName = validateFieldValue('firstName', firstName.value)
-  const validLastName = validateFieldValue('lastName', lastName.value)
-  const validEmail = validateEmail(email.value)
-  const validOrganization = validateFieldValue('organization', organization.value)
-  const validCountry = validateFieldValue('country', country.value.label)
-  return validFirstName && validLastName && validEmail && validOrganization && validCountry
+const validateFormValues = async () => {
+  const pass = await useValidateForm(formId.value)
+  if (pass) {
+    const formFields = useGetFormFields(formId.value)
+    const formValues = {}
+    formFields.forEach((field) => {
+      if (field.scaffold.type === 'input') {
+        formValues[field.scaffold.slug] = field.value.trim()
+      }
+      if (field.scaffold.type === 'select') {
+        formValues[field.scaffold.slug] = field.scaffold.options[field.value[0]].label
+      }
+    })
+    return formValues
+  } else {
+    return false
+  }
 }
 /**
  * @method submitForm
@@ -258,19 +121,10 @@ const validateFormValues = () => {
 const submitForm = async () => {
   if (formSubmitted.value) { return }
   if (submitError.value) { submitError.value = false }
-  if (validateFormValues()) {
+  const fields = await validateFormValues()
+  if (fields) {
     const body = {
-        records: [
-          {
-            fields: {
-              email: email.value.trim(),
-              firstname: firstName.value.trim(),
-              lastname: lastName.value.trim(),
-              company: organization.value.trim(),
-              country: country.value.label
-            }
-          }
-        ]
+        records: [{ fields }]
       }
       const headers = {
         'Content-Type': 'application/json',
@@ -288,7 +142,7 @@ const submitForm = async () => {
       submitError.value = true
     })
   }
-  buttonStore.set({id: 'signup-card-form', loading: false})
+  buttonStore.setButton({id: 'signup-card-form', loading: false})
 }
 </script>
 
@@ -329,51 +183,6 @@ const submitForm = async () => {
   display: flex;
   flex-direction: column;
 }
-
-.field-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  flex: 1;
-  &:is(:last-of-type) {
-    .message.error {
-      min-height: toRem(32);
-    }
-  }
-}
-
-.form-field {
-  border: var(--brand-color) 1px solid;
-  border-radius: toRem(5);
-  padding: toRem(8) toRem(20);
-  @include transitionDefault;
-  transition-duration: 300ms;
-  &:hover,
-  &:focus {
-    border-color: var(--secondary-text-color);
-  }
-  &.error {
-    border-color: var(--error);
-  }
-}
-.message {
-  @include transitionDefault;
-  opacity: 0;
-  height: toRem(24);
-  min-height: toRem(24);
-  @include formFieldErrorMessage;
-  &.error {
-    height: auto;
-    opacity: 1;
-    text-align: right;
-  }
-}
-.error {
-  color: var(--error);
-}
-
-
 .button-row {
   display: flex;
   justify-content: flex-end;
@@ -383,7 +192,7 @@ const submitForm = async () => {
   }
 }
 .submit-error {
-  @include formFieldErrorMessage;
+
   color: var(--error);
   margin: 0 toRem(94) 0 toRem(5);
   @include mini {
@@ -416,89 +225,23 @@ const submitForm = async () => {
   }
 }
 
-//----------------------------------------------------------------- Input Fields
+//---------------------------------------------------------- Field Customization
 .name-fields {
   display: flex;
   justify-content: space-between;
+  margin-bottom: toRem(30);
   @include medium {
     flex-flow: row wrap;
-    .field-wrapper {
-      width: 100%;
-      flex: unset;
-    }
   }
-  .field-wrapper:is(:first-child) {
+  :deep(.field-container) {
+    flex: 1;
+    margin-bottom: 0;
+  }
+  :deep(.field-container:is(:first-child)) {
     margin-right: toRem(20);
     @include medium {
       margin-right: 0;
     }
-  }
-}
-
-.input-field {
-  @include formFieldText;
-  color: var(--primary-text-color);
-  width: 100%;
-  &::placeholder {
-    @include formFieldPlaceholder;
-    opacity: 1;
-  }
-}
-
-//-------------------------------------------------------------- Dropdown Fields
-:deep(.dropdown) {
-  width: 100%;
-}
-
-.toggle-button {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  @include transitionDefault;
-  &.open {
-    border-color: var(--secondary-text-color);
-    border-bottom-color: transparent;
-    background-color: $codGray;
-  }
-}
-.toggle-button-label {
-  @include formFieldPlaceholder;
-  color: var(--primary-text-color);
-  &.selected {
-    @include formFieldText;
-  }
-}
-
-:deep(.panel-container) {
-  width: 100%;
-  z-index: 1;
-  top: calc(100% - 8px);
-  padding-top: 0;
-  height: 0;
-  background-color: $codGray;
-  @include transitionDefault;
-  border: var(--secondary-text-color) 1px solid;
-  overflow-y: scroll;
-  border-top: none;
-  border-bottom-left-radius: toRem(5);
-  border-bottom-right-radius: toRem(5);
-  &:not(.open) {
-    transform: (translate(-50%, 0));
-  }
-  &.open {
-    height: toRem(217);
-  }
-}
-.option {
-  @include formFieldPlaceholder;
-  cursor: pointer;
-  padding: 0 toRem(20) toRem(4);
-  @include transitionDefault;
-  &:hover {
-    background-color: var(--secondary-text-color);
-    color: var(--background-color);
   }
 }
 </style>
