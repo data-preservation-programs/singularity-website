@@ -1,11 +1,11 @@
 <template>
-  <div :class="['field field-textarea', state, { empty, disabled }]">
+  <div :class="['field field-textarea', state, { empty, disabled, 'no-validate': !validate }]">
 
     <div v-if="disabled" class="textarea">
-      {{ value }}
+      {{ value || placeholder }}
     </div>
 
-    <div class="textarea-container">
+    <div v-else class="textarea-container">
       <textarea
         :value="value"
         :placeholder="placeholder"
@@ -26,7 +26,7 @@ const props = defineProps({
     type: Object,
     required: true
   },
-  forceDisabled: {
+  disabled: {
     type: Boolean,
     required: false,
     default: false
@@ -40,12 +40,12 @@ const scaffold = props.field.scaffold
 const placeholder = scaffold.placeholder || 'Enter a value...'
 const autocomplete = scaffold.autocomplete
 const pre = scaffold.pre
-const disabled = props.forceDisabled || scaffold.disabled
 
 // ==================================================================== Computed
 const value = computed(() => props.field.value)
 const state = computed(() => props.field.state)
 const empty = computed(() => !value.value || value.value === '')
+const validate = computed(() => props.field.validate)
 
 // ======================================================================= Watch
 watch(props.field, (field) => {

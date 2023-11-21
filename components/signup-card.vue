@@ -79,11 +79,11 @@ const submitError = ref(false)
 //   organization: false,
 //   country: false
 // })
-const firstName = ref(false)
-const lastName = ref(false)
-const email = ref(false)
-const organization = ref(false)
-const country = ref(false)
+// const firstName = ref(false)
+// const lastName = ref(false)
+// const email = ref(false)
+// const organization = ref(false)
+// const country = ref(false)
 
 // ==================================================================== Computed
 const title = computed(() => props.signupCard.title )
@@ -138,6 +138,7 @@ const submitForm = async () => {
   if (formSubmitted.value) { return }
   if (submitError.value) { submitError.value = false }
   const values = await validateFormValues()
+  console.log('values ', values)
   // if (validateFormValues()) {
     // const body = {
     //     records: [

@@ -3,17 +3,27 @@
 <template>
   <div
     tabindex="-1"
-    :class="['select-container', state, {
+    :class="['field field-select', state, {
       'select-container-focused': selectContainerFocused,
       'select-native-focused': selectNativeFocused,
-      'dropdown-open': dropdownOpen
+      'dropdown-open': dropdownOpen,
+      disabled
     }]"
     @focus="handleFocusBlur('focus', 'select-container')"
     @blur="handleFocusBlur('blur', 'select-container')"
     @keydown="handleKeyboardNavigation($event)">
 
+    <!-- ================================================= [Select] Disabled -->
+    <div v-if="disabled" class="select custom">
+      <slot
+        name="disabled-window"
+        :placeholder="placeholder"
+        :label="label" />
+    </div>
+
     <!-- =================================================== [Select] Native -->
     <select
+      v-if="!disabled"
       :aria-labelledby="ariaLabelledby"
       :multiple="!isSingleOption"
       class="select native"
@@ -38,6 +48,7 @@
 
     <!-- =================================================== [Select] Custom -->
     <div
+      v-if="!disabled"
       :aria-hidden="dropdownOpen ? 'false' : 'true'"
       class="select custom">
 
@@ -83,6 +94,11 @@ const props = defineProps({
   field: {
     type: Object,
     required: true
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false
   },
   /**
    * Options need to be passed in explicitly since the options coming in from
@@ -136,8 +152,8 @@ const fieldKey = props.field.fieldKey
 const modelKey = scaffold.modelKey
 const label = scaffold.label
 const placeholder = scaffold.placeholder
-const isSingleOption = scaffold.isSingleOption || false
-const isSingleSelection = scaffold.isSingleSelection || false
+const isSingleOption = scaffold.isSingleOption || true
+const isSingleSelection = scaffold.isSingleSelection || true
 const ariaLabelledby = modelKey || fieldKey
 
 // ==================================================================== Computed
@@ -146,7 +162,7 @@ const selectedOptions = computed(() => {
   return typeof value === 'string' ? [] : value // typeahead values are strings
 })
 const state = computed(() => props.field.state)
-const empty = computed(() => isSingleSelection ? selectedOptions === -1 : selectedOptions.length === 0)
+const empty = computed(() => selectedOptions.value.length === 0)
 
 // ======================================================================= Setup
 currentOptionsHighlighted.value = isSingleSelection ? selectedOptions.value[0] : selectedOptions.value
@@ -300,7 +316,7 @@ const handleKeyboardNavigation = (e) => {
 
 <style lang="scss" scoped>
 // ///////////////////////////////////////////////////////////////////// General
-.select-container {
+.field-select {
   position: relative;
   width: 100%;
   height: 100%;
@@ -344,7 +360,7 @@ const handleKeyboardNavigation = (e) => {
 }
 
 @media (hover: hover) {
-  .select-container {
+  .field-select {
     &:after {
       display: none;
     }

@@ -1,5 +1,6 @@
 // ///////////////////////////////////////////////////////////////////// Imports
 // -----------------------------------------------------------------------------
+import { useRegisterField } from '@/modules/zero/modules/form/composables/use-register-field'
 import { useZeroFormStore } from '@/modules/zero/modules/form/stores/use-zero-form-store'
 
 // ////////////////////////////////////////////////////////////////// [Class] Ls
@@ -13,6 +14,11 @@ class Field {
   // ======================================================================= get
   get (id) {
     return this.store.fields[id]
+  }
+
+  // ==================================================================== remove
+  remove (id) {
+    return this.store.removeField(id)
   }
 
   // ======================================================================= set

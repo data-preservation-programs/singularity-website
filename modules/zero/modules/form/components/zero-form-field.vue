@@ -1,7 +1,7 @@
 <template>
   <component
     :is="rootHtmlTag"
-    v-if="displayField && field"
+    v-if="field && displayField"
     :class="['field', state, { disabled }]">
 
     <slot
@@ -39,11 +39,6 @@ const props = defineProps({
     required: false,
     default: true
   },
-  deregisterOnDestroy: {
-    type: Boolean,
-    required: false,
-    default: false
-  },
   /**
    * On occasions where the final root element in field-conditional.vue render
    * must be something specific. Such as when wrapping a <tbody> in a field-standalone,
@@ -64,27 +59,31 @@ const modelKey = scaffold.modelKey
 const required = scaffold.required
 const react = scaffold.react
 const conditions = scaffold.conditions
-const disabled = props.forceDisabled || scaffold.disabled
-const deregister = scaffold.deregisterOnDestroy || props.deregisterOnDestroy
+const deregisterOnDestroy = scaffold.hasOwnProperty('deregisterOnDestroy') ? scaffold.deregisterOnDestroy : true
 const id = modelKey || scaffold.id || useUuid().v4()
 let debounceSaveFieldToLsUponValueUpdate = null
 const store = useZeroFormStore()
-
-await store.setField(useRegisterField(
-  id,
-  formId,
-  scaffold,
-  props.forceValidate
-))
-
 const { fields } = storeToRefs(store)
-const field = computed(() => fields.value[id])
+let field = fields.value[id]
+
+if (!field) {
+  await store.setField(useRegisterField(
+    id,
+    formId,
+    scaffold,
+    props.forceValidate
+  ))
+}
 
 const { $bus } = useNuxtApp()
 
+const emit = defineEmits(['updateValue'])
+
 // ==================================================================== Computed
-const displayField = computed(() => field.value.displayField)
+field = computed(() => fields.value[id])
+const displayField = computed(() => field.value?.displayField)
 const state = computed(() => field.value.state)
+const disabled = computed(() => props.forceDisabled || scaffold.disabled)
 
 const fieldType = computed(() => {
   const type = scaffold.type
@@ -92,6 +91,7 @@ const fieldType = computed(() => {
   switch (type) {
     case 'input' : component = 'FieldInput'; break
     case 'textarea' : component = 'FieldTextarea'; break
+    case 'boolean' : component = 'FieldBoolean'; break
     case 'range' : component = 'FieldRange'; break
     case 'checkbox' : component = 'FieldCheckbox'; break
     case 'radio' : component = 'FieldRadio'; break
@@ -99,6 +99,9 @@ const fieldType = computed(() => {
     case 'typeahead' : component = 'FieldTypeahead'; break
     case 'chiclet' : component = 'FieldChiclet'; break
     case 'wysiwyg' : component = 'FieldWysiwyg'; break
+    case 'datepicker' : component = 'FieldDatepicker'; break
+    case 'json' : component = 'FieldJson'; break
+    default : component = `Field${useUnSlugify(type)}`
   }
   return component
 })
@@ -113,6 +116,14 @@ const validationMessage = computed(() => {
 // ======================================================================= Hooks
 onMounted(async () => {
   await nextTick(async () => {
+    if (!field.value) {
+      await store.setField(useRegisterField(
+        id,
+        formId,
+        scaffold,
+        props.forceValidate
+      ))
+    }
     const fieldToRestoreFromLsOrToDisplay = await getLocalStorageValue() || {
       id,
       mounted: displayField.value
@@ -130,7 +141,9 @@ onMounted(async () => {
 })
 
 onBeforeUnmount(() => {
-  if (field.value && deregister) {
+  if (deregisterOnDestroy) {
+    store.removeField(id)
+  } else {
     store.setField({
       id,
       mounted: false
@@ -168,6 +181,7 @@ const updateValue = async (value) => {
   const updated = { id, value }
   await store.setField(updated)
   debounceSaveFieldToLsUponValueUpdate()
+  emit('updateValue', value)
   $bus.$emit('fieldValueUpdated', updated)
 }
 

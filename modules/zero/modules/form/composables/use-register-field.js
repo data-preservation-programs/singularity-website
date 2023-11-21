@@ -1,5 +1,6 @@
 // ///////////////////////////////////////////////////////////////////// Imports
 // -----------------------------------------------------------------------------
+import { useValidateField } from '@/modules/zero/modules/form/composables/use-validate-field'
 import { useZeroFormStore } from '@/modules/zero/modules/form/stores/use-zero-form-store'
 
 // /////////////////////////////////////////////////////////////////// Functions
@@ -66,7 +67,7 @@ export const useRegisterField = (id, formId, scaffold, validate) => {
     id,
     formId,
     modelKey: scaffold.modelKey,
-    validate: validate || true,
+    validate,
     state: 'not-started',
     originalState: null,
     validation: null,

@@ -49,7 +49,6 @@ const emit = defineEmits(['toggleFocused', 'updateValue'])
 
 // ======================================================================== Data
 const scaffold = props.field.scaffold
-const state = props.field.state
 const id = props.field.id
 const options = scaffold.options
 const disabled = props.forceDisabled || scaffold.disabled
@@ -59,4 +58,5 @@ const value = computed(function () {
   const value = props.field.value
   return Array.isArray(value) ? value[0] : value
 })
+const state = computed(() => props.field.state)
 </script>

@@ -1,5 +1,12 @@
 <template>
-  <ZeroFieldInput v-bind="{...props, ...$attrs}" />
+  <ZeroFieldInput v-bind="{...props, ...$attrs}">
+    <template #step-control-up>
+      UP
+    </template>
+    <template #step-control-down>
+      DOWN
+    </template>
+  </ZeroFieldInput>
 </template>
 
 <script setup>
@@ -39,6 +46,18 @@ $height: 3.125rem;
       border-color: rgba(246, 245, 255, 0.25);
     }
   }
+  &.with-controls {
+    :deep(.input) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: 0;
+    }
+  }
+}
+
+:deep(.input-container) {
+  display: flex;
+  flex-direction: row;
 }
 
 :deep(.input) {
@@ -46,7 +65,7 @@ $height: 3.125rem;
   flex-direction: row;
   align-items: center;
   padding: 0 toRem(12);
-  border: 2px solid teal;
+  border: 2px solid black;
   border-radius: toRem(5);
   transition: 150ms ease-in-out;
   @include placeholder {
@@ -54,6 +73,23 @@ $height: 3.125rem;
     font-style: italic;
     opacity: 1;
     transition: 150ms ease-out;
+  }
+}
+
+:deep(.step-controls) {
+  color: white;
+  border-radius: 0 toRem(5) toRem(5) 0;
+  overflow: hidden;
+  .step-control {
+    background-color: black;
+    width: 100%;
+    height: 50%;
+    &:hover {
+      background-color: gray;
+    }
+    &:first-child {
+      border-bottom: 1px solid gray;
+    }
   }
 }
 </style>

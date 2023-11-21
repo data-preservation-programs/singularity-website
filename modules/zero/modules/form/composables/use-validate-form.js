@@ -6,18 +6,23 @@ import { useZeroFormStore } from '@/modules/zero/modules/form/stores/use-zero-fo
 // -----------------------------------------------------------------------------
 export const useValidateForm = (formId) => {
   const store = useZeroFormStore()
-  const fields = store.fields.filter(field => field.formId === formId)
+  const fields = useGetFormFields(formId)
   const len = fields.length
+  if (len === 0) { return false }
   let formValid = true
   for (let i = 0; i < len; i++) {
     const field = fields[i]
-    if (field.validate && field.mounted && (field.state === 'error' || field.originalState === 'error')) {
-      formValid = false
+    if (field.validate && field.mounted) {
+      const check = useValidateField(field)
+      if (check.state !== 'completed' && check.validation) {
+        formValid = false
+      }
       store.setField(Object.assign({
         id: field.id,
-        state: 'error',
-        originalState: 'error',
-        validation: field.originalValidation
+        state: check.state,
+        originalState: check.originalState,
+        validation: check.validation,
+        originalValidation: check.originalValidation
       }))
     }
   }

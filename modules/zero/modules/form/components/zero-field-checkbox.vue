@@ -49,13 +49,13 @@ const emit = defineEmits(['toggleFocused', 'updateValue'])
 
 // ======================================================================== Data
 const scaffold = props.field.scaffold
-const state = props.field.state
 const id = props.field.id
 const options = scaffold.options
 const disabled = props.forceDisabled || scaffold.disabled
 
 // ==================================================================== Computed
 const value = computed(() => props.field.value)
+const state = computed(() => props.field.state)
 
 // ===================================================================== Methods
 const updateValue = (index) => {

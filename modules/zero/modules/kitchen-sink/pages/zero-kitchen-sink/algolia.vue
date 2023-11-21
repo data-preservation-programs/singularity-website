@@ -61,9 +61,6 @@
 </template>
 
 <script setup>
-// ===================================================================== Imports
-import { storeToRefs } from 'pinia'
-
 // ======================================================================= Setup
 definePageMeta({
   layout: 'zero-layout'

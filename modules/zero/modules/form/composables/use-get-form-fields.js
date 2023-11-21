@@ -1,15 +1,18 @@
 // ///////////////////////////////////////////////////////////////////// Imports
 // -----------------------------------------------------------------------------
-import { useField } from '@/modules/zero/modules/form/composables/use-field'
 import { useZeroFormStore } from '@/modules/zero/modules/form/stores/use-zero-form-store'
 
 // ////////////////////////////////////////////////////////////////////// Export
 // -----------------------------------------------------------------------------
-export const useResetForm = (formId) => {
+export const useGetFormFields = formId => {
   const store = useZeroFormStore()
-  const fields = store.fields.filter(field => field.formId === formId)
-  const len = fields.length
-  for (let i = 0; i < len; i++) {
-    useField().reset(fields[i].id)
-  }
+  const keys = Object.keys(store.fields)
+  const fields = []
+  keys.map(fieldId => {
+    const field = store.fields[fieldId]
+    if (field.formId === formId) {
+      fields.push(field)
+    }
+  })
+  return fields
 }

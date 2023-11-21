@@ -11,7 +11,7 @@ import {
   addPlugin,
   addImports,
   addImportsDir,
-  addComponent,
+  addComponentsDir,
   extendPages,
   addLayout,
   addServerHandler,
@@ -25,8 +25,8 @@ import { useUnSlugify } from './composables/use-unslugify'
 // ////////////////////////////////////////////////////////////////////// Config
 // -----------------------------------------------------------------------------
 const meta = {
-  name: '@undone-labs/nuxt-module-zero-components',
-  configKey: 'nuxtModuleZeroComponents',
+  name: '@undone-labs/nuxt-module-zero',
+  configKey: 'nuxtModuleZero',
   compatibility: {
     nuxt: '^3.0.0'
   }
@@ -37,8 +37,10 @@ const meta = {
 // ///////////////////////////////////////////// addEntriesToPublicRuntimeConfig
 const addEntriesToPublicRuntimeConfig = (nuxt) => {
   const algolia = nuxt.options.algolia
-  nuxt.options.runtimeConfig.public.algolia.indexName = algolia.indexName
-  nuxt.options.runtimeConfig.public.algolia.disable = algolia.disable || false
+  nuxt.options.runtimeConfig.public.algolia = {
+    indexName: algolia.indexName,
+    disable: algolia.disable || false
+  }
   nuxt.options.runtimeConfig.public.auth = nuxt.options.auth
   nuxt.options.runtimeConfig.public.ls = nuxt.options.ls
 }
@@ -54,17 +56,12 @@ const registerPlugins = (path, log = false) => {
 }
 
 // ////////////////////////////////////////////////////////// registerComponents
-const registerComponents = (path, log = false) => {
+const registerComponents = (path) => {
   path = resolve(path, 'components')
   if (!Fs.existsSync(path)) { return }
-  Fs.readdirSync(path).filter(file => file.includes('.vue')).forEach(component => {
-    const name = component.split('.vue')[0]
-    addComponent({
-      name,
-      filePath: resolve(path, component),
-      global: true
-    })
-    if (log) { console.log(`🧩 [zero:component] ${name}`) }
+  addComponentsDir({
+    path,
+    global: true
   })
 }
 
@@ -103,7 +100,7 @@ const walk = (dir, next) => {
     const name = dirEnt.name
     const path = resolve(dirEnt.path, dirEnt.name)
     const ext = Path.extname(name).toLowerCase()
-    const isDirectory = Fs.statSync(path).isDirectory()
+    const isDirectory = Fs.existsSync(path) && Fs.statSync(path).isDirectory()
     isDirectory ?
       walk(path, next) :
       next({
@@ -220,7 +217,7 @@ const setup = async (_, nuxt) => {
   }
   registerComposables(basePath)
   registerPlugins(basePath, true)
-  registerComponents(basePath, true)
+  registerComponents(basePath)
   registerLayouts(basePath, true)
   registerPages(basePath, true)
   registerContentDirectories(nuxt, basePath)

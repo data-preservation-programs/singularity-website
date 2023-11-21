@@ -86,19 +86,6 @@ renderer.heading = function (text, level) {
   `
 }
 
-renderer.paragraph = function (text) {
-  const split = text.split(`\\`)
-  const len = split.length
-  if (len > 1) {
-    let paragraphs = ''
-    split.forEach(paragraph => {
-      paragraphs = paragraphs.concat(`<p>${paragraph}</p>`)
-    })
-    return paragraphs
-  }
-  return `<p>${split[0]}</p>`
-}
-
 renderer.code = function (code, language) {
   const languageInstalled = hljs.getLanguage(language)
   const highlighted = language && languageInstalled ?
@@ -127,7 +114,7 @@ watch(
 // ======================================================================= Hooks
 onMounted(async () => {
   await nextTick(() => {
-    copyButtons = document.getElementsByClassName('copy-button')
+    copyButtons = document.querySelector('.markdown .copy-button')
     const len = copyButtons.length
     for (let i = 0; i < len; i++) {
       const button = copyButtons[i]

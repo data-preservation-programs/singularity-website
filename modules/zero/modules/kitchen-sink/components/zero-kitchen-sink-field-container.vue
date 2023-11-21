@@ -95,11 +95,6 @@ const props = defineProps({
     required: false,
     default: true
   },
-  deregisterOnDestroy: {
-    type: Boolean,
-    required: false,
-    default: true
-  },
   /**
    * On occasions where the final root element in field-conditional.vue render
    * must be something specific. Such as when wrapping a <tbody> in a field-standalone,

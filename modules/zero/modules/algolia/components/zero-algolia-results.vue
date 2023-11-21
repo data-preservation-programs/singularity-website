@@ -36,9 +36,6 @@
 </template>
 
 <script setup>
-// ===================================================================== Imports
-import { storeToRefs } from 'pinia'
-
 // ======================================================================== Data
 const props = defineProps({
   results: {
