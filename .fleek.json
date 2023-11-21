@@ -1,6 +1,6 @@
 {
     "build": {
-      "image": "node:16.19",
+      "image": "node:20.9.0-slim",
       "command": "npm ci && npm run generate",
       "publicDir": ".output/public",
       "environment": {
