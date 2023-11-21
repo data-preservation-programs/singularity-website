@@ -11,7 +11,6 @@
           {{ title }}
         </h1>
 
-
       </div>
 
       <div v-if="description" class="description">
@@ -28,8 +27,6 @@
         </div>
         <FormFieldContainer
           :scaffold="emailFieldScaffold" />
-        <FormFieldContainer
-          :scaffold="orgFieldScaffold" />
         <FormFieldContainer
           :scaffold="orgFieldScaffold" />
         <FormFieldContainer
@@ -59,7 +56,7 @@
 
 <script setup>
 // const config = useRuntimeConfig()
-const buttonStore = useZeroButtonStore()
+// const buttonStore = useZeroButtonStore()
 // ======================================================================= Props
 const props = defineProps({
   signupCard: {
@@ -169,7 +166,7 @@ const submitForm = async () => {
     //   submitError.value = true
     // })
   // }
-  buttonStore.set({id: 'signup-card-form', loading: false})
+  // buttonStore.set({id: 'signup-card-form', loading: false})
 }
 </script>
 

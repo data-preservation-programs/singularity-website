@@ -1,5 +1,5 @@
 <template>
-  <div :class="['field field-json', state, { empty, disabled, 'no-validate': !validate }]">
+  <div :class="['field-json', state, { empty, disabled, 'no-validate': !validate }]">
 
     <ZeroMarkdownParser
       v-if="disabled"

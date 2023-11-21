@@ -1,5 +1,5 @@
 <template>
-  <div :class="['field field-input', inputType, state, { empty, disabled, 'no-validate': !validate, 'with-controls': showControls }]">
+  <div :class="['field-input', inputType, state, { empty, disabled, 'no-validate': !validate, 'with-controls': showControls }]">
 
     <div v-if="disabled" class="input-container">
       <div class="input">

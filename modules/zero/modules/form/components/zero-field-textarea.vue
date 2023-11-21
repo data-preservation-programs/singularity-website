@@ -1,5 +1,5 @@
 <template>
-  <div :class="['field field-textarea', state, { empty, disabled, 'no-validate': !validate }]">
+  <div :class="['field-textarea', state, { empty, disabled, 'no-validate': !validate }]">
 
     <div v-if="disabled" class="textarea">
       {{ value || placeholder }}

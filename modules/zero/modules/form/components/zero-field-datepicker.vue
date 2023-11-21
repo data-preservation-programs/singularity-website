@@ -1,5 +1,5 @@
 <template>
-  <div :class="['field field-datepicker', state, { disabled, empty }]">
+  <div :class="['field-datepicker', state, { disabled, empty }]">
 
     <VueDatePicker
       :model-value="value"

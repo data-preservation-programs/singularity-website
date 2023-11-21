@@ -2,7 +2,7 @@
   <component
     :is="rootHtmlTag"
     v-if="field && displayField"
-    :class="['field', state, { disabled }]">
+    :class="['field-container', state, { disabled }]">
 
     <slot
       :field="field"
@@ -20,7 +20,6 @@
 
 <script setup>
 // ===================================================================== Imports
-import { storeToRefs } from 'pinia'
 import Debounce from 'lodash/debounce'
 
 // ======================================================================= Props
@@ -60,14 +59,17 @@ const required = scaffold.required
 const react = scaffold.react
 const conditions = scaffold.conditions
 const deregisterOnDestroy = scaffold.hasOwnProperty('deregisterOnDestroy') ? scaffold.deregisterOnDestroy : true
-const id = modelKey || scaffold.id || useUuid().v4()
+const id = modelKey || scaffold.id
+if (!id || id === '') {
+  throw new Error('Form field is missing "id" key. Fields must always have a unique id.')
+}
 let debounceSaveFieldToLsUponValueUpdate = null
 const store = useZeroFormStore()
 const { fields } = storeToRefs(store)
 let field = fields.value[id]
 
 if (!field) {
-  await store.setField(useRegisterField(
+  store.setField(useRegisterField(
     id,
     formId,
     scaffold,
@@ -101,6 +103,7 @@ const fieldType = computed(() => {
     case 'wysiwyg' : component = 'FieldWysiwyg'; break
     case 'datepicker' : component = 'FieldDatepicker'; break
     case 'json' : component = 'FieldJson'; break
+    case 'upload' : component = 'FieldUpload'; break
     default : component = `Field${useUnSlugify(type)}`
   }
   return component
@@ -116,14 +119,6 @@ const validationMessage = computed(() => {
 // ======================================================================= Hooks
 onMounted(async () => {
   await nextTick(async () => {
-    if (!field.value) {
-      await store.setField(useRegisterField(
-        id,
-        formId,
-        scaffold,
-        props.forceValidate
-      ))
-    }
     const fieldToRestoreFromLsOrToDisplay = await getLocalStorageValue() || {
       id,
       mounted: displayField.value
@@ -156,7 +151,7 @@ onBeforeUnmount(() => {
  * @method toggleState
  */
 
-const toggleState = async (focused) => {
+const toggleState = async focused => {
   const update = { id }
   if (focused) {
     update.state = 'in-progress'
@@ -177,7 +172,7 @@ const toggleState = async (focused) => {
  * @method updateValue
  */
 
-const updateValue = async (value) => {
+const updateValue = async value => {
   const updated = { id, value }
   await store.setField(updated)
   debounceSaveFieldToLsUponValueUpdate()
@@ -206,7 +201,7 @@ const getLocalStorageValue = () => {
  * @method initializeReactions
  */
 
-const initializeReactions = async (updatedField) => {
+const initializeReactions = async updatedField => {
   if (!react) { return }
   const len = react.length
   for (let i = 0; i < len; i++) {

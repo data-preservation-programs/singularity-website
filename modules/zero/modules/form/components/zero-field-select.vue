@@ -3,7 +3,7 @@
 <template>
   <div
     tabindex="-1"
-    :class="['field field-select', state, {
+    :class="['field-select', state, {
       'select-container-focused': selectContainerFocused,
       'select-native-focused': selectNativeFocused,
       'dropdown-open': dropdownOpen,

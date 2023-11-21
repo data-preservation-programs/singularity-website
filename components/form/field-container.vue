@@ -1,8 +1,7 @@
 <template>
   <ZeroFormField
     v-slot="{ field, fieldId, fieldType, state, required, disabled, validationMessage, updateValue, toggleState }"
-    v-bind="props"
-    :class="['field-container', { focused }]">
+    v-bind="props">
 
     <label v-if="scaffold.label" :for="fieldId" :class="['field-label', state]">
       {{ scaffold.label }}
@@ -20,7 +19,7 @@
       :disabled="disabled"
       @update-value="updateValue"
       @toggle-state="toggleState"
-      @toggle-focused="handleFocus($event, toggleState)" />
+      @toggle-focused="toggleState" />
 
     <slot />
 
@@ -76,15 +75,6 @@ const map = {
   'FieldDatepicker': resolveComponent('FormFieldDatepicker'),
   'FieldSelect': resolveComponent('FormFieldSelect'),
   'FieldUpload': resolveComponent('FormFieldUpload')
-}
-
-// ======================================================================== Data
-const focused = ref(false)
-
-// ===================================================================== Methods
-const handleFocus = (state, toggleState) => {
-  focused.value = state
-  toggleState(state)
 }
 </script>
 

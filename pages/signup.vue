@@ -6,17 +6,16 @@
 
           <ButtonCta
             class="back-home-button"
-            :theme="content.back_home_cta.theme"
-            :arrow-direction="content.back_home_cta.arrow_direction"
-            :tag="content.back_home_cta.tag"
-            :to="content.back_home_cta.to">
+            :theme="pageContent.back_home_cta.theme"
+            :arrow-direction="pageContent.back_home_cta.arrow_direction"
+            :tag="pageContent.back_home_cta.tag"
+            :to="pageContent.back_home_cta.to">
             <template #button-content>
-              <span class="button-label"> {{ content.back_home_cta.text }} </span>
+              <span class="button-label"> {{ pageContent.back_home_cta.text }} </span>
             </template>
           </ButtonCta>
 
-
-          <SignupCard :signup-card="content.signup_card" />
+          <SignupCard :signup-card="pageContent.signup_card" />
         </div>
 
       </div>
@@ -25,28 +24,31 @@
 </template>
 
 <script setup>
+// ===================================================================== Imports
+import Content from '@/content/core/signup.json'
+
+// ======================================================================= Setup
 definePageMeta({
   layout: 'warped-torus-background'
 })
+
 // ======================================================================== Data
-const generalStore = useGeneralStore()
-const { $GetSeo, $CompileSeo } = useNuxtApp()
-const { data } = await useAsyncData('signup', async () => {
-  return queryContent('core').find()
-})
+const pageContent = Content.page_content
+// const generalStore = useGeneralStore()
+// const { data } = await useAsyncData('signup', async () => {
+//   return queryContent('core').find()
+// })
 
 // ==================================================================== Watchers
-watch(data, async (val) => {
-  await generalStore.getBaseData('general')
-  await generalStore.getBaseData({ key: 'signup', data: val.find((item) => item._file === 'core/signup.json') })
-  useHead($CompileSeo($GetSeo('general', 'signup')))
-}, { immediate: true })
+// watch(data, async (val) => {
+//   await generalStore.getBaseData('general')
+//   await generalStore.getBaseData({ key: 'signup', data: val.find((item) => item._file === 'core/signup.json') })
+// }, { immediate: true })
 
 // ==================================================================== Computed
-const content = computed(() => {
-  return generalStore.siteContent?.signup?.page_content
-})
-
+// const content = computed(() => {
+//   return generalStore.siteContent?.signup?.page_content
+// })
 </script>
 
 <style lang="scss" scoped>

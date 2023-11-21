@@ -1,5 +1,5 @@
 <template>
-  <div :class="['field field-radio', state, { disabled }]">
+  <div :class="['field-radio', state, { disabled }]">
 
     <div
       v-for="(option, index) in options"

@@ -1,5 +1,5 @@
 <template>
-  <div :class="['field field-boolean', state, { disabled, checked: value }]">
+  <div :class="['field-boolean', state, { disabled, checked: value }]">
 
     <div class="boolean-container">
       <div v-if="disabled" :class="['boolean', { checked: value }]" />

@@ -1,14 +1,4 @@
 {
-  "seo": {
-    "title": "Singularity",
-    "description": "Singularity facilitates onboarding of large quantaties of data (PB-scale) to the Filecoin network in an efficient, secure, and flexible way."
-  },
-  "og": {
-    "site_name": "Singularity",
-    "url": "https://singularity.storage",
-    "type": "website",
-    "image": "images/singularity-open-graph.jpg"
-  },
   "page_content": [
     {
       "id": "hero-header",
