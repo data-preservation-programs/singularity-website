@@ -147,7 +147,7 @@ div.field-select {
   transition: 150ms ease-out;
   &.native {
     &:focus-visible {
-      @include focusBoxShadow;
+      // @include focusBoxShadow;
     }
   }
 }

@@ -18,107 +18,6 @@
         {{ description }}
       </div>
 
-      <!-- <div class="signup-form">
-
-        <div class="name-fields">
-          <div class="field-wrapper">
-            <input
-              :class="['first-name input-field form-field', { error: fieldError.firstName }]"
-              type="text"
-              :placeholder="firstNameField.placeholder"
-              required="true"
-              @input="updateInputValue($event.target.value, 'firstName')" />
-            <span :class="[{error: fieldError.firstName}, 'message']">
-              That name doesn't appear to be valid
-            </span>
-          </div>
-
-          <div class="field-wrapper">
-            <input
-              :class="['last-name input-field form-field', { error: fieldError.lastName }]"
-              type="text"
-              :placeholder="lastNameField.placeholder"
-              required="true"
-              @input="updateInputValue($event.target.value, 'lastName')" />
-            <span :class="[{error: fieldError.lastName}, 'message']">
-              That name doesn't appear to be valid
-            </span>
-          </div>
-        </div>
-
-        <div class="field-wrapper">
-          <input
-            :class="['email input-field form-field', { error: fieldError.email }]"
-            type="email"
-            :placeholder="emailField.placeholder"
-            required="true"
-            @input="updateInputValue($event.target.value, 'email')" />
-          <span :class="[{error: fieldError.email}, 'message']">
-            {{ fieldError.email === 'invalid' ? "That email doesn't appear to be valid" : 'Field is required' }}
-          </span>
-        </div>
-
-        <div class="field-wrapper">
-          <input
-            :class="['organization input-field form-field', { error: fieldError.organization }]"
-            :placeholder="orgField.placeholder"
-            type="text"
-            required="true"
-            @input="updateInputValue($event.target.value, 'organization')" />
-          <span :class="[{error: fieldError.organization}, 'message']">
-            That organization name doesn't appear to be valid
-          </span>
-        </div>
-
-        <div class="field-wrapper">
-          <ZeroDropdown class="country" :display-selected="true">
-            <template #toggle-button="{ togglePanel, panelOpen, selected }">
-              <div
-                :class="['toggle-button form-field', { error: fieldError.country }, { open: panelOpen } ]"
-                :tabindex="0"
-                @click="togglePanel"
-                @keyup.enter="togglePanel">
-                <p v-if="selected" class="toggle-button-label selected">
-                  {{ selected.label }}
-                </p>
-                <p v-else class="toggle-button-label">
-                  Country
-                </p>
-                <IconChevron />
-              </div>
-            </template>
-            <template #dropdown-panel="{ setSelected, closePanel }">
-              <p
-                v-for="option in countryField.options"
-                :key="option.code"
-                class="option"
-                @click="selectOption(setSelected, closePanel, option, 'country')"
-                v-html="option.label" />
-            </template>
-          </ZeroDropdown>
-          <span :class="[{error: fieldError.country}, 'message']">
-            Field is required
-          </span>
-        </div>
-
-        <div class="button-row">
-          <div v-if="submitError" class="submit-error">
-            Uh oh, we were not able to send that data due to an error — please try again, or reach out to us via Slack
-          </div>
-
-          <ButtonCtaWithLoader
-            :class="['submit-button', { submitted: formSubmitted }]"
-            theme="primary"
-            loader="signup-card-form"
-            @clicked="submitForm">
-            <template #button-content>
-              <span class="button-label"> {{ submitButtonLabel }} </span>
-            </template>
-          </ButtonCtaWithLoader>
-        </div>
-
-      </div> -->
-
       <div class="signup-form">
 
         <div class="name-fields">
@@ -159,7 +58,7 @@
 </template>
 
 <script setup>
-const config = useRuntimeConfig()
+// const config = useRuntimeConfig()
 const buttonStore = useZeroButtonStore()
 // ======================================================================= Props
 const props = defineProps({
@@ -173,13 +72,13 @@ const props = defineProps({
 // ======================================================================== Data
 const formSubmitted = ref(false)
 const submitError = ref(false)
-const fieldError = ref({
-  firstName: false,
-  lastName: false,
-  email: false,
-  organization: false,
-  country: false
-})
+// const fieldError = ref({
+//   firstName: false,
+//   lastName: false,
+//   email: false,
+//   organization: false,
+//   country: false
+// })
 const firstName = ref(false)
 const lastName = ref(false)
 const email = ref(false)
@@ -187,11 +86,11 @@ const organization = ref(false)
 const country = ref(false)
 
 // ==================================================================== Computed
-const title = computed(() => { return props.signupCard.title })
+const title = computed(() => props.signupCard.title )
 
-const img = computed(() => { return props.signupCard.img })
+const img = computed(() => props.signupCard.img )
 
-const description = computed(() => { return props.signupCard.description })
+const description = computed(() => props.signupCard.description )
 
 const cardStyles = computed(() => {
   if (props.signupCard.borderGradientAngle) {
@@ -200,129 +99,75 @@ const cardStyles = computed(() => {
   return null
 })
 
-const firstNameFieldScaffold = computed(() => { return props.signupCard.signup_form.first_name })
+const formId = computed(() => props.signupCard.signup_form_id)
 
-const lastNameFieldScaffold = computed(() => { return props.signupCard.signup_form.last_name })
+const firstNameFieldScaffold = computed(() => props.signupCard.signup_form.first_name )
 
-const emailFieldScaffold = computed(() => { return props.signupCard.signup_form.email })
+const lastNameFieldScaffold = computed(() => props.signupCard.signup_form.last_name )
 
-const orgFieldScaffold = computed(() => { return props.signupCard.signup_form.org })
+const emailFieldScaffold = computed(() => props.signupCard.signup_form.email )
 
-const countryFieldScaffold = computed(() => { return props.signupCard.signup_form.country })
+const orgFieldScaffold = computed(() => props.signupCard.signup_form.org )
 
-const submitButtonLabel = computed(() => { return formSubmitted.value ? 'Success' : 'Register' })
+const countryFieldScaffold = computed(() => props.signupCard.signup_form.country )
+
+const submitButtonLabel = computed(() => formSubmitted.value ? 'Success' : 'Register' )
+
+// ===================================================================== Hooks
+onMounted(() => {
+  console.log('mounted')
+})
 
 // ===================================================================== Methdos
-// /**
-//  * @method updateInputValue
-//  */
-// const updateInputValue = (val, field) => {
-//   if (fieldError.value[field]) { fieldError.value[field] = false}
-//   switch(field) {
-//     case 'firstName':
-//       firstName.value = val
-//       break
-//     case 'lastName':
-//       lastName.value = val
-//       break
-//     case 'email':
-//       email.value = val
-//       break
-//     case 'organization':
-//       organization.value = val
-//       break
-//   }
-// }
-// /**
-//  * @method selectOption
-//  */
-// const selectOption = (setSelected, closePanel, option, field) => {
-//   if (option) {
-//     if (fieldError.value[field]) { fieldError.value[field] = false }
-//     setSelected(option)
-//     closePanel()
-//     switch(field) {
-//       case 'country':
-//         country.value = option
-//         break
-//     }
-//    }
-// }
-/**
- * @method validateFieldValue
- */
-const validateFieldValue = (field, val) => {
-  const regex = /^[^\s\t\r\n]{2,50}$/
-  if(!val || !regex.test(val)) {
-    fieldError.value[field] = true
-    return false
-  }
-  return true
-}
-/**
- * @method validateEmail
- */
-const validateEmail = (email) => {
-  const regex = /^[^\s\t\r\n]+@[^\s\t\r\n]+\.[^\s\t\r\n]{2,20}$/i
-  if(typeof email === 'string' && email.length > 0) {
-    if (regex.test(email)) {
-      return true
-    } else {
-      fieldError.value.email = 'invalid'
-      return false
-    }
-  } else {
-    fieldError.value.email = 'empty'
-    return false
-  }
-}
 /**
  * @method validateFormValues
  */
-const validateFormValues = () => {
-  const validFirstName = validateFieldValue('firstName', firstName.value)
-  const validLastName = validateFieldValue('lastName', lastName.value)
-  const validEmail = validateEmail(email.value)
-  const validOrganization = validateFieldValue('organization', organization.value)
-  const validCountry = validateFieldValue('country', country.value.label)
-  return validFirstName && validLastName && validEmail && validOrganization && validCountry
+const validateFormValues = async () => {
+  const pass = await useValidateForm(formId.value)
+  console.log('pass ', pass)
+  if (pass) {
+    const formValues = useGetFormFields(formId.value)
+    console.log('formValues ', formValues)
+  }
 }
 /**
  * @method submitForm
  */
 const submitForm = async () => {
+  console.log('submmitting form')
   if (formSubmitted.value) { return }
   if (submitError.value) { submitError.value = false }
-  if (validateFormValues()) {
-    const body = {
-        records: [
-          {
-            fields: {
-              email: email.value.trim(),
-              firstname: firstName.value.trim(),
-              lastname: lastName.value.trim(),
-              company: organization.value.trim(),
-              country: country.value.label
-            }
-          }
-        ]
-      }
-      const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${config.public.airtableToken}`
-      }
+  const values = await validateFormValues()
+  // if (validateFormValues()) {
+    // const body = {
+    //     records: [
+    //       {
+    //         fields: {
+    //           email: email.value.trim(),
+    //           firstname: firstName.value.trim(),
+    //           lastname: lastName.value.trim(),
+    //           company: organization.value.trim(),
+    //           country: country.value.label
+    //         }
+    //       }
+    //     ]
+    //   }
+    //   const headers = {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${config.public.airtableToken}`
+    //   }
 
-    await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblDUSr66nczukX9Y', {
-      method: 'POST',
-      body,
-      headers
-    }).then(() => {
-      formSubmitted.value = true
-      return
-    }).catch(() => {
-      submitError.value = true
-    })
-  }
+    // await $fetch('https://api.airtable.com/v0/apphbQmrNLNNXiaqG/tblDUSr66nczukX9Y', {
+    //   method: 'POST',
+    //   body,
+    //   headers
+    // }).then(() => {
+    //   formSubmitted.value = true
+    //   return
+    // }).catch(() => {
+    //   submitError.value = true
+    // })
+  // }
   buttonStore.set({id: 'signup-card-form', loading: false})
 }
 </script>
