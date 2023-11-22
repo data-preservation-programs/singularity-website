@@ -63,8 +63,8 @@ const props = defineProps({
 <style lang="scss" scoped>
 // ///////////////////////////////////////////////////////////////////// General
 .with-loader.theme__primary {
-  &:hover {
-    cursor: default;
+  &:hover,
+  &:focus-visible {
     :deep(.inner-content.loading) {
       .fill-path {
         opacity: 0;

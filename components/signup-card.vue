@@ -176,7 +176,6 @@ const submitForm = async () => {
   }
 }
 
-
 // //////////////////////////////////////////////////////////////////////// Form
 //---------------------------------------------------------------------- General
 .signup-form {
@@ -192,7 +191,6 @@ const submitForm = async () => {
   }
 }
 .submit-error {
-
   color: var(--error);
   margin: 0 toRem(94) 0 toRem(5);
   @include mini {
