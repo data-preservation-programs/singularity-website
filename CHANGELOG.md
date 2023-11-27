@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.7.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.6.0...v1.7.0) (2023-11-23)
+
+
+### Features
+
+* signup button styling for keyboard navigation ([c50a573](https://github.com/data-preservation-programs/singularity-website/commit/c50a57327dbf42d0277b32814e645c431a9fc009))
+* signup form submits data from module form fields ([e9146b8](https://github.com/data-preservation-programs/singularity-website/commit/e9146b8064219b7a5c05240b225c88dca12dcd1f))
+* signup form uses form module components ([596ad8e](https://github.com/data-preservation-programs/singularity-website/commit/596ad8e677a50b8364816b8ca95ed49a0ea961b0))
+* signup form uses form module fields ([24d604b](https://github.com/data-preservation-programs/singularity-website/commit/24d604b11992362d69bc37b3614741745767c5f0))
+* upgrades zero module ([23dcacb](https://github.com/data-preservation-programs/singularity-website/commit/23dcacb914a7260f74e985662c4624bf831af122))
+
+
+### Bug Fixes
+
+* signup form works again ([55ec848](https://github.com/data-preservation-programs/singularity-website/commit/55ec8487282124e55d4a11c2bf63073ae7236796))
+* zero module version ([7a25000](https://github.com/data-preservation-programs/singularity-website/commit/7a250009b2b3627bfe02fc321e51ef95d17870f6))
+
 ## [1.6.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.5.0...v1.6.0) (2023-11-19)
 
 
