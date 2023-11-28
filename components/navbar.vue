@@ -38,16 +38,13 @@ const emit = defineEmits(['nav-link-click'])
 const scrollToSection = async (el) => {
   emit('nav-link-click')
   const id = el.replaceAll('#', '')
-  const section = document.getElementById(id)
-  if (section) {
-    await navigateTo({
-      path: '/',
-      query: {
-        section: id
-      }
-    })
-    section.scrollIntoView({ behavior: 'smooth' })
-  }
+  await navigateTo({
+    path: '/',
+    query: {
+      section: id
+    }
+  })
+  section.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
 
