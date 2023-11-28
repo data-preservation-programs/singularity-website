@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.1](https://github.com/data-preservation-programs/singularity-website/compare/v1.7.0...v1.7.1) (2023-11-28)
+
+
+### Bug Fixes
+
+* nav jumplinks for index page navigate correctly from signup page ([a363e6f](https://github.com/data-preservation-programs/singularity-website/commit/a363e6f41fad138085e0694195e0d28b1d71976e))
+* put back navbar + footer ([4d8c2b0](https://github.com/data-preservation-programs/singularity-website/commit/4d8c2b081b8296193e874d1942b2f2939a969f71))
+
 ## [1.7.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.6.0...v1.7.0) (2023-11-23)
 
 
