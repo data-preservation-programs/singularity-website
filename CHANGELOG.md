@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.7.2](https://github.com/data-preservation-programs/singularity-website/compare/v1.7.1...v1.7.2) (2024-01-24)
+
+
+### Bug Fixes
+
+* nav links work on all pages ([9d737e9](https://github.com/data-preservation-programs/singularity-website/commit/9d737e9519e455e69b95de2798de7aa466f175f0))
+* regenerated font files for SuisseIntl Medium and Regular ([6055bc0](https://github.com/data-preservation-programs/singularity-website/commit/6055bc0028ecf8c30f2a5498b0797646e335c11c))
+* regenerated font files for SuisseIntl SemiBold and Mono-Regular ([d593427](https://github.com/data-preservation-programs/singularity-website/commit/d5934275a75d424d63d364621a70fc3ebedc35ec))
+
 ## [1.7.1](https://github.com/data-preservation-programs/singularity-website/compare/v1.7.0...v1.7.1) (2023-11-28)
 
 
