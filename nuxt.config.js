@@ -110,6 +110,7 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     '@nuxtjs/algolia',
     // '@/modules/zero', // required
+    '@/modules/nuxt-module-plausible',
     '@nuxt/content',
     '@nuxtjs/plausible', // https://github.com/nuxt-modules/plausible
     'nuxt-simple-robots', // https://github.com/harlan-zw/nuxt-simple-robots
@@ -129,6 +130,7 @@ export default defineNuxtConfig({
   // ////////////////////////////////////////////////// [Module] @nuxt/plausible
   // ---------------------------------------------------------------------------
   plausible: {
+    include: true,
     domain: 'singularity.storage',
     autoOutboundTracking: true
   },
