@@ -132,6 +132,7 @@ export default defineNuxtConfig({
   plausible: {
     include: true,
     domain: 'singularity.storage',
+    trackLocalhost: true,
     autoOutboundTracking: true
   },
   // //////////////////////////////////////////////////// [Module] @nuxt/content

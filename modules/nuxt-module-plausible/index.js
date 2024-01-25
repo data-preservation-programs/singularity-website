@@ -1,13 +1,23 @@
-/*
- *
- * 📦 [Module] NuxtModulePlausible
- *
- */
+console.log('📦 [load:module] nuxt-module-plausible')
 
 // ///////////////////////////////////////////////////////////////////// Imports
 // -----------------------------------------------------------------------------
-// ///////////////////////////////////////////////////////////////////// General
 import Path from 'path'
+
+import { defineNuxtModule, addPlugin } from 'nuxt/kit'
+
+// ////////////////////////////////////////////////////////////////////// Config
+// -----------------------------------------------------------------------------
+const meta = {
+  name: '@undone-labs/nuxt-module-plausible',
+  configKey: 'nuxtModulePlausible',
+  compatibility: {
+    nuxt: '^3.0.0'
+  }
+}
+
+// /////////////////////////////////////////////////////////////////// Functions
+// -----------------------------------------------------------------------------
 // ///////////////////////////////////////////////////////////////////// Plugins
 const plugins = [
   {
@@ -17,21 +27,23 @@ const plugins = [
 ]
 
 // ///////////////////////////////////////////////////////////// registerPlugins
-const registerPlugins = (instance, next) => {
-  return new Promise((next) => {
+const registerPlugins = () => {
     plugins.forEach((plugin) => {
-      instance.addPlugin(plugin)
+      addPlugin(plugin)
+      console.log('🔌 [nuxt-module-plausible:plugin]')
     })
-    if (next) { return next() }
-  })
 }
 
-// ///////////////////////////////////////////////////////////////////// Liftoff
+// /////////////////////////////////////////////////////////////////////// Setup
 // -----------------------------------------------------------------------------
-export default async function () {
-  if (this.options.plausible.include) {
-    await registerPlugins(this, () => {
-      console.log(`📦 [Module] Plausible`)
-    })
+const setup = async (_, nuxt) => {
+  if (nuxt.options.plausible.include) {
+    registerPlugins()
   }
 }
+// ////////////////////////////////////////////////////////////////////// Export
+// -----------------------------------------------------------------------------
+export default defineNuxtModule({
+  meta,
+  setup
+})

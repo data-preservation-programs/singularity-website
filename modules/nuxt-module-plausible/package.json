@@ -29,6 +29,7 @@
       }
     ],
     "license": "Apache-2.0",
+    "type": "module",
     "bugs": {
       "url": "https://github.com/undone-labs/nuxt-module-plausible/issues"
     },
@@ -52,4 +53,3 @@
      "access": "public"
     }
   }
-  
