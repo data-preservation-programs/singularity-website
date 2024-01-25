@@ -4,7 +4,7 @@ console.log('📦 [load:module] nuxt-module-plausible')
 // -----------------------------------------------------------------------------
 import Path from 'path'
 
-import { defineNuxtModule, addPlugin } from 'nuxt/kit'
+import { defineNuxtModule, addPlugin } from '@nuxt/kit'
 
 // ////////////////////////////////////////////////////////////////////// Config
 // -----------------------------------------------------------------------------

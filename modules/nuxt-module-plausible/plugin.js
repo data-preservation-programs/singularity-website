@@ -1,19 +1,18 @@
 // ///////////////////////////////////////////////////////////////////// Imports
 // -----------------------------------------------------------------------------
-import { defineNuxtPlugin, useRuntimeConfig, useRouter } from '#imports'
-// import Config from '@/nuxt.config'
+import { defineNuxtPlugin } from '#imports'
 
 // ////////////////////////////////////////////////////////////////////// Export
 // -----------------------------------------------------------------------------
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
 
   // Do not fire Plausible if not in production mode
   if (process.env.NODE_ENV !== 'production') {
     return
   }
 
-  const router = useRouter()
-  const config = useRuntimeConfig()
+  const router = nuxtApp.$router
+  const config = nuxtApp.$config.public.siteUrl
   let isInitialPageLoad = true
 
   router.afterEach((to) => {
