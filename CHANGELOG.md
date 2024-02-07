@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.8.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.7.2...v1.8.0) (2024-02-07)
+
+
+### Features
+
+* load plugin if env is prod or if localhost tracking explicitly enabled ([e96735c](https://github.com/data-preservation-programs/singularity-website/commit/e96735ce09f01d5aaace08a1bed208c6b5bc8f31))
+* makes imports more nuxt2 compatible ([a04227d](https://github.com/data-preservation-programs/singularity-website/commit/a04227d3dff70d5c44dda6252c01eef0a1b9a8bd))
+* translate nuxt-module-plausible to nuxt3 ([dada952](https://github.com/data-preservation-programs/singularity-website/commit/dada95296f3503aff66621f8a4148d7a36039f2e))
+
 ## [1.7.2](https://github.com/data-preservation-programs/singularity-website/compare/v1.7.1...v1.7.2) (2024-01-24)
 
 
