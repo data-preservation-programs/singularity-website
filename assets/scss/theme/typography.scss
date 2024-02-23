@@ -15,8 +15,8 @@ $fontAssetPath: 'assets/fonts';
   src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Light.eot');
   src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Light.eot?#iefix') format('embedded-opentype'),
     url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Light.woff2') format('woff2'),
-    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Light.otf') format('opentype'),
-    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Light.svg#SuisseIntl-Light') format('svg');
+    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Light.otf') format('opentype');
+    // url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Light.svg#SuisseIntl-Light') format('svg');
   font-weight: 300;
   font-style: normal;
 }
@@ -26,8 +26,8 @@ $fontAssetPath: 'assets/fonts';
   src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Regular.eot');
   src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Regular.eot?#iefix') format('embedded-opentype'),
     url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Regular.woff2') format('woff2'),
-    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Regular.otf') format('opentype'),
-    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Regular.svg#SuisseIntl-Regular') format('svg');
+    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Regular.otf') format('opentype');
+    // url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Regular.svg#SuisseIntl-Regular') format('svg');
   font-weight: 400;
   font-style: normal;
 }
@@ -44,8 +44,8 @@ $fontAssetPath: 'assets/fonts';
   src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Medium.eot');
   src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Medium.eot?#iefix') format('embedded-opentype'),
     url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Medium.woff2') format('woff2'),
-    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Medium.otf') format('opentype'),
-    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Medium.svg#SuisseIntl-Medium') format('svg');
+    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Medium.otf') format('opentype');
+    // url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Medium.svg#SuisseIntl-Medium') format('svg');
   font-weight: 500;
   font-style: normal;
 }
@@ -62,8 +62,8 @@ $fontAssetPath: 'assets/fonts';
   src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-SemiBold.eot');
   src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-SemiBold.eot?#iefix') format('embedded-opentype'),
     url('#{$fontAssetPath}/suisse-intl/SuisseIntl-SemiBold.woff2') format('woff2'),
-    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-SemiBold.otf') format('opentype'),
-    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-SemiBold.svg#SuisseIntl-SemiBold') format('svg');
+    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-SemiBold.otf') format('opentype');
+    // url('#{$fontAssetPath}/suisse-intl/SuisseIntl-SemiBold.svg#SuisseIntl-SemiBold') format('svg');
   font-weight: 600;
   font-style: normal;
 }
@@ -73,8 +73,8 @@ $fontAssetPath: 'assets/fonts';
   src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Bold.eot');
   src: url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Bold.eot?#iefix') format('embedded-opentype'),
     url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Bold.woff2') format('woff2'),
-    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Bold.otf') format('opentype'),
-    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Bold.svg#SuisseIntl-Bold') format('svg');
+    url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Bold.otf') format('opentype');
+    // url('#{$fontAssetPath}/suisse-intl/SuisseIntl-Bold.svg#SuisseIntl-Bold') format('svg');
   font-weight: 700;
   font-style: normal;
 }
@@ -85,8 +85,8 @@ $fontAssetPath: 'assets/fonts';
   src: url('#{$fontAssetPath}/suisse-intl-mono/SuisseIntlMono-Regular.eot');
   src: url('#{$fontAssetPath}/suisse-intl-mono/SuisseIntlMono-Regular.eot?#iefix') format('embedded-opentype'),
     url('#{$fontAssetPath}/suisse-intl-mono/SuisseIntlMono-Regular.woff2') format('woff2'),
-    url('#{$fontAssetPath}/suisse-intl-mono/SuisseIntlMono-Regular.otf') format('opentype'),
-    url('#{$fontAssetPath}/suisse-intl-mono/SuisseIntlMono-Regular.svg#Suisse-Intl-Mono-Regular') format('svg');
+    url('#{$fontAssetPath}/suisse-intl-mono/SuisseIntlMono-Regular.otf') format('opentype');
+    // url('#{$fontAssetPath}/suisse-intl-mono/SuisseIntlMono-Regular.svg#Suisse-Intl-Mono-Regular') format('svg');
   font-weight: 400;
   font-style: normal;
 }
