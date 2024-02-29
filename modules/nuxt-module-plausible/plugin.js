@@ -15,13 +15,9 @@ export default defineNuxtPlugin(() => {
     return
   }
 
-  console.log('PASS')
-
   let isInitialPageLoad = true
 
   router.afterEach(to => {
-
-    console.log(to)
 
     // Ignore initial page because it's fired in the head
     if (isInitialPageLoad) {
@@ -33,10 +29,6 @@ export default defineNuxtPlugin(() => {
     window.plausible = window.plausible || function () {
       (window.plausible.q = window.plausible.q || []).push(arguments)
     }
-
-    console.log({
-      url: `${config.siteUrl}${to.fullPath}`
-    })
 
     window.plausible('pageview', {
       url: `${config.siteUrl}${to.fullPath}`
