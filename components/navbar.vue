@@ -45,7 +45,9 @@ const scrollToSection = async (el) => {
     }
   })
   const section = document.getElementById(id)
-  section.scrollIntoView({ behavior: "smooth" })
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 </script>
 
