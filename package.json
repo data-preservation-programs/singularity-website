@@ -12,10 +12,10 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "build": "node_modules/nuxi build",
-    "dev": "node_modules/nuxi dev --no-clear",
-    "generate": "node_modules/nuxi generate",
-    "preview": "node_modules/nuxi preview"
+    "build": "nuxi build",
+    "dev": "nuxi dev --no-clear",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview"
   },
   "overrides": {
     "vue": "latest"
