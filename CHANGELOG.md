@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.8.1](https://github.com/data-preservation-programs/singularity-website/compare/v1.8.0...v1.8.1) (2024-02-29)
+
+
+### Bug Fixes
+
+* clicking an external nav link no longer throws error ([fdda20a](https://github.com/data-preservation-programs/singularity-website/commit/fdda20a3913aad2b3be0c71a566a89296ee3e649))
+* disable svgs on fonts ([390b6c5](https://github.com/data-preservation-programs/singularity-website/commit/390b6c52db38e63756e2a439c7120971412c2c4f))
+* nuxt-module-plausible no longer throws an error on navigation ([28b8d9c](https://github.com/data-preservation-programs/singularity-website/commit/28b8d9c17daa25391d81bd2aa0ab2502d2449ef5))
+
 ## [1.8.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.7.2...v1.8.0) (2024-02-07)
 
 
