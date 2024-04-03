@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.9.0](https://github.com/data-preservation-programs/singularity-website/compare/v1.8.1...v1.9.0) (2024-04-03)
+
+
+### Features
+
+* adds local cert generation instructions and template env file to README ([234ca8e](https://github.com/data-preservation-programs/singularity-website/commit/234ca8ee970274f77b890ff549a3ec56dac1f8e9))
+
+
+### Bug Fixes
+
+* update method name ([706097f](https://github.com/data-preservation-programs/singularity-website/commit/706097f3022b86819cccf8240e430875adf5a6a5))
+
 ## [1.8.1](https://github.com/data-preservation-programs/singularity-website/compare/v1.8.0...v1.8.1) (2024-02-29)
 
 
