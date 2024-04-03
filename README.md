@@ -39,36 +39,37 @@ To build this site:
 
 ### Generate a self-signed certificate
 
-In order to browse with TLS locally, you'll need a certificate. A self-signed certificate is satisfactory for this purpose. Here's how to set one up.
+In order to run this repo in local development mode, two files must be added to the repo's root directory. The following set of commands apply to a macOS system. However, if mkcert is installed by another package manager, this can be run on any flavor of *nix.
 
-Used for development in a local environment (such as on your personal computer). You only need to do this once. If you've already done this for a different project, just copy your existing `localhost_cert.pem` and `localhost_key.pem` files from `~/.ssh` into the root directory of this repo and skip the rest of this step.
+```bash
+cd ~/.ssh
+brew install mkcert # replace with another package manager for linux distro
+brew install nss # need to install certutil before running `mkcert -install` so the CA can be automatically installed in Firefox
 
-- [Install mkcert and generate certificate](https://github.com/FiloSottile/mkcert) by running the commands below, in this order:
-  ```zsh
-  cd ~/.ssh
-  brew install mkcert # replace with another package manager for linux distro
-  brew install nss # need to install certutil before running `mkcert -install` so the CA can be automatically installed in Firefox
+# at this point, open any https website in Firefox before running the below commands
 
-  # at this point, open any https website in Firefox before running the below commands
+mkcert -install
+mkcert -key-file localhost_key.pem -cert-file localhost_cert.pem localhost 127.0.0.1
+cat localhost_cert.pem > localhost_fullchain.pem
+cat "$(mkcert -CAROOT)/rootCA.pem" >> localhost_fullchain.pem
+```
 
-  mkcert -install
-  mkcert -key-file localhost_key.pem -cert-file localhost_cert.pem localhost 127.0.0.1
-  cat localhost_cert.pem > localhost_fullchain.pem
-  cat "$(mkcert -CAROOT)/rootCA.pem" >> localhost_fullchain.pem
-  ```
-- Copy the new `localhost_cert.pem` and `localhost_key.pem` files to the root directory of this repo
+Now, navigate to your project directory, wherever the repo was cloned to, for example cd `~/Sites/work/website` and copy the `.pem` files into the repo root. These keys are .gitignored by default.
 
-The above tutorial is specifically for MacOS machines with `brew` installed. For other \*nix OS's replace the installation step with your preferred package manager (e.g. `apt install mkcert`).
+Or run the below command to copy the files to your currently `cd`’d dir automatically
+
+```bash
+cp -v ~/.ssh/localhost_cert.pem ~/.ssh/localhost_key.pem .
+```
 
 ### Environment variables
 
 Add the following `.env` file to the repo root
 
 ```ini
-NODE_ENV=stable
+NODE_ENV=development
 SERVER_ENV=development
-AIRTABLE_SINGULARITY_ACCESS_TOKEN=<entry>
-
+AIRTABLE_SINGULARITY_ACCESS_TOKEN=<temp>
 ```
 
 ## Updating dependencies
