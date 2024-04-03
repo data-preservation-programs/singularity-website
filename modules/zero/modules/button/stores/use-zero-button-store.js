@@ -16,7 +16,6 @@ export const useZeroButtonStore = defineStore('zero-button', () => {
 
   const setButton = (payload) => {
     buttons.value[payload.id] = payload
-    console.log('button ', buttons.value[payload.id])
   }
 
   /**
