@@ -130,7 +130,7 @@ const submitForm = async () => {
   } else {
     fieldError.value = true
   }
-  buttonStore.set({id: 'subfooter-card-newsletter-signup', loading: false})
+  buttonStore.setButton({id: 'subfooter-card-newsletter-signup', loading: false})
 }
 
 </script>
