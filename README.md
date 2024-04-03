@@ -37,9 +37,43 @@ To build this site:
     - Run `npm run dev`
     - The site will be available in real time via a localhost URL
 
+### Generate a self-signed certificate
+
+In order to browse with TLS locally, you'll need a certificate. A self-signed certificate is satisfactory for this purpose. Here's how to set one up.
+
+Used for development in a local environment (such as on your personal computer). You only need to do this once. If you've already done this for a different project, just copy your existing `localhost_cert.pem` and `localhost_key.pem` files from `~/.ssh` into the root directory of this repo and skip the rest of this step.
+
+- [Install mkcert and generate certificate](https://github.com/FiloSottile/mkcert) by running the commands below, in this order:
+  ```zsh
+  cd ~/.ssh
+  brew install mkcert # replace with another package manager for linux distro
+  brew install nss # need to install certutil before running `mkcert -install` so the CA can be automatically installed in Firefox
+
+  # at this point, open any https website in Firefox before running the below commands
+
+  mkcert -install
+  mkcert -key-file localhost_key.pem -cert-file localhost_cert.pem localhost 127.0.0.1
+  cat localhost_cert.pem > localhost_fullchain.pem
+  cat "$(mkcert -CAROOT)/rootCA.pem" >> localhost_fullchain.pem
+  ```
+- Copy the new `localhost_cert.pem` and `localhost_key.pem` files to the root directory of this repo
+
+The above tutorial is specifically for MacOS machines with `brew` installed. For other \*nix OS's replace the installation step with your preferred package manager (e.g. `apt install mkcert`).
+
+### Environment variables
+
+Add the following `.env` file to the repo root
+
+```ini
+NODE_ENV=stable
+SERVER_ENV=development
+AIRTABLE_SINGULARITY_ACCESS_TOKEN=<entry>
+
+```
+
 ## Updating dependencies
 
-Please use `npm ci` in place of `npm i` when not explicitly upgrading dependencies. `npm ci` will only install versions of packages provided in the lockfile, leading to more stability. 
+Please use `npm ci` in place of `npm i` when not explicitly upgrading dependencies. `npm ci` will only install versions of packages provided in the lockfile, leading to more stability.
 
 Always regression test the site if upgrading packages, as they may contain breaking changes.
 
@@ -82,6 +116,6 @@ To better display the components available on the site, their properties, and th
 
 ## [Release Please](https://github.com/googleapis/release-please)
 
-- Release Please automates CHANGELOG generation, the creation of GitHub releases, and version bumps for your projects. 
+- Release Please automates CHANGELOG generation, the creation of GitHub releases, and version bumps for your projects.
 - It is currently setup as a github action in this repo
 - See [documentation](https://github.com/googleapis/release-please) on how to use
